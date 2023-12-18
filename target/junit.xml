@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="127.299">
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify the buttons functionality and error validation and info messages in Edit Suite Page" time="59.829">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="134.409">
+    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify the buttons functionality and error validation and info messages in Edit Suite Page" time="55.499">
         <system-out><![CDATA[Given User is on Xealei login page..........................................passed
 When User should perform login with valid email and password................passed
 Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
@@ -16,7 +16,7 @@ Then User should verify the x icon in edit suite screen is working..........pass
 Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen.passed
 ]]></system-out>
     </testcase>
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page" time="67.255">
+    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page" time="78.732">
         <system-out><![CDATA[Given User is on Xealei login page..........................................passed
 When User should perform login with valid email and password................passed
 Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
@@ -32,9 +32,9 @@ Then User should verify after click the breadcrums link it should be return to S
 ]]></system-out>
     </testcase>
 </testsuite>
-out>
+]]></system-out>
     </testcase>
-    <testcase classname="Verify Xealei L Page" name="To verify Xealei Login page with valid credentials" time="23.135">
+    <testcase classname="Verify Xealei Login Page" name="To verify Xealei Login page with valid credentials" time="20.568">
         <system-out><![CDATA[Given User is on Xealei login page..........................................passed
 When User should perform login with valid email and password................passed
 Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed

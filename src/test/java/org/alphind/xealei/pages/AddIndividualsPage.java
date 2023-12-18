@@ -986,6 +986,14 @@ public class AddIndividualsPage extends BaseClass {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void selectDateInDatePickerAndVerify(int rowNum) {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());

@@ -1,4 +1,5 @@
 org\alphind\xealei\pages\LoginPage.class
+org\alphind\xealei\pages\IncidentReportPage.class
 org\alphind\xealei\baseclass\BaseClass.class
 org\alphind\xealei\stepdefinition\AddIndividualsPageStep.class
 org\alphind\xealei\stepdefinition\LoginPageStep.class
@@ -15,6 +16,9 @@ org\alphind\xealei\runner\TC4EditSuitesTestRunner.class
 org\alphind\xealei\pom\PageObjectManager.class
 org\alphind\xealei\stepdefinition\AddSuitesPageStep.class
 org\alphind\xealei\stepdefinition\Hooks.class
+org\alphind\xealei\runner\TC7IncidentReportTestRunner.class
 org\alphind\xealei\stepdefinition\EditIndividualsStep.class
 org\alphind\xealei\baseclass\BaseClass$1.class
 org\alphind\xealei\stepdefinition\EditSuitesPageStep.class
+org\alphind\xealei\pages\HomePage.class
+org\alphind\xealei\stepdefinition\IncidentReportPageStep.class

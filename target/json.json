@@ -22,7 +22,7 @@
           },
           {
             "result": {
-              "duration": 482707600,
+              "duration": 483707500,
               "status": "passed"
             },
             "line": 15,
@@ -34,7 +34,7 @@
           },
           {
             "result": {
-              "duration": 13744257200,
+              "duration": 10246606400,
               "status": "passed"
             },
             "line": 16,
@@ -52,7 +52,7 @@
           },
           {
             "result": {
-              "duration": 4214733400,
+              "duration": 4502963800,
               "status": "passed"
             },
             "line": 17,
@@ -64,7 +64,7 @@
           },
           {
             "result": {
-              "duration": 440821700,
+              "duration": 320144900,
               "status": "passed"
             },
             "line": 18,
@@ -76,7 +76,7 @@
           },
           {
             "result": {
-              "duration": 10090028100,
+              "duration": 10731312400,
               "status": "passed"
             },
             "line": 19,
@@ -88,7 +88,7 @@
           },
           {
             "result": {
-              "duration": 3199447900,
+              "duration": 3177506800,
               "status": "passed"
             },
             "line": 20,
@@ -100,7 +100,7 @@
           },
           {
             "result": {
-              "duration": 1895930000,
+              "duration": 1956767500,
               "status": "passed"
             },
             "line": 21,
@@ -113,11 +113,11 @@
         ]
       },
       {
-        "start_timestamp": "2023-12-15T07:46:29.060Z",
+        "start_timestamp": "2023-12-18T09:49:23.980Z",
         "before": [
           {
             "result": {
-              "duration": 6798828800,
+              "duration": 3768925900,
               "status": "passed"
             },
             "match": {
@@ -132,7 +132,7 @@
         "after": [
           {
             "result": {
-              "duration": 2451445600,
+              "duration": 2480369500,
               "status": "passed"
             },
             "match": {
@@ -145,7 +145,7 @@
         "steps": [
           {
             "result": {
-              "duration": 1197798000,
+              "duration": 1119007800,
               "status": "passed"
             },
             "line": 24,
@@ -163,7 +163,7 @@
           },
           {
             "result": {
-              "duration": 1568805700,
+              "duration": 1577783100,
               "status": "passed"
             },
             "line": 25,
@@ -181,7 +181,7 @@
           },
           {
             "result": {
-              "duration": 2868334400,
+              "duration": 3494658700,
               "status": "passed"
             },
             "line": 26,
@@ -199,7 +199,7 @@
           },
           {
             "result": {
-              "duration": 402922900,
+              "duration": 541551100,
               "status": "passed"
             },
             "line": 27,
@@ -211,7 +211,7 @@
           },
           {
             "result": {
-              "duration": 10459040200,
+              "duration": 11084369700,
               "status": "passed"
             },
             "line": 28,
@@ -237,7 +237,7 @@
         "steps": [
           {
             "result": {
-              "duration": 997600,
+              "duration": 1000100,
               "status": "passed"
             },
             "line": 14,
@@ -249,7 +249,7 @@
           },
           {
             "result": {
-              "duration": 427858100,
+              "duration": 451794000,
               "status": "passed"
             },
             "line": 15,
@@ -261,7 +261,7 @@
           },
           {
             "result": {
-              "duration": 11449391300,
+              "duration": 17622888900,
               "status": "passed"
             },
             "line": 16,
@@ -279,7 +279,7 @@
           },
           {
             "result": {
-              "duration": 4038204500,
+              "duration": 4541857600,
               "status": "passed"
             },
             "line": 17,
@@ -291,7 +291,7 @@
           },
           {
             "result": {
-              "duration": 308210600,
+              "duration": 329120400,
               "status": "passed"
             },
             "line": 18,
@@ -303,7 +303,7 @@
           },
           {
             "result": {
-              "duration": 9898341800,
+              "duration": 10786167200,
               "status": "passed"
             },
             "line": 19,
@@ -315,7 +315,7 @@
           },
           {
             "result": {
-              "duration": 3190625700,
+              "duration": 3226376900,
               "status": "passed"
             },
             "line": 20,
@@ -327,7 +327,7 @@
           },
           {
             "result": {
-              "duration": 1971282300,
+              "duration": 1909891900,
               "status": "passed"
             },
             "line": 21,
@@ -340,11 +340,11 @@
         ]
       },
       {
-        "start_timestamp": "2023-12-15T07:47:28.916Z",
+        "start_timestamp": "2023-12-18T09:50:19.524Z",
         "before": [
           {
             "result": {
-              "duration": 3269260700,
+              "duration": 3587410200,
               "status": "passed"
             },
             "match": {
@@ -359,7 +359,7 @@
         "after": [
           {
             "result": {
-              "duration": 315157500,
+              "duration": 416885000,
               "status": "passed"
             },
             "match": {
@@ -372,7 +372,7 @@
         "steps": [
           {
             "result": {
-              "duration": 5162825800,
+              "duration": 5152228900,
               "status": "passed"
             },
             "line": 40,
@@ -390,7 +390,7 @@
           },
           {
             "result": {
-              "duration": 24089145500,
+              "duration": 27536388500,
               "status": "passed"
             },
             "line": 41,
@@ -402,7 +402,7 @@
           },
           {
             "result": {
-              "duration": 676193100,
+              "duration": 576461200,
               "status": "passed"
             },
             "line": 42,
@@ -414,7 +414,7 @@
           },
           {
             "result": {
-              "duration": 2456432500,
+              "duration": 2590074600,
               "status": "passed"
             },
             "line": 43,
@@ -448,7 +448,7 @@
       }
     ]
   }
-]s": [
+][
           {
             "name": "@Suites-AllScenarios"
           }
@@ -471,8 +471,9 @@
       }
     ]
   }
-]     "result": {
-              "duration": 16893836000,
+]    {
+            "result": {
+              "duration": 16940721400,
               "status": "passed"
             },
             "line": 50,
@@ -504,6 +505,7 @@
         "steps": [
           {
             "result": {
+              "duration": 998000,
               "status": "passed"
             },
             "line": 14,
@@ -516,11 +518,11 @@
         ]
       },
       {
-        "start_timestamp": "2023-12-15T07:44:18.932Z",
+        "start_timestamp": "2023-12-18T09:47:18.843Z",
         "before": [
           {
             "result": {
-              "duration": 3660216000,
+              "duration": 4034217400,
               "status": "passed"
             },
             "match": {
@@ -531,11 +533,11 @@
         "line": 52,
         "name": "To verify Xealei Login page with valid credentials",
         "description": "",
-        "id": "verify-xealei-l-page;to-verify-xealei-login-page-with-valid-credentials",
+        "id": "verify-xealei-login-page;to-verify-xealei-login-page-with-valid-credentials",
         "after": [
           {
             "result": {
-              "duration": 410900700,
+              "duration": 262296500,
               "status": "passed"
             },
             "match": {
@@ -548,7 +550,7 @@
         "steps": [
           {
             "result": {
-              "duration": 749994700,
+              "duration": 750991100,
               "status": "passed"
             },
             "line": 53,
@@ -560,7 +562,7 @@
           },
           {
             "result": {
-              "duration": 18311050500,
+              "duration": 15517518200,
               "status": "passed"
             },
             "line": 54,
@@ -584,9 +586,9 @@
         ]
       }
     ],
-    "name": "Verify Xealei L Page",
+    "name": "Verify Xealei Login Page",
     "description": "",
-    "id": "verify-xealei-l-page",
+    "id": "verify-xealei-login-page",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/TC1_Login.feature",
     "tags": [

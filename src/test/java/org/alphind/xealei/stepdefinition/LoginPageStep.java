@@ -442,7 +442,7 @@ public class LoginPageStep extends BaseClass {
 		deleteExistFieldData(pom.getLoginPage().getPassword());
 		log(Status.INFO, "Delete the entered Password");
 
-		pom.getLoginPage().validEmail();
+		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().password();
 		pom.getLoginPage().loginButton();
 
@@ -497,8 +497,8 @@ public class LoginPageStep extends BaseClass {
 
 		logStep(methodName());
 		
-		pom.getLoginPage().validEmail();
-		pom.getLoginPage().validPassword();
+		pom.getLoginPage().validEmail(1);
+		pom.getLoginPage().validPassword(1);
 
 		try {
 			clickEnter(pom.getLoginPage().getLoginButton());
@@ -513,8 +513,8 @@ public class LoginPageStep extends BaseClass {
 
 		logStep(methodName());
 		
-		pom.getLoginPage().validEmail();
-		pom.getLoginPage().validPassword();
+		pom.getLoginPage().validEmail(1);
+		pom.getLoginPage().validPassword(1);
 		pom.getLoginPage().loginButton();
 
 	}

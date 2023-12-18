@@ -1,0 +1,5 @@
+/Extent Reports/
+/pom7.xml
+/src/test/resources/Features/TC7_Incident Reports.feature
+/src/test/java/org/alphind/xealei/stepdefinition/IncidentReportPageStep.java
+/src/test/java/org/alphind/xealei/pages/IncidentReportPage.java

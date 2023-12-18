@@ -10,10 +10,14 @@ C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\EditIndividu
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\EditSuitesPage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pom\PageObjectManager.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\AddIndividualsPageStep.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\HomePage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\LoginPage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC6EditIndividualsTestRunner.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC7IncidentReportTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\AddSuitesPage.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\IncidentReportPage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\EditSuitesPageStep.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC4EditSuitesTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC5AddIndividualsTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\EditIndividualsStep.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\IncidentReportPageStep.java

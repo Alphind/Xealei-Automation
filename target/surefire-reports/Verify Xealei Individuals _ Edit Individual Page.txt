@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: Verify Xealei Individuals > Edit Individual Page
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 667.1 s -- in Verify Xealei Individuals > Edit Individual Page
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 683.2 s -- in Verify Xealei Individuals > Edit Individual Page

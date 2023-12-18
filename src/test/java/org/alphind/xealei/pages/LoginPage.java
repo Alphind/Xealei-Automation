@@ -213,26 +213,26 @@ public class LoginPage extends BaseClass {
 
 	String email;
 
-	public void validEmail(){
+	public void validEmail(int rowNum){
 
 		String environment = getConfigureProperty("Environment");
 
 		switch (environment) {
 
 		case "QA": {
-			email = readExcel("Test Datas", "Login", 1, 1);
+			email = readExcel("Test Datas", "Login", rowNum, 1);
 			log(Status.INFO, "Getting the Email/userName in QA environment");
 			sendKeys(getUserName(), email);
 			break;
 		}
 		case "PREPROD": {
-			email = readExcel("Test Datas", "Login", 2, 1);
+			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(getUserName(), email);
 			log(Status.INFO, "Enter PREPROD environment email/userName");
 			break;
 		}
 		case "PROD": {
-			email = readExcel("Test Datas", "Login", 2, 1);
+			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(getUserName(), email);
 			log(Status.INFO, "Enter PROD environment email/userName");
 			break;
@@ -247,26 +247,26 @@ public class LoginPage extends BaseClass {
 
 	String passWord;
 
-	public void validPassword() {
+	public void validPassword(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
 
 		switch (environment) {
 
 		case "QA": {
-			passWord = readExcel("Test Datas", "Login", 1, 2);
+			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter QA environment Password");
 			break; 
 		}
 		case "PREPROD": {
-			passWord = readExcel("Test Datas", "Login", 2, 2);
+			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter PREPROD environment Password");
 			break;
 		}
 		case "PROD": {
-			passWord = readExcel("Test Datas", "Login", 2, 2);
+			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter PROD environment Password");
 			break;

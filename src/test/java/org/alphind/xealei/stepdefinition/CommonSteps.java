@@ -37,7 +37,7 @@ public class CommonSteps extends BaseClass {
 //			e.getMessage();
 //			System.err.println("[ERROR] - Unknown Toast Msg is Diplayed [Toast Message] >>>  Unknown Error.Please contact administrator for more information.");
 //		} catch (NoSuchElementException e1) {
-//			log(Status.INFO, "No Unknown error Toast msg is displayed");
+//			AddIndividualsPage.javalog(Status.INFO, "No Unknown error Toast msg is displayed");
 //			e1.getMessage();
 //		}
 
