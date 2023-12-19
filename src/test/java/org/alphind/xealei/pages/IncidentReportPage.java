@@ -180,5 +180,4 @@ public class IncidentReportPage extends BaseClass {
 	private WebElement NotifiedByErrorText;
 	
 	
-	
 }
