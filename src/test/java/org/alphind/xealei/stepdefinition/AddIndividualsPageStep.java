@@ -604,9 +604,9 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualNameInAddressTabVerification(), 5);
 
-			Assert.assertEquals("First,Middel & Last Name is not displayed in Address tab section", expIndName,
+			Assert.assertEquals("First,Middle & Last Name is not displayed in Address tab section", expIndName,
 					getText(pom.getAddIndividualsPage().getIndividualNameInAddressTabVerification()));
-			log(Status.PASS, "First,Middel & Last Name is displayed in Address tab section Ind Name - "
+			log(Status.PASS, "First,Middle & Last Name is displayed in Address tab section Ind Name - "
 					+ getText(pom.getAddIndividualsPage().getIndividualNameInAddressTabVerification()));
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
