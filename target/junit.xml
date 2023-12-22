@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="134.409">
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify the buttons functionality and error validation and info messages in Edit Suite Page" time="55.499">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-And User should verify the Suite Module is working..........................passed
-Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters" in edit suite page.passed
-Then User should verify the Edit Suite form for mandatory "Please Enter Suite Name".passed
-Then User should verify duplicate validation for Suite name '"Suite Name already exists."' in edit suite page.passed
-Then User should verify the x icon in edit suite screen is working..........passed
-Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen.passed
-]]></system-out>
-    </testcase>
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page" time="78.732">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-And User should verify the Suite Module is working..........................passed
-Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-And User should update all fields and verify the toast message after update all fields "Saved Successfully!!" in edit Suite Page.passed
-Then User should verify all fields are created successsfully in edit Suite Page.passed
-Then User should verify the breadcrums link should be display with module suite name > selected suite name in edit suite page.passed
-Then User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page.passed
-]]></system-out>
-    </testcase>
-</testsuite>
-]]></system-out>
-    </testcase>
-    <testcase classname="Verify Xealei Login Page" name="To verify Xealei Login page with valid credentials" time="20.568">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-]]></system-out>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="6.286">
+    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="5.306">
+        <failure message="The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/" type="java.lang.IllegalStateException"><![CDATA[Given User is on Xealei login page..........................................skipped
+When User should verify the tab url address for login page..................skipped
+Then User should verify the 'LOGIN' text is displayed.......................skipped
+Then User should verify the field label name and placeholder text for Email and Password fields.skipped
+When User should enter password in password field...........................skipped
+Then User should verify that entered password is **hide.....................skipped
+And User should click the eye icon in the Password field....................skipped
+Then User should verify that entered password is Unhide.....................skipped
+And User should verify Forget password link is working......................skipped
+Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed.skipped
+When User should click the privacy policy link..............................skipped
+Then User should verify "PRIVACY POLICY" popup should be displayed after click the Privacy Policy link.skipped
+
+StackTrace:
+java.lang.IllegalStateException: The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
+	at org.openqa.selenium.internal.Require$StateChecker.nonNull(Require.java:314)
+	at org.openqa.selenium.remote.service.DriverFinder.getPath(DriverFinder.java:33)
+	at org.openqa.selenium.chrome.ChromeDriver.generateExecutor(ChromeDriver.java:98)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:88)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:84)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:73)
+	at org.alphind.xealei.baseclass.BaseClass.browserType(BaseClass.java:93)
+	at org.alphind.xealei.stepdefinition.Hooks.setUp(Hooks.java:30)
+]]></failure>
     </testcase>
 </testsuite>

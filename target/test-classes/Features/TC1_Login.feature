@@ -12,7 +12,7 @@ Feature: Verify Xealei Login Page
 
   Background: 
     Given User is on Xealei login page
-
+@1
   Scenario: Comprehensive Login Page UI Testing
     When User should verify the tab url address for login page
     Then User should verify the 'LOGIN' text is displayed
