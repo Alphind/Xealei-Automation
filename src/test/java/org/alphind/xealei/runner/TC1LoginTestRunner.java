@@ -18,7 +18,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features", 
-tags = "@Login-AllScenarios", glue = "org.alphind.xealei.stepdefinition", 
+tags = "@1", glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true, plugin = {
 		"html:target/html.html", 
 		"junit:target/junit.xml", 
