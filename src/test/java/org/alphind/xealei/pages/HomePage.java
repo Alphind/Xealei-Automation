@@ -24,27 +24,28 @@ public class HomePage extends BaseClass {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	public WebElement getAdminName() {
 		return adminName;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void reportsModule() {
-	
 
+	
+	public HomePage reportsModule() {
+	
+    click(ReportsModule);
+	return this;
 	}
+	
+	public HomePage incidentReportModule() {
+		
+		click(incidentReportModule);
+		return this;
+	}
+	
+	
+	
+	
+	
+	
 }

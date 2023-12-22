@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="6.286">
     <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="5.306">
         <failure message="The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/" type="java.lang.IllegalStateException"><![CDATA[Given User is on Xealei login page..........................................skipped
@@ -25,5 +26,22 @@ java.lang.IllegalStateException: The path to the driver executable Unable to loc
 	at org.alphind.xealei.baseclass.BaseClass.browserType(BaseClass.java:93)
 	at org.alphind.xealei.stepdefinition.Hooks.setUp(Hooks.java:30)
 ]]></failure>
+=======
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="19.961">
+    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="19.195">
+        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+When User should verify the tab url address for login page..................passed
+Then User should verify the 'LOGIN' text is displayed.......................passed
+Then User should verify the field label name and placeholder text for Email and Password fields.passed
+When User should enter password in password field...........................passed
+Then User should verify that entered password is **hide.....................passed
+And User should click the eye icon in the Password field....................passed
+Then User should verify that entered password is Unhide.....................passed
+And User should verify Forget password link is working......................passed
+Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed.passed
+When User should click the privacy policy link..............................passed
+Then User should verify "PRIVACY POLICY" popup should be displayed after click the Privacy Policy link.passed
+]]></system-out>
+>>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
     </testcase>
 </testsuite>
