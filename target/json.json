@@ -11,6 +11,7 @@
         "steps": [
           {
             "result": {
+              "duration": 4986000,
               "status": "passed"
             },
             "line": 14,
@@ -19,105 +20,15 @@
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
             },
             "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 483707500,
-              "status": "passed"
-            },
-            "line": 15,
-            "name": "User should perform login with valid email and password",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 10246606400,
-              "status": "passed"
-            },
-            "line": 16,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Home\"",
-                  "offset": 77
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 4502963800,
-              "status": "passed"
-            },
-            "line": 17,
-            "name": "User should verify the Suite Module is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_suite_module_is_working()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 320144900,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "User should verify suite page tab url address for suites page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_suite_page_tab_url_address_for_suites_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 10731312400,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "User should search the created suite",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_search_the_created_suite()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 3177506800,
-              "status": "passed"
-            },
-            "line": 20,
-            "name": "User should verify the Edit Suite button is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1956767500,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "User should verify the Edit Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_pop_up_screen_is_displayed()"
-            },
-            "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2023-12-18T09:49:23.980Z",
+        "start_timestamp": "2023-12-22T06:54:17.651Z",
         "before": [
           {
             "result": {
-              "duration": 3768925900,
+              "duration": 16553718900,
               "status": "passed"
             },
             "match": {
@@ -125,14 +36,14 @@
             }
           }
         ],
-        "line": 23,
-        "name": "To verify the buttons functionality and error validation and info messages in Edit Suite Page",
+        "line": 16,
+        "name": "Comprehensive Login Page UI Testing",
         "description": "",
-        "id": "verify-xealei-suites-\u003e-edit-suites-page;to-verify-the-buttons-functionality-and-error-validation-and-info-messages-in-edit-suite-page",
+        "id": "verify-xealei-login-page;comprehensive-login-page-ui-testing",
         "after": [
           {
             "result": {
-              "duration": 2480369500,
+              "duration": 825789700,
               "status": "passed"
             },
             "match": {
@@ -145,436 +56,151 @@
         "steps": [
           {
             "result": {
-              "duration": 1119007800,
+              "duration": 234375700,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "User should verify the tab url address for login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_tab_url_address_for_login_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 216419100,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "User should verify the \u0027LOGIN\u0027 text is displayed",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027LOGIN\u0027",
+                  "offset": 23
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_text_is_displayed(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 301194900,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "User should verify the field label name and placeholder text for Email and Password fields",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 145610500,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "User should enter password in password field",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_password_in_password_field()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 36901500,
               "status": "passed"
             },
             "line": 24,
-            "name": "User should verify the limit error info message for Suite Name* field \"Suite Name must be minimum 3 characters\" in edit suite page",
+            "name": "User should verify that entered password is **hide",
             "match": {
-              "arguments": [
-                {
-                  "val": "\"Suite Name must be minimum 3 characters\"",
-                  "offset": 70
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_limit_error_info_message_for_suite_Name_field_in_edit_suite_page(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_hide()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 1577783100,
+              "duration": 178523300,
               "status": "passed"
             },
             "line": 25,
-            "name": "User should verify the Edit Suite form for mandatory \"Please Enter Suite Name\"",
+            "name": "User should click the eye icon in the Password field",
             "match": {
-              "arguments": [
-                {
-                  "val": "\"Please Enter Suite Name\"",
-                  "offset": 53
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_form_for_mandatory_and(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_eye_icon_in_the_password_field()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "result": {
-              "duration": 3494658700,
+              "duration": 27926000,
               "status": "passed"
             },
             "line": 26,
-            "name": "User should verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027 in edit suite page",
+            "name": "User should verify that entered password is Unhide",
             "match": {
-              "arguments": [
-                {
-                  "val": "\u0027\"Suite Name already exists.\"\u0027",
-                  "offset": 55
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_duplicate_validation_for_suite_name_in_edit_suite_page(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_unhide()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 541551100,
+              "duration": 189492800,
               "status": "passed"
             },
             "line": 27,
-            "name": "User should verify the x icon in edit suite screen is working",
+            "name": "User should verify Forget password link is working",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_x_icon_in_edit_suite_screen_is_working()"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_forget_password_link_is_working()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "result": {
-              "duration": 11084369700,
+              "duration": 93748600,
               "status": "passed"
             },
             "line": 28,
-            "name": "User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen",
+            "name": "User should verify the copy rights \"Powered by Alphind © 2023\" text is displayed",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_user_able_to_change_the_status_as_InActive_and_is_displayed_accordingly_on_update_of_availability_field_in_edit_screen()"
+              "arguments": [
+                {
+                  "val": "\"Powered by Alphind © 2023\"",
+                  "offset": 35
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_copy_rights_text_is_displayed(java.lang.String)"
             },
             "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "name": "@EditSuites-AllScenarios"
-          }
-        ]
-      },
-      {
-        "line": 13,
-        "name": "",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "duration": 1000100,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "User is on Xealei login page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
-            },
-            "keyword": "Given "
           },
           {
             "result": {
-              "duration": 451794000,
+              "duration": 155583300,
               "status": "passed"
             },
-            "line": 15,
-            "name": "User should perform login with valid email and password",
+            "line": 29,
+            "name": "User should click the privacy policy link",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_privacy_policy_link()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 17622888900,
+              "duration": 79788000,
               "status": "passed"
             },
-            "line": 16,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
+            "line": 30,
+            "name": "User should verify \"PRIVACY POLICY\" popup should be displayed after click the Privacy Policy link",
             "match": {
               "arguments": [
                 {
-                  "val": "\"Home\"",
-                  "offset": 77
+                  "val": "\"PRIVACY POLICY\"",
+                  "offset": 19
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 4541857600,
-              "status": "passed"
-            },
-            "line": 17,
-            "name": "User should verify the Suite Module is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_suite_module_is_working()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 329120400,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "User should verify suite page tab url address for suites page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_suite_page_tab_url_address_for_suites_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 10786167200,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "User should search the created suite",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_search_the_created_suite()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 3226376900,
-              "status": "passed"
-            },
-            "line": 20,
-            "name": "User should verify the Edit Suite button is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1909891900,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "User should verify the Edit Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_pop_up_screen_is_displayed()"
-            },
-            "keyword": "Then "
-          }
-        ]
-      },
-      {
-        "start_timestamp": "2023-12-18T09:50:19.524Z",
-        "before": [
-          {
-            "result": {
-              "duration": 3587410200,
-              "status": "passed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
-            }
-          }
-        ],
-        "line": 39,
-        "name": "To verify user able to Edit/Update Suites by entering all fields also verify the \u0027Bread Crums\u0027 link in Edit Suite Page",
-        "description": "",
-        "id": "verify-xealei-suites-\u003e-edit-suites-page;to-verify-user-able-to-edit/update-suites-by-entering-all-fields-also-verify-the--bread-crums--link-in-edit-suite-page",
-        "after": [
-          {
-            "result": {
-              "duration": 416885000,
-              "status": "passed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "duration": 5152228900,
-              "status": "passed"
-            },
-            "line": 40,
-            "name": "User should update all fields and verify the toast message after update all fields \"Saved Successfully!!\" in edit Suite Page",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Saved Successfully!!\"",
-                  "offset": 83
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(java.lang.String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 27536388500,
-              "status": "passed"
-            },
-            "line": 41,
-            "name": "User should verify all fields are created successsfully in edit Suite Page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_all_fields_are_created_successsfully_in_edit_suite_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 576461200,
-              "status": "passed"
-            },
-            "line": 42,
-            "name": "User should verify the breadcrums link should be display with module suite name \u003e selected suite name in edit suite page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name_in_edit_suite_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2590074600,
-              "status": "passed"
-            },
-            "line": 43,
-            "name": "User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page_in_edit_suite_page()"
-            },
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "name": "@EditSuites-AllScenarios"
-          }
-        ]
-      }
-    ],
-    "name": "Verify Xealei Suites \u003e Edit Suites Page",
-    "description": "",
-    "id": "verify-xealei-suites-\u003e-edit-suites-page",
-    "keyword": "Feature",
-    "uri": "file:src/test/resources/Features/TC4_Edit%20Suites.feature",
-    "tags": [
-      {
-        "name": "@EditSuites-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
-  }
-][
-          {
-            "name": "@Suites-AllScenarios"
-          }
-        ]
-      }
-    ],
-    "name": "Verify Xealei Suites \u003e Add Suites Page",
-    "description": "",
-    "id": "verify-xealei-suites-\u003e-add-suites-page",
-    "keyword": "Feature",
-    "uri": "file:src/test/resources/Features/TC3_Add%20Suites.feature",
-    "tags": [
-      {
-        "name": "@Suites-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
-  }
-]    {
-            "result": {
-              "duration": 16940721400,
-              "status": "passed"
-            },
-            "line": 50,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Home\"",
-                  "offset": 77
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
-            },
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "name": "@Login-AllScenarios"
-          }
-        ]
-      },
-      {
-        "line": 13,
-        "name": "",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "duration": 998000,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "User is on Xealei login page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
-            },
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
-        "start_timestamp": "2023-12-18T09:47:18.843Z",
-        "before": [
-          {
-            "result": {
-              "duration": 4034217400,
-              "status": "passed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
-            }
-          }
-        ],
-        "line": 52,
-        "name": "To verify Xealei Login page with valid credentials",
-        "description": "",
-        "id": "verify-xealei-login-page;to-verify-xealei-login-page-with-valid-credentials",
-        "after": [
-          {
-            "result": {
-              "duration": 262296500,
-              "status": "passed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "duration": 750991100,
-              "status": "passed"
-            },
-            "line": 53,
-            "name": "User should perform login with valid email and password",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 15517518200,
-              "status": "passed"
-            },
-            "line": 54,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Home\"",
-                  "offset": 77
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_popup_should_be_displayed_after_click_the_privacy_policy_link(java.lang.String)"
             },
             "keyword": "Then "
           }
@@ -591,15 +217,6 @@
     "id": "verify-xealei-login-page",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/TC1_Login.feature",
-    "tags": [
-      {
-        "name": "@Login-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
+    "tags": []
   }
 ]

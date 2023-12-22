@@ -1,43 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="134.409">
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify the buttons functionality and error validation and info messages in Edit Suite Page" time="55.499">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="19.961">
+    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="19.195">
         <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-And User should verify the Suite Module is working..........................passed
-Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters" in edit suite page.passed
-Then User should verify the Edit Suite form for mandatory "Please Enter Suite Name".passed
-Then User should verify duplicate validation for Suite name '"Suite Name already exists."' in edit suite page.passed
-Then User should verify the x icon in edit suite screen is working..........passed
-Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen.passed
-]]></system-out>
-    </testcase>
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page" time="78.732">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-And User should verify the Suite Module is working..........................passed
-Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-And User should update all fields and verify the toast message after update all fields "Saved Successfully!!" in edit Suite Page.passed
-Then User should verify all fields are created successsfully in edit Suite Page.passed
-Then User should verify the breadcrums link should be display with module suite name > selected suite name in edit suite page.passed
-Then User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page.passed
-]]></system-out>
-    </testcase>
-</testsuite>
-]]></system-out>
-    </testcase>
-    <testcase classname="Verify Xealei Login Page" name="To verify Xealei Login page with valid credentials" time="20.568">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
+When User should verify the tab url address for login page..................passed
+Then User should verify the 'LOGIN' text is displayed.......................passed
+Then User should verify the field label name and placeholder text for Email and Password fields.passed
+When User should enter password in password field...........................passed
+Then User should verify that entered password is **hide.....................passed
+And User should click the eye icon in the Password field....................passed
+Then User should verify that entered password is Unhide.....................passed
+And User should verify Forget password link is working......................passed
+Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed.passed
+When User should click the privacy policy link..............................passed
+Then User should verify "PRIVACY POLICY" popup should be displayed after click the Privacy Policy link.passed
 ]]></system-out>
     </testcase>
 </testsuite>

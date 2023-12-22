@@ -17,10 +17,10 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "src//test//resources//Features", 
+@CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
 tags = "@IR-AllScenarios",
 glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true)
+dryRun = true, monochrome = true)
 
 
 public class TC7IncidentReportTestRunner { 
