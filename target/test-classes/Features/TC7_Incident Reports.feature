@@ -106,16 +106,16 @@ Scenario Outline: To verify IR form creation via manual by "<adminName>"
      #     |VVCn     | Alphind@123 | Chief Nurse			|
      #     |VPRM     | Alphind@123 | Resident Manager|
     
-    
+@AllApprove    
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
-		Given User is on Xealei login page.
-		When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
+		Given User is on Xealei login page
+		When User is login into Xealei application as Staff role user with valid "AStaff" and "auto@123".
 		Then Verify Home page is displayed.
 		Then Navigate to Reports module.
 		And Navigate to Incident Report sub module.
 		Then Click on Add New Incident Report button.
-		And Verify Incident report page is displayed.
+		And Verify Add Incident report page is displayed.
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
 		Then Click on next button.
@@ -123,25 +123,28 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		And Click on complete button.
 		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Cheif nurse role with valid <username> and <passowrd>.
-		Then Verify whether notification is received.
-		And Approve the report.
-		And Verify whether the report is in "" status.
-		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Residential Manager role with valid <username> and <passowrd>.
-		Then Verify whether notification is received.
-		And Approve the report.
-		And Verify whether the report is in "" status.
-		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as CLinical Coordinator role with valid <username> and <passowrd>.
-		Then Verify whether notification is received.
-		And Approve the report.
-		And Verify whether the report is in "" status.
-		And Login into Xealei application as Social Worker role with valid <username> and <passowrd>.
-		Then Verify whether notification is received.
-		And Approve the report.
-		And Verify whether the report is in "" status.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
+		#Then Verify whether notification is received.
+		#And Approve the report.
+		#And Verify whether the report is in "" status.
+		#Then Launch a new browser and enter xealei url.
+		#And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		#Then Verify whether notification is received.
+		#And Approve the report.
+		#And Verify whether the report is in "" status.
+		#Then Launch a new browser and enter xealei url.
+		#And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
+		#Then Verify whether notification is received.
+		#And Approve the report.
+		#And Verify whether the report is in "" status.
+		#And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
+		#Then Verify whether notification is received.
+		#And Approve the report.
+		#And Verify whether the report is in "" status.
 		
+		|StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
 		
 Scenario Outline: To verify whether cheif nurse can able to reject and reapprove the incident Report.
      
@@ -159,12 +162,16 @@ Scenario Outline: To verify whether cheif nurse can able to reject and reapprove
 		And Click on complete button.
 		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Cheif nurse role with valid <username> and <passowrd>.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
 		Then Verify whether notification is received.
 		And Deny the report.
 		Then Switch to Staff login and check whether sent back comments are available.
 		And Again submit the report.
 		Then Switch to cheif nurse login and approve the incident report.   
+     
+    |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
      
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
 		Given User is on Xealei login page.
@@ -181,18 +188,18 @@ Scenario Outline: To verify whether residential manager can able to reject and r
 		And Click on complete button.
 		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Cheif nurse role with valid <username> and <passowrd>.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
 		Then Verify whether notification is received.
 		And Approve the report.
 		And Verify whether the report is in "" status.
 		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Residential Manager role with valid <username> and <passowrd>.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
 		Then Verify whether notification is received.
 		And Deny the report.
 		Then Switch to cheif nurse login and check whether sent back comments are available.
 		And Again submit the report.
 		Then Switch to Residential Manager login and approve the incident report.    
     
-    
-    
-    
+   |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
