@@ -28,7 +28,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
@@ -52,7 +51,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.manager.SeleniumManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -80,7 +78,6 @@ public class BaseClass {
 	// public ThreadLocal<WebDriver> dr = new ThreadLocal<WebDriver>();
 
 	public static WebDriver driver;
-	private static Map<String, WebDriver> dr;
 
 	/**
 	 * To launch the browser that to be automated.
@@ -609,6 +606,18 @@ public class BaseClass {
 //		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
 		WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+		wait.until(ExpectedConditions.invisibilityOf(loading));
+
+	}
+	
+	//Added new method for handling multiple drivers
+	//creTED BY NANDHALALA
+	public void waitForPageLoad(WebDriver currentdriver) {
+
+//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 
 	}

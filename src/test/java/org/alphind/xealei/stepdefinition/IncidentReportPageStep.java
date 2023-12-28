@@ -3,6 +3,9 @@ package org.alphind.xealei.stepdefinition;
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.aventstack.extentreports.Status;
 
@@ -12,6 +15,13 @@ import io.cucumber.java.en.When;
 public class IncidentReportPageStep extends BaseClass {
 
 	PageObjectManager pom = new PageObjectManager();
+	
+	private WebDriver staffDriver = getDriver();
+	private WebDriver cheifnurseDriver;
+	private WebDriver rmDriver;
+	private WebDriver ccDriver;
+	private WebDriver swDriver;
+	
 
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
@@ -129,7 +139,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		pom.getIncidentReportPage().selectIndividualDetailsDropdown();
 	
-		pom.getIncidentReportPage().wasPatientInjuredRadioButton();
+		pom.getIncidentReportPage().wasIndividualInjuredRadioButton();
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Description field", expInjuryDescriptionInfoMsg,
@@ -328,10 +338,17 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@When("User is login into Xealei application as Staff role user with valid <username> and <passowrd>.")
-			public void user_is_login_into_xealei_application_as_staff_role_user_with_valid_username_and_passowrd() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			@When("User is login into Xealei application as Staff role user with valid {string} and {string}.")
+			public void user_is_login_into_xealei_application_as_staff_role_user_with_valid_and(String StaffUserName, String StaffPassWord) {
+			    
+				logStep(methodName());
+
+				sendKeys(pom.getLoginPage().getUserName(), StaffUserName);
+				sendKeys(pom.getLoginPage().getPassword(), StaffPassWord);
+				pom.getLoginPage().loginButton();
+				waitForPageLoad();
+				
+
 			}
 
 			/**
@@ -339,8 +356,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify Home page is displayed.")
 			public void verify_home_page_is_displayed() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getHomePage().isHomePageDisplayed();
 			}
 
 			/**
@@ -348,8 +364,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Reports module.")
 			public void navigate_to_reports_module() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getHomePage().reportsModule().incidentReportModule();
 			}
 
 			/**
@@ -357,8 +372,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Incident Report sub module.")
 			public void navigate_to_incident_report_sub_module() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+				pom.getHomePage().incidentReportModule();
 			}
 
 			/**
@@ -366,17 +380,15 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Click on Add New Incident Report button.")
 			public void click_on_add_new_incident_report_button() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getIncidentReportPage().addNewIncidentReportButton();
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify Incident report page is displayed.")
-			public void verify_incident_report_page_is_displayed() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			@Then("Verify Add Incident report page is displayed.")
+			public void verify_add_incident_report_page_is_displayed() {
+			    pom.getIncidentReportPage().isIncidentReportPageDisplayed();
 			}
 
 			/**
@@ -384,8 +396,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Select the individual for whom the incident report has to be created.")
 			public void select_the_individual_for_whom_the_incident_report_has_to_be_created() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+				pom.getIncidentReportPage().selectIndividualDetails();
 			}
 
 			/**
@@ -393,8 +404,20 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Enter all the details of the Incident.")
 			public void enter_all_the_details_of_the_incident() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getIncidentReportPage().enterWhatCausedTheFallData();
+			    pom.getIncidentReportPage().selectWasTheIndividiualInjured();
+			    pom.getIncidentReportPage().selectFrontViewInjurySite();
+			    pom.getIncidentReportPage().selectBackViewInjurySite();
+			    pom.getIncidentReportPage().enterTreatmentReceivedData();
+			    pom.getIncidentReportPage().enterFutureTreatmentData();
+			    pom.getIncidentReportPage().selectInjuryType();
+			    pom.getIncidentReportPage().selectInjuryColor();
+			    pom.getIncidentReportPage().selectHowSevereWasTheInjury();
+			    pom.getIncidentReportPage().enterPersonNotifiedData();
+			    pom.getIncidentReportPage().enterNotifiedByData();
+			    pom.getIncidentReportPage().selectReletionship();
+			    pom.getIncidentReportPage().selectNotificationMethod();
+			    
 			}
 
 			/**
@@ -402,8 +425,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Click on next button.")
 			public void click_on_next_button() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getIncidentReportPage().nextButton();
 			}
 
 			/**
@@ -420,8 +442,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@When("Click on complete button.")
 			public void click_on_complete_button() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    pom.getIncidentReportPage().clickCompleteButton();
 			}
 
 			/**
@@ -429,8 +450,8 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@When("Verify whether the report is in pending status.")
 			public void verify_whether_the_report_is_in_pending_status() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+				String rowNumber = pom.getIncidentReportPage().getRowNumber();
+			    String status =	pom.getIncidentReportPage().getStatus(rowNumber);
 			}
 
 			/**
@@ -438,17 +459,22 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Launch a new browser and enter xealei url.")
 			public void launch_a_new_browser_and_enter_xealei_url() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			    cheifnurseDriver = new ChromeDriver();
+			    cheifnurseDriver.get("https://gha.qa.xealei.com/login");
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Login into Xealei application as Cheif nurse role with valid <username> and <passowrd>.")
-			public void login_into_xealei_application_as_cheif_nurse_role_with_valid_username_and_passowrd() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			@Then("Login into Xealei application as Cheif nurse role with valid {string} and {string}.")
+			public void login_into_xealei_application_as_cheif_nurse_role_with_valid_and(String cheifNurseUserName, String cheifNursePassWord) {
+				cheifnurseDriver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys(cheifNurseUserName);
+				cheifnurseDriver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(cheifNursePassWord);
+//				sendKeys(pom.getLoginPage().getUserName(), cheifNurseUserName);
+//				sendKeys(pom.getLoginPage().getPassword(), cheifNursePassWord);
+				cheifnurseDriver.findElement(By.xpath("//button[text()='Login ']")).click();
+				//pom.getLoginPage().loginButton();
+				waitForPageLoad(cheifnurseDriver);
 			}
 
 			/**
@@ -481,8 +507,8 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Login into Xealei application as Residential Manager role with valid <username> and <passowrd>.")
-			public void login_into_xealei_application_as_residential_manager_role_with_valid_username_and_passowrd() {
+			@Then("Login into Xealei application as Residential Manager role with valid {string} and {string}.")
+			public void login_into_xealei_application_as_residential_manager_role_with_valid_and(String string, String string2) {
 			    // Write code here that turns the phrase above into concrete actions
 			    throw new io.cucumber.java.PendingException();
 			}
@@ -490,8 +516,8 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Login into Xealei application as CLinical Coordinator role with valid <username> and <passowrd>.")
-			public void login_into_xealei_application_as_c_linical_coordinator_role_with_valid_username_and_passowrd() {
+			@Then("Login into Xealei application as CLinical Coordinator role with valid {string} and {string}.")
+			public void login_into_xealei_application_as_c_linical_coordinator_role_with_valid_and(String string, String string2) {
 			    // Write code here that turns the phrase above into concrete actions
 			    throw new io.cucumber.java.PendingException();
 			}
@@ -499,11 +525,11 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Login into Xealei application as Social Worker role with valid <username> and <passowrd>.")
-			public void login_into_xealei_application_as_social_worker_role_with_valid_username_and_passowrd() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
-			}
+			    @Then("Login into Xealei application as Social Worker role with valid {string} and {string}.")
+			    public void login_into_xealei_application_as_social_worker_role_with_valid_and(String string, String string2) {
+			        // Write code here that turns the phrase above into concrete actions
+			        throw new io.cucumber.java.PendingException();
+			    }
 
 			/**
 			 * Created by Nandhalala.
