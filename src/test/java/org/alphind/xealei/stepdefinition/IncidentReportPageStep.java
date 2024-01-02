@@ -11,7 +11,7 @@ import io.cucumber.java.en.When;
 
 public class IncidentReportPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(driver);
 
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
@@ -25,8 +25,9 @@ public class IncidentReportPageStep extends BaseClass {
 
 		sendKeys(pom.getLoginPage().getUserName(), userName);
 		sendKeys(pom.getLoginPage().getPassword(), password);
-		pom.getLoginPage().loginButton();
 		waitForPageLoad();
+		pom.getLoginPage().loginButton();
+		
 
 	}
 
@@ -108,6 +109,9 @@ public class IncidentReportPageStep extends BaseClass {
 				e.printStackTrace();
 			}
 		
+			pom.getIncidentReportPage().selectIndividualDetailsDropdown();	
+			
+			pom.getIncidentReportPage().wasPatientInjuredRadioButton();
 			
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
@@ -126,10 +130,6 @@ public class IncidentReportPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-		
-		pom.getIncidentReportPage().selectIndividualDetailsDropdown();
-	
-		pom.getIncidentReportPage().wasPatientInjuredRadioButton();
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Description field", expInjuryDescriptionInfoMsg,
@@ -598,9 +598,58 @@ public class IncidentReportPageStep extends BaseClass {
 					pom.getAddIndividualsPage().datePicker();
 				}
 				
-				 
 				
-				
-				
-	
-}
+					@Then("User should verify that whether able to select options under Injury Type field")
+					public void user_should_verify_that_whether_able_to_select_options_under_injury_type_field() {
+					 
+						pom.getIncidentReportPage().selectInjuryType();
+				}
+
+					@Then("User should verify that whether able to selecting multiple option values under Injury Type field")
+					public void user_should_verify_that_whether_able_to_selecting_multiple_option_values_under_injury_type_field() {
+					
+						
+						pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+					}
+					
+						@Then("User should verify that whether able to unselect the selected option values under Injury Type field")
+						public void user_should_verify_that_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
+						    
+							pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+						}
+						
+						@Then("User should verify that whether able to select the option value under How severe was injury? field")
+						public void user_should_verify_that_whether_able_to_select_the_option_value_under_how_severe_was_injury_field() {
+						   
+							
+							pom.getIncidentReportPage().selectOptionHowSevereWasTheInjury();
+						}
+						
+						@Then("User should verify that whether able to select the option value under Injury Color")
+						public void user_should_verify_that_whether_able_to_select_the_option_value_under_injury_color() {
+						   
+							pom.getIncidentReportPage().selectInjuryColorOption();
+
+						}
+						
+						@Then("User should verify that whether default optional values is selected under was Event Notified?")
+						public void user_should_verify_that_whether_default_optional_values_is_selected_under_was_event_notified() throws Exception {
+						 
+							
+							String defaultOptionIsSelected = getAttribute(pom.getIncidentReportPage().getEventNotifiedDefaultValue(), "ng-reflect-value");
+							
+                            if (defaultOptionIsSelected.equals("true")) {
+	                       log(Status.PASS, "Default option is selected under Was the event notified? radio button field");
+                            } else {
+                           	log(Status.FAIL, "Default optional values is NOT selected under was Event Notified?");
+                           	throw new Exception();
+                            }							
+               }
+						
+						
+						
+						
+						
+						
+						
+						}

@@ -15,10 +15,10 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,8 +27,11 @@ import com.aventstack.extentreports.Status;
 
 public class IncidentReportPage extends BaseClass {
 
-	public IncidentReportPage() {
+	private WebDriver driver;
+	
+	public IncidentReportPage(WebDriver driver) {
 
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		
 	}
@@ -44,7 +47,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//mat-select[@placeholder='Individual details']")
 	private WebElement individualDetailsDropDown;
 	
-	String selectIndDetails = "//span[text()='chooseIndDetails']/parent::mat-option";
+	String selectIndDetails = "//span[contains(text(),'chooseIndDetails')]/parent::mat-option";
 	
 	@FindBy(xpath = "//input[@id='dateAndTime']")
 	private WebElement eventDateAndTimeCalenderIconButton;
@@ -249,7 +252,7 @@ public class IncidentReportPage extends BaseClass {
 //	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
 //	private WebElement wasPatientInjuredYesRadioButton;
 
-	String wasPatientInjuredYesRadioButton = "(//div[text()='?'])[1]/preceding-sibling::div/input";
+	String wasPatientInjuredYesRadioButton = "(//div[text()='isInjured'])[1]/preceding-sibling::div/input";
 	 
 	@FindBy(xpath = "(//div[text()='Yes'])[2]/preceding-sibling::div/input")
 	private WebElement wasTheEventNotifiedYesRadioButton;
@@ -320,6 +323,10 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//span[contains(text(),'File size should be less than 1 MB')]")
 	private WebElement imgSizeToastMsg;
+	
+	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
+	private WebElement eventNotifiedDefaultValue;
+	
 	
 	
 	
@@ -419,6 +426,10 @@ public class IncidentReportPage extends BaseClass {
 	
 	public WebElement getImgSizeToastMsg() {
 		return imgSizeToastMsg;
+	}
+	
+	public WebElement getEventNotifiedDefaultValue() {
+		return eventNotifiedDefaultValue;
 	}
 	
 	
@@ -802,6 +813,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	public void addNewIncidentReportButton() {
 	
+		sleep(3000);
 		click(addNewIncidentReportButton);
 		waitForPageLoad();
 
@@ -818,14 +830,14 @@ public class IncidentReportPage extends BaseClass {
 		
 		click(individualDetailsDropDown);
 		
-		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Emily S Martin-08:52(Suite-19:06:37)");
+		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Albert Nicholas(SUITE A)");
 		select(selectIndDetails);
 	}
 	
 	
 	public void wasPatientInjuredRadioButton() {
 		
-		wasPatientInjuredYesRadioButton = wasPatientInjuredYesRadioButton.replaceAll("?", "Yes");
+		wasPatientInjuredYesRadioButton = wasPatientInjuredYesRadioButton.replaceAll("isInjured", "Yes");
 		select(wasPatientInjuredYesRadioButton);
 		waitForPageLoad();
 	}
@@ -972,18 +984,38 @@ if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
 }
 
 
+public void selectMultipleOptionInjuryType() {
+	
+			click(injuryTypeAbrasionButton);
+			click(injuryTypeBleedingButton);
+			click(injuryTypeBruiseButton);
+			click(injuryTypeScratchButton);
+	
+	}
 
+public void selectOptionHowSevereWasTheInjury() {
 
-
-
-
-
-
-
-
-
-
-
-
-
+		click(injurySeverityLight);
+		click(injurySeverityMedium);
+		click(injurySeverityHigh);
 }
+	
+
+public void selectInjuryColorOption() {
+
+		click(injuryColorGreen);
+		click(injuryColorRed);
+		click(injuryColorBlack);
+		click(injuryColorBrown);
+}
+
+
+
+public void wasEventNotified() {
+
+	
+	
+}
+}
+
+

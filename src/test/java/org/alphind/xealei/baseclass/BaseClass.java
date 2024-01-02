@@ -818,7 +818,8 @@ public class BaseClass {
 	public void pageBackward() {
 
 		driver.navigate().back();
-		log(Status.INFO, "Navigate to backward");
+		waitForFullPageElementLoad();
+		log(Status.PASS, "Navigate to backward (Back to Login page)");
 
 	}
 

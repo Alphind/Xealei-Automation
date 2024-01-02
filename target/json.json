@@ -11,13 +11,8 @@
         "steps": [
           {
             "result": {
-<<<<<<< HEAD
-              "duration": 995600,
-              "status": "skipped"
-=======
-              "duration": 4986000,
+              "duration": 7978300,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "line": 14,
             "name": "User is on Xealei login page",
@@ -29,22 +24,12 @@
         ]
       },
       {
-<<<<<<< HEAD
-        "start_timestamp": "2023-12-20T08:10:53.679Z",
+        "start_timestamp": "2024-01-02T06:04:24.145Z",
         "before": [
           {
             "result": {
-              "error_message": "java.lang.IllegalStateException: The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/\r\n\tat org.openqa.selenium.internal.Require$StateChecker.nonNull(Require.java:314)\r\n\tat org.openqa.selenium.remote.service.DriverFinder.getPath(DriverFinder.java:33)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.generateExecutor(ChromeDriver.java:98)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.\u003cinit\u003e(ChromeDriver.java:88)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.\u003cinit\u003e(ChromeDriver.java:84)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.\u003cinit\u003e(ChromeDriver.java:73)\r\n\tat org.alphind.xealei.baseclass.BaseClass.browserType(BaseClass.java:93)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.setUp(Hooks.java:30)\r\n",
-              "duration": 4501561800,
-              "status": "failed"
-=======
-        "start_timestamp": "2023-12-22T06:54:17.651Z",
-        "before": [
-          {
-            "result": {
-              "duration": 16553718900,
+              "duration": 18782758200,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
@@ -58,14 +43,8 @@
         "after": [
           {
             "result": {
-<<<<<<< HEAD
-              "error_message": "java.lang.NullPointerException: Cannot invoke \"org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)\" because \"org.alphind.xealei.baseclass.BaseClass.driver\" is null\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:612)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
-              "duration": 626529200,
-              "status": "failed"
-=======
-              "duration": 825789700,
+              "duration": 1078116100,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
@@ -77,13 +56,8 @@
         "steps": [
           {
             "result": {
-<<<<<<< HEAD
-              "duration": 996600,
-              "status": "skipped"
-=======
-              "duration": 234375700,
+              "duration": 350063700,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "line": 17,
             "name": "User should verify the tab url address for login page",
@@ -94,12 +68,8 @@
           },
           {
             "result": {
-<<<<<<< HEAD
-              "status": "skipped"
-=======
-              "duration": 216419100,
+              "duration": 495673200,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "line": 18,
             "name": "User should verify the \u0027LOGIN\u0027 text is displayed",
@@ -111,31 +81,27 @@
                 }
               ],
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_text_is_displayed(java.lang.String)"
-<<<<<<< HEAD
-=======
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 301194900,
+              "duration": 269280100,
               "status": "passed"
             },
-            "line": 22,
-            "name": "User should verify the field label name and placeholder text for Email and Password fields",
+            "line": 19,
+            "name": "User should verify the Login button is disabled",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields()"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_login_button_is_disabled()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-<<<<<<< HEAD
-              "duration": 998000,
-              "status": "skipped"
+              "duration": 924527500,
+              "status": "passed"
             },
-            "line": 22,
+            "line": 23,
             "name": "User should verify the field label name and placeholder text for Email and Password fields",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields()"
@@ -144,34 +110,22 @@
           },
           {
             "result": {
-              "status": "skipped"
-            },
-            "line": 23,
-            "name": "User should enter password in password field",
-            "match": {
-=======
-              "duration": 145610500,
+              "duration": 238361900,
               "status": "passed"
             },
-            "line": 23,
+            "line": 24,
             "name": "User should enter password in password field",
             "match": {
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_password_in_password_field()"
             },
             "keyword": "When "
           },
           {
             "result": {
-<<<<<<< HEAD
-              "duration": 560900,
-              "status": "skipped"
-=======
-              "duration": 36901500,
+              "duration": 267285200,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
-            "line": 24,
+            "line": 25,
             "name": "User should verify that entered password is **hide",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_hide()"
@@ -180,14 +134,10 @@
           },
           {
             "result": {
-<<<<<<< HEAD
-              "status": "skipped"
-=======
-              "duration": 178523300,
+              "duration": 163557700,
               "status": "passed"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
-            "line": 25,
+            "line": 26,
             "name": "User should click the eye icon in the Password field",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_eye_icon_in_the_password_field()"
@@ -196,10 +146,10 @@
           },
           {
             "result": {
-<<<<<<< HEAD
-              "status": "skipped"
+              "duration": 234372100,
+              "status": "passed"
             },
-            "line": 26,
+            "line": 27,
             "name": "User should verify that entered password is Unhide",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_unhide()"
@@ -208,30 +158,22 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 671204200,
+              "status": "passed"
             },
-            "line": 27,
+            "line": 28,
             "name": "User should verify Forget password link is working",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_forget_password_link_is_working()"
-=======
-              "duration": 27926000,
-              "status": "passed"
-            },
-            "line": 26,
-            "name": "User should verify that entered password is Unhide",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_unhide()"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
             },
             "keyword": "And "
           },
           {
             "result": {
-<<<<<<< HEAD
-              "status": "skipped"
+              "duration": 257311900,
+              "status": "passed"
             },
-            "line": 28,
+            "line": 29,
             "name": "User should verify the copy rights \"Powered by Alphind © 2023\" text is displayed",
             "match": {
               "arguments": [
@@ -243,99 +185,182 @@
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_copy_rights_text_is_displayed(java.lang.String)"
             },
             "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 29,
-            "name": "User should click the privacy policy link",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_privacy_policy_link()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 297000,
-              "status": "skipped"
-            },
-            "line": 30,
-            "name": "User should verify \"PRIVACY POLICY\" popup should be displayed after click the Privacy Policy link",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"PRIVACY POLICY\"",
-                  "offset": 19
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_popup_should_be_displayed_after_click_the_privacy_policy_link(java.lang.String)"
-            },
-            "keyword": "Then "
           }
         ],
         "tags": [
           {
             "name": "@Login-AllScenarios"
-          },
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
           {
-            "name": "@1"
-=======
-              "duration": 189492800,
+            "result": {
+              "duration": 1994600,
               "status": "passed"
             },
-            "line": 27,
-            "name": "User should verify Forget password link is working",
+            "line": 14,
+            "name": "User is on Xealei login page",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_forget_password_link_is_working()"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-01-02T06:04:48.150Z",
+        "before": [
+          {
+            "result": {
+              "duration": 9466676700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 35,
+        "name": "To verify the error validation messages in Login page",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-the-error-validation-messages-in-login-page",
+        "after": [
+          {
+            "result": {
+              "duration": 423867000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2925175100,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "User should enter password in password field and press enter button",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_password_in_password_field_and_press_enter_button()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 93748600,
+              "duration": 324131800,
               "status": "passed"
             },
-            "line": 28,
-            "name": "User should verify the copy rights \"Powered by Alphind © 2023\" text is displayed",
+            "line": 37,
+            "name": "User should verify the error message contains email field \"Please enter email ID\"",
             "match": {
               "arguments": [
                 {
-                  "val": "\"Powered by Alphind © 2023\"",
-                  "offset": 35
+                  "val": "\"Please enter email ID\"",
+                  "offset": 58
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_copy_rights_text_is_displayed(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_contains_email_field(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 155583300,
+              "duration": 1516941200,
               "status": "passed"
             },
-            "line": 29,
-            "name": "User should click the privacy policy link",
+            "line": 38,
+            "name": "User should enter email in email field and click login button",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_privacy_policy_link()"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_email_in_email_field_and_click_login_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 283244300,
+              "status": "passed"
+            },
+            "line": 39,
+            "name": "User should verify the error message contains password field \"Please enter password\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please enter password\"",
+                  "offset": 61
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_contains_password_field(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 415886900,
+              "status": "passed"
+            },
+            "line": 40,
+            "name": "User should perform login with invalid data",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_invalid_data()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 79788000,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(text(),\u0027OK\u0027)]/parent::button\"}\n  (Session info: chrome\u003d120.0.6099.129)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [446738fd5afd74c28c968a359063bef2, findElement {using\u003dxpath, value\u003d//span[contains(text(),\u0027OK\u0027)]/parent::button}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.129, chrome: {chromedriverVersion: 120.0.6099.109 (3419140ab66..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51938}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51938/devtoo..., se:cdpVersion: 120.0.6099.129, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 446738fd5afd74c28c968a359063bef2\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)\r\n\tat org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)\r\n\tat jdk.proxy2/jdk.proxy2.$Proxy27.isEnabled(Unknown Source)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_after_performed_login_with_invalid_data(LoginPageStep.java:391)\r\n\tat ✽.User should verify the error message after performed login with invalid data \"User not found\"(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC1_Login.feature:41)\r\n",
+              "duration": 17427381500,
+              "status": "failed"
             },
-            "line": 30,
-            "name": "User should verify \"PRIVACY POLICY\" popup should be displayed after click the Privacy Policy link",
+            "line": 41,
+            "name": "User should verify the error message after performed login with invalid data \"User not found\"",
             "match": {
               "arguments": [
                 {
-                  "val": "\"PRIVACY POLICY\"",
-                  "offset": 19
+                  "val": "\"User not found\"",
+                  "offset": 77
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_popup_should_be_displayed_after_click_the_privacy_policy_link(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_after_performed_login_with_invalid_data(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 42,
+            "name": "User should perform login with valid email and invalid password",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_invalid_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 43,
+            "name": "User should verify the Toastbar message after performed login with valid email and invalid password \u0027Incorrect password\u0027",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Incorrect password\u0027",
+                  "offset": 100
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_toastbar_message_after_performed_login_with_valid_email_and_invalid_password(java.lang.String)"
             },
             "keyword": "Then "
           }
@@ -343,7 +368,183 @@
         "tags": [
           {
             "name": "@Login-AllScenarios"
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 998300,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-01-02T06:05:21.022Z",
+        "before": [
+          {
+            "result": {
+              "duration": 16480913700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 45,
+        "name": "To verify Xealei Login page by click the ENTER key with valid credentials",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-xealei-login-page-by-click-the-enter-key-with-valid-credentials",
+        "after": [
+          {
+            "result": {
+              "duration": 2054503200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1463085900,
+              "status": "passed"
+            },
+            "line": 46,
+            "name": "User should perform login with valid email and password by click the Enter key",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password_by_click_the_enter_key()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 11262871300,
+              "status": "passed"
+            },
+            "line": 47,
+            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Home\"",
+                  "offset": 77
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login-AllScenarios"
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-01-02T06:05:52.327Z",
+        "before": [
+          {
+            "result": {
+              "duration": 7173810800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 49,
+        "name": "To verify Xealei Login page with valid credentials",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-xealei-login-page-with-valid-credentials",
+        "after": [
+          {
+            "result": {
+              "duration": 2023585400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2311816700,
+              "status": "passed"
+            },
+            "line": 50,
+            "name": "User should perform login with valid email and password",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 6366966500,
+              "status": "passed"
+            },
+            "line": 51,
+            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Home\"",
+                  "offset": 77
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login-AllScenarios"
           }
         ]
       }
@@ -353,6 +554,15 @@
     "id": "verify-xealei-login-page",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/TC1_Login.feature",
-    "tags": []
+    "tags": [
+      {
+        "name": "@Login-AllScenarios",
+        "type": "Tag",
+        "location": {
+          "line": 10,
+          "column": 1
+        }
+      }
+    ]
   }
 ]

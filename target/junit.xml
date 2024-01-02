@@ -1,37 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="6.286">
-    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="5.306">
-        <failure message="The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/" type="java.lang.IllegalStateException"><![CDATA[Given User is on Xealei login page..........................................skipped
-When User should verify the tab url address for login page..................skipped
-Then User should verify the 'LOGIN' text is displayed.......................skipped
-Then User should verify the field label name and placeholder text for Email and Password fields.skipped
-When User should enter password in password field...........................skipped
-Then User should verify that entered password is **hide.....................skipped
-And User should click the eye icon in the Password field....................skipped
-Then User should verify that entered password is Unhide.....................skipped
-And User should verify Forget password link is working......................skipped
-Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed.skipped
-When User should click the privacy policy link..............................skipped
-Then User should verify "PRIVACY POLICY" popup should be displayed after click the Privacy Policy link.skipped
-
-StackTrace:
-java.lang.IllegalStateException: The path to the driver executable Unable to locate the chromedriver executable; for more information on how to install drivers, see https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
-	at org.openqa.selenium.internal.Require$StateChecker.nonNull(Require.java:314)
-	at org.openqa.selenium.remote.service.DriverFinder.getPath(DriverFinder.java:33)
-	at org.openqa.selenium.chrome.ChromeDriver.generateExecutor(ChromeDriver.java:98)
-	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:88)
-	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:84)
-	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:73)
-	at org.alphind.xealei.baseclass.BaseClass.browserType(BaseClass.java:93)
-	at org.alphind.xealei.stepdefinition.Hooks.setUp(Hooks.java:30)
-]]></failure>
-=======
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="19.961">
-    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="19.195">
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="4" time="106.866">
+    <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="23.905">
         <system-out><![CDATA[Given User is on Xealei login page..........................................passed
 When User should verify the tab url address for login page..................passed
 Then User should verify the 'LOGIN' text is displayed.......................passed
+Then User should verify the Login button is disabled........................passed
 Then User should verify the field label name and placeholder text for Email and Password fields.passed
 When User should enter password in password field...........................passed
 Then User should verify that entered password is **hide.....................passed
@@ -39,9 +12,62 @@ And User should click the eye icon in the Password field....................pass
 Then User should verify that entered password is Unhide.....................passed
 And User should verify Forget password link is working......................passed
 Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed.passed
-When User should click the privacy policy link..............................passed
-Then User should verify "PRIVACY POLICY" popup should be displayed after click the Privacy Policy link.passed
 ]]></system-out>
->>>>>>> d1f6cc58b24c8dc62a626da568b9194e8f178a14
+    </testcase>
+    <testcase classname="Verify Xealei Login Page" name="To verify the error validation messages in Login page" time="32.797">
+        <failure message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(text(),'OK')]/parent::button&quot;}&#10;  (Session info: chrome=120.0.6099.129)&#10;For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception&#10;Build info: version: '4.11.0', revision: '040bc5406b'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [446738fd5afd74c28c968a359063bef2, findElement {using=xpath, value=//span[contains(text(),'OK')]/parent::button}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.129, chrome: {chromedriverVersion: 120.0.6099.109 (3419140ab66..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51938}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51938/devtoo..., se:cdpVersion: 120.0.6099.129, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 446738fd5afd74c28c968a359063bef2" type="org.openqa.selenium.NoSuchElementException"><![CDATA[Given User is on Xealei login page..........................................passed
+And User should enter password in password field and press enter button.....passed
+Then User should verify the error message contains email field "Please enter email ID".passed
+And User should enter email in email field and click login button...........passed
+Then User should verify the error message contains password field "Please enter password".passed
+When User should perform login with invalid data............................passed
+Then User should verify the error message after performed login with invalid data "User not found".failed
+When User should perform login with valid email and invalid password........skipped
+Then User should verify the Toastbar message after performed login with valid email and invalid password 'Incorrect password'.skipped
+
+StackTrace:
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),'OK')]/parent::button"}
+  (Session info: chrome=120.0.6099.129)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [446738fd5afd74c28c968a359063bef2, findElement {using=xpath, value=//span[contains(text(),'OK')]/parent::button}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.129, chrome: {chromedriverVersion: 120.0.6099.109 (3419140ab66..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51938}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51938/devtoo..., se:cdpVersion: 120.0.6099.129, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 446738fd5afd74c28c968a359063bef2
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy27.isEnabled(Unknown Source)
+	at org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_after_performed_login_with_invalid_data(LoginPageStep.java:391)
+	at ✽.User should verify the error message after performed login with invalid data "User not found"(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC1_Login.feature:41)
+]]></failure>
+    </testcase>
+    <testcase classname="Verify Xealei Login Page" name="To verify Xealei Login page by click the ENTER key with valid credentials" time="31.264">
+        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+When User should perform login with valid email and password by click the Enter key.passed
+Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Verify Xealei Login Page" name="To verify Xealei Login page with valid credentials" time="17.879">
+        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+When User should perform login with valid email and password................passed
+Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
+]]></system-out>
     </testcase>
 </testsuite>
