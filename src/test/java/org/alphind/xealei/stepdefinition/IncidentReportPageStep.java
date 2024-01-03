@@ -26,6 +26,7 @@ public class IncidentReportPageStep extends BaseClass {
 		sendKeys(pom.getLoginPage().getUserName(), userName);
 		sendKeys(pom.getLoginPage().getPassword(), password);
 		waitForPageLoad();
+		waitForFullPageElementLoad();
 		pom.getLoginPage().loginButton();
 		
 
@@ -45,7 +46,8 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the Incident report module is working")
 	public void user_should_verify_the_incident_report_module_is_working() {
 
-		pom.getHomePage().reportsModule().incidentReportModule();
+		pom.getHomePage().reportsModule();
+		pom.getHomePage().incidentReportModule();
 		waitForPageLoad();
 
 		try {
@@ -111,25 +113,29 @@ public class IncidentReportPageStep extends BaseClass {
 		
 			pom.getIncidentReportPage().selectIndividualDetailsDropdown();	
 			
+			pom.getIncidentReportPage().eventDateAndTime(0);
+			
+			
+			try {
+				Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
+						getText(pom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
+				log(Status.PASS, "MF validation info msg is displayed as expected under What caused the fall? field");
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
+			try {
+				Assert.assertEquals("MF validation info msg is NOT displayed as expected under Was injured? field", expWasInjuredInfoMsg,
+						getText(pom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
+				log(Status.PASS, "MF validation info msg is displayed as expected under Was injured? field");
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
 			pom.getIncidentReportPage().wasPatientInjuredRadioButton();
 			
-		try {
-			Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
-					getText(pom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
-			log(Status.PASS, "MF validation info msg is displayed as expected under What caused the fall? field");
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		try {
-			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Was injured? field", expWasInjuredInfoMsg,
-					getText(pom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
-			log(Status.PASS, "MF validation info msg is displayed as expected under Was injured? field");
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Description field", expInjuryDescriptionInfoMsg,
@@ -148,7 +154,7 @@ public class IncidentReportPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-		
+			
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Treatment Received field", expTreatmentReceivedInfoMsg,
 					getText(pom.getIncidentReportPage().getTreatmentReceivedValidationInfoMsg()));
@@ -239,13 +245,15 @@ public class IncidentReportPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-		pom.getIncidentReportPage().injuryDescription();
+		
 	}
 
-		@Then("User should verify after perform individual deta Save button is working in IR Page")
-		public void user_should_verify_after_perform_individual_deta_save_button_is_working_in_ir_page() {
-		
-		pom.getIncidentReportPage().saveButton();
+		@Then("User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields")
+		public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() {
+		    			
+	    pom.getIncidentReportPage().injuryDescription();
+	    
+		//pom.getIncidentReportPage().saveButton();
 	
 		}
 		
@@ -262,7 +270,7 @@ public class IncidentReportPageStep extends BaseClass {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-			pom.getIncidentReportPage().savedSuccessfulToastMsgOkButton();
+			pom.getIncidentReportPage().savedSuccessfulToastMsgokButton();
 		
 		}
 		

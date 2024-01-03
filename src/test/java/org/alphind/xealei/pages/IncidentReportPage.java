@@ -251,9 +251,10 @@ public class IncidentReportPage extends BaseClass {
 	
 //	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
 //	private WebElement wasPatientInjuredYesRadioButton;
-
-	String wasPatientInjuredYesRadioButton = "(//div[text()='isInjured'])[1]/preceding-sibling::div/input";
 	 
+	String wasPatientInjured ="//div[contains(text(),'isInjured')]";
+	
+	
 	@FindBy(xpath = "(//div[text()='Yes'])[2]/preceding-sibling::div/input")
 	private WebElement wasTheEventNotifiedYesRadioButton;
 	
@@ -326,9 +327,6 @@ public class IncidentReportPage extends BaseClass {
 	
 	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
 	private WebElement eventNotifiedDefaultValue;
-	
-	
-	
 	
 	
 	
@@ -803,19 +801,16 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-
-	
 	public void addNewIncidentReportButton() {
-	
-		sleep(3000);
-		click(addNewIncidentReportButton);
+			
 		waitForPageLoad();
+		
+		if (addNewIncidentReportButton.isDisplayed()) {
+			click(addNewIncidentReportButton);
+			waitForPageLoad();
+		} else {
+			log(Status.FAIL, "Unable to click Add New Incident Report Button");
+		}
 
 	}
 	
@@ -824,24 +819,27 @@ public class IncidentReportPage extends BaseClass {
 		click(nextButton);
 	}
 	
-	
-	
 	public void selectIndividualDetailsDropdown(){
 		
 		click(individualDetailsDropDown);
 		
-		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Albert Nicholas(SUITE A)");
+		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Arlia  Thomas(SUITE B)");
 		select(selectIndDetails);
 	}
 	
-	
-	public void wasPatientInjuredRadioButton() {
+	public void radioBtnYes() {
 		
-		wasPatientInjuredYesRadioButton = wasPatientInjuredYesRadioButton.replaceAll("isInjured", "Yes");
-		select(wasPatientInjuredYesRadioButton);
-		waitForPageLoad();
+		
+
 	}
 	
+public void wasPatientInjuredRadioButton() {
+		
+	wasPatientInjured = wasPatientInjured.replaceAll("isInjured", "Yes");
+	select(wasPatientInjured);
+    waitForPageLoad();
+	}
+
 public void saveButton() {
 
 	click(saveButton);
@@ -851,9 +849,11 @@ public void saveButton() {
 public void injuryDescription() {
 		
 	sendKeys(injuryDescriptionDescriptionTxtBox, "Twisted Ankle"+randomName());
-	}
+	String attribute = getAttribute(injuryDescriptionDescriptionTxtBox, "value");
+	writeExcelToOverwrite("Test Datas", "Incident Reports", 0, 18, attribute);
+}
 
-public void savedSuccessfulToastMsgOkButton() {
+public void savedSuccessfulToastMsgokButton() {
 
 	click(btnToastMsgSuccessOk);
 }
@@ -877,12 +877,8 @@ public void editButton() {
 
 public void eventDateAndTime(int rowNum) {
 	
-		String eventDateAndTime = "122220230500P";
-		for (int i = 0; i < eventDateAndTime.length(); i++) {
-			char letter = eventDateAndTime.charAt(i);
-			String letterAsString = String.valueOf(letter);
-			sendKeys(eventDateAndTimeCalenderIconButton, letterAsString);
-		}
+		String eventDateAndTime = "05/12/202311:59AM";		
+		sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 	}
 	
 public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
@@ -1010,12 +1006,15 @@ public void selectInjuryColorOption() {
 }
 
 
-
-public void wasEventNotified() {
-
+public void gridStatusVerify() {
 	
+	WebElement individualsGrid2 = individualsGrid;
 	
-}
+		
+	}
+	
+
+
 }
 
 

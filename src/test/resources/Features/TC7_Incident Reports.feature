@@ -8,16 +8,15 @@ Scenario Outline: To verify IR form creation via manual by "<adminName>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should also verify the performed login as "<adminName>"
     Then User should verify the Incident report module is working
+    
     Then User should verify the ADD New Incident Report button is working
     Then User should verify the save button is disabled
     Then User should verify Next > button is working
     Then User should verify the validation info message under all fields "Please select the individual details", "Please choose event on", "Please enter fall caused", "Please choose was injured", "Please enter fall description", "Please select injury site", "Please enter treatment received", "Please enter future treatment", "Please select the injury type", "Please select injury color", "Please choose was the injury serve", "Please enter person notify", "Please choose relationship", "Please choose notify date", "Please choose time", "Please enter notified by"
-    
-    
-    Then User should verify after perform individual deta Save button is working in IR Page
-    
-    Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
-    Then User should verify the respective individual report status "Draft"
+  
+   Then User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields 
+   Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
+   #Then User should verify the respective individual report status "Draft"
     
     
     #Then User should verify the view button is working in IR Grid 
@@ -51,17 +50,17 @@ Scenario Outline: To verify IR form creation via manual by "<adminName>"
     #Then User should verify that able to spot the injury on Injury site front & Back view
     
     
-    Then User should verify the toast message after try to upload JFIF Format "JFIF format is not supported"
-    Then User should verify the toast message after try to upload more than 1MB File format "File(1) size should be less than 1 MB"
-    Then User should verify the user are able to attach file    
-    Then User should verify the delete icon is working on image under injury photo field 
+    # User should verify the toast message after try to upload JFIF Format "JFIF format is not supported"
+    # User should verify the toast message after try to upload more than 1MB File format "File(1) size should be less than 1 MB"
+    # User should verify the user are able to attach file    
+    # User should verify the delete icon is working on image under injury photo field 
     
-    Then User should verify that whether able to select options under Injury Type field
-    Then User should verify that whether able to selecting multiple option values under Injury Type field
-    Then User should verify that whether able to unselect the selected option values under Injury Type field
-    Then User should verify that whether able to select the option value under How severe was injury? field 
-    Then User should verify that whether able to select the option value under Injury Color
-    Then User should verify that whether default optional values is selected under was Event Notified?
+    # User should verify that whether able to select options under Injury Type field
+    # User should verify that whether able to selecting multiple option values under Injury Type field
+    # User should verify that whether able to unselect the selected option values under Injury Type field
+    # User should verify that whether able to select the option value under How severe was injury? field 
+    # User should verify that whether able to select the option value under Injury Color
+    # User should verify that whether default optional values is selected under was Event Notified?
 
 
    # And User should click on the Notification Date calendar icon

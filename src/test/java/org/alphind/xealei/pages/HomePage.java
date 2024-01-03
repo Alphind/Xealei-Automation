@@ -19,11 +19,12 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "//div[@class='user-category']")
 	private WebElement adminName;
 	
-	@FindBy(xpath = "//span[@class='navNameClass' and text()='Reports']")
+	@FindBy(xpath = "//span[contains(text(),'Reports')]")
 	private WebElement ReportsModule;
 	
-	@FindBy(xpath = "//span[@class='navNameClass sub-link' and text()='Incident Reports']")
+	@FindBy(xpath = "//span[contains(text(),'Incident Reports')]")
 	private WebElement incidentReportModule;
+	
 	
 	
 	
@@ -35,17 +36,18 @@ public class HomePage extends BaseClass {
 	
 
 	
-	public HomePage reportsModule() {
+	public void reportsModule() {
 	
-    click(ReportsModule);
-	return this;
-	}
+		waitForPageLoad();
+        click(ReportsModule);
+}
 	
-	public HomePage incidentReportModule() {
+	
+	
+	public void incidentReportModule() {
 		
 		click(incidentReportModule);
-		return this;
-	}
+}
 	
 	
 	
