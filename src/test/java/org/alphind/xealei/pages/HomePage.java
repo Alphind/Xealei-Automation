@@ -25,6 +25,9 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'Incident Reports')]")
 	private WebElement incidentReportModule;
 	
+	@FindBy(xpath = "//h5[text()=' Home ']")
+	private WebElement homePageText;
+	
 	
 	
 	
@@ -50,7 +53,12 @@ public class HomePage extends BaseClass {
 }
 	
 	
-	
+	public boolean isHomePageDisplayed() {
+		if(homePageText.isDisplayed()) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 	

@@ -15,6 +15,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.junit.Assert;
@@ -36,7 +37,7 @@ public class IncidentReportPage extends BaseClass {
 		
 	}
 
-	
+	private String dropdownOption = "//span[contains(text(),'XX') and @class = 'mat-option-text']";
 	
 	@FindBy(xpath = "//h5[@class='mb-3 page-head']")
 	private WebElement incidentReportModuleText;
@@ -248,10 +249,9 @@ public class IncidentReportPage extends BaseClass {
 	
 	@FindBy(xpath = "(//div[text()='No'])[1]/preceding-sibling::div/input")
 	private WebElement wasIndividiualInjuredNoRadioButton;
-	
-//	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
-//	private WebElement wasPatientInjuredYesRadioButton;
-	 
+
+	String wasIndividualInjuredYesRadioButton = "(//div[text()='?'])[1]/preceding-sibling::div/input";
+
 	String wasPatientInjured ="//div[contains(text(),'isInjured')]";
 	
 	
@@ -307,7 +307,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//table//tbody//tr//td[3]")
 	private WebElement individualsGrid;
 	
-	@FindBy(xpath = "//span[contains(text(),'Saved Successfully!!')]")
+	@FindBy(xpath = "//span[contains(text(),'Saved Successfully')]")
 	private WebElement savedSuccessfullToastMsg;
 	
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
@@ -327,6 +327,23 @@ public class IncidentReportPage extends BaseClass {
 	
 	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
 	private WebElement eventNotifiedDefaultValue;
+
+	@FindBy(xpath = "//li[text() = 'Incident Report']")
+	private WebElement incidentReportText;
+	
+	@FindBy(xpath = "//span[text()='Complete']/parent::button")
+	private WebElement completeButton;
+	
+	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
+	
+	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
+	
+	private String editButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'Edit')]";
+	
+	@FindBy(xpath = "//table/tbody/tr/td[3]")
+	private List<WebElement> injurySummaries; 
+	
+	
 	
 	
 	
@@ -435,7 +452,35 @@ public class IncidentReportPage extends BaseClass {
 
 	
 	
+	/**
+	 * @author Nandhalala.
+	 * Checks whether Incident report heading is displayed or not. 
+	 * 
+	 * @created on 26-12-2023.
+	 * 
+	 * @return whether incident report page is displayed or not.
+	 */
+	public boolean isIncidentReportPageDisplayed() {
+		if(incidentReportText.isDisplayed()) {
+			return true;
+		}
+		return false;
+	}
 	
+	/**
+	 * @author Nandhalala.
+	 * Select the Individual Details with Individual Name. 
+	 * 
+	 * @created on 26-12-2023.
+
+	 */
+	public void selectIndividualDetails() {
+		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
+		click(individualDetailsDropDown);
+		String individualName = dropdownOption.replaceAll("XX", individualDetail);
+		select(individualName);
+		
+	}
 	
 	/**
 	 * @author Nandhalala.
@@ -445,7 +490,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void enterWhatCausedTheFallData() {
-		String WhatCausedTheFall = readExcel("", "", 0, 0).trim();
+		String WhatCausedTheFall = readExcel("Test Datas", "Incident Reports", 1, 2).trim();
 		sendKeys(whatCausedTheFallDescriptionTxtBox, WhatCausedTheFall);
 	}
 	
@@ -456,9 +501,10 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @created on 22-12-2023
 	 */
-	public void enterInjuryDescriptionData() {
-		String injuryDescription = readExcel("", "", 0, 0).trim();
-		sendKeys(injuryDescriptionDescriptionTxtBox, injuryDescription);
+	public String enterInjuryDescriptionData() {
+		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3).trim();
+		sendKeys(injuryDescriptionDescriptionTxtBox, injuryDescription+" - "+randomName());
+		return injuryDescription+" - "+randomName();
 	}
 	
 	/**
@@ -470,7 +516,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void selectWasTheIndividiualInjured() {
-		String WasIndividiualIInjured = readExcel("", "", 0, 0).trim();
+		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
 		switch (WasIndividiualIInjured) {
 		case "Yes":
 			click(wasIndividiualInjuredYesRadioButton);
@@ -481,6 +527,9 @@ public class IncidentReportPage extends BaseClass {
 			break;
 
 		}
+		
+		waitForPageLoad();
+		
 	}
 	
 	/**
@@ -492,7 +541,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void selectFrontViewInjurySite() {
-		String [] injuredsites = readExcel("", "", 0, 0).split(",");
+		String [] injuredsites = readExcel("Test Datas", "Incident Reports", 1, 5).split(",");
 		for(String injury : injuredsites) {
 			String injurysite = injury.trim();
 			switch(injurysite) {
@@ -565,7 +614,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void selectBackViewInjurySite() {
-		String [] injuredsites = readExcel("", "", 0, 0).split(",");
+		String [] injuredsites = readExcel("Test Datas", "Incident Reports", 1, 6).split(",");
 		for(String injury : injuredsites) {
 			String injurysite = injury.trim();
 			switch(injurysite) {
@@ -633,7 +682,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void enterTreatmentReceivedData() {
-		String treatmentreceived = readExcel("", "", 0, 0).trim();
+		String treatmentreceived = readExcel("Test Datas", "Incident Reports", 1, 7).trim();
 		sendKeys(injuryDescriptionDescriptionTxtBox, treatmentreceived);
 	}
 	
@@ -645,7 +694,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023
 	 */
 	public void enterFutureTreatmentData() {
-		String futuretreatment = readExcel("", "", 0, 0).trim();
+		String futuretreatment = readExcel("Test Datas", "Incident Reports", 1, 8).trim();
 		sendKeys(injuryDescriptionDescriptionTxtBox, futuretreatment);
 	}
 	
@@ -657,7 +706,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-10-2023.
 	 */
 	public void selectInjuryType() {
-		String [] injuryType = readExcel("", "", 0, 0).split(",");
+		String [] injuryType = readExcel("Test Datas", "Incident Reports", 1, 9).split(",");
 		for(String injurytype: injuryType) {
 			switch(injurytype) {
 			case "Abrasion":
@@ -688,7 +737,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void selectInjuryColor() {
-		String injuryColor = readExcel("", "", 0, 0).trim();
+		String injuryColor = readExcel("Test Datas", "Incident Reports", 1, 10).trim();
 		switch(injuryColor) {
 		case "Green":
 			click(injuryColorGreen);
@@ -715,7 +764,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void selectHowSevereWasTheInjury() {
-		String injurySeverity = readExcel("", "", 0, 0).trim();
+		String injurySeverity = readExcel("Test Datas", "Incident Reports", 1, 11).trim();
 		switch(injurySeverity) {
 		case "Light":
 			click(injurySeverityLight);
@@ -739,7 +788,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023
 	 */
 	public void enterPersonNotifiedData() {
-		String personnotified = readExcel("", "", 0, 0).trim();
+		String personnotified = readExcel("Test Datas", "Incident Reports", 1, 12).trim();
 		sendKeys(injuryDescriptionDescriptionTxtBox, personnotified);
 	}
 	
@@ -751,7 +800,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023
 	 */
 	public void enterNotifiedByData() {
-		String notifiedby = readExcel("", "", 0, 0).trim();
+		String notifiedby = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
 		sendKeys(injuryDescriptionDescriptionTxtBox, notifiedby);
 	}
 	
@@ -762,7 +811,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void selectReletionship() {
-		String relationship = readExcel("", "", 0, 0).trim();
+		String relationship = readExcel("Test Datas", "Incident Reports", 1, 13).trim();
 		click(relationshipDropdown);
 		switch(relationship) {
 		case "Guardian":
@@ -783,7 +832,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void selectNotificationMethod() {
-		String relationship = readExcel("", "", 0, 0).trim();
+		String relationship = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 		click(notificationMethodDropdownBox);
 		switch(relationship) {
 		case "Phone Call":
@@ -799,6 +848,55 @@ public class IncidentReportPage extends BaseClass {
 			break;
 
 		}
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Click on the complete button to complete the Incident Report and submit the report.
+	 * 
+	 * @created on 27-12-2023.
+	 * 
+	 */
+	public void clickCompleteButton() {
+		click(completeButton);
+		waitForPageLoad();
+	}
+	
+	public String getRowNumber() {
+		int i = 1;
+		for(WebElement element : injurySummaries) {
+			if(getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
+				return Integer.toString(i);
+			}
+			i++;
+		}
+		return null;
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To get the status of the Incident report of the mentioned row.
+	 * 
+	 * @param rowNumber
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 27-12-2023.
+	 */
+	public String getStatus(String rowNumber) {
+		String excatColumn = statusColumnXpath.replaceAll("rownumber", rowNumber);
+		return getTextString(excatColumn);
+	}
+	
+	public void viewButton(String rowNumber) {
+		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
+		select(excatColumn);
+		waitForPageLoad();
+	}
+	
+	public void editButton(String rowNumber) {
+		String excatColumn = editButton.replaceAll("rownumber", rowNumber);
+		select(excatColumn);
+		waitForPageLoad();
 	}
 	
 	public void addNewIncidentReportButton() {
@@ -818,6 +916,7 @@ public class IncidentReportPage extends BaseClass {
 		
 		click(nextButton);
 	}
+
 	
 	public void selectIndividualDetailsDropdown(){
 		
@@ -827,10 +926,11 @@ public class IncidentReportPage extends BaseClass {
 		select(selectIndDetails);
 	}
 	
-	public void radioBtnYes() {
+	public void wasIndividualInjuredRadioButton() {
 		
-		
-
+		wasIndividualInjuredYesRadioButton = wasIndividualInjuredYesRadioButton.replaceAll("?", "Yes");
+		select(wasIndividualInjuredYesRadioButton);
+		waitForPageLoad();
 	}
 	
 public void wasPatientInjuredRadioButton() {
@@ -844,13 +944,14 @@ public void saveButton() {
 
 	click(saveButton);
 	waitForPageLoad();
+	
 }
 	
 public void injuryDescription() {
 		
 	sendKeys(injuryDescriptionDescriptionTxtBox, "Twisted Ankle"+randomName());
 	String attribute = getAttribute(injuryDescriptionDescriptionTxtBox, "value");
-	writeExcelToOverwrite("Test Datas", "Incident Reports", 0, 18, attribute);
+	writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18, attribute);
 }
 
 public void savedSuccessfulToastMsgokButton() {
@@ -861,18 +962,6 @@ public void savedSuccessfulToastMsgokButton() {
 public void ToastMsgOKButton() {
 	
 	click(OKBtnToastMsg);
-}
-
-public void viewButton() {
-	
-	click(viewButtonInIndividualGrid);
-	waitForPageLoad();
-}
-
-public void editButton() {
-	
-	click(viewButtonInIndividualGrid);
-	waitForPageLoad();
 }
 
 public void eventDateAndTime(int rowNum) {
