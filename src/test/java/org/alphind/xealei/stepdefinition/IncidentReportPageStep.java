@@ -14,14 +14,13 @@ import io.cucumber.java.en.When;
 
 public class IncidentReportPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(driver);
 	
 	private WebDriver staffDriver = getDriver();
 	private WebDriver cheifnurseDriver;
 	private WebDriver rmDriver;
 	private WebDriver ccDriver;
 	private WebDriver swDriver;
-	
 
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
@@ -35,8 +34,10 @@ public class IncidentReportPageStep extends BaseClass {
 
 		sendKeys(pom.getLoginPage().getUserName(), userName);
 		sendKeys(pom.getLoginPage().getPassword(), password);
-		pom.getLoginPage().loginButton();
 		waitForPageLoad();
+		waitForFullPageElementLoad();
+		pom.getLoginPage().loginButton();
+		
 
 	}
 
@@ -54,7 +55,8 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the Incident report module is working")
 	public void user_should_verify_the_incident_report_module_is_working() {
 
-		pom.getHomePage().reportsModule().incidentReportModule();
+		pom.getHomePage().reportsModule();
+		pom.getHomePage().incidentReportModule();
 		waitForPageLoad();
 
 		try {
@@ -118,28 +120,30 @@ public class IncidentReportPageStep extends BaseClass {
 				e.printStackTrace();
 			}
 		
+			pom.getIncidentReportPage().selectIndividualDetailsDropdown();	
 			
-		try {
-			Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
-					getText(pom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
-			log(Status.PASS, "MF validation info msg is displayed as expected under What caused the fall? field");
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		try {
-			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Was injured? field", expWasInjuredInfoMsg,
-					getText(pom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
-			log(Status.PASS, "MF validation info msg is displayed as expected under Was injured? field");
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		pom.getIncidentReportPage().selectIndividualDetailsDropdown();
-	
-		pom.getIncidentReportPage().wasIndividualInjuredRadioButton();
+			pom.getIncidentReportPage().eventDateAndTime(0);
+			
+			
+			try {
+				Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
+						getText(pom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
+				log(Status.PASS, "MF validation info msg is displayed as expected under What caused the fall? field");
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
+			try {
+				Assert.assertEquals("MF validation info msg is NOT displayed as expected under Was injured? field", expWasInjuredInfoMsg,
+						getText(pom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
+				log(Status.PASS, "MF validation info msg is displayed as expected under Was injured? field");
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
+			pom.getIncidentReportPage().wasPatientInjuredRadioButton();
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Description field", expInjuryDescriptionInfoMsg,
@@ -158,7 +162,7 @@ public class IncidentReportPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-		
+			
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Treatment Received field", expTreatmentReceivedInfoMsg,
 					getText(pom.getIncidentReportPage().getTreatmentReceivedValidationInfoMsg()));
@@ -249,21 +253,23 @@ public class IncidentReportPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-		pom.getIncidentReportPage().injuryDescription();
+		
 	}
 
-		@Then("User should verify after perform individual deta Save button is working in IR Page")
-		public void user_should_verify_after_perform_individual_deta_save_button_is_working_in_ir_page() {
-		
+		@Then("User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields")
+		public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() {
+		    			
+	    pom.getIncidentReportPage().injuryDescription();
+	    
 		pom.getIncidentReportPage().saveButton();
 	
 		}
 		
 		@Then("User should verify the toast message after click Save button in IR Page {string}")
-		public void user_should_verify_the_toast_message_after_click_save_button_in_ir_page(String string) {
+		public void user_should_verify_the_toast_message_after_click_save_button_in_ir_page(String expSuccessfullToastMsg) {
 		  
 			try {
-				Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
+				Assert.assertEquals("Saved Successfull Toast Message is not displayed", expSuccessfullToastMsg,
 						getText(pom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
 				log(Status.PASS, "Toast Message is displayed : "
 						+ getText(pom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
@@ -272,23 +278,23 @@ public class IncidentReportPageStep extends BaseClass {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-			pom.getIncidentReportPage().savedSuccessfulToastMsgOkButton();
+			pom.getIncidentReportPage().savedSuccessfulToastMsgokButton();
 		
 		}
 		
 		@Then("User should verify the respective individual report status {string}")
 		public void user_should_verify_the_respective_individual_report_status(String string) {
 		
-		pom.getIncidentReportPage().getIndividualsGrid();
-		
+	     String IRStatus = pom.getIncidentReportPage().getStatus(pom.getIncidentReportPage().getRowNumber());
+		 System.out.println("Current IR Status -" +IRStatus);
+		 
 		}
 
 			@Then("User should verify the view button is working in IR Grid")
 			public void user_should_verify_the_view_button_is_working_in_ir_grid() {
 			  
-				pom.getIncidentReportPage().viewButton();				
+				pom.getIncidentReportPage().viewButton(pom.getIncidentReportPage().getRowNumber());
 			}
-			
 			
 			@Then("User should verify the error message in Incident Report Page {string}")
 			public void user_should_verify_the_error_message_in_incident_report_page(String expNoteMsg) {
@@ -307,9 +313,7 @@ public class IncidentReportPageStep extends BaseClass {
 			
 			@Then("User should verify the edit button is working in IR submission page")
 			public void user_should_verify_the_edit_button_is_working_in_IR_submission_page() {
-			
-			pom.getIncidentReportPage().editButton();
-			
+						
 			}
 			
 	
@@ -356,6 +360,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify Home page is displayed.")
 			public void verify_home_page_is_displayed() {
+				
 			    pom.getHomePage().isHomePageDisplayed();
 			}
 
@@ -364,7 +369,8 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Reports module.")
 			public void navigate_to_reports_module() {
-			    pom.getHomePage().reportsModule().incidentReportModule();
+				
+			    pom.getHomePage().reportsModule();
 			}
 
 			/**
@@ -624,9 +630,58 @@ public class IncidentReportPageStep extends BaseClass {
 					pom.getAddIndividualsPage().datePicker();
 				}
 				
-				 
 				
-				
-				
-	
-}
+					@Then("User should verify that whether able to select options under Injury Type field")
+					public void user_should_verify_that_whether_able_to_select_options_under_injury_type_field() {
+					 
+						pom.getIncidentReportPage().selectInjuryType();
+				}
+
+					@Then("User should verify that whether able to selecting multiple option values under Injury Type field")
+					public void user_should_verify_that_whether_able_to_selecting_multiple_option_values_under_injury_type_field() {
+					
+						
+						pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+					}
+					
+						@Then("User should verify that whether able to unselect the selected option values under Injury Type field")
+						public void user_should_verify_that_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
+						    
+							pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+						}
+						
+						@Then("User should verify that whether able to select the option value under How severe was injury? field")
+						public void user_should_verify_that_whether_able_to_select_the_option_value_under_how_severe_was_injury_field() {
+						   
+							
+							pom.getIncidentReportPage().selectOptionHowSevereWasTheInjury();
+						}
+						
+						@Then("User should verify that whether able to select the option value under Injury Color")
+						public void user_should_verify_that_whether_able_to_select_the_option_value_under_injury_color() {
+						   
+							pom.getIncidentReportPage().selectInjuryColorOption();
+
+						}
+						
+						@Then("User should verify that whether default optional values is selected under was Event Notified?")
+						public void user_should_verify_that_whether_default_optional_values_is_selected_under_was_event_notified() throws Exception {
+						 
+							
+							String defaultOptionIsSelected = getAttribute(pom.getIncidentReportPage().getEventNotifiedDefaultValue(), "ng-reflect-value");
+							
+                            if (defaultOptionIsSelected.equals("true")) {
+	                       log(Status.PASS, "Default option is selected under Was the event notified? radio button field");
+                            } else {
+                           	log(Status.FAIL, "Default optional values is NOT selected under was Event Notified?");
+                           	throw new Exception();
+                            }							
+               }
+						
+						
+						
+						
+						
+						
+						
+						}

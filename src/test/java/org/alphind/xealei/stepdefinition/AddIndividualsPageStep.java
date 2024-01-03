@@ -22,7 +22,7 @@ import io.cucumber.java.en.When;
 
 public class AddIndividualsPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(driver);
 
 	@Then("User should verify the Individuals Module is working")
 	public void user_should_verify_the_individuals_module_is_working() {

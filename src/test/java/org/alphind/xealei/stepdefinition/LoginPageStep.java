@@ -22,7 +22,7 @@ import io.cucumber.java.en.When;
 
 public class LoginPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(driver);
 
 	@Given("User is on Xealei login page")
 	public void user_is_on_xealei_login_page() {
@@ -42,20 +42,20 @@ public class LoginPageStep extends BaseClass {
 			case "QA": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 1, 1) + "login",
 						getCurrentUrl());
-				log(Status.PASS, "Tab URL Address verified - Login using QA - " + getCurrentUrl());
+				log(Status.INFO, "Tab URL Address verified - Login using QA - " + getCurrentUrl());
 
 				break;
 			}
 			case "PREPROD": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 2, 1) + "login",
 						getCurrentUrl());
-				log(Status.PASS, "Tab URL Address verified - Login using PREPROD - " + getCurrentUrl());
+				log(Status.INFO, "Tab URL Address verified - Login using PREPROD - " + getCurrentUrl());
 				break;
 			}
 			case "PROD": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 3, 1) + "login",
 						getCurrentUrl());
-				log(Status.PASS, "Tab URL Address verified - Login using PROD - " + getCurrentUrl());
+				log(Status.INFO, "Tab URL Address verified - Login using PROD - " + getCurrentUrl());
 				break;
 			}
 			default: {
@@ -89,9 +89,23 @@ public class LoginPageStep extends BaseClass {
 
 	}
 
+	@Then("User should verify the Login button is disabled")
+	public void user_should_verify_the_login_button_is_disabled() throws Exception {
+		
+		logStep(methodName());
+	
+	String LoginButtonIsDisabled = getAttribute(pom.getLoginPage().getLoginButton(), "ng-reflect-ng-class");
+	
+    if (LoginButtonIsDisabled.equals("disable-btn")) {
+   log(Status.PASS, "Login Button is disabled");
+    } else {
+   	log(Status.FAIL, "Login Button is NOTdisabled");
+   	throw new Exception();
+    }	
+       }
+	
 	@Then("User should verify the field label name and placeholder text for Email and Password fields")
-	public void user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields()
-			 {
+	public void user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields() {
 
 
 		logStep(methodName());
@@ -217,7 +231,6 @@ public class LoginPageStep extends BaseClass {
 				Assert.assertTrue(pom.getLoginPage().getForgotPassword().isDisplayed());
 				log(Status.PASS, "Navigate to Forgot Password Page");
 				pageBackward();
-				log(Status.INFO, "Back to Login page");
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
@@ -281,12 +294,13 @@ public class LoginPageStep extends BaseClass {
 		}
 	}
 
-	@Given("User should enter password in password field and click login button")
-	public void user_should_enter_password_in_password_field_and_click_login_button() {
+	@Given("User should enter password in password field and press enter button")
+	public void user_should_enter_password_in_password_field_and_press_enter_button() {
+		
 
 		logStep(methodName());
 		pom.getLoginPage().password();
-		pom.getLoginPage().loginButton();
+		clickEnter(pom.getLoginPage().getPassword());
 
 	}
 
@@ -314,9 +328,9 @@ public class LoginPageStep extends BaseClass {
 		
 		deleteExistFieldData(pom.getLoginPage().getPassword());
 		log(Status.INFO, "Delete the entered password in password* field");
+		
 		pom.getLoginPage().email();
 		pom.getLoginPage().loginButton();
-
 	}
 
 	@Then("User should verify the error message contains password field {string}")
@@ -343,50 +357,17 @@ public class LoginPageStep extends BaseClass {
 
 	}
 
-	@Then("User should click login button without enter username and password")
-	public void user_should_click_login_button_without_enter_username_and_password() {
-
-		logStep(methodName());
-		
-		deleteExistFieldData(pom.getLoginPage().getUserName());
-		log(Status.INFO, "Delete the entered email/userName in Email* field");
-
-		pom.getLoginPage().loginButton();
-
-	}
-
-	@Then("User should verify the error message contains for both email and password after click the Login button {string} and {string}")
-	public void user_should_verify_the_error_message_contains_for_both_email_and_password_after_click_the_login_button_and(
-			String expErrMsgForEmailField, String expErrMsgForPasswordField)  {
-
-		logStep(methodName());
-		
-		waitForPageLoad();
-		try {
-			Assert.assertEquals("Validation Msg under Email* field is not displayed as expected",
-					expErrMsgForEmailField, getText(pom.getLoginPage().getErrorMessageForEmail()));
-			log(Status.PASS, "Validation Msg for Email* field is displayed - "
-					+ getText(pom.getLoginPage().getErrorMessageForEmail()));
-			Assert.assertEquals("Validation Msg under Password* field is not displayed as expected",
-					expErrMsgForPasswordField, getText(pom.getLoginPage().getErrorMessageForPassword()));
-			log(Status.PASS, "Validation Msg for Password* field is displayed - "
-					+ getText(pom.getLoginPage().getErrorMessageForPassword()));
-
-		} catch (AssertionError e) {
-
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
 	@When("User should perform login with invalid data")
 	public void user_should_perform_login_with_invalid_data() {
 
 		logStep(methodName());
 		
+		deleteExistFieldData(pom.getLoginPage().getUserName());
+		log(Status.INFO, "Delete the entered userName in email* field");
 		pom.getLoginPage().email();
-		pom.getLoginPage().password();
-		pom.getLoginPage().loginButton();
+		
+	pom.getLoginPage().password();
+	pom.getLoginPage().loginButton();
 
 	}
 
@@ -439,13 +420,8 @@ public class LoginPageStep extends BaseClass {
 		
 		deleteExistFieldData(pom.getLoginPage().getUserName());
 		log(Status.INFO, "Delete the entered email/userName");
-		deleteExistFieldData(pom.getLoginPage().getPassword());
-		log(Status.INFO, "Delete the entered Password");
-
+	        
 		pom.getLoginPage().validEmail(1);
-		pom.getLoginPage().password();
-		pom.getLoginPage().loginButton();
-
 	}
 
 	@Then("User should verify the Toastbar message after performed login with valid email and invalid password {string}")
@@ -467,9 +443,9 @@ public class LoginPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 
-		if (pom.getLoginPage().getToastMsgOkButton().isEnabled()) {
-			log(Status.INFO, "Toastbar OK button is enabled");
-			pom.getLoginPage().ToastMsgOkButton(); 
+		if (pom.getLoginPage().getToastMsgokButton().isEnabled()) {
+			log(Status.INFO, "Toastbar ok button is enabled");
+			pom.getLoginPage().ToastMsgokButton(); 
 			log(Status.PASS, "Incorrect Password toastbar is closed by clicking ok button");
 			System.out.println("Incorrect Password-validation Toastbar is closed by clicking ok button");
 		} else {
