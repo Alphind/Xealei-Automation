@@ -19,8 +19,9 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
 tags = "@AllApprove",
-glue = "org.alphind.xealei.stepdefinition", 
-dryRun = false, monochrome = true)
+glue = "org.alphind.xealei.stepdefinition",
+dryRun = !true, monochrome = true)
+
 
 
 public class TC7IncidentReportTestRunner { 

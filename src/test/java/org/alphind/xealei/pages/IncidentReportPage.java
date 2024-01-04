@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,8 +28,11 @@ import com.aventstack.extentreports.Status;
 
 public class IncidentReportPage extends BaseClass {
 
-	public IncidentReportPage() {
+	private WebDriver driver;
+	
+	public IncidentReportPage(WebDriver driver) {
 
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		
 	}
@@ -44,7 +48,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//mat-select[@placeholder='Individual details']")
 	private WebElement individualDetailsDropDown;
 	
-	String selectIndDetails = "//span[text()='chooseIndDetails']/parent::mat-option";
+	String selectIndDetails = "//span[contains(text(),'chooseIndDetails')]/parent::mat-option";
 	
 	@FindBy(xpath = "//input[@id='dateAndTime']")
 	private WebElement eventDateAndTimeCalenderIconButton;
@@ -240,17 +244,17 @@ public class IncidentReportPage extends BaseClass {
 	
 	private String injuredIndividiual = "//mat-label[contains(text(),'Was IndividiualName injured?')]";
 	
-	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
+	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")//../preceding-sibling::div/input
 	private WebElement wasIndividiualInjuredYesRadioButton;
 	
 	@FindBy(xpath = "(//div[text()='No'])[1]/preceding-sibling::div/input")
 	private WebElement wasIndividiualInjuredNoRadioButton;
-	
-//	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
-//	private WebElement wasIndividualInjuredYesRadioButton;
 
 	String wasIndividualInjuredYesRadioButton = "(//div[text()='?'])[1]/preceding-sibling::div/input";
-	 
+
+	String wasPatientInjured ="//div[contains(text(),'isInjured')]";
+	
+	
 	@FindBy(xpath = "(//div[text()='Yes'])[2]/preceding-sibling::div/input")
 	private WebElement wasTheEventNotifiedYesRadioButton;
 	
@@ -303,7 +307,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//table//tbody//tr//td[3]")
 	private WebElement individualsGrid;
 	
-	@FindBy(xpath = "//span[contains(text(),'Saved Successfully!!')]")
+	@FindBy(xpath = "//span[contains(text(),'Saved Successfully')]")
 	private WebElement savedSuccessfullToastMsg;
 	
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
@@ -321,16 +325,22 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'File size should be less than 1 MB')]")
 	private WebElement imgSizeToastMsg;
 	
+	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
+	private WebElement eventNotifiedDefaultValue;
+
 	@FindBy(xpath = "//li[text() = 'Incident Report']")
 	private WebElement incidentReportText;
 	
 	@FindBy(xpath = "//span[text()='Complete']/parent::button")
 	private WebElement completeButton;
 	
-	@FindBy(xpath = "//span[text()='Edit']/parent::button")
-	private WebElement editButton;
+	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
 	
-	private String statusColumnXpath = "//table/tbody/tr[rowumber]/td[7]/div/span";
+	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
+	
+	//private String statusColumnXpath = "//table/tbody/tr[rowumber]/td[7]/div/span";
+
+	private String editButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'Edit')]";
 	
 	@FindBy(xpath = "//table/tbody/tr/td[3]")
 	private List<WebElement> injurySummaries; 
@@ -340,7 +350,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	
 	public WebElement getSavedSuccessfullToastMsg() {
-		return savedSuccessfullToastMsg;
+		return savedSuccessfullToastMsg; 
 	}
 
 	public WebElement getBtnToastMsgSuccessOk() {
@@ -435,6 +445,10 @@ public class IncidentReportPage extends BaseClass {
 		return imgSizeToastMsg;
 	}
 	
+	public WebElement getEventNotifiedDefaultValue() {
+		return eventNotifiedDefaultValue;
+	}
+	
 	
 	
 
@@ -464,9 +478,18 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectIndividualDetails() {
 		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
+		String[] fullname = individualDetail.split(" ");
+		if(fullname.length>2) {
+			individualDetail = fullname[0]+"  "+fullname[1];
+			for(int i = 2; i<fullname.length; i++) {
+				individualDetail = individualDetail + " " + fullname[i];
+			}
+		}else {
+			individualDetail = fullname[0]+"  "+fullname[1];
+		}
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
-		select(individualName);
+		select(driver,individualName);
 		
 	}
 	
@@ -480,6 +503,7 @@ public class IncidentReportPage extends BaseClass {
 	public void enterWhatCausedTheFallData() {
 		String WhatCausedTheFall = readExcel("Test Datas", "Incident Reports", 1, 2).trim();
 		sendKeys(whatCausedTheFallDescriptionTxtBox, WhatCausedTheFall);
+		waitForPageLoad(driver);
 	}
 	
 	/**
@@ -505,18 +529,28 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectWasTheIndividiualInjured() {
 		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
-		switch (WasIndividiualIInjured) {
-		case "Yes":
-			click(wasIndividiualInjuredYesRadioButton);
-			break;
-			
-		case "No":
-			click(wasIndividiualInjuredNoRadioButton);
-			break;
-
-		}
+		System.out.println("was individual injured : "+ WasIndividiualIInjured);
 		
-		waitForPageLoad();
+		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
+		waitForFullPageElementLoad(driver);
+		select(wasPatientInjured);
+		
+//		switch (WasIndividiualIInjured) {
+//			case "Yes":{
+//				waitForElementToBeClickable(wasIndividiualInjuredYesRadioButton, 10);
+//				click(wasIndividiualInjuredYesRadioButton);
+//				break;
+//			}
+//			
+//			case "No":{
+//				waitForElementToBeClickable(wasIndividiualInjuredNoRadioButton, 10);
+//				click(wasIndividiualInjuredNoRadioButton);
+//				break;
+//			}	
+//
+//		}
+		
+		waitForPageLoad(driver);
 		
 	}
 	
@@ -607,55 +641,55 @@ public class IncidentReportPage extends BaseClass {
 			String injurysite = injury.trim();
 			switch(injurysite) {
 			case "Head":
-				click(frontViewForeHeadInjury);
+				click(backViewHeadInjury);
 				break;
 				
 			case "Right Shoulder":
-				click(frontViewRightShoulderINjury);
+				click(backViewRightShoulderINjury);
 				break;
 				
 			case "Left Shoulder":
-				click(frontViewLeftShoulderInjury);
+				click(backViewLeftShoulderInjury);
 				break;
 				
 			case "Back":
-				click(frontViewChestInjury);
+				click(backViewBackInjury);
 				break;
 				
 			case "Hip":
-				click(frontViewAbdomenInjury);
+				click(backViewHipInjury);
 				break;
 				
 			case "Right Arm":
-				click(frontViewRightArmInjury);
+				click(backViewRightArmInjury);
 				break;
 				
 			case "Left Arm":
-				click(frontViewLefttArmInjury);
+				click(backViewLefttArmInjury);
 				break;
 				
 			case "Right Wrist":
-				click(frontViewRightWristInjury);
+				click(backViewRightWristInjury);
 				break;
 				
 			case "Left Wrist":
-				click(frontViewLefttWristInjury);
+				click(backViewLefttWristInjury);
 				break;
 				
 			case "Right Knee":
-				click(frontViewRightKneeInjury);
+				click(backViewRightKneeInjury);
 				break;
 				
 			case "Left Knee":
-				click(frontViewLeftKneeInjury);
+				click(backViewLeftKneeInjury);
 				break;
 				
 			case "Right Foot":
-				click(frontViewRightFootInjury);
+				click(backViewRightFootInjury);
 				break;
 				
 			case "Left Foot":
-				click(frontViewLeftFootInjury);
+				click(backViewLeftFootInjury);
 				break;
 				
 			}
@@ -823,17 +857,17 @@ public class IncidentReportPage extends BaseClass {
 		String relationship = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 		click(notificationMethodDropdownBox);
 		switch(relationship) {
-		case "Phone Call":
+		case "Phone Call":{
 			click(notificationMethodPhoneCallOption);
-			break;
+			break;}
 			
-		case "Email":
+		case "Email":{
 			click(notificationMethodEmailOption);
-			break;
+			break;}
 			
-		case "Text Message":
+		case "Text Message":{
 			click(notificationMethodTextMessageOption );
-			break;
+			break;}
 
 		}
 	}
@@ -853,7 +887,7 @@ public class IncidentReportPage extends BaseClass {
 	public String getRowNumber() {
 		int i = 1;
 		for(WebElement element : injurySummaries) {
-			if(getText(element).equals(readExcel("Test Datas", "Incident Report", 0, 0))) {
+			if(getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
 				return Integer.toString(i);
 			}
 			i++;
@@ -875,10 +909,28 @@ public class IncidentReportPage extends BaseClass {
 		return getTextString(excatColumn);
 	}
 	
-	public void addNewIncidentReportButton() {
-	
-		click(addNewIncidentReportButton);
+	public void viewButton(String rowNumber) {
+		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
+		select(excatColumn);
 		waitForPageLoad();
+	}
+	
+	public void editButton(String rowNumber) {
+		String excatColumn = editButton.replaceAll("rownumber", rowNumber);
+		select(excatColumn);
+		waitForPageLoad();
+	}
+	
+	public void addNewIncidentReportButton() {
+			
+		waitForPageLoad();
+		
+		if (addNewIncidentReportButton.isDisplayed()) {
+			click(addNewIncidentReportButton);
+			waitForPageLoad();
+		} else {
+			log(Status.FAIL, "Unable to click Add New Incident Report Button");
+		}
 
 	}
 	
@@ -892,10 +944,9 @@ public class IncidentReportPage extends BaseClass {
 		
 		click(individualDetailsDropDown);
 		
-		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Emily S Martin-08:52(Suite-19:06:37)");
+		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Arlia  Thomas(SUITE B)");
 		select(selectIndDetails);
 	}
-	
 	
 	public void wasIndividualInjuredRadioButton() {
 		
@@ -904,18 +955,28 @@ public class IncidentReportPage extends BaseClass {
 		waitForPageLoad();
 	}
 	
+public void wasPatientInjuredRadioButton() {
+		
+	wasPatientInjured = wasPatientInjured.replaceAll("isInjured", "Yes");
+	select(wasPatientInjured);
+    waitForPageLoad();
+	}
+
 public void saveButton() {
 
 	click(saveButton);
 	waitForPageLoad();
+	
 }
 	
 public void injuryDescription() {
 		
 	sendKeys(injuryDescriptionDescriptionTxtBox, "Twisted Ankle"+randomName());
-	}
+	String attribute = getAttribute(injuryDescriptionDescriptionTxtBox, "value");
+	writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18, attribute);
+}
 
-public void savedSuccessfulToastMsgOkButton() {
+public void savedSuccessfulToastMsgokButton() {
 
 	click(btnToastMsgSuccessOk);
 }
@@ -925,26 +986,10 @@ public void ToastMsgOKButton() {
 	click(OKBtnToastMsg);
 }
 
-public void viewButton() {
-	
-	click(viewButtonInIndividualGrid);
-	waitForPageLoad();
-}
-
-public void editButton() {
-	
-	click(viewButtonInIndividualGrid);
-	waitForPageLoad();
-}
-
 public void eventDateAndTime(int rowNum) {
 	
-		String eventDateAndTime = "122220230500P";
-		for (int i = 0; i < eventDateAndTime.length(); i++) {
-			char letter = eventDateAndTime.charAt(i);
-			String letterAsString = String.valueOf(letter);
-			sendKeys(eventDateAndTimeCalenderIconButton, letterAsString);
-		}
+		String eventDateAndTime = "05/12/202311:59AM";		
+		sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 	}
 	
 public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
@@ -1046,9 +1091,41 @@ if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
 }
 
 
+public void selectMultipleOptionInjuryType() {
+	
+			click(injuryTypeAbrasionButton);
+			click(injuryTypeBleedingButton);
+			click(injuryTypeBruiseButton);
+			click(injuryTypeScratchButton);
+	
+	}
+
+public void selectOptionHowSevereWasTheInjury() {
+
+		click(injurySeverityLight);
+		click(injurySeverityMedium);
+		click(injurySeverityHigh);
+}
+	
+
+public void selectInjuryColorOption() {
+
+		click(injuryColorGreen);
+		click(injuryColorRed);
+		click(injuryColorBlack);
+		click(injuryColorBrown);
+}
 
 
-
+public void gridStatusVerify() {
+	
+	WebElement individualsGrid2 = individualsGrid;
+	
+		
+	}
+	
 
 
 }
+
+

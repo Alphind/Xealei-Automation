@@ -11,6 +11,7 @@
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -24,14 +25,18 @@ public class LoginPage extends BaseClass {
 	 * Description - All the Login Module/Page locators are stored here..
 	 */
 
-	public LoginPage() {
+	private WebDriver driver;
+	
+	public LoginPage(WebDriver driver) {
+		
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(xpath = "//p[contains(text(),'Powered by Alphind © 2023')]")
 	private WebElement copyRightsTxtInLoginScreen;
 
-	@FindBy(xpath = "//h3[text()='LOGIN']")
+	@FindBy(xpath = "//h3[contains(text(),'LOGIN')]")
 	private WebElement loginTextVerification;
 
 	@FindBy(xpath = "(//span[@class='text-danger']/parent::mat-label)[1]")
@@ -70,10 +75,10 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//h5[@x-page='home']")
 	private WebElement navToHomePageSuccessfully;
 
-	@FindBy(xpath = "//span[text()='User not found']")
+	@FindBy(xpath = "//span[contains(text(),'User not found')]")
 	private WebElement userNotFoundErrorMessage;
 
-	@FindBy(xpath = "//span[text()='Incorrect password']")
+	@FindBy(xpath = "//span[contains(text(),'Incorrect password')]")
 	private WebElement incorrectPasswordErrorMessage;
 
 	@FindBy(xpath = "//mat-error[contains(text(),' Please enter email ID ')]")
@@ -86,8 +91,11 @@ public class LoginPage extends BaseClass {
 			@FindBy(xpath = "//span[text()='ok']/parent::button") })
 	private WebElement unknownErrorToastMsg;
 
-	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
+	@FindBy(xpath = "//span[contains(text(),'OK')]/parent::button")
 	private WebElement toastMsgOkButton;
+	
+	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
+	private WebElement toastMsgokButton;
 	
 	
 
@@ -167,6 +175,10 @@ public class LoginPage extends BaseClass {
 		return toastMsgOkButton;
 	}
 	
+	public WebElement getToastMsgokButton() {
+		return toastMsgokButton;
+	}
+	
 	public WebElement getForgotPasswordHyperLink() {
 		return forgotPasswordHyperLink;
 	}
@@ -183,6 +195,7 @@ public class LoginPage extends BaseClass {
 
 	public void password() {
 
+		waitForPageLoad();
 		sendKeys(getPassword(), "xe23Dal%q3");
 	}
 
@@ -210,6 +223,11 @@ public class LoginPage extends BaseClass {
 			
 		   click(toastMsgOkButton);
 	}
+	 
+	 public void ToastMsgokButton() {
+			
+		   click(toastMsgokButton);
+	}
 
 	String email;
 
@@ -221,20 +239,26 @@ public class LoginPage extends BaseClass {
 
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			log(Status.INFO, "Getting the Email/userName in QA environment");
 			sendKeys(getUserName(), email);
+			log(Status.INFO, "Enter QA environment Email/userName");
+			clickEnter(getPassword());
+			waitForPageLoad();
 			break;
 		}
 		case "PREPROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(getUserName(), email);
 			log(Status.INFO, "Enter PREPROD environment email/userName");
+			clickEnter(getPassword());
+			waitForPageLoad();
 			break;
 		}
 		case "PROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(getUserName(), email);
 			log(Status.INFO, "Enter PROD environment email/userName");
+			clickEnter(getPassword());
+			waitForPageLoad();
 			break;
 		}
 		default: {
@@ -255,18 +279,21 @@ public class LoginPage extends BaseClass {
 
 		case "QA": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
+			waitForPageLoad();
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter QA environment Password");
 			break; 
 		}
 		case "PREPROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
+			waitForPageLoad();
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter PREPROD environment Password");
 			break;
 		}
 		case "PROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
+			waitForPageLoad();
 			sendKeys(getPassword(), passWord);
 			log(Status.INFO, "Enter PROD environment Password");
 			break;

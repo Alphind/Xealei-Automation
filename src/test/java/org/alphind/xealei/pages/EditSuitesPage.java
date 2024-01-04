@@ -13,6 +13,7 @@ package org.alphind.xealei.pages;
 import java.util.Objects;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -26,8 +27,13 @@ public class EditSuitesPage extends BaseClass {
 	 * 
 	 */
 
-	public EditSuitesPage() {
+	private WebDriver driver;
+	
+	public EditSuitesPage(WebDriver driver) {
+		
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		
 	} 
 
 	@FindBy(xpath = "//mat-select[@placeholder='Select Location']")

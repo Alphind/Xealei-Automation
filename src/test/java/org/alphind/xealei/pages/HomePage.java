@@ -1,28 +1,33 @@
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BaseClass {
 
-	public HomePage() {
+	private WebDriver driver;
+	
+	public HomePage(WebDriver driver) {
 		
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
 	@FindBy(xpath = "//div[@class='user-category']")
 	private WebElement adminName;
 	
-	@FindBy(xpath = "//span[@class='navNameClass' and text()='Reports']")
+	@FindBy(xpath = "//span[contains(text(),'Reports')]")
 	private WebElement ReportsModule;
 	
-	@FindBy(xpath = "//span[@class='navNameClass sub-link' and text()='Incident Reports']")
+	@FindBy(xpath = "//span[contains(text(),'Incident Reports')]")
 	private WebElement incidentReportModule;
 	
 	@FindBy(xpath = "//h5[text()=' Home ']")
 	private WebElement homePageText;
+	
 	
 	
 	
@@ -34,17 +39,18 @@ public class HomePage extends BaseClass {
 	
 
 	
-	public HomePage reportsModule() {
+	public void reportsModule() {
 	
-    click(ReportsModule);
-	return this;
-	}
+		waitForPageLoad();
+        click(ReportsModule);
+}
 	
-	public HomePage incidentReportModule() {
+	
+	
+	public void incidentReportModule() {
 		
 		click(incidentReportModule);
-		return this;
-	}
+}
 	
 	
 	public boolean isHomePageDisplayed() {

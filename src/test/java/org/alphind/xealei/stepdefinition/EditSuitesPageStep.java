@@ -19,7 +19,7 @@ import io.cucumber.java.en.Then;
 
 public class EditSuitesPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(driver);
 	
 		@Then("User should search the created suite")
 		public void user_should_search_the_created_suite() throws Exception {
