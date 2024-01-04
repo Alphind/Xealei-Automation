@@ -364,7 +364,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Reports module.")
 			public void navigate_to_reports_module() {
-			    pom.getHomePage().reportsModule().incidentReportModule();
+			    pom.getHomePage().reportsModule();
 			}
 
 			/**
@@ -460,7 +460,9 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Launch a new browser and enter xealei url.")
 			public void launch_a_new_browser_and_enter_xealei_url() {
 			    cheifnurseDriver = new ChromeDriver();
-			    cheifnurseDriver.get("https://gha.qa.xealei.com/login");
+			    logStep(methodName());
+			    cheifnurseDriver.get("https://xat.qa.xealei.com/login");
+			    
 			}
 
 			/**

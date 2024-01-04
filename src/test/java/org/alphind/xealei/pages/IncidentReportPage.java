@@ -330,7 +330,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[text()='Edit']/parent::button")
 	private WebElement editButton;
 	
-	private String statusColumnXpath = "//table/tbody/tr[columnumber]/td[7]/div/span";
+	private String statusColumnXpath = "//table/tbody/tr[rowumber]/td[7]/div/span";
 	
 	@FindBy(xpath = "//table/tbody/tr/td[3]")
 	private List<WebElement> injurySummaries; 
@@ -449,7 +449,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @return whether incident report page is displayed or not.
 	 */
 	public boolean isIncidentReportPageDisplayed() {
-		if(incidentReportText.isDisplayed()) {
+		if(incidentReportModuleText.isDisplayed()) {
 			return true;
 		}
 		return false;
@@ -871,7 +871,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 27-12-2023.
 	 */
 	public String getStatus(String rowNumber) {
-		String excatColumn = statusColumnXpath.replaceAll("columnnumber", rowNumber);
+		String excatColumn = statusColumnXpath.replaceAll("rownumber", rowNumber);
 		return getTextString(excatColumn);
 	}
 	

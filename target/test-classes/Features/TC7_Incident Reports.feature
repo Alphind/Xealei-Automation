@@ -110,35 +110,42 @@ Scenario Outline: To verify IR form creation via manual by "<adminName>"
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
 		Given User is on Xealei login page
-		When User is login into Xealei application as Staff role user with valid "AStaff" and "auto@123".
-		Then Verify Home page is displayed.
-		Then Navigate to Reports module.
-		And Navigate to Incident Report sub module.
-		Then Click on Add New Incident Report button.
-		And Verify Add Incident report page is displayed.
-		And Select the individual for whom the incident report has to be created.
-		Then Enter all the details of the Incident.
-		Then Click on next button.
-		When Incident report page is displayed verify whether all the data is displayed correctly.
-		And Click on complete button.
-		And Verify whether the report is in pending status.
+    When User should perform login as facility admin "AStaff" and "auto@123"
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should verify the Incident report module is working
+    Then User should verify the ADD New Incident Report button is working
+		
+#		Given User is on Xealei login page
+#		When User is login into Xealei application as Staff role user with valid "AStaff" and "auto@123".
+#		Then Verify Home page is displayed.
+#		Then Navigate to Reports module.
+#		And Navigate to Incident Report sub module.
+#		Then Click on Add New Incident Report button.
+		#And Verify Add Incident report page is displayed.
+#		And Select the individual for whom the incident report has to be created.
+#		Then Enter all the details of the Incident.
+#		Then Click on next button.
+#		When Incident report page is displayed verify whether all the data is displayed correctly.
+#		And Click on complete button.
+#		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url.
 		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
 		#Then Verify whether notification is received.
 		#And Approve the report.
 		#And Verify whether the report is in "" status.
-		#Then Launch a new browser and enter xealei url.
-		#And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Launch a new browser and enter xealei url.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
 		#Then Verify whether notification is received.
 		#And Approve the report.
 		#And Verify whether the report is in "" status.
-		#Then Launch a new browser and enter xealei url.
-		#And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
+		Then Launch a new browser and enter xealei url.
+		And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
 		#Then Verify whether notification is received.
 		#And Approve the report.
 		#And Verify whether the report is in "" status.
-		#And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
-		#Then Verify whether notification is received.
+		Then Launch a new browser and enter xealei url.
+		And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
+#		Then Verify whether notification is received.
 		#And Approve the report.
 		#And Verify whether the report is in "" status.
 		

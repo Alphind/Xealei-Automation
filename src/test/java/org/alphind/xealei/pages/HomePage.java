@@ -48,6 +48,7 @@ public class HomePage extends BaseClass {
 	
 	
 	public boolean isHomePageDisplayed() {
+		waitForPageLoad();
 		if(homePageText.isDisplayed()) {
 			return true;
 		}
