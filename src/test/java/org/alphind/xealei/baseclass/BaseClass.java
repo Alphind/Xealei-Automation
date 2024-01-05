@@ -453,7 +453,7 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			log(Status.INFO, "Select the" + methodName);
+			log(Status.INFO, "Select the "+ methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}

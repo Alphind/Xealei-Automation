@@ -311,11 +311,27 @@ public class IncidentReportPageStep extends BaseClass {
   			}
 		}
 			
-			@Then("User should verify the edit button is working in IR submission page")
-			public void user_should_verify_the_edit_button_is_working_in_IR_submission_page() {
-						
-			}
+				@Then("User should verify the complete button is disabled")
+				public void user_should_verify_the_complete_button_is_disabled() {
+				 
+					String completeButtonDisabled = getAttribute(pom.getIncidentReportPage().getCompleteButton(), "ng-reflect-disabled");
+				
+				if(completeButtonDisabled.equalsIgnoreCase("true")) {
+					log(Status.PASS, "Complete button is disabled after click view button");
+				} else {
+					log(Status.FAIL, "Complete button is NOT disabled after click view button");
+				}
+				}
 			
+			@Then("User should verify the edit button is working in IR submission page")
+			public void user_should_verify_the_edit_button_is_working_in_IR_submission_page() throws Exception {
+						
+				pom.getIncidentReportPage().EditButton();
+				
+				if (pom.getIncidentReportPage().getSaveButton().isDisplayed()) {
+				log(Status.PASS, "Edit button is working as expected");	
+				}	
+			}
 	
 			@Then("User should enter the Event Date & Time greater than current time")
 			public void user_should_enter_the_event_date_time_greater_than_current_time() {

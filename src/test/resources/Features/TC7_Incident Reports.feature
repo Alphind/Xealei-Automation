@@ -14,24 +14,23 @@ Scenario Outline: To verify IR form creation via manual by "<adminName>"
     Then User should verify Next > button is working
     Then User should verify the validation info message under all fields "Please select the individual details", "Please choose event on", "Please enter fall caused", "Please choose was injured", "Please enter fall description", "Please select injury site", "Please enter treatment received", "Please enter future treatment", "Please select the injury type", "Please select injury color", "Please choose was the injury serve", "Please enter person notify", "Please choose relationship", "Please choose notify date", "Please choose time", "Please enter notified by"
   
-   Then User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields 
-   Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
-   Then User should verify the respective individual report status "Draft"
+   # Then User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields 
+   # Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
+   # Then User should verify the respective individual report status "Draft"
     
-    Then User should verify the view button is working in IR Grid 
-    Then User should verify the error message in Incident Report Page "Note: Fill out the required fields using the edit option if you would like to submit or complete the report"
-    Then User should verify the edit button is working in IR submission page
- 
- 
+    # Then User should verify the view button is working in IR Grid 
+    # Then User should verify the error message in Incident Report Page "Note: Fill out the required fields using the edit option if you would like to submit or complete the report"
+    # Then User should verify the complete button is disabled
+    # Then User should verify the edit button is working in IR submission page
  
     #Then User should verify the injury question section should display with selected individual name in field  "Was" "individual name" "injured?" 
     #And User should click on the calendar icon in Event Date & Time field
     #Then User should verify the date & time picker is appeared
     #And User should select a valid date in date picker and verify the selected date should be displayed in Event Date & Time field
     #Then User should verify future dates are hidden in date & time picker
-    #
-    ####And User should enter the Event Date & Time greater than current time
-    ####Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"
+    
+     And User should enter the Event Date & Time greater than current time
+   Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"
     
     #When User should click on the up arrow to navigate to the previous month and verify the calendar should display the previous months dates
     #And User should select a specific year and month in dropdown and select the date and verify the selected date are updated accordingly

@@ -343,6 +343,10 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//table/tbody/tr/td[3]")
 	private List<WebElement> injurySummaries; 
 	
+	@FindBy(xpath = "//span[contains(text(),'Edit')]/parent::button")
+	private WebElement IRFormEditButton; 
+	
+	
 	
 	
 	
@@ -390,6 +394,13 @@ public class IncidentReportPage extends BaseClass {
 	public WebElement getSaveButton() {
 		return saveButton;
 	}
+	
+	public WebElement getNextButton() {
+		return nextButton;
+	}
+	
+	
+	
 
 	public WebElement getIndividualsDetailsValidationInfoMsg() {
 		return individualsDetailsValidationInfoMsg;
@@ -446,6 +457,11 @@ public class IncidentReportPage extends BaseClass {
 	public WebElement getEventNotifiedDefaultValue() {
 		return eventNotifiedDefaultValue;
 	}
+	
+	public WebElement getCompleteButton() {
+		return completeButton;
+	}
+
 	
 	
 	
@@ -899,6 +915,12 @@ public class IncidentReportPage extends BaseClass {
 		waitForPageLoad();
 	}
 	
+	public void EditButton() {
+        click(IRFormEditButton);
+        waitForPageLoad();
+	}
+	
+	
 	public void addNewIncidentReportButton() {
 			
 		waitForPageLoad();
@@ -966,7 +988,8 @@ public void ToastMsgOKButton() {
 
 public void eventDateAndTime(int rowNum) {
 	
-		String eventDateAndTime = "05/12/202311:59AM";		
+		String eventDateAndTime = "05/12/202311:59AM";
+		//readExcel("Test Datas", "Incident Reports", rowNum, rowNum)
 		sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 	}
 	
