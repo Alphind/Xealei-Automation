@@ -13,8 +13,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class IncidentReportPageStep extends BaseClass {
-
-	PageObjectManager pom = new PageObjectManager(driver);
 	
 	private WebDriver staffDriver = getDriver();
 	private WebDriver cheifnurseDriver;
@@ -22,6 +20,12 @@ public class IncidentReportPageStep extends BaseClass {
 	private WebDriver ccDriver;
 	private WebDriver swDriver;
 
+	private PageObjectManager staffpom = new PageObjectManager(staffDriver);
+	private PageObjectManager cheifnursepom;
+	private PageObjectManager rmpom;
+	private PageObjectManager ccpom;
+	private PageObjectManager swpom;
+	
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
 
@@ -32,11 +36,11 @@ public class IncidentReportPageStep extends BaseClass {
 //			pom.getLoginPage().loginButton();
 //            waitForPageLoad();
 
-		sendKeys(pom.getLoginPage().getUserName(), userName);
-		sendKeys(pom.getLoginPage().getPassword(), password);
-		waitForPageLoad();
-		waitForFullPageElementLoad();
-		pom.getLoginPage().loginButton();
+		sendKeys(staffpom.getLoginPage().getUserName(), userName);
+		sendKeys(staffpom.getLoginPage().getPassword(), password);
+		waitForPageLoad(staffDriver);
+		waitForFullPageElementLoad(staffDriver);
+		staffpom.getLoginPage().loginButton();
 		
 
 	}
@@ -44,7 +48,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should also verify the performed login as {string}")
 	public void user_should_also_verify_the_performed_login_as(String adminName) {
 
-		String text = getText(pom.getHomePage().getAdminName());
+		String text = getText(staffpom.getHomePage().getAdminName());
 
 		Assert.assertEquals("Login page url is wrong", adminName, text);
 		System.out.println("EXP Value" + adminName);
@@ -55,13 +59,13 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the Incident report module is working")
 	public void user_should_verify_the_incident_report_module_is_working() {
 
-		pom.getHomePage().reportsModule();
-		pom.getHomePage().incidentReportModule();
+		staffpom.getHomePage().reportsModule();
+		staffpom.getHomePage().incidentReportModule();
 		waitForPageLoad();
 
 		try {
 			Assert.assertEquals("Unable to navigate Reports>Incident Reports Module ", "Incident Reports",
-					getText(pom.getIncidentReportPage().getIncidentReportModuleText()));
+					getText(staffpom.getIncidentReportPage().getIncidentReportModuleText()));
 			log(Status.PASS, "Incident Report sub-module button is working");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -73,7 +77,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void user_should_verify_the_add_new_incident_report_button_is_working() {
 
 		try {
-			pom.getIncidentReportPage().addNewIncidentReportButton();
+			staffpom.getIncidentReportPage().addNewIncidentReportButton();
 			log(Status.INFO, "ADD New Incident Report button is working as expected");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -84,7 +88,7 @@ public class IncidentReportPageStep extends BaseClass {
 		@Then("User should verify the save button is disabled")
 		public void user_should_verify_the_save_button_is_disabled() {
 		    
-			String saveButtonDisabled = getAttribute(pom.getIncidentReportPage().getSaveButton(), "disabled");
+			String saveButtonDisabled = getAttribute(staffpom.getIncidentReportPage().getSaveButton(), "disabled");
 			if (saveButtonDisabled.equalsIgnoreCase("true")) {
 				log(Status.PASS, "SAVE button is disabled after enter into Add Incidet Report Page");
 			} else {
@@ -95,7 +99,7 @@ public class IncidentReportPageStep extends BaseClass {
 		@Then("User should verify Next > button is working")
 		public void user_should_verify_next_button_is_working() {
 		
-			pom.getIncidentReportPage().nextButton();
+			staffpom.getIncidentReportPage().nextButton();
 		}
 		
 		@Then("User should verify the validation info message under all fields {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
@@ -104,7 +108,7 @@ public class IncidentReportPageStep extends BaseClass {
 			
 			try {
 				Assert.assertEquals("MF validation info msg is NOT displayed as expected under Individual’s Details field", expIndDetailsInfoMsg,
-						getText(pom.getIncidentReportPage().getIndividualsDetailsValidationInfoMsg()));
+						getText(staffpom.getIncidentReportPage().getIndividualsDetailsValidationInfoMsg()));
 				log(Status.PASS, "MF validation info msg is displayed as expected under Individual’s Details field");
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
@@ -113,21 +117,21 @@ public class IncidentReportPageStep extends BaseClass {
 						
 			try {
 				Assert.assertEquals("MF validation info msg is NOT displayed as expected under Event Date & Time field", expEventDateAndTimeInfoMsg,
-						getText(pom.getIncidentReportPage().getEventDateAndTimeValidationInfoMsg()));
+						getText(staffpom.getIncidentReportPage().getEventDateAndTimeValidationInfoMsg()));
 				log(Status.PASS, "MF validation info msg is displayed as expected under Event Date & Time field");
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
 		
-			pom.getIncidentReportPage().selectIndividualDetailsDropdown();	
+			staffpom.getIncidentReportPage().selectIndividualDetailsDropdown();	
 			
-			pom.getIncidentReportPage().eventDateAndTime(0);
+			staffpom.getIncidentReportPage().eventDateAndTime(0);
 			
 			
 			try {
 				Assert.assertEquals("MF validation info msg is NOT displayed as expected under What caused the fall? field", expWhatCausedAFall,
-						getText(pom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
+						getText(staffpom.getIncidentReportPage().getFallCausedValidationInfoMsg()));
 				log(Status.PASS, "MF validation info msg is displayed as expected under What caused the fall? field");
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
@@ -136,18 +140,18 @@ public class IncidentReportPageStep extends BaseClass {
 			
 			try {
 				Assert.assertEquals("MF validation info msg is NOT displayed as expected under Was injured? field", expWasInjuredInfoMsg,
-						getText(pom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
+						getText(staffpom.getIncidentReportPage().getChooseWasIndInjuredRadioButtonValidationInfoMsg()));
 				log(Status.PASS, "MF validation info msg is displayed as expected under Was injured? field");
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
 			
-			pom.getIncidentReportPage().wasPatientInjuredRadioButton();
+			staffpom.getIncidentReportPage().wasPatientInjuredRadioButton();
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Description field", expInjuryDescriptionInfoMsg,
-					getText(pom.getIncidentReportPage().getInjuryDescriptionValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getInjuryDescriptionValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Injury Description field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -156,7 +160,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Site field", expInjurySiteInfoMsg,
-					getText(pom.getIncidentReportPage().getInjurySiteValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getInjurySiteValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Injury Site field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -165,7 +169,7 @@ public class IncidentReportPageStep extends BaseClass {
 			
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Treatment Received field", expTreatmentReceivedInfoMsg,
-					getText(pom.getIncidentReportPage().getTreatmentReceivedValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getTreatmentReceivedValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Treatment Received field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -174,7 +178,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Future Treatment field", expFutureTreatmentInfoMsg,
-					getText(pom.getIncidentReportPage().getFutureTreatmentValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getFutureTreatmentValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Future Treatment field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -183,7 +187,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Type field", expInjuryTypeInfoMsg,
-					getText(pom.getIncidentReportPage().getInjuryTypeValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getInjuryTypeValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Injury Type field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -192,7 +196,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Color field", expInjuryColorInfoMsg,
-					getText(pom.getIncidentReportPage().getInjuryColorValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getInjuryColorValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Injury Color field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -201,7 +205,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Injury Serve field", expInjurySevereInfoMsg,
-					getText(pom.getIncidentReportPage().getInjurySeverityValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getInjurySeverityValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Injury Serve field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -210,7 +214,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Person Notified field", expPersonNotifiedInfoMsg,
-					getText(pom.getIncidentReportPage().getPersonNotifiedValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getPersonNotifiedValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Person Notified field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -219,7 +223,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Relationship field", expRelationshipInfoMsg,
-					getText(pom.getIncidentReportPage().getRelationshipValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getRelationshipValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Relationship field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -228,7 +232,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Notification Date field", expNotificationDateInfoMsg,
-					getText(pom.getIncidentReportPage().getChooseNotifiationDateValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getChooseNotifiationDateValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Notification Date field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -237,7 +241,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Notification Time field", expNotificationTimeInfoMsg,
-					getText(pom.getIncidentReportPage().getChooseNotifiationTimeValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getChooseNotifiationTimeValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Notification Time field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -246,7 +250,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Notified By field", expNotifiedByInfoMsg,
-					getText(pom.getIncidentReportPage().getNotifiedValidationInfoMsg()));
+					getText(staffpom.getIncidentReportPage().getNotifiedValidationInfoMsg()));
 			log(Status.PASS, "MF validation info msg is displayed as expected under Notified By field");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -259,9 +263,9 @@ public class IncidentReportPageStep extends BaseClass {
 		@Then("User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields")
 		public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() {
 		    			
-	    pom.getIncidentReportPage().injuryDescription();
+	    staffpom.getIncidentReportPage().injuryDescription();
 	    
-		pom.getIncidentReportPage().saveButton();
+		staffpom.getIncidentReportPage().saveButton();
 	
 		}
 		
@@ -270,22 +274,22 @@ public class IncidentReportPageStep extends BaseClass {
 		  
 			try {
 				Assert.assertEquals("Saved Successfull Toast Message is not displayed", expSuccessfullToastMsg,
-						getText(pom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
+						getText(staffpom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
 				log(Status.PASS, "Toast Message is displayed : "
-						+ getText(pom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
+						+ getText(staffpom.getIncidentReportPage().getSavedSuccessfullToastMsg()));
 				
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-			pom.getIncidentReportPage().savedSuccessfulToastMsgokButton();
+			staffpom.getIncidentReportPage().savedSuccessfulToastMsgokButton();
 		
 		}
 		
 		@Then("User should verify the respective individual report status {string}")
 		public void user_should_verify_the_respective_individual_report_status(String string) {
 		
-	     String IRStatus = pom.getIncidentReportPage().getStatus(pom.getIncidentReportPage().getRowNumber());
+	     String IRStatus = staffpom.getIncidentReportPage().getStatus(staffpom.getIncidentReportPage().getRowNumber());
 		 System.out.println("Current IR Status -" +IRStatus);
 		 
 		}
@@ -293,7 +297,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("User should verify the view button is working in IR Grid")
 			public void user_should_verify_the_view_button_is_working_in_ir_grid() {
 			  
-				pom.getIncidentReportPage().viewButton(pom.getIncidentReportPage().getRowNumber());
+				staffpom.getIncidentReportPage().viewButton(staffpom.getIncidentReportPage().getRowNumber());
 			}
 			
 			@Then("User should verify the error message in Incident Report Page {string}")
@@ -301,9 +305,9 @@ public class IncidentReportPageStep extends BaseClass {
 
 				try {             
   				Assert.assertEquals("Required fields Note: info message is Not displayed as expected", expNoteMsg,
-  						getText(pom.getIncidentReportPage().getRequiredFieldsNOTEInfoMessage()));
+  						getText(staffpom.getIncidentReportPage().getRequiredFieldsNOTEInfoMessage()));
   				log(Status.PASS, "Required fields Note: info message is displayed as expected Exp info Msg - "
-  						+ getText(pom.getIncidentReportPage().getRequiredFieldsNOTEInfoMessage()));
+  						+ getText(staffpom.getIncidentReportPage().getRequiredFieldsNOTEInfoMessage()));
   				
   			} catch (AssertionError e) {
   				log(Status.FAIL, e.getMessage());
@@ -320,7 +324,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("User should enter the Event Date & Time greater than current time")
 			public void user_should_enter_the_event_date_time_greater_than_current_time() {
 			  
-				pom.getIncidentReportPage().eventDateAndTime(0);
+				staffpom.getIncidentReportPage().eventDateAndTime(0);
 			}
 			
 			
@@ -329,9 +333,9 @@ public class IncidentReportPageStep extends BaseClass {
 			   
 				try {             
 	  				Assert.assertEquals("validation info message is NOT thrown under Event time for selecting  greater than current time of current date as expected", expGreaterThanCurrentTime,
-	  						getText(pom.getIncidentReportPage().getExceedCurrentTimeIneventDateAndTimeValidationInfoMsg()));
+	  						getText(staffpom.getIncidentReportPage().getExceedCurrentTimeIneventDateAndTimeValidationInfoMsg()));
 	  				log(Status.PASS, "Validation info message is displayed after enter greater than current time of current date as expected Exp info Msg - "
-	  						+ getText(pom.getIncidentReportPage().getExceedCurrentTimeIneventDateAndTimeValidationInfoMsg()));
+	  						+ getText(staffpom.getIncidentReportPage().getExceedCurrentTimeIneventDateAndTimeValidationInfoMsg()));
 	  				
 	  			} catch (AssertionError e) {
 	  				log(Status.FAIL, e.getMessage());
@@ -347,9 +351,9 @@ public class IncidentReportPageStep extends BaseClass {
 			    
 				logStep(methodName());
 
-				sendKeys(pom.getLoginPage().getUserName(), StaffUserName);
-				sendKeys(pom.getLoginPage().getPassword(), StaffPassWord);
-				pom.getLoginPage().loginButton();
+				sendKeys(staffpom.getLoginPage().getUserName(), StaffUserName);
+				sendKeys(staffpom.getLoginPage().getPassword(), StaffPassWord);
+				staffpom.getLoginPage().loginButton();
 				waitForPageLoad();
 				
 
@@ -361,7 +365,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify Home page is displayed.")
 			public void verify_home_page_is_displayed() {
 				
-			    pom.getHomePage().isHomePageDisplayed();
+			    staffpom.getHomePage().isHomePageDisplayed();
 			}
 
 			/**
@@ -369,8 +373,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Reports module.")
 			public void navigate_to_reports_module() {
-				
-			    pom.getHomePage().reportsModule();
+			    staffpom.getHomePage().reportsModule();
 			}
 
 			/**
@@ -378,7 +381,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Navigate to Incident Report sub module.")
 			public void navigate_to_incident_report_sub_module() {
-				pom.getHomePage().incidentReportModule();
+				staffpom.getHomePage().incidentReportModule();
 			}
 
 			/**
@@ -386,7 +389,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Click on Add New Incident Report button.")
 			public void click_on_add_new_incident_report_button() {
-			    pom.getIncidentReportPage().addNewIncidentReportButton();
+			    staffpom.getIncidentReportPage().addNewIncidentReportButton();
 			}
 
 			/**
@@ -394,7 +397,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify Add Incident report page is displayed.")
 			public void verify_add_incident_report_page_is_displayed() {
-			    pom.getIncidentReportPage().isIncidentReportPageDisplayed();
+			    staffpom.getIncidentReportPage().isIncidentReportPageDisplayed();
 			}
 
 			/**
@@ -402,7 +405,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Select the individual for whom the incident report has to be created.")
 			public void select_the_individual_for_whom_the_incident_report_has_to_be_created() {
-				pom.getIncidentReportPage().selectIndividualDetails();
+				staffpom.getIncidentReportPage().selectIndividualDetails();
 			}
 
 			/**
@@ -410,19 +413,19 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Enter all the details of the Incident.")
 			public void enter_all_the_details_of_the_incident() {
-			    pom.getIncidentReportPage().enterWhatCausedTheFallData();
-			    pom.getIncidentReportPage().selectWasTheIndividiualInjured();
-			    pom.getIncidentReportPage().selectFrontViewInjurySite();
-			    pom.getIncidentReportPage().selectBackViewInjurySite();
-			    pom.getIncidentReportPage().enterTreatmentReceivedData();
-			    pom.getIncidentReportPage().enterFutureTreatmentData();
-			    pom.getIncidentReportPage().selectInjuryType();
-			    pom.getIncidentReportPage().selectInjuryColor();
-			    pom.getIncidentReportPage().selectHowSevereWasTheInjury();
-			    pom.getIncidentReportPage().enterPersonNotifiedData();
-			    pom.getIncidentReportPage().enterNotifiedByData();
-			    pom.getIncidentReportPage().selectReletionship();
-			    pom.getIncidentReportPage().selectNotificationMethod();
+			    staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
+			    staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
+			    staffpom.getIncidentReportPage().selectFrontViewInjurySite();
+			    staffpom.getIncidentReportPage().selectBackViewInjurySite();
+			    staffpom.getIncidentReportPage().enterTreatmentReceivedData();
+			    staffpom.getIncidentReportPage().enterFutureTreatmentData();
+			    staffpom.getIncidentReportPage().selectInjuryType();
+			    staffpom.getIncidentReportPage().selectInjuryColor();
+			    staffpom.getIncidentReportPage().selectHowSevereWasTheInjury();
+			    staffpom.getIncidentReportPage().enterPersonNotifiedData();
+			    staffpom.getIncidentReportPage().enterNotifiedByData();
+			    staffpom.getIncidentReportPage().selectReletionship();
+			    staffpom.getIncidentReportPage().selectNotificationMethod();
 			    
 			}
 
@@ -431,7 +434,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Click on next button.")
 			public void click_on_next_button() {
-			    pom.getIncidentReportPage().nextButton();
+			    staffpom.getIncidentReportPage().nextButton();
 			}
 
 			/**
@@ -448,7 +451,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@When("Click on complete button.")
 			public void click_on_complete_button() {
-			    pom.getIncidentReportPage().clickCompleteButton();
+			    staffpom.getIncidentReportPage().clickCompleteButton();
 			}
 
 			/**
@@ -456,17 +459,56 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@When("Verify whether the report is in pending status.")
 			public void verify_whether_the_report_is_in_pending_status() {
-				String rowNumber = pom.getIncidentReportPage().getRowNumber();
-			    String status =	pom.getIncidentReportPage().getStatus(rowNumber);
+				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
+			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Launch a new browser and enter xealei url for cheif nurse.")
+			public void launch_a_new_browser_and_enter_xealei_url_for_cheif_nurse() {
+				cheifnurseDriver = new ChromeDriver();
+			    logStep(methodName());
+			    cheifnurseDriver.get("https://xat.qa.xealei.com/login");
+			    cheifnursepom = new PageObjectManager(cheifnurseDriver);
+			    waitForPageLoad(cheifnurseDriver);
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Launch a new browser and enter xealei url.")
-			public void launch_a_new_browser_and_enter_xealei_url() {
-			    cheifnurseDriver = new ChromeDriver();
-			    cheifnurseDriver.get("https://gha.qa.xealei.com/login");
+			@Then("Launch a new browser and enter xealei url for residential manager.")
+			public void launch_a_new_browser_and_enter_xealei_url_for_residential_manager() {
+				rmDriver = new ChromeDriver();
+			    logStep(methodName());
+			    rmDriver.get("https://xat.qa.xealei.com/login");
+			    rmpom = new PageObjectManager(rmDriver);
+			    waitForPageLoad(rmDriver);
+			}
+
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Launch a new browser and enter xealei url for clinical coordinator.")
+			public void launch_a_new_browser_and_enter_xealei_url_for_clinical_coordinator() {
+				ccDriver = new ChromeDriver();
+			    logStep(methodName());
+			    ccDriver.get("https://xat.qa.xealei.com/login");
+			    ccpom = new PageObjectManager(ccDriver);
+			    waitForPageLoad(ccDriver);
+			}
+
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Launch a new browser and enter xealei url for social worker.")
+			public void launch_a_new_browser_and_enter_xealei_url_for_social_worker() {
+				swDriver = new ChromeDriver();
+			    logStep(methodName());
+			    swDriver.get("https://xat.qa.xealei.com/login");
+			    swpom = new PageObjectManager(swDriver);
+			    waitForPageLoad(swDriver);
 			}
 
 			/**
@@ -474,13 +516,18 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Login into Xealei application as Cheif nurse role with valid {string} and {string}.")
 			public void login_into_xealei_application_as_cheif_nurse_role_with_valid_and(String cheifNurseUserName, String cheifNursePassWord) {
-				cheifnurseDriver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys(cheifNurseUserName);
-				cheifnurseDriver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(cheifNursePassWord);
-//				sendKeys(pom.getLoginPage().getUserName(), cheifNurseUserName);
-//				sendKeys(pom.getLoginPage().getPassword(), cheifNursePassWord);
-				cheifnurseDriver.findElement(By.xpath("//button[text()='Login ']")).click();
-				//pom.getLoginPage().loginButton();
+				logStep(methodName());
+				sendKeys(cheifnursepom.getLoginPage().getUserName(), cheifNurseUserName);
+				sendKeys(cheifnursepom.getLoginPage().getPassword(), cheifNursePassWord);
 				waitForPageLoad(cheifnurseDriver);
+				waitForFullPageElementLoad(cheifnurseDriver);
+				cheifnursepom.getLoginPage().loginButton();
+			}
+
+			@Then("Verify Incident report page is displayed.")
+			public void verify_incident_report_page_is_displayed() {
+			    // Write code here that turns the phrase above into concrete actions
+			    throw new io.cucumber.java.PendingException();
 			}
 
 			/**
@@ -514,27 +561,39 @@ public class IncidentReportPageStep extends BaseClass {
 			 * Created by Nandhalala.
 			 */
 			@Then("Login into Xealei application as Residential Manager role with valid {string} and {string}.")
-			public void login_into_xealei_application_as_residential_manager_role_with_valid_and(String string, String string2) {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			public void login_into_xealei_application_as_residential_manager_role_with_valid_and(String rmUserName, String rmPassWord) {
+				logStep(methodName());
+				sendKeys(rmpom.getLoginPage().getUserName(), rmUserName);
+				sendKeys(rmpom.getLoginPage().getPassword(), rmPassWord);
+				waitForPageLoad(rmDriver);
+				waitForFullPageElementLoad(rmDriver);
+				rmpom.getLoginPage().loginButton();
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
 			@Then("Login into Xealei application as CLinical Coordinator role with valid {string} and {string}.")
-			public void login_into_xealei_application_as_c_linical_coordinator_role_with_valid_and(String string, String string2) {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			public void login_into_xealei_application_as_c_linical_coordinator_role_with_valid_and(String ccUserName, String ccPassWord) {
+				logStep(methodName());
+				sendKeys(ccpom.getLoginPage().getUserName(), ccUserName);
+				sendKeys(ccpom.getLoginPage().getPassword(), ccPassWord);
+				waitForPageLoad(ccDriver);
+				waitForFullPageElementLoad(ccDriver);
+				ccpom.getLoginPage().loginButton();
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
 			    @Then("Login into Xealei application as Social Worker role with valid {string} and {string}.")
-			    public void login_into_xealei_application_as_social_worker_role_with_valid_and(String string, String string2) {
-			        // Write code here that turns the phrase above into concrete actions
-			        throw new io.cucumber.java.PendingException();
+			    public void login_into_xealei_application_as_social_worker_role_with_valid_and(String swUserName, String swPassWord) {
+			    	logStep(methodName());
+			    	sendKeys(swpom.getLoginPage().getUserName(), swUserName);
+			    	sendKeys(swpom.getLoginPage().getPassword(), swPassWord);
+			    	waitForPageLoad(swDriver);
+			    	waitForFullPageElementLoad(swDriver);
+			    	swpom.getLoginPage().loginButton();
 			    }
 
 			/**
@@ -594,73 +653,73 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("User should verify that able to enter before current date and time in Event Date & Time field")
 			public void user_should_verify_that_able_to_enter_before_current_date_and_time_in_event_date_time_field() {
 			   
-				pom.getIncidentReportPage().eventDateAndTime(0);				
+				staffpom.getIncidentReportPage().eventDateAndTime(0);				
 				
 			}
 			
 				@Then("User should verify the toast message after try to upload JFIF Format {string}")
 				public void user_should_verify_the_toast_message_after_try_to_upload_jfif_format(String string) {
 				    
-					pom.getIncidentReportPage().Upload("JFIF Format", ".jfif");
+					staffpom.getIncidentReportPage().Upload("JFIF Format", ".jfif");
 				}
 
 				@Then("User should verify the toast message after try to upload more than 1MB File format {string}")
 				public void user_should_verify_the_toast_message_after_try_to_upload_more_than_1mb_file_format(String string) {
 				    
-					pom.getAddIndividualsPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
+					staffpom.getAddIndividualsPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
 				}
 				
 				
 				@Then("User should verify the user are able to attach file")
 				public void user_should_verify_the_user_are_able_to_attach_file() {
 				    
-					pom.getIncidentReportPage().Upload("JPG", "jpg");
+					staffpom.getIncidentReportPage().Upload("JPG", "jpg");
 				}
 				
 				
 				@Then("User should verify the delete icon is working on image under injury photo field")
 				public void user_should_verify_the_delete_icon_is_working_on_image_under_injury_photo_field() {
 				    
-				    pom.getIncidentReportPage().deleteTheUploadedFile();
+				    staffpom.getIncidentReportPage().deleteTheUploadedFile();
 				}
 
 				@Then("User should click on the Notification Date calendar icon")
 				public void user_should_click_on_the_notification_date_calendar_icon() {
 				  
-					pom.getAddIndividualsPage().datePicker();
+					staffpom.getAddIndividualsPage().datePicker();
 				}
 				
 				
 					@Then("User should verify that whether able to select options under Injury Type field")
 					public void user_should_verify_that_whether_able_to_select_options_under_injury_type_field() {
 					 
-						pom.getIncidentReportPage().selectInjuryType();
+						staffpom.getIncidentReportPage().selectInjuryType();
 				}
 
 					@Then("User should verify that whether able to selecting multiple option values under Injury Type field")
 					public void user_should_verify_that_whether_able_to_selecting_multiple_option_values_under_injury_type_field() {
 					
 						
-						pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+						staffpom.getIncidentReportPage().selectMultipleOptionInjuryType();
 					}
 					
 						@Then("User should verify that whether able to unselect the selected option values under Injury Type field")
 						public void user_should_verify_that_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
 						    
-							pom.getIncidentReportPage().selectMultipleOptionInjuryType();
+							staffpom.getIncidentReportPage().selectMultipleOptionInjuryType();
 						}
 						
 						@Then("User should verify that whether able to select the option value under How severe was injury? field")
 						public void user_should_verify_that_whether_able_to_select_the_option_value_under_how_severe_was_injury_field() {
 						   
 							
-							pom.getIncidentReportPage().selectOptionHowSevereWasTheInjury();
+							staffpom.getIncidentReportPage().selectOptionHowSevereWasTheInjury();
 						}
 						
 						@Then("User should verify that whether able to select the option value under Injury Color")
 						public void user_should_verify_that_whether_able_to_select_the_option_value_under_injury_color() {
 						   
-							pom.getIncidentReportPage().selectInjuryColorOption();
+							staffpom.getIncidentReportPage().selectInjuryColorOption();
 
 						}
 						
@@ -668,7 +727,7 @@ public class IncidentReportPageStep extends BaseClass {
 						public void user_should_verify_that_whether_default_optional_values_is_selected_under_was_event_notified() throws Exception {
 						 
 							
-							String defaultOptionIsSelected = getAttribute(pom.getIncidentReportPage().getEventNotifiedDefaultValue(), "ng-reflect-value");
+							String defaultOptionIsSelected = getAttribute(staffpom.getIncidentReportPage().getEventNotifiedDefaultValue(), "ng-reflect-value");
 							
                             if (defaultOptionIsSelected.equals("true")) {
 	                       log(Status.PASS, "Default option is selected under Was the event notified? radio button field");

@@ -459,6 +459,18 @@ public class BaseClass {
 		}
 	}
 
+	public void select(WebDriver driver,String elementxpath) {
+		// click(dr.get().findElement(By.xpath(elementxpath)));
+		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+		try {
+
+			click(driver.findElement(By.xpath(elementxpath)));
+			log(Status.INFO, "Select the" + methodName);
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+		}
+	}
+	
 	// 33. Current Date and Time Generator
 	public String dateAndTime() {
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -730,6 +742,13 @@ public class BaseClass {
 		String currentUrl = driver.getCurrentUrl();
 		return currentUrl;
 	}
+	
+	public String getCurrentUrl(WebDriver driver) {
+
+		// String currentUrl = dr.get().getCurrentUrl();
+		String currentUrl = driver.getCurrentUrl();
+		return currentUrl;
+	}
 
 //		// 45. Scroll Down - (JavaScript Executor)
 
@@ -758,6 +777,11 @@ public class BaseClass {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
+	public void waitForFullPageElementLoad(WebDriver driver) {
+
+		driver.manage().timeouts().getPageLoadTimeout();
+	}
+	
 //     //50. Extent Report 
 
 	private static ExtentReports extent;

@@ -244,7 +244,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	private String injuredIndividiual = "//mat-label[contains(text(),'Was IndividiualName injured?')]";
 	
-	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")
+	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input")//../preceding-sibling::div/input
 	private WebElement wasIndividiualInjuredYesRadioButton;
 	
 	@FindBy(xpath = "(//div[text()='No'])[1]/preceding-sibling::div/input")
@@ -338,6 +338,8 @@ public class IncidentReportPage extends BaseClass {
 	
 	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
 	
+	//private String statusColumnXpath = "//table/tbody/tr[rowumber]/td[7]/div/span";
+
 	private String editButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'Edit')]";
 	
 	@FindBy(xpath = "//table/tbody/tr/td[3]")
@@ -348,7 +350,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	
 	public WebElement getSavedSuccessfullToastMsg() {
-		return savedSuccessfullToastMsg;
+		return savedSuccessfullToastMsg; 
 	}
 
 	public WebElement getBtnToastMsgSuccessOk() {
@@ -461,7 +463,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @return whether incident report page is displayed or not.
 	 */
 	public boolean isIncidentReportPageDisplayed() {
-		if(incidentReportText.isDisplayed()) {
+		if(incidentReportModuleText.isDisplayed()) {
 			return true;
 		}
 		return false;
@@ -476,9 +478,18 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectIndividualDetails() {
 		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
+		String[] fullname = individualDetail.split(" ");
+		if(fullname.length>2) {
+			individualDetail = fullname[0]+"  "+fullname[1];
+			for(int i = 2; i<fullname.length; i++) {
+				individualDetail = individualDetail + " " + fullname[i];
+			}
+		}else {
+			individualDetail = fullname[0]+"  "+fullname[1];
+		}
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
-		select(individualName);
+		select(driver,individualName);
 		
 	}
 	
@@ -492,6 +503,7 @@ public class IncidentReportPage extends BaseClass {
 	public void enterWhatCausedTheFallData() {
 		String WhatCausedTheFall = readExcel("Test Datas", "Incident Reports", 1, 2).trim();
 		sendKeys(whatCausedTheFallDescriptionTxtBox, WhatCausedTheFall);
+		waitForPageLoad(driver);
 	}
 	
 	/**
@@ -517,18 +529,28 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectWasTheIndividiualInjured() {
 		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
-		switch (WasIndividiualIInjured) {
-		case "Yes":
-			click(wasIndividiualInjuredYesRadioButton);
-			break;
-			
-		case "No":
-			click(wasIndividiualInjuredNoRadioButton);
-			break;
-
-		}
+		System.out.println("was individual injured : "+ WasIndividiualIInjured);
 		
-		waitForPageLoad();
+		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
+		waitForFullPageElementLoad(driver);
+		select(wasPatientInjured);
+		
+//		switch (WasIndividiualIInjured) {
+//			case "Yes":{
+//				waitForElementToBeClickable(wasIndividiualInjuredYesRadioButton, 10);
+//				click(wasIndividiualInjuredYesRadioButton);
+//				break;
+//			}
+//			
+//			case "No":{
+//				waitForElementToBeClickable(wasIndividiualInjuredNoRadioButton, 10);
+//				click(wasIndividiualInjuredNoRadioButton);
+//				break;
+//			}	
+//
+//		}
+		
+		waitForPageLoad(driver);
 		
 	}
 	
@@ -619,55 +641,55 @@ public class IncidentReportPage extends BaseClass {
 			String injurysite = injury.trim();
 			switch(injurysite) {
 			case "Head":
-				click(frontViewForeHeadInjury);
+				click(backViewHeadInjury);
 				break;
 				
 			case "Right Shoulder":
-				click(frontViewRightShoulderINjury);
+				click(backViewRightShoulderINjury);
 				break;
 				
 			case "Left Shoulder":
-				click(frontViewLeftShoulderInjury);
+				click(backViewLeftShoulderInjury);
 				break;
 				
 			case "Back":
-				click(frontViewChestInjury);
+				click(backViewBackInjury);
 				break;
 				
 			case "Hip":
-				click(frontViewAbdomenInjury);
+				click(backViewHipInjury);
 				break;
 				
 			case "Right Arm":
-				click(frontViewRightArmInjury);
+				click(backViewRightArmInjury);
 				break;
 				
 			case "Left Arm":
-				click(frontViewLefttArmInjury);
+				click(backViewLefttArmInjury);
 				break;
 				
 			case "Right Wrist":
-				click(frontViewRightWristInjury);
+				click(backViewRightWristInjury);
 				break;
 				
 			case "Left Wrist":
-				click(frontViewLefttWristInjury);
+				click(backViewLefttWristInjury);
 				break;
 				
 			case "Right Knee":
-				click(frontViewRightKneeInjury);
+				click(backViewRightKneeInjury);
 				break;
 				
 			case "Left Knee":
-				click(frontViewLeftKneeInjury);
+				click(backViewLeftKneeInjury);
 				break;
 				
 			case "Right Foot":
-				click(frontViewRightFootInjury);
+				click(backViewRightFootInjury);
 				break;
 				
 			case "Left Foot":
-				click(frontViewLeftFootInjury);
+				click(backViewLeftFootInjury);
 				break;
 				
 			}
@@ -835,17 +857,17 @@ public class IncidentReportPage extends BaseClass {
 		String relationship = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 		click(notificationMethodDropdownBox);
 		switch(relationship) {
-		case "Phone Call":
+		case "Phone Call":{
 			click(notificationMethodPhoneCallOption);
-			break;
+			break;}
 			
-		case "Email":
+		case "Email":{
 			click(notificationMethodEmailOption);
-			break;
+			break;}
 			
-		case "Text Message":
+		case "Text Message":{
 			click(notificationMethodTextMessageOption );
-			break;
+			break;}
 
 		}
 	}

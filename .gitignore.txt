@@ -1,3 +1,4 @@
+Extent Reports/
 /Extent Reports/
 /pom7.xml
 /src/test/resources/Features/TC7_Incident Reports.feature
