@@ -1,5 +1,9 @@
 package org.alphind.xealei.stepdefinition;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.Objects;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
@@ -413,16 +417,20 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Enter all the details of the Incident.")
 			public void enter_all_the_details_of_the_incident() {
+				staffpom.getIncidentReportPage().eventDateAndTime(0);
 			    staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
 			    staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
 			    staffpom.getIncidentReportPage().selectFrontViewInjurySite();
 			    staffpom.getIncidentReportPage().selectBackViewInjurySite();
 			    staffpom.getIncidentReportPage().enterTreatmentReceivedData();
+			    staffpom.getIncidentReportPage().enterInjuryDescriptionData();
 			    staffpom.getIncidentReportPage().enterFutureTreatmentData();
 			    staffpom.getIncidentReportPage().selectInjuryType();
 			    staffpom.getIncidentReportPage().selectInjuryColor();
 			    staffpom.getIncidentReportPage().selectHowSevereWasTheInjury();
 			    staffpom.getIncidentReportPage().enterPersonNotifiedData();
+			    staffpom.getIncidentReportPage().enterNotificationDate();
+			    staffpom.getIncidentReportPage().enterNotificationTime();
 			    staffpom.getIncidentReportPage().enterNotifiedByData();
 			    staffpom.getIncidentReportPage().selectReletionship();
 			    staffpom.getIncidentReportPage().selectNotificationMethod();
@@ -435,6 +443,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Click on next button.")
 			public void click_on_next_button() {
 			    staffpom.getIncidentReportPage().nextButton();
+			    waitForFullPageElementLoad(staffDriver);
 			}
 
 			/**
@@ -452,6 +461,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Click on complete button.")
 			public void click_on_complete_button() {
 			    staffpom.getIncidentReportPage().clickCompleteButton();
+			    waitForPageLoad(staffDriver);
 			}
 
 			/**
@@ -460,7 +470,10 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Verify whether the report is in pending status.")
 			public void verify_whether_the_report_is_in_pending_status() {
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
+				System.out.println(rowNumber);
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
+			    System.out.println(Objects.isNull(status));
+			    //assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
 			}
 			
 			/**

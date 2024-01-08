@@ -102,10 +102,10 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
-#		Then Click on next button.
+		Then Click on next button.
 #		When Incident report page is displayed verify whether all the data is displayed correctly.
-#		And Click on complete button.
-#		And Verify whether the report is in pending status.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url for cheif nurse.
 		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
 		#Then Verify whether notification is received.
