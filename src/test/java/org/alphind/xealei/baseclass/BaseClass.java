@@ -77,7 +77,7 @@ public class BaseClass {
 	protected Scenario s;
 	// public ThreadLocal<WebDriver> dr = new ThreadLocal<WebDriver>();
 
-	public static WebDriver driver;
+	private static WebDriver driver;
 
 	/**
 	 * To launch the browser that to be automated.
@@ -609,6 +609,12 @@ public class BaseClass {
 		String text = getText(driver.findElement(By.xpath(elementxpath)));
 		return text;
 	}
+	
+	public String getTextString(WebDriver currentdriver,String elementxpath) {
+		// String text = getText(dr.get().findElement(By.xpath(elementxpath)));
+		String text = getText(currentdriver.findElement(By.xpath(elementxpath)));
+		return text;
+	}
 
 	// 42. Wait for Loading
 
@@ -694,6 +700,13 @@ public class BaseClass {
 		// WebDriverWait wait = new WebDriverWait(dr.get(),
 		// Duration.ofSeconds(seconds));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	public void waitForInVisiblityOfElement(WebDriver currentdriver,WebElement element, long seconds) {
+		// WebDriverWait wait = new WebDriverWait(dr.get(),
+		// Duration.ofSeconds(seconds));
+		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 

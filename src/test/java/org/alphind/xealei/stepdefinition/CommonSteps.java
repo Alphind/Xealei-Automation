@@ -20,7 +20,7 @@ import io.cucumber.java.en.Then;
 
 public class CommonSteps extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager(driver);
+	PageObjectManager pom = new PageObjectManager(getDriver());
 
 	@Then("User should verify once the page is navigated to HOME_DASHBOARD successfully {string}")
 	public void user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String expMessage) {
