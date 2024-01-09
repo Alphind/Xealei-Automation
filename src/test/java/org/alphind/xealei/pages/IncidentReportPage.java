@@ -1240,6 +1240,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	public String getRowNumber() {
 		waitForPageLoad(this.driver);
+		System.out.println(readExcel("Test Datas", "Incident Reports", 1, 18));
 		int i = 1;
 		for(WebElement element : injurySummaries) {
 			if(getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
@@ -1261,7 +1262,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String getStatus(String rowNumber) {
 		String excatColumn = statusColumnXpath.replaceAll("rownumber", rowNumber);
-		return getTextString(excatColumn);
+		return getTextString(this.driver,excatColumn);
 	}
 	
 	/**
@@ -1289,6 +1290,32 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 09-01-2024.
 	 */
 	public void cheifNurseReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch(decision) {
+			case "APPROVED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 20);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+			case "REJECTED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 23);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+				
+		}
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To enter reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 09-01-2024.
+	 */
+	public void residentialManagerReviewerComments(String decision) {
 		decision = decision.toUpperCase();
 		switch(decision) {
 			case "APPROVED" : {

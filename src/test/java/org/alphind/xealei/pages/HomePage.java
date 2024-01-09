@@ -69,13 +69,13 @@ public class HomePage extends BaseClass {
 		click(notificationIcon);
 		idXpath = idXpath.replace("ID", ReportID);
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		WebElement notificationElement = this.driver.findElement(By.xpath(idXpath));
-		waitForInVisiblityOfElement(notificationElement, 5);
+		waitForInVisiblityOfElement(this.driver,notificationElement, 5);
 		click(notificationElement);
 		waitForFullPageElementLoad(this.driver);
 	}

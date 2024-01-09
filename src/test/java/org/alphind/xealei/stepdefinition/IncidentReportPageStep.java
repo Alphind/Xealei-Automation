@@ -2,12 +2,9 @@ package org.alphind.xealei.stepdefinition;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Objects;
-
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -30,7 +27,6 @@ public class IncidentReportPageStep extends BaseClass {
 	private PageObjectManager ccpom;
 	private PageObjectManager swpom;
 	
-	private String desc;
 	private String reportid;
 	
 	@When("User should perform login as facility admin {string} and {string}")
@@ -424,10 +420,9 @@ public class IncidentReportPageStep extends BaseClass {
 			    staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
 			    staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
 			    staffpom.getIncidentReportPage().selectFrontViewInjurySite();
-			    System.out.println(staffpom.getIncidentReportPage().getTooltipFrontViewAbdomen());
 			    staffpom.getIncidentReportPage().selectBackViewInjurySite();
 			    staffpom.getIncidentReportPage().enterTreatmentReceivedData();
-			    desc = staffpom.getIncidentReportPage().enterInjuryDescriptionData();
+			    staffpom.getIncidentReportPage().enterInjuryDescriptionData();
 			    staffpom.getIncidentReportPage().enterFutureTreatmentData();
 			    staffpom.getIncidentReportPage().selectInjuryType();
 			    staffpom.getIncidentReportPage().selectInjuryColor();
@@ -502,6 +497,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    rmDriver.get("https://xat.qa.xealei.com/login");
 			    rmpom = new PageObjectManager(rmDriver);
 			    waitForPageLoad(rmDriver);
+			    rmDriver.manage().window().maximize();
 			}
 
 			/**
@@ -514,6 +510,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    ccDriver.get("https://xat.qa.xealei.com/login");
 			    ccpom = new PageObjectManager(ccDriver);
 			    waitForPageLoad(ccDriver);
+			    ccDriver.manage().window().maximize();
 			}
 
 			/**
@@ -526,6 +523,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    swDriver.get("https://xat.qa.xealei.com/login");
 			    swpom = new PageObjectManager(swDriver);
 			    waitForPageLoad(swDriver);
+			    swDriver.manage().window().maximize();
 			}
 
 			/**
@@ -551,16 +549,24 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether notification is received.")
-			public void verify_whether_notification_is_received() {
+			@Then("Verify whether notification is received by cheif nurse.")
+			public void verify_whether_notification_is_received_by_cheif_nurse() {
 				cheifnursepom.getHomePage().notificationIcon(reportid);
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Approve the report.")
-			public void approve_the_report() {
+			@Then("Verify whether notification is received by residential manager.")
+			public void verify_whether_notification_is_received_by_residential_manager() {
+				rmpom.getHomePage().notificationIcon(reportid);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Approve the report by Cheif Nurse user.")
+			public void approve_the_report_by_Cheif_Nurse_user() {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -570,6 +576,21 @@ public class IncidentReportPageStep extends BaseClass {
 			    cheifnursepom.getIncidentReportPage().cheifNurseReviewerComments("approved");
 			    cheifnursepom.getIncidentReportPage().clickCompleteButton();
 			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Approve the report by Residential Manager user.")
+			public void approve_the_report_by_Residential_Manager_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");
+			    rmpom.getIncidentReportPage().clickCompleteButton();
+			}
 
 			/**
 			 * Created by Nandhalala.
@@ -578,8 +599,6 @@ public class IncidentReportPageStep extends BaseClass {
 			public void verify_whether_the_report_is_in_status(String status) {
 				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
-			    reportid =  staffpom.getIncidentReportPage().getReportID(rowNumber);
 			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
 			    		" but the expected is : "+status);
 			}
