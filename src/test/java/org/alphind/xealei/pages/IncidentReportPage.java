@@ -335,6 +335,8 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[text()='Complete']/parent::button")
 	private WebElement completeButton;
 	
+	private String IDColumnXpath = "//table/tbody/tr[rownumber]/td[1]";
+	
 	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
 	
 	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
@@ -345,6 +347,9 @@ public class IncidentReportPage extends BaseClass {
 	
 	@FindBy(xpath = "//table/tbody/tr/td[3]")
 	private List<WebElement> injurySummaries; 
+	
+	@FindBy(xpath = "//textarea[@formcontrolname = 'comments']")
+	private WebElement reviewerComments;
 	
 	
 	
@@ -516,8 +521,10 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String enterInjuryDescriptionData() {
 		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3).trim();
-		sendKeys(injuryDescriptionDescriptionTxtBox, injuryDescription+" - "+randomName());
-		return injuryDescription+" - "+randomName();
+		String newDescription = injuryDescription+" - "+randomName();
+		sendKeys(injuryDescriptionDescriptionTxtBox, newDescription);
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18,newDescription);
+		return newDescription;
 	}
 	
 	/**
@@ -553,6 +560,174 @@ public class IncidentReportPage extends BaseClass {
 		
 		waitForPageLoad(driver);
 		
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Fore Head.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewForeHead() {
+		return getAttribute(frontViewForeHeadInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Face.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewFace() {
+		return getAttribute(frontViewFaceInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front Right Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightShoulder() {
+		return getAttribute(frontViewRightShoulderINjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Left Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftShoulder() {
+		return getAttribute(frontViewLeftShoulderInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Chest.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewChest() {
+		return getAttribute(frontViewChestInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Abdomen.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewAbdomen() {
+		return getAttribute(frontViewAbdomenInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Right Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightArm() {
+		return getAttribute(frontViewRightArmInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Left Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftArm() {
+		return getAttribute(frontViewLefttArmInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Right Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightWrist() {
+		return getAttribute(frontViewRightWristInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Left Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftWrist() {
+		return getAttribute(frontViewLefttWristInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Right Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightKnee() {
+		return getAttribute(frontViewRightKneeInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Left Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLEftKnee() {
+		return getAttribute(frontViewLeftKneeInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Right Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightFoot() {
+		return getAttribute(frontViewRightFootInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Front View Left Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftFoot() {
+		return getAttribute(frontViewLeftFootInjury, "title");
 	}
 	
 	/**
@@ -626,6 +801,162 @@ public class IncidentReportPage extends BaseClass {
 				
 			}
 		}
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for BAck View Head.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewHead() {
+		return getAttribute(backViewHeadInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Right Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightShoulder() {
+		return getAttribute(backViewRightShoulderINjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Left Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftShoulder() {
+		return getAttribute(backViewLeftShoulderInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Back.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewBack() {
+		return getAttribute(backViewBackInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Hip.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewHip() {
+		return getAttribute(backViewHipInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Right Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightArm() {
+		return getAttribute(backViewRightArmInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Left Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftArm() {
+		return getAttribute(backViewLefttArmInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Right Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightWrist() {
+		return getAttribute(backViewRightWristInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Left Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftWrist() {
+		return getAttribute(backViewLefttWristInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Right Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightKnee() {
+		return getAttribute(backViewRightKneeInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Left Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftKnee() {
+		return getAttribute(backViewLeftKneeInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Right Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightFoot() {
+		return getAttribute(backViewRightFootInjury, "title");
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * Get tooltip for Back View Left Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftFoot() {
+		return getAttribute(backViewLeftFootInjury, "title");
 	}
 	
 	/**
@@ -904,13 +1235,14 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void clickCompleteButton() {
 		click(completeButton);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 	
 	public String getRowNumber() {
+		waitForPageLoad(this.driver);
 		int i = 1;
 		for(WebElement element : injurySummaries) {
-			if(getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 1))) {
+			if(getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
 				return Integer.toString(i);
 			}
 			i++;
@@ -930,6 +1262,47 @@ public class IncidentReportPage extends BaseClass {
 	public String getStatus(String rowNumber) {
 		String excatColumn = statusColumnXpath.replaceAll("rownumber", rowNumber);
 		return getTextString(excatColumn);
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To get the ID of the Incident report of the mentioned row.
+	 * 
+	 * @param rowNumber
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 27-12-2023.
+	 */
+	public String getReportID(String rowNumber) {
+		String excatColumn = IDColumnXpath.replaceAll("rownumber", rowNumber);
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 19, getTextString(excatColumn));
+		return getTextString(excatColumn);
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To enter reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 09-01-2024.
+	 */
+	public void cheifNurseReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch(decision) {
+			case "APPROVED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 20);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+			case "REJECTED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 23);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+				
+		}
 	}
 	
 	public void viewButton(String rowNumber) {

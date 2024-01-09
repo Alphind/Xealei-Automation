@@ -1,6 +1,7 @@
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,8 +29,10 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "//h5[text()=' Home ']")
 	private WebElement homePageText;
 	
+	@FindBy(xpath = "//i[@class = 'nav-link notiicon']")
+	private WebElement notificationIcon;
 	
-	
+	private String idXpath = "//p[contains(text(),'ID')]";
 	
 	
 	public WebElement getAdminName() {
@@ -61,6 +64,21 @@ public class HomePage extends BaseClass {
 		return false;
 	}
 	
+	
+	public void notificationIcon(String ReportID) {
+		click(notificationIcon);
+		idXpath = idXpath.replace("ID", ReportID);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement notificationElement = this.driver.findElement(By.xpath(idXpath));
+		waitForInVisiblityOfElement(notificationElement, 5);
+		click(notificationElement);
+		waitForFullPageElementLoad(this.driver);
+	}
 	
 	
 }

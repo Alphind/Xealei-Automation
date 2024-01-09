@@ -108,10 +108,10 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url for cheif nurse.
 		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-		#Then Verify whether notification is received.
-		#And Approve the report.
-		#And Verify whether the report is in "" status.
-		#Then Launch a new browser and enter xealei url for residential manager.
+		Then Verify whether notification is received.
+		And Approve the report.
+		And Verify whether the report is in "In Progress" status.
+		Then Launch a new browser and enter xealei url for residential manager.
 		#And Login into Xealei application as Residential Manager role with valid "AManager" and "auto@123".
 		#Then Verify whether notification is received.
 		#And Approve the report.

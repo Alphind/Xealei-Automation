@@ -30,6 +30,9 @@ public class IncidentReportPageStep extends BaseClass {
 	private PageObjectManager ccpom;
 	private PageObjectManager swpom;
 	
+	private String desc;
+	private String reportid;
+	
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
 
@@ -421,9 +424,10 @@ public class IncidentReportPageStep extends BaseClass {
 			    staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
 			    staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
 			    staffpom.getIncidentReportPage().selectFrontViewInjurySite();
+			    System.out.println(staffpom.getIncidentReportPage().getTooltipFrontViewAbdomen());
 			    staffpom.getIncidentReportPage().selectBackViewInjurySite();
 			    staffpom.getIncidentReportPage().enterTreatmentReceivedData();
-			    staffpom.getIncidentReportPage().enterInjuryDescriptionData();
+			    desc = staffpom.getIncidentReportPage().enterInjuryDescriptionData();
 			    staffpom.getIncidentReportPage().enterFutureTreatmentData();
 			    staffpom.getIncidentReportPage().selectInjuryType();
 			    staffpom.getIncidentReportPage().selectInjuryColor();
@@ -433,7 +437,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    staffpom.getIncidentReportPage().enterNotificationTime();
 			    staffpom.getIncidentReportPage().enterNotifiedByData();
 			    staffpom.getIncidentReportPage().selectReletionship();
-			    staffpom.getIncidentReportPage().selectNotificationMethod();
+			    //staffpom.getIncidentReportPage().selectNotificationMethod();
 			    
 			}
 
@@ -470,10 +474,9 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Verify whether the report is in pending status.")
 			public void verify_whether_the_report_is_in_pending_status() {
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
-				System.out.println(rowNumber);
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
-			    System.out.println(Objects.isNull(status));
-			    //assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
+			    assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
+			    reportid =  staffpom.getIncidentReportPage().getReportID(rowNumber);
 			}
 			
 			/**
@@ -486,6 +489,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    cheifnurseDriver.get("https://xat.qa.xealei.com/login");
 			    cheifnursepom = new PageObjectManager(cheifnurseDriver);
 			    waitForPageLoad(cheifnurseDriver);
+			    cheifnurseDriver.manage().window().maximize();
 			}
 
 			/**
@@ -532,9 +536,10 @@ public class IncidentReportPageStep extends BaseClass {
 				logStep(methodName());
 				sendKeys(cheifnursepom.getLoginPage().getUserName(), cheifNurseUserName);
 				sendKeys(cheifnursepom.getLoginPage().getPassword(), cheifNursePassWord);
-				waitForPageLoad(cheifnurseDriver);
+				//waitForPageLoad(cheifnurseDriver);
 				waitForFullPageElementLoad(cheifnurseDriver);
 				cheifnursepom.getLoginPage().loginButton();
+				waitForPageLoad(cheifnurseDriver);
 			}
 
 			@Then("Verify Incident report page is displayed.")
@@ -548,8 +553,7 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify whether notification is received.")
 			public void verify_whether_notification_is_received() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+				cheifnursepom.getHomePage().notificationIcon(reportid);
 			}
 
 			/**
@@ -557,17 +561,27 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Approve the report.")
 			public void approve_the_report() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    cheifnursepom.getIncidentReportPage().cheifNurseReviewerComments("approved");
+			    cheifnursepom.getIncidentReportPage().clickCompleteButton();
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
 			@Then("Verify whether the report is in {string} status.")
-			public void verify_whether_the_report_is_in_status(String string) {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			public void verify_whether_the_report_is_in_status(String status) {
+				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
+			    reportid =  staffpom.getIncidentReportPage().getReportID(rowNumber);
+			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+			    		" but the expected is : "+status);
 			}
 
 			/**
