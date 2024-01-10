@@ -1,9 +1,10 @@
 package org.alphind.xealei.stepdefinition;
 
+import static org.testng.Assert.assertEquals;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -25,6 +26,8 @@ public class IncidentReportPageStep extends BaseClass {
 	private PageObjectManager rmpom;
 	private PageObjectManager ccpom;
 	private PageObjectManager swpom;
+	
+	private String reportid;
 	
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
@@ -413,19 +416,23 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Enter all the details of the Incident.")
 			public void enter_all_the_details_of_the_incident() {
+				staffpom.getIncidentReportPage().eventDateAndTime(0);
 			    staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
 			    staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
 			    staffpom.getIncidentReportPage().selectFrontViewInjurySite();
 			    staffpom.getIncidentReportPage().selectBackViewInjurySite();
 			    staffpom.getIncidentReportPage().enterTreatmentReceivedData();
+			    staffpom.getIncidentReportPage().enterInjuryDescriptionData();
 			    staffpom.getIncidentReportPage().enterFutureTreatmentData();
 			    staffpom.getIncidentReportPage().selectInjuryType();
 			    staffpom.getIncidentReportPage().selectInjuryColor();
 			    staffpom.getIncidentReportPage().selectHowSevereWasTheInjury();
 			    staffpom.getIncidentReportPage().enterPersonNotifiedData();
+			    staffpom.getIncidentReportPage().enterNotificationDate();
+			    staffpom.getIncidentReportPage().enterNotificationTime();
 			    staffpom.getIncidentReportPage().enterNotifiedByData();
 			    staffpom.getIncidentReportPage().selectReletionship();
-			    staffpom.getIncidentReportPage().selectNotificationMethod();
+			    //staffpom.getIncidentReportPage().selectNotificationMethod();
 			    
 			}
 
@@ -435,6 +442,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Click on next button.")
 			public void click_on_next_button() {
 			    staffpom.getIncidentReportPage().nextButton();
+			    waitForFullPageElementLoad(staffDriver);
 			}
 
 			/**
@@ -452,6 +460,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Click on complete button.")
 			public void click_on_complete_button() {
 			    staffpom.getIncidentReportPage().clickCompleteButton();
+			    waitForPageLoad(staffDriver);
 			}
 
 			/**
@@ -461,6 +470,8 @@ public class IncidentReportPageStep extends BaseClass {
 			public void verify_whether_the_report_is_in_pending_status() {
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
+			    reportid =  staffpom.getIncidentReportPage().getReportID(rowNumber);
 			}
 			
 			/**
@@ -473,6 +484,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    cheifnurseDriver.get("https://xat.qa.xealei.com/login");
 			    cheifnursepom = new PageObjectManager(cheifnurseDriver);
 			    waitForPageLoad(cheifnurseDriver);
+			    cheifnurseDriver.manage().window().maximize();
 			}
 
 			/**
@@ -485,6 +497,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    rmDriver.get("https://xat.qa.xealei.com/login");
 			    rmpom = new PageObjectManager(rmDriver);
 			    waitForPageLoad(rmDriver);
+			    rmDriver.manage().window().maximize();
 			}
 
 			/**
@@ -497,6 +510,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    ccDriver.get("https://xat.qa.xealei.com/login");
 			    ccpom = new PageObjectManager(ccDriver);
 			    waitForPageLoad(ccDriver);
+			    ccDriver.manage().window().maximize();
 			}
 
 			/**
@@ -509,6 +523,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    swDriver.get("https://xat.qa.xealei.com/login");
 			    swpom = new PageObjectManager(swDriver);
 			    waitForPageLoad(swDriver);
+			    swDriver.manage().window().maximize();
 			}
 
 			/**
@@ -519,9 +534,10 @@ public class IncidentReportPageStep extends BaseClass {
 				logStep(methodName());
 				sendKeys(cheifnursepom.getLoginPage().getUserName(), cheifNurseUserName);
 				sendKeys(cheifnursepom.getLoginPage().getPassword(), cheifNursePassWord);
-				waitForPageLoad(cheifnurseDriver);
+				//waitForPageLoad(cheifnurseDriver);
 				waitForFullPageElementLoad(cheifnurseDriver);
 				cheifnursepom.getLoginPage().loginButton();
+				waitForPageLoad(cheifnurseDriver);
 			}
 
 			@Then("Verify Incident report page is displayed.")
@@ -533,28 +549,58 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether notification is received.")
-			public void verify_whether_notification_is_received() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			@Then("Verify whether notification is received by cheif nurse.")
+			public void verify_whether_notification_is_received_by_cheif_nurse() {
+				cheifnursepom.getHomePage().notificationIcon(reportid);
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Approve the report.")
-			public void approve_the_report() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			@Then("Verify whether notification is received by residential manager.")
+			public void verify_whether_notification_is_received_by_residential_manager() {
+				rmpom.getHomePage().notificationIcon(reportid);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Approve the report by Cheif Nurse user.")
+			public void approve_the_report_by_Cheif_Nurse_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    cheifnursepom.getIncidentReportPage().cheifNurseReviewerComments("approved");
+			    cheifnursepom.getIncidentReportPage().clickCompleteButton();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Approve the report by Residential Manager user.")
+			public void approve_the_report_by_Residential_Manager_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");
+			    rmpom.getIncidentReportPage().clickCompleteButton();
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
 			@Then("Verify whether the report is in {string} status.")
-			public void verify_whether_the_report_is_in_status(String string) {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			public void verify_whether_the_report_is_in_status(String status) {
+				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+			    		" but the expected is : "+status);
 			}
 
 			/**

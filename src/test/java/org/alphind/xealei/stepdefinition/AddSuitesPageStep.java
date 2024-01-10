@@ -20,7 +20,7 @@ import io.cucumber.java.en.Then;
 
 public class AddSuitesPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager(driver);
+	PageObjectManager pom = new PageObjectManager(getDriver());
 	
 	@Then("User should verify suite page tab url address for suites page")
 	public void user_should_verify_suite_page_tab_url_address_for_suites_page() {

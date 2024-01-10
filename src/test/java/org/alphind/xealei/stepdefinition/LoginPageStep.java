@@ -22,7 +22,7 @@ import io.cucumber.java.en.When;
 
 public class LoginPageStep extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager(driver);
+	PageObjectManager pom = new PageObjectManager(getDriver());
 
 	@Given("User is on Xealei login page")
 	public void user_is_on_xealei_login_page() {

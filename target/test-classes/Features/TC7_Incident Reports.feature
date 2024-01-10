@@ -102,21 +102,21 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
-#		Then Click on next button.
+		Then Click on next button.
 #		When Incident report page is displayed verify whether all the data is displayed correctly.
-#		And Click on complete button.
-#		And Verify whether the report is in pending status.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url for cheif nurse.
 		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-		#Then Verify whether notification is received.
-		#And Approve the report.
-		#And Verify whether the report is in "" status.
-		#Then Launch a new browser and enter xealei url for residential manager.
-		#And Login into Xealei application as Residential Manager role with valid "AManager" and "auto@123".
-		#Then Verify whether notification is received.
-		#And Approve the report.
-		#And Verify whether the report is in "" status.
-		#Then Launch a new browser and enter xealei url for clinical coordinator.
+		Then Verify whether notification is received by cheif nurse.
+		And Approve the report by Cheif Nurse user.
+		And Verify whether the report is in "In Progress" status.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "AManager" and "auto@123".
+		Then Verify whether notification is received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status.
+		Then Launch a new browser and enter xealei url for clinical coordinator.
 		#And Login into Xealei application as CLinical Coordinator role with valid "AClinical" and "auto@123".
 		#Then Verify whether notification is received.
 		#And Approve the report.
