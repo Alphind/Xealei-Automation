@@ -790,9 +790,9 @@ public class BaseClass {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
-	public void waitForFullPageElementLoad(WebDriver driver) {
+	public void waitForFullPageElementLoad(WebDriver currentdriver) {
 
-		driver.manage().timeouts().getPageLoadTimeout();
+		currentdriver.manage().timeouts().getPageLoadTimeout();
 	}
 	
 //     //50. Extent Report 

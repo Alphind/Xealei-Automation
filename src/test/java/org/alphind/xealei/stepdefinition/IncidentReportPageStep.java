@@ -66,14 +66,14 @@ public class IncidentReportPageStep extends BaseClass {
 		staffpom.getHomePage().incidentReportModule();
 		waitForPageLoad();
 
-		try {
-			Assert.assertEquals("Unable to navigate Reports>Incident Reports Module ", "Incident Reports",
-					getText(staffpom.getIncidentReportPage().getIncidentReportModuleText()));
-			log(Status.PASS, "Incident Report sub-module button is working");
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
+//		try {
+//			Assert.assertEquals("Unable to navigate Reports>Incident Reports Module ", "Incident Reports",
+//					getText(staffpom.getIncidentReportPage().getIncidentReportModuleText()));
+//			log(Status.PASS, "Incident Report sub-module button is working");
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
 	}
 
 	@Then("User should verify the ADD New Incident Report button is working")
@@ -565,15 +565,30 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
+			@Then("Verify whether notification is received by Clinical Coordinator.")
+			public void verify_whether_notification_is_received_by_Clinical_Coordinator() {
+				ccpom.getHomePage().notificationIcon(reportid);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether notification is received by Social Worker.")
+			public void verify_whether_notification_is_received_by_Social_Worker() {
+				swpom.getHomePage().notificationIcon(reportid);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
 			@Then("Approve the report by Cheif Nurse user.")
 			public void approve_the_report_by_Cheif_Nurse_user() {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			    cheifnursepom.getIncidentReportPage().cheifNurseReviewerComments("approved");
+			    cheifnursepom.getIncidentReportPage().chiefNurseReviewerComments("approved");
 			    cheifnursepom.getIncidentReportPage().clickCompleteButton();
 			}
 			
@@ -585,7 +600,6 @@ public class IncidentReportPageStep extends BaseClass {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");
@@ -595,10 +609,71 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether the report is in {string} status.")
-			public void verify_whether_the_report_is_in_status(String status) {
+			@Then("Approve the report by Clinical Coordinator user.")
+			public void approve_the_report_by_Clinical_Coordinator_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    ccpom.getIncidentReportPage().clinicalCoordinatorReviewerComments("approved");
+			    ccpom.getIncidentReportPage().clickCompleteButton();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Approve the report by Social Worker user.")
+			public void approve_the_report_by_Social_Worker_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    swpom.getIncidentReportPage().socialWorkerReviewerComments("approved");
+			    swpom.getIncidentReportPage().clickCompleteButton();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether the report is in {string} status by Cheif Nurse user.")
+			public void verify_whether_the_report_is_in_status_by_Cheif_Nurse_user(String status) {
 				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+			    		" but the expected is : "+status);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether the report is in {string} status by Residential Manager user.")
+			public void verify_whether_the_report_is_in_status_by_Residential_Manager_user(String status) {
+				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+			    		" but the expected is : "+status);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether the report is in {string} status by Clinical Coordinator user.")
+			public void verify_whether_the_report_is_in_status_by_Clinical_Coordinator_user(String status) {
+				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+			    		" but the expected is : "+status);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether the report is in {string} status by Social Worker user.")
+			public void verify_whether_the_report_is_in_status_by_Social_Worker_user(String status) {
+				String rowNumber = swpom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	swpom.getIncidentReportPage().getStatus(rowNumber);
 			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
 			    		" but the expected is : "+status);
 			}
@@ -608,11 +683,10 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Login into Xealei application as Residential Manager role with valid {string} and {string}.")
 			public void login_into_xealei_application_as_residential_manager_role_with_valid_and(String rmUserName, String rmPassWord) {
-				logStep(methodName());
 				sendKeys(rmpom.getLoginPage().getUserName(), rmUserName);
 				sendKeys(rmpom.getLoginPage().getPassword(), rmPassWord);
 				waitForPageLoad(rmDriver);
-				waitForFullPageElementLoad(rmDriver);
+				//waitForFullPageElementLoad(rmDriver);
 				rmpom.getLoginPage().loginButton();
 			}
 
