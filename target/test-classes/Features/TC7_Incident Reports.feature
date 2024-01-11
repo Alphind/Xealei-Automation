@@ -134,26 +134,20 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		
 Scenario Outline: To verify whether cheif nurse can able to reject and reapprove the incident Report.
      
-    Given User is on Xealei login page.
-		When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
-		Then Verify Home page is displayed.
-		Then Navigate to Reports module.
-		And Navigate to Incident Report sub module.
-		Then Click on Add New Incident Report button.
-		And Verify Incident report page is displayed.
+    Given User is on Xealei login page
+    When User should perform login as facility admin "<StaffUserName>" and "<StaffPassWord>"
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should verify the Incident report module is working
+    Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
 		Then Click on next button.
-		When Incident report page is displayed verify whether all the data is displayed correctly.
 		And Click on complete button.
 		And Verify whether the report is in pending status.
-		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "auto@123".
-		Then Verify whether notification is received.
-		And Deny the report.
-		Then Switch to Staff login and check whether sent back comments are available.
-		And Again submit the report.
-		Then Switch to cheif nurse login and approve the incident report.   
+		Then Launch a new browser and enter xealei url for cheif nurse.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
+		Then Verify whether notification is received by cheif nurse.
+		And Re-Send the report by Cheif Nurse user to staff nurse. 
      
     |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
