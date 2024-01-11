@@ -195,7 +195,7 @@ public class LoginPage extends BaseClass {
 
 	public void password() {
 
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 		sendKeys(getPassword(), "xe23Dal%q3");
 	}
 

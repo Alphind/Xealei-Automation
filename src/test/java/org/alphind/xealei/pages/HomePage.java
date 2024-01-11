@@ -66,6 +66,7 @@ public class HomePage extends BaseClass {
 	
 	
 	public void notificationIcon(String ReportID) {
+		waitForPageLoad(driver);
 		click(notificationIcon);
 		idXpath = idXpath.replace("ID", ReportID);
 		try {
@@ -74,10 +75,10 @@ public class HomePage extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WebElement notificationElement = this.driver.findElement(By.xpath(idXpath));
-		waitForInVisiblityOfElement(this.driver,notificationElement, 5);
+		WebElement notificationElement = driver.findElement(By.xpath(idXpath));
+		waitForInVisiblityOfElement(driver,notificationElement, 5);
 		click(notificationElement);
-		waitForFullPageElementLoad(this.driver);
+		waitForPageLoad(driver);
 	}
 	
 	

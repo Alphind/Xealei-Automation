@@ -1282,14 +1282,14 @@ public class IncidentReportPage extends BaseClass {
 	
 	/**
 	 * @author Nandhalala.
-	 * To enter reviewer comments.
+	 * To enter Chief Nurse reviewer comments.
 	 * 
 	 * @param rowNumber - Accepts only approved or rejected as parameters.
 	 * @return the status value of the given row.
 	 * 
 	 * @created on 09-01-2024.
 	 */
-	public void cheifNurseReviewerComments(String decision) {
+	public void chiefNurseReviewerComments(String decision) {
 		decision = decision.toUpperCase();
 		switch(decision) {
 			case "APPROVED" : {
@@ -1298,7 +1298,7 @@ public class IncidentReportPage extends BaseClass {
 				break;
 			}
 			case "REJECTED" : {
-				String comments = readExcel("Test Datas", "Incident Reports", 1, 23);
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 24);
 				sendKeys(reviewerComments, comments);
 				break;
 			}
@@ -1308,7 +1308,7 @@ public class IncidentReportPage extends BaseClass {
 	
 	/**
 	 * @author Nandhalala.
-	 * To enter reviewer comments.
+	 * To enter Residential Manager reviewer comments.
 	 * 
 	 * @param rowNumber - Accepts only approved or rejected as parameters.
 	 * @return the status value of the given row.
@@ -1319,12 +1319,64 @@ public class IncidentReportPage extends BaseClass {
 		decision = decision.toUpperCase();
 		switch(decision) {
 			case "APPROVED" : {
-				String comments = readExcel("Test Datas", "Incident Reports", 1, 20);
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 21);
 				sendKeys(reviewerComments, comments);
 				break;
 			}
 			case "REJECTED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 25);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+				
+		}
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To enter Clinical coordinator reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 11-01-2024.
+	 */
+	public void clinicalCoordinatorReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch(decision) {
+			case "APPROVED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 22);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+			case "REJECTED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 26);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+				
+		}
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * To enter social worker reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 11-01-2024.
+	 */
+	public void socialWorkerReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch(decision) {
+			case "APPROVED" : {
 				String comments = readExcel("Test Datas", "Incident Reports", 1, 23);
+				sendKeys(reviewerComments, comments);
+				break;
+			}
+			case "REJECTED" : {
+				String comments = readExcel("Test Datas", "Incident Reports", 1, 27);
 				sendKeys(reviewerComments, comments);
 				break;
 			}
