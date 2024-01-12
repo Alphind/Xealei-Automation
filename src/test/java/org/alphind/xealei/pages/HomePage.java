@@ -50,10 +50,12 @@ public class HomePage extends BaseClass {
 	public void incidentReportModule() {
 		
 		click(incidentReportModule);
+		waitForPageLoad();
 }
 	
 	
 	public boolean isHomePageDisplayed() {
+		waitForPageLoad();
 		if(homePageText.isDisplayed()) {
 			return true;
 		}

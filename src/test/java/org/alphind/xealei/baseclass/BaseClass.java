@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -459,6 +460,18 @@ public class BaseClass {
 		}
 	}
 
+	public void select(WebDriver driver,String elementxpath) {
+		// click(dr.get().findElement(By.xpath(elementxpath)));
+		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+		try {
+
+			click(driver.findElement(By.xpath(elementxpath)));
+			log(Status.INFO, "Select the" + methodName);
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+		}
+	}
+	
 	// 33. Current Date and Time Generator
 	public String dateAndTime() {
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -730,6 +743,13 @@ public class BaseClass {
 		String currentUrl = driver.getCurrentUrl();
 		return currentUrl;
 	}
+	
+	public String getCurrentUrl(WebDriver driver) {
+
+		// String currentUrl = dr.get().getCurrentUrl();
+		String currentUrl = driver.getCurrentUrl();
+		return currentUrl;
+	}
 
 //		// 45. Scroll Down - (JavaScript Executor)
 
@@ -758,6 +778,11 @@ public class BaseClass {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
+	public void waitForFullPageElementLoad(WebDriver driver) {
+
+		driver.manage().timeouts().getPageLoadTimeout();
+	}
+	
 //     //50. Extent Report 
 
 	private static ExtentReports extent;
@@ -884,14 +909,45 @@ public class BaseClass {
 		return nxtDate;
 
 	}
+	
+	public String nextToCurrentDate() {
+
+		LocalDate date = LocalDate.now();
+//		int dayOfMonth = date.getDayOfMonth();
+//
+//		//String datePattern = (dayOfMonth <= 9) ? "d" : "dd";
+
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("dd");
+
+		String currentDate = date.format(ofPattern);
+		System.out.println("Current Date : " + currentDate);
+
+		int intValue = Integer.parseInt(currentDate);
+		int nextDate = intValue + 1;
+
+		String nxtDate = Integer.toString(nextDate);
+		System.out.println("Current Date + 1 - " + nxtDate);
+
+		return nxtDate;
+
+	}
 
 	public String getCurrentDtYearMonth(String EnterPattern) {
 
-		LocalDate currentDateYearMonth = LocalDate.now();
+		LocalDateTime currentDateYearMonth = LocalDateTime.now();
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
 	}
+	
+	public String getFutureTime(String EnterPattern) {
+
+		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
+		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
+		return DateAsPerGiven;
+	}
+	
 
 	public String getCurrentDate() {
 
@@ -902,7 +958,7 @@ public class BaseClass {
 		String formattedDate = date.format(formatter);
 		return formattedDate;
 	}
-
+	
 	public String randomMobileNumber() {
 
 		Random random = new Random();
@@ -932,6 +988,16 @@ public class BaseClass {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 		String formattedDate = previousMonthDate.format(formatter);
+
+		return formattedDate.toUpperCase();
+	}
+	
+	public String getCurrentMonth(String pattern) {
+
+		LocalDate currentDate = LocalDate.now();
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		String formattedDate = currentDate.format(formatter);
 
 		return formattedDate.toUpperCase();
 	}

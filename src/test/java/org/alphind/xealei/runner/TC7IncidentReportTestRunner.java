@@ -18,7 +18,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
-tags = "@AllApprove",
+tags = "@NegativeScenarios",
 glue = "org.alphind.xealei.stepdefinition",
 dryRun = !true, monochrome = true)
 

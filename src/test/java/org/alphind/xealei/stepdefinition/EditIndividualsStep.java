@@ -919,17 +919,27 @@ public class EditIndividualsStep extends BaseClass {
 //					log(Status.FAIL, e.getMessage());
 //					e.printStackTrace();
 //				}
-
+				String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 				try {
+					
 					String expIndividualName = readExcel("Test Datas", "EditIndividuals", 1, 26);
+					
+					String updatedIndividual = getText(pom.getAddIndividualsPage().getCreatedIndividualName());
+
 					Assert.assertEquals("UpdatedIndividual Name Mismatched", expIndividualName,
-							getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
+							updatedIndividual);
 					log(Status.PASS, "Updated Individual Name is displayed as expected EXP Name - " + expIndividualName
-							+ " | ACT Name - " + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
+							+ " | ACT Name - " + updatedIndividual);
 					
-					writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, expIndividualName);
+					writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, updatedIndividual);
 					
-					writeExcelLastRow("Test Datas", "UpdatedIndividuals", 1, expIndividualName);
+					writeExcelLastRow("Test Datas", "UpdatedIndividuals", 1, updatedIndividual);
+				    writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, updatedIndividual);
+						
+						System.out.println("Created Ind & Selected Suite -" +updatedIndividual+actualSelectedSuite);			
+						
+						writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, updatedIndividual+actualSelectedSuite);
+						
 					
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());

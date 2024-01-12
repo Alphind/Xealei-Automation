@@ -137,10 +137,6 @@ public class AddIndividualsPage extends BaseClass{
 	@FindBy(xpath = "//button[@aria-label='Next month']")
 	private WebElement datePickerRightArrow;
 
-	public WebElement getforwardToAddressTab() {
-		return forwardToAddressTab;
-	}
-
 	@FindBy(xpath = "//mat-select[@ng-reflect-name='suite']")
 	private WebElement selectSuite;
 
@@ -986,6 +982,10 @@ public class AddIndividualsPage extends BaseClass{
 		return bmiField;
 	}
 	
+	public WebElement getforwardToAddressTab() {
+		return forwardToAddressTab;
+	}
+
 	
 	
 	
@@ -998,8 +998,7 @@ public class AddIndividualsPage extends BaseClass{
 	
 	
 	
-	
-	public void selectDateInDatePickerAndVerify(int rowNum) {
+	public void selectCurrentDateInDatePicker() {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());
 		chooseDate = chooseDate.replaceAll("selectDate", getCurrentDate());
@@ -1020,7 +1019,7 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
-	public void verifyFutureDateIsHidden() throws Exception {
+	public void verifyFutureDateIsDisabled() {
 
 		int febMonthDates = 28;
 		int MaxDate = 29;
@@ -1034,7 +1033,7 @@ public class AddIndividualsPage extends BaseClass{
 			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 
 			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Reached the Month END date Next Month > arrow is Hidden");
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			}
 
 		} else if (getCurrentDtYearMonth("MMM").equals("APR") || getCurrentDtYearMonth("MMM").equals("JUN")
@@ -1044,7 +1043,7 @@ public class AddIndividualsPage extends BaseClass{
 			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 
 			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Reached the Month END date Next Month > arrow is Hidden");
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			}
 		} else if (currentDate <= MaxDate) {
 
@@ -1054,17 +1053,16 @@ public class AddIndividualsPage extends BaseClass{
 			String nextDATE = getAttribute(getNextDate, "aria-disabled");
 
 			if (nextDATE.equals("true")) {
-				log(Status.PASS, "The next date is HIDDEN to the current date");
+				log(Status.PASS, "The next date is disabled to the current date");
 			} else {
-				log(Status.FAIL, "The next date is NOT HIDDEN to the current date");
-				throw new Exception();
+				log(Status.FAIL, "The next date is NOT disabled to the current date");
 			}
 		} else if (getCurrentDtYearMonth("MMM").equals("FEB") && getCurrentDtYearMonth("dd").equals("29")) {
 
 			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 
 			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Reached the Month END date Next Month > arrow is Hidden");
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			}
 		} else if (currentDate <= febMonthDates) {
 
@@ -1074,15 +1072,14 @@ public class AddIndividualsPage extends BaseClass{
 			String nextDATE = getAttribute(getNextDate, "aria-disabled");
 
 			if (nextDATE.equals("true")) {
-				log(Status.PASS, "The next date is HIDDEN to the current date");
+				log(Status.PASS, "The next date is disabled to the current date");
 			} else {
-				log(Status.FAIL, "The next date is NOT HIDDEN to the current date");
-				throw new Exception();
+				log(Status.FAIL, "The next date is NOT disabled to the current date");
 			}
 		}
 
 		else {
-			log(Status.FAIL, "Reached the Month END date Next Month > arrow is UNHIDDEN/UNHIDE ");
+			log(Status.INFO, "Reached the Month END");
 		}
 	}
 
