@@ -6,6 +6,7 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     When User should perform login as facility admin "<userName>" and "<password>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should also verify the performed login as "<adminName>"
+    
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
     Then User should verify the save button is disabled
@@ -26,8 +27,7 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     #Then User should verify future dates are hidden in date & time picker
     
     And User should enter the Event Date & Time greater than current time
-    Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"
-    Then User should verify that able to enter current date and time in Event Date & Time field
+    Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"   
    
     #When User should click on the up arrow to navigate to the previous month and verify the calendar should display the previous months dates
     #And User should select a specific year and month in dropdown and select the date and verify the selected date are updated accordingly
@@ -50,6 +50,7 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then User should verify that whether able to select the option value under How severe was injury? field
     Then User should verify that whether able to select the option value under Injury Color
     Then User should verify that whether default optional values is selected under was Event Notified?
+    Then User should verify that able to enter current date and time in Event Date & Time field
     And  User should click on the Notification Date calendar icon
     Then User should verify the date picker should appeared
     Then User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date
@@ -74,6 +75,8 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
 
   #     |VVCn     | Alphind@123 | Chief Nurse			|
   #     |VPRM     | Alphind@123 | Resident Manager|
+  
+  
   @AllApprove
   Scenario Outline: To verify an Incident report can be approved by all levels of users.
     Given User is on Xealei login page
