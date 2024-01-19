@@ -1143,7 +1143,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 
-		pom.getAddIndividualsPage().selectDateInDatePickerAndVerify(1);
+		pom.getAddIndividualsPage().selectCurrentDateInDatePicker();
 	}
 
 //				@When("User should attempt to enter an invalid date manually")
@@ -1169,7 +1169,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		pom.getAddIndividualsPage().datePicker();
 
 		try {
-			pom.getAddIndividualsPage().verifyFutureDateIsHidden();
+			pom.getAddIndividualsPage().verifyFutureDateIsDisabled();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1184,8 +1184,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		pom.getAddIndividualsPage().selectGivenDateFromExcel(1);
 	}
 
-	@When("User should select a specific year and month in dropdown and select the date in date picker and verify the selected DOB are updated accordingly")
-	public void user_should_select_a_specific_year_and_month_in_dropdown_and_select_the_date_in_date_picker_and_verify_the_selected_dob_are_updated_accordingly() {
+	@When("User should select a specific year and month in dropdown and select the date in date picker")
+	public void user_should_select_a_specific_year_and_month_in_dropdown_and_select_the_date_in_date_picker() {
 
 		logStep(methodName());
 
@@ -1494,14 +1494,18 @@ public class AddIndividualsPageStep extends BaseClass {
 				"IND RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact1Relationship()));
 		System.out.println("IND EmC PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
 
+		
+		
+		String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
+		
 		try {
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 1, 6);
-			Assert.assertEquals("Created Suite Mismatched", expSelectSuite,
-					getText(pom.getAddIndividualsPage().getSelectedSuite()));
-			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
-					+ " | ACT Selected Suite - " + getText(pom.getAddIndividualsPage().getSelectedSuite()));
 
-			writeExcelLastRow("Test Datas", "CreatedIndividuals", 0, getText(pom.getAddIndividualsPage().getSelectedSuite()));
+			Assert.assertEquals("Created Suite Mismatched", expSelectSuite, actualSelectedSuite);
+			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
+					+ " | ACT Selected Suite - " + actualSelectedSuite);
+
+			writeExcelLastRow("Test Datas", "CreatedIndividuals", 0, actualSelectedSuite);
 
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1510,11 +1514,19 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expIndividualName = readExcel("Test Datas", "AddIndividuals", 1, 26);
-			Assert.assertEquals("Created Individual Name Mismatched", expIndividualName,
-					getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
+			String createdIndividual = getText(pom.getAddIndividualsPage().getCreatedIndividualName());
+			
+			Assert.assertEquals("Created Individual Name Mismatched", expIndividualName, createdIndividual);
 			log(Status.PASS, "Individual Name is displayed as expected EXP Name - " + expIndividualName
-					+ " | ACT Name - " + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
-			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, expIndividualName);
+					+ " | ACT Name - " + createdIndividual);
+			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, createdIndividual);
+			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, createdIndividual);
+			
+			System.out.println("Created Ind & Selected Suite -" +createdIndividual+actualSelectedSuite);			
+			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+actualSelectedSuite);
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -1852,6 +1864,8 @@ public class AddIndividualsPageStep extends BaseClass {
 				"IND EC2RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
 		System.out.println("IND EC2 PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
 
+		
+		
 		try {
 			String expFirstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
 			Assert.assertEquals("Created FirstName Mismatched", expFirstName,
@@ -1885,14 +1899,17 @@ public class AddIndividualsPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 
+		String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
+		
 		try {
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 2, 6);
+		
 			Assert.assertEquals("Created Suite Mismatched", expSelectSuite,
-					getText(pom.getAddIndividualsPage().getSelectedSuite()));
+					actualSelectedSuite);
 			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
-					+ " | ACT Selected Suite - " + getText(pom.getAddIndividualsPage().getSelectedSuite()));
+					+ " | ACT Selected Suite - " + actualSelectedSuite);
 
-			writeExcelLastRow("Test Datas", "CreatedIndividuals", 0, getText(pom.getAddIndividualsPage().getSelectedSuite()));
+			writeExcelLastRow("Test Datas", "CreatedIndividuals", 0, actualSelectedSuite);
 
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1901,11 +1918,22 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expIndividualName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+			
+			String createdIndividual = getText(pom.getAddIndividualsPage().getCreatedIndividualName());
+
+			
 			Assert.assertEquals("Created Individual Name Mismatched", expIndividualName,
-					getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
+					createdIndividual);
 			log(Status.PASS, "Individual Name is displayed as expected EXP Name - " + expIndividualName
-					+ " | ACT Name - " + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
-			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, expIndividualName);
+					+ " | ACT Name - " + createdIndividual);
+			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, createdIndividual);
+		
+            writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, createdIndividual);
+			
+			System.out.println("Created Ind & Selected Suite -" +createdIndividual+actualSelectedSuite);			
+			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+actualSelectedSuite);
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();

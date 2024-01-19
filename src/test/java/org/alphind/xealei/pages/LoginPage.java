@@ -200,7 +200,7 @@ public class LoginPage extends BaseClass {
 	}
 
 	public void loginButton() {
-
+		
 		click(loginButton);
 	}
 	

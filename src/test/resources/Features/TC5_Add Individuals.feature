@@ -73,7 +73,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
      #DELETE
     And User should verify future dates are hidden
     When User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates
-    And User should select a specific year and month in dropdown and select the date in date picker and verify the selected DOB are updated accordingly
+    And User should select a specific year and month in dropdown and select the date in date picker
     Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
     And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
     Then User should verify the calendar should close after click outside the calendar
