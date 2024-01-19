@@ -1,5 +1,7 @@
 package org.alphind.xealei.pages;
 
+import java.util.Objects;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +14,9 @@ public class HomePage extends BaseClass {
 	private WebDriver driver;
 	
 	public HomePage(WebDriver driver) {
-		
+		if(Objects.nonNull(this.driver)) {
+			this.driver = null;
+		}
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -66,7 +70,7 @@ public class HomePage extends BaseClass {
 	
 	
 	public void notificationIcon(String ReportID) {
-		waitForPageLoad(driver);
+		waitForPageLoad(this.driver);
 		click(notificationIcon);
 		idXpath = idXpath.replace("ID", ReportID);
 		try {
@@ -75,10 +79,10 @@ public class HomePage extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WebElement notificationElement = driver.findElement(By.xpath(idXpath));
-		waitForInVisiblityOfElement(driver,notificationElement, 5);
+		WebElement notificationElement = this.driver.findElement(By.xpath(idXpath));
+		waitForInVisiblityOfElement(this.driver,notificationElement, 5);
 		click(notificationElement);
-		waitForPageLoad(driver);
+		waitForPageLoad(this.driver);
 	}
 	
 	

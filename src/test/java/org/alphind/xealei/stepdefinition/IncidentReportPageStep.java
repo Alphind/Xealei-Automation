@@ -2,6 +2,9 @@ package org.alphind.xealei.stepdefinition;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Objects;
+import java.util.Set;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
@@ -16,13 +19,13 @@ import io.cucumber.java.en.When;
 public class IncidentReportPageStep extends BaseClass {
 	
 	private WebDriver staffDriver = getDriver();
-	private WebDriver cheifnurseDriver;
+	private WebDriver ChiefnurseDriver;
 	private WebDriver rmDriver;
 	private WebDriver ccDriver;
 	private WebDriver swDriver;
 
 	private PageObjectManager staffpom = new PageObjectManager(staffDriver);
-	private PageObjectManager cheifnursepom;
+	private PageObjectManager Chiefnursepom;
 	private PageObjectManager rmpom;
 	private PageObjectManager ccpom;
 	private PageObjectManager swpom;
@@ -48,6 +51,22 @@ public class IncidentReportPageStep extends BaseClass {
 
 	}
 
+	@When("User should perform login as staff {string} and {string}")
+	public void user_should_perform_login_as_staff_and(String userName, String passWord) {
+		logStep(methodName());
+
+//		pom.getLoginPage().validEmail(1);
+//		pom.getLoginPage().validPassword(1);
+//		pom.getLoginPage().loginButton();
+//        waitForPageLoad();
+
+	sendKeys(staffpom.getLoginPage().getUserName(), userName);
+	sendKeys(staffpom.getLoginPage().getPassword(), passWord);
+	waitForPageLoad(staffDriver);
+	waitForFullPageElementLoad(staffDriver);
+	staffpom.getLoginPage().loginButton();
+	}
+	
 	@Then("User should also verify the performed login as {string}")
 	public void user_should_also_verify_the_performed_login_as(String adminName) {
 
@@ -462,7 +481,25 @@ public class IncidentReportPageStep extends BaseClass {
 			    staffpom.getIncidentReportPage().clickCompleteButton();
 			    waitForPageLoad(staffDriver);
 			}
-
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("ReSubmit the Report by staff user.")
+			public void ReSubmit_the_Report_by_staff_user() {
+				staffpom.getIncidentReportPage().clickCompleteButton();
+			    waitForPageLoad(staffDriver);
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("ReSubmit the Report by Chief nurse user.")
+			public void ReSubmit_the_Report_by_chief_nurse_user() {
+				Chiefnursepom.getIncidentReportPage().clickCompleteButton();
+			    waitForPageLoad(ChiefnurseDriver);
+			}
+			
 			/**
 			 * Created by Nandhalala.
 			 */
@@ -470,21 +507,33 @@ public class IncidentReportPageStep extends BaseClass {
 			public void verify_whether_the_report_is_in_pending_status() {
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(status, "Pending","The expected value is : Pending /nbut actual is : "+status);
+			    try {
+				    assertEquals(status, "Pending",
+				    		"The expected value is : Pending /nbut actual is : "+status);
+				    log(Status.PASS, "The Incident Report submitted by the staff is in "
+				    		+ "pending status.");
+				} catch (Exception e) {
+					log(Status.FAIL, "The Incident Report submitted by the staff is in "+status
+				    		+ " not in pending status.");
+				}
 			    reportid =  staffpom.getIncidentReportPage().getReportID(rowNumber);
 			}
 			
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Launch a new browser and enter xealei url for cheif nurse.")
-			public void launch_a_new_browser_and_enter_xealei_url_for_cheif_nurse() {
-				cheifnurseDriver = new ChromeDriver();
+			@Then("Launch a new browser and enter xealei url for Chief nurse.")
+			public void launch_a_new_browser_and_enter_xealei_url_for_Chief_nurse() {
+				try {
+					ChiefnurseDriver = getNewDriver();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			    logStep(methodName());
-			    cheifnurseDriver.get("https://xat.qa.xealei.com/login");
-			    cheifnursepom = new PageObjectManager(cheifnurseDriver);
-			    waitForPageLoad(cheifnurseDriver);
-			    cheifnurseDriver.manage().window().maximize();
+			    ChiefnurseDriver.get("https://xat.qa.xealei.com/login");
+			    Chiefnursepom = new PageObjectManager(ChiefnurseDriver);
+			    waitForPageLoad(ChiefnurseDriver);
+			    ChiefnurseDriver.manage().window().maximize();
 			}
 
 			/**
@@ -492,7 +541,11 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Launch a new browser and enter xealei url for residential manager.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_residential_manager() {
-				rmDriver = new ChromeDriver();
+				try {
+					rmDriver = getNewDriver();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			    logStep(methodName());
 			    rmDriver.get("https://xat.qa.xealei.com/login");
 			    rmpom = new PageObjectManager(rmDriver);
@@ -505,7 +558,11 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Launch a new browser and enter xealei url for clinical coordinator.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_clinical_coordinator() {
-				ccDriver = new ChromeDriver();
+				try {
+					ccDriver = getNewDriver();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			    logStep(methodName());
 			    ccDriver.get("https://xat.qa.xealei.com/login");
 			    ccpom = new PageObjectManager(ccDriver);
@@ -518,7 +575,11 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Launch a new browser and enter xealei url for social worker.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_social_worker() {
-				swDriver = new ChromeDriver();
+				try {
+					swDriver = getNewDriver();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			    logStep(methodName());
 			    swDriver.get("https://xat.qa.xealei.com/login");
 			    swpom = new PageObjectManager(swDriver);
@@ -529,67 +590,70 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Login into Xealei application as Cheif nurse role with valid {string} and {string}.")
-			public void login_into_xealei_application_as_cheif_nurse_role_with_valid_and(String cheifNurseUserName, String cheifNursePassWord) {
+			@Then("Login into Xealei application as Chief nurse role with valid {string} and {string}.")
+			public void login_into_xealei_application_as_Chief_nurse_role_with_valid_and(String ChiefNurseUserName, String ChiefNursePassWord) {
 				logStep(methodName());
-				sendKeys(cheifnursepom.getLoginPage().getUserName(), cheifNurseUserName);
-				sendKeys(cheifnursepom.getLoginPage().getPassword(), cheifNursePassWord);
-				//waitForPageLoad(cheifnurseDriver);
-				waitForFullPageElementLoad(cheifnurseDriver);
-				cheifnursepom.getLoginPage().loginButton();
-				waitForPageLoad(cheifnurseDriver);
+				sendKeys(Chiefnursepom.getLoginPage().getUserName(), ChiefNurseUserName);
+				sendKeys(Chiefnursepom.getLoginPage().getPassword(), ChiefNursePassWord);
+				//waitForPageLoad(ChiefnurseDriver);
+				waitForFullPageElementLoad(ChiefnurseDriver);
+				Chiefnursepom.getLoginPage().loginButton();
+				waitForPageLoad(ChiefnurseDriver);
 			}
-
-			@Then("Verify Incident report page is displayed.")
-			public void verify_incident_report_page_is_displayed() {
-			    // Write code here that turns the phrase above into concrete actions
-			    throw new io.cucumber.java.PendingException();
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Open notification received by staff.")
+			public void Open_notification_received_by_Staff() {
+				staffpom.getHomePage().notificationIcon(reportid);
+			}
+			
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Open notification received by Chief nurse.")
+			public void Open_notification_received_by_Chief_nurse() {
+				Chiefnursepom.getHomePage().notificationIcon(reportid);
 			}
 
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether notification is received by cheif nurse.")
-			public void verify_whether_notification_is_received_by_cheif_nurse() {
-				cheifnursepom.getHomePage().notificationIcon(reportid);
-			}
-
-			/**
-			 * Created by Nandhalala.
-			 */
-			@Then("Verify whether notification is received by residential manager.")
-			public void verify_whether_notification_is_received_by_residential_manager() {
+			@Then("Open notification received by residential manager.")
+			public void Open_notification_received_by_residential_manager() {
 				rmpom.getHomePage().notificationIcon(reportid);
 			}
 			
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether notification is received by Clinical Coordinator.")
-			public void verify_whether_notification_is_received_by_Clinical_Coordinator() {
+			@Then("Open notification received by Clinical Coordinator.")
+			public void Open_notification_received_by_Clinical_Coordinator() {
 				ccpom.getHomePage().notificationIcon(reportid);
 			}
 			
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether notification is received by Social Worker.")
-			public void verify_whether_notification_is_received_by_Social_Worker() {
+			@Then("Verify whether notification received by Social Worker.")
+			public void verify_whether_notification_received_by_Social_Worker() {
 				swpom.getHomePage().notificationIcon(reportid);
 			}
 			
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Approve the report by Cheif Nurse user.")
-			public void approve_the_report_by_Cheif_Nurse_user() {
+			@Then("Approve the report by Chief Nurse user.")
+			public void approve_the_report_by_Chief_Nurse_user() {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			    cheifnursepom.getIncidentReportPage().chiefNurseReviewerComments("approved");
-			    cheifnursepom.getIncidentReportPage().clickCompleteButton();
+			    Chiefnursepom.getIncidentReportPage().chiefNurseReviewerComments("approved");
+			    Chiefnursepom.getIncidentReportPage().clickCompleteButton();
 			}
 			
 			/**
@@ -637,12 +701,68 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Verify whether the report is in {string} status by Cheif Nurse user.")
-			public void verify_whether_the_report_is_in_status_by_Cheif_Nurse_user(String status) {
-				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
-			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-			    		" but the expected is : "+status);
+			@Then("Re-Send the report by Chief Nurse user to staff nurse.")
+			public void re_send_the_report_by_Chief_nurse_user_to_staff_nurse() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    Chiefnursepom.getIncidentReportPage().chiefNurseReviewerComments("rejected");
+			    Chiefnursepom.getIncidentReportPage().resubmitButton();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Re-Send the report by Residential Manager user.")
+			public void re_send_the_report_by_residential_manager_user() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("rejected");
+			    rmpom.getIncidentReportPage().resubmitButton();
+			    
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Switch back to staff user login.")
+			public void Switch_back_to_staff_user_login() {
+				Set<String> handle = staffDriver.getWindowHandles();
+				staffDriver.getWindowHandle();
+				staffpom.getIncidentReportPage().navigateHome();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Switch back to Chief nurse user login.")
+			public void Switch_back_to_Chief_nurse_user_login() {
+				Set<String> handle = staffDriver.getWindowHandles();
+				staffDriver.getWindowHandle();
+				staffpom.getIncidentReportPage().navigateHome();
+			}
+			
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Verify whether the report is in {string} status by Chief Nurse user.")
+			public void verify_whether_the_report_is_in_status_by_Chief_Nurse_user(String status) {
+				String rowNumber = Chiefnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	Chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    try {
+			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+				    		" but the expected is : "+status);
+				    log(Status.PASS, "The Incident Report approved by the Chief nurse is in "
+				    		+ status+" status.");
+				} catch (Exception e) {
+					log(Status.FAIL, "The Incident Report submitted by the chief nurse is in "
+				    		+actualStatus +" status not "+status);
+				}
 			}
 			
 			/**
@@ -650,10 +770,18 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify whether the report is in {string} status by Residential Manager user.")
 			public void verify_whether_the_report_is_in_status_by_Residential_Manager_user(String status) {
-				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
-			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-			    		" but the expected is : "+status);
+				String rowNumber = rmpom.getIncidentReportPage().getRowNumber();
+			    String actualStatus = rmpom.getIncidentReportPage().getStatus(rowNumber);
+			    
+			    try {
+			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+				    		" but the expected is : "+status);
+			    	log(Status.PASS, "The Incident Report approved by the residential manager is in "
+				    		+ status+" status.");
+				} catch (Exception e) {
+					log(Status.FAIL, "The Incident Report submitted by the residential manager is in "
+				    		+actualStatus +" status not "+status);
+				}
 			}
 			
 			/**
@@ -661,10 +789,18 @@ public class IncidentReportPageStep extends BaseClass {
 			 */
 			@Then("Verify whether the report is in {string} status by Clinical Coordinator user.")
 			public void verify_whether_the_report_is_in_status_by_Clinical_Coordinator_user(String status) {
-				String rowNumber = cheifnursepom.getIncidentReportPage().getRowNumber();
-			    String actualStatus =	cheifnursepom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-			    		" but the expected is : "+status);
+				String rowNumber = Chiefnursepom.getIncidentReportPage().getRowNumber();
+			    String actualStatus =	Chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
+			    
+			    try {
+			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+				    		" but the expected is : "+status);
+			    	log(Status.PASS, "The Incident Report approved by the Clincal Coordinator is in "
+				    		+ status+" status.");
+				} catch (Exception e) {
+					log(Status.FAIL, "The Incident Report submitted by the Clincal Coordinator is in "
+				    		+actualStatus +" status not "+status);
+				}
 			}
 			
 			/**
@@ -674,8 +810,16 @@ public class IncidentReportPageStep extends BaseClass {
 			public void verify_whether_the_report_is_in_status_by_Social_Worker_user(String status) {
 				String rowNumber = swpom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	swpom.getIncidentReportPage().getStatus(rowNumber);
-			    assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-			    		" but the expected is : "+status);
+			    
+			    try {
+			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
+				    		" but the expected is : "+status);
+			    	log(Status.PASS, "The Incident Report approved by the social worker is in "
+				    		+ status+" status.");
+				} catch (Exception e) {
+					log(Status.FAIL, "The Incident Report submitted by the social worker is in "
+				    		+actualStatus +" status not "+status);
+				}
 			}
 
 			/**
@@ -706,15 +850,34 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			    @Then("Login into Xealei application as Social Worker role with valid {string} and {string}.")
-			    public void login_into_xealei_application_as_social_worker_role_with_valid_and(String swUserName, String swPassWord) {
-			    	logStep(methodName());
-			    	sendKeys(swpom.getLoginPage().getUserName(), swUserName);
-			    	sendKeys(swpom.getLoginPage().getPassword(), swPassWord);
-			    	waitForPageLoad(swDriver);
-			    	waitForFullPageElementLoad(swDriver);
-			    	swpom.getLoginPage().loginButton();
-			    }
+			@Then("Login into Xealei application as Social Worker role with valid {string} and {string}.")
+			public void login_into_xealei_application_as_social_worker_role_with_valid_and(String swUserName, String swPassWord) {
+			   	logStep(methodName());
+			   	sendKeys(swpom.getLoginPage().getUserName(), swUserName);
+			   	sendKeys(swpom.getLoginPage().getPassword(), swPassWord);
+			   	waitForPageLoad(swDriver);
+			   	waitForFullPageElementLoad(swDriver);
+			   	swpom.getLoginPage().loginButton();
+			}
+			    
+			/**
+			 * Created by Nandhalala.
+			 */
+			@Then("Close all the browsers.")
+			public void Close_all_the_browsers() {
+				if(Objects.nonNull(ChiefnurseDriver)) {
+					ChiefnurseDriver.quit();
+				}
+				if(Objects.nonNull(rmDriver)) {
+					rmDriver.quit();
+				}
+				if(Objects.nonNull(ccDriver)) {
+					ccDriver.quit();
+				}
+				if(Objects.nonNull(swDriver)) {
+					swDriver.quit();
+				}
+			}
 
 			/**
 			 * Created by Nandhalala.
@@ -746,8 +909,8 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Switch to cheif nurse login and approve the incident report.")
-			public void switch_to_cheif_nurse_login_and_approve_the_incident_report() {
+			@Then("Switch to Chief nurse login and approve the incident report.")
+			public void switch_to_Chief_nurse_login_and_approve_the_incident_report() {
 			    // Write code here that turns the phrase above into concrete actions
 			    throw new io.cucumber.java.PendingException();
 			}
@@ -755,8 +918,8 @@ public class IncidentReportPageStep extends BaseClass {
 			/**
 			 * Created by Nandhalala.
 			 */
-			@Then("Switch to cheif nurse login and check whether sent back comments are available.")
-			public void switch_to_cheif_nurse_login_and_check_whether_sent_back_comments_are_available() {
+			@Then("Switch to Chief nurse login and check whether sent back comments are available.")
+			public void switch_to_Chief_nurse_login_and_check_whether_sent_back_comments_are_available() {
 			    // Write code here that turns the phrase above into concrete actions
 			    throw new io.cucumber.java.PendingException();
 			}

@@ -102,6 +102,30 @@ public class BaseClass {
 			throw new Exception("Browser Value is not valid in config.properties file.");
 		}
 	}
+	
+	public WebDriver getNewDriver() throws Exception {
+
+		WebDriver newDriver;
+		
+		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			newDriver = new ChromeDriver(getChromeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			newDriver = new EdgeDriver(getEdgeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			 newDriver = new FirefoxDriver(getFirefoxOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+		} else {
+			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
+			throw new Exception("Browser Value is not valid in config.properties file.");
+		}
+		
+		return newDriver;
+		
+	}
 
 	private ChromeOptions getChromeOptions() {
 		
