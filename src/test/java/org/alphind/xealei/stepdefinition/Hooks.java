@@ -38,9 +38,9 @@ public class Hooks extends BaseClass {
 
 		reportFlush();
 		waitForPageLoad();
-//		if (driver != null) {
-//			quit();
-//		}
+		if (getDriver() != null) {
+			quit();
+		}
 	}
 }
 

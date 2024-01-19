@@ -75,7 +75,7 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
 		Given User is on Xealei login page
-    When User should perform login as facility admin "<StaffUserName>" and "<StaffPassWord>"
+    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
@@ -84,162 +84,97 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		Then Click on next button.
 		And Click on complete button.
 		And Verify whether the report is in pending status.
-		Then Launch a new browser and enter xealei url for cheif nurse.
-		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-		Then Verify whether notification is received by cheif nurse.
-		And Approve the report by Cheif Nurse user.
-		And Verify whether the report is in "In Progress" status by Cheif Nurse user.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
 		Then Launch a new browser and enter xealei url for residential manager.
 		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
-		Then Verify whether notification is received by residential manager.
+		Then Open notification received by residential manager.
 		And Approve the report by Residential Manager user.
 		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Launch a new browser and enter xealei url for clinical coordinator.
 		And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
-		Then Verify whether notification is received by Clinical Coordinator.
+		Then Open notification received by Clinical Coordinator.
 		And Approve the report by Clinical Coordinator user.
 		And Verify whether the report is in "In Progress" status by Clinical Coordinator user.
 		Then Launch a new browser and enter xealei url for social worker.
 		And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
-		Then Verify whether notification is received by Social Worker.
+		Then Verify whether notification received by Social Worker.
 		And Approve the report by Social Worker user.
 		And Verify whether the report is in "Finalized" status by Social Worker user.
+		Then Close all the browsers.
 		
 		Examples:
 		
-		|StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		|StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
 		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| 	|ASWorker| 	|auto@123|
 		
-Scenario Outline: To verify whether cheif nurse can able to reject and reapprove the incident Report.
-     
+@RejectAndReapprovebyChiefNurse		
+Scenario Outline: To verify whether Chief nurse can able to reject and reapprove the incident Report.
+
     Given User is on Xealei login page
-    When User should perform login as facility admin "<StaffUserName>" and "<StaffPassWord>"
+    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
-    And Select the individual for whom the incident report has to be created.
-    Then Enter all the details of the Incident.
-    #		Then Click on next button.
-    #		When Incident report page is displayed verify whether all the data is displayed correctly.
-    #		And Click on complete button.
-    #		And Verify whether the report is in pending status.
-    Then Launch a new browser and enter xealei url for cheif nurse.
-    And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-
-    #Then Verify whether notification is received.
-    #And Approve the report.
-    #And Verify whether the report is in "" status.
-    #Then Launch a new browser and enter xealei url for residential manager.
-    #And Login into Xealei application as Residential Manager role with valid "AManager" and "auto@123".
-    #Then Verify whether notification is received.
-    #And Approve the report.
-    #And Verify whether the report is in "" status.
-    #Then Launch a new browser and enter xealei url for clinical coordinator.
-    #And Login into Xealei application as CLinical Coordinator role with valid "AClinical" and "auto@123".
-    #Then Verify whether notification is received.
-    #And Approve the report.
-    #And Verify whether the report is in "" status.
-    #Then Launch a new browser and enter xealei url for social worker.
-    #And Login into Xealei application as Social Worker role with valid "ASWorker" and "auto@123".
-    #		Then Verify whether notification is received.
-    #And Approve the report.
-    #And Verify whether the report is in "" status.
-    Examples: 
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
-
-  Scenario Outline: To verify whether cheif nurse can able to reject and reapprove the incident Report.
-    Given User is on Xealei login page.
-    When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
-    Then Verify Home page is displayed.
-    Then Navigate to Reports module.
-    And Navigate to Incident Report sub module.
-    Then Click on Add New Incident Report button.
-    And Verify Incident report page is displayed.
-    And Select the individual for whom the incident report has to be created.
-    Then Enter all the details of the Incident.
-    Then Click on next button.
-    When Incident report page is displayed verify whether all the data is displayed correctly.
-    And Click on complete button.
-    And Verify whether the report is in pending status.
-    Then Launch a new browser and enter xealei url.
-    And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "auto@123".
-    Then Verify whether notification is received.
-    And Deny the report.
-    Then Switch to Staff login and check whether sent back comments are available.
-    And Again submit the report.
-    Then Switch to cheif nurse login and approve the incident report.
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
-
-  Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report.
-    Given User is on Xealei login page.
-    When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
-    Then Verify Home page is displayed.
-    Then Navigate to Reports module.
-    And Navigate to Incident Report sub module.
-    Then Click on Add New Incident Report button.
-    And Verify Incident report page is displayed.
-    And Select the individual for whom the incident report has to be created.
-    Then Enter all the details of the Incident.
-    Then Click on next button.
-    When Incident report page is displayed verify whether all the data is displayed correctly.
-    And Click on complete button.
-    And Verify whether the report is in pending status.
-    Then Launch a new browser and enter xealei url.
-    And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-    Then Verify whether notification is received.
-    And Approve the report.
-    And Verify whether the report is in "" status.
-    Then Launch a new browser and enter xealei url.
-    And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
-    Then Verify whether notification is received.
-    And Deny the report.
-    Then Switch to cheif nurse login and check whether sent back comments are available.
-    And Again submit the report.
-    Then Switch to Residential Manager login and approve the incident report.
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
 		Then Click on next button.
 		And Click on complete button.
 		And Verify whether the report is in pending status.
-		Then Launch a new browser and enter xealei url for cheif nurse.
-		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-		Then Verify whether notification is received by cheif nurse.
-		And Re-Send the report by Cheif Nurse user to staff nurse. 
-     
-    |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Re-Send the report by Chief Nurse user to staff nurse.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Close all the browsers.
 		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-     
+		Examples:
+      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
+      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
+
+  
+@RejectAndReapprovebyResidentialManager   
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
-		Given User is on Xealei login page.
-		When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
-		Then Verify Home page is displayed.
-		Then Navigate to Reports module.
-		And Navigate to Incident Report sub module.
-		Then Click on Add New Incident Report button.
-		And Verify Incident report page is displayed.
+		Given User is on Xealei login page
+    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should verify the Incident report module is working
+    Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
 		Then Enter all the details of the Incident.
 		Then Click on next button.
-		When Incident report page is displayed verify whether all the data is displayed correctly.
 		And Click on complete button.
 		And Verify whether the report is in pending status.
-		Then Launch a new browser and enter xealei url.
-		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
-		Then Verify whether notification is received.
-		And Approve the report.
-		And Verify whether the report is in "" status.
-		Then Launch a new browser and enter xealei url.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
 		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
-		Then Verify whether notification is received.
-		And Deny the report.
-		Then Switch to cheif nurse login and check whether sent back comments are available.
-		And Again submit the report.
-		Then Switch to Residential Manager login and approve the incident report.    
+		Then Open notification received by residential manager.
+		And Re-Send the report by Residential Manager user.
+		And Verify whether the report is in "Sent Back" status by Residential Manager user.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Open notification received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Close all the browsers.
     
-   |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+Examples:    
+    
+   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
 		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
