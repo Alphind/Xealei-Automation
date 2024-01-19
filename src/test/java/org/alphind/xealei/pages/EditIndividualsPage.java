@@ -986,7 +986,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 
 	public EditIndividualsPage updateLastName(int rowNum) {
 		
-			String updatedLastName = readExcel("Test Datas", "EditIndividuals", rowNum, 2) + randomName();
+			String updatedLastName = readExcel("Test Datas", "EditIndividuals", rowNum, 2) + secondsCount();
 			sendKeys(editLNField, updatedLastName);
 			writeExcelToOverwrite("Test Datas", "EditIndividuals", 1, 21, updatedLastName);
 			return this;

@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
 
@@ -102,6 +104,28 @@ public class BaseClass {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
 		}
+	}
+	
+	public WebDriver getNewDriver() throws Exception {
+
+		WebDriver newdriver;
+		
+		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			newdriver = new ChromeDriver(getChromeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			newdriver = new EdgeDriver(getEdgeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			newdriver = new FirefoxDriver(getFirefoxOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+		} else {
+			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
+			throw new Exception("Browser Value is not valid in config.properties file.");
+		}
+		return newdriver;
 	}
 
 	private ChromeOptions getChromeOptions() {
@@ -610,6 +634,12 @@ public class BaseClass {
 		String text = getText(driver.findElement(By.xpath(elementxpath)));
 		return text;
 	}
+	
+	public String getTextString(WebDriver currentdriver,String elementxpath) {
+		// String text = getText(dr.get().findElement(By.xpath(elementxpath)));
+		String text = getText(currentdriver.findElement(By.xpath(elementxpath)));
+		return text;
+	}
 
 	// 42. Wait for Loading
 
@@ -697,6 +727,13 @@ public class BaseClass {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	
+	public void waitForInVisiblityOfElement(WebDriver currentdriver,WebElement element, long seconds) {
+		// WebDriverWait wait = new WebDriverWait(dr.get(),
+		// Duration.ofSeconds(seconds));
+		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofSeconds(seconds));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
 
 //     //  41. Clear Text
 
@@ -778,9 +815,9 @@ public class BaseClass {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
-	public void waitForFullPageElementLoad(WebDriver driver) {
+	public void waitForFullPageElementLoad(WebDriver currentdriver) {
 
-		driver.manage().timeouts().getPageLoadTimeout();
+		currentdriver.manage().timeouts().getPageLoadTimeout();
 	}
 	
 //     //50. Extent Report 
@@ -872,7 +909,7 @@ public class BaseClass {
 		driver.navigate().refresh();
 	}
 
-	public String randomName() {
+	public String secondsCount() {
 
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("mm:ss");
 		LocalDateTime now = LocalDateTime.now();
@@ -942,12 +979,20 @@ public class BaseClass {
 	
 	public String getFutureTime(String EnterPattern) {
 
-		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(02);
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
+		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
+		return DateAsPerGiven;
+	}
+	
+	public String getPastTime(String EnterPattern) {
+
+		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Europe/London"));
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
 	}
-	
 
 	public String getCurrentDate() {
 
@@ -992,14 +1037,31 @@ public class BaseClass {
 		return formattedDate.toUpperCase();
 	}
 	
-	public String getCurrentMonth(String pattern) {
+	public String getCurrentMonth() {
 
-		LocalDate currentDate = LocalDate.now();
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-		String formattedDate = currentDate.format(formatter);
-
-		return formattedDate.toUpperCase();
+	LocalDate currentDate = LocalDate.now();
+	int day = currentDate.getMonthValue();
+	String format = (day <= 9) ? "M" : "MM";
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+	String formattedDate = currentDate.format(formatter);
+	return formattedDate.toUpperCase();
 	}
+	
+	
+	public String dateConversion(String Date, String Time) throws ParseException {
+					
+		        // Specify the input date format
+	        SimpleDateFormat inputFormat = new SimpleDateFormat("M/dd/yyyy hh:mma", Locale.ENGLISH);
 
+	        // Specify the desired output date format
+	        SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM dd yyyy, hh:mm a", Locale.ENGLISH);
+
+	        // Parse the input date string
+				Date date = inputFormat.parse(Date+" "+Time);
+				
+				// Format the date to the desired output format
+				String outputDateString = outputFormat.format(date);
+				return outputDateString;
+}
+	
 }

@@ -1,12 +1,11 @@
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
-  @NegativeScenarios
+ @NegativeScenarios
   Scenario Outline: To verify IR form creation via manual by "<adminName>"
     Given User is on Xealei login page
     When User should perform login as facility admin "<userName>" and "<password>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should also verify the performed login as "<adminName>"
-    
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
     Then User should verify the save button is disabled
@@ -55,30 +54,65 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then User should verify the date picker should appeared
     Then User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date
     And  User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly
+   #NOT IMPLEMENTED
+   #Then User should verify the validation info message is thrown after selecting Notification Time field value is lesser than Event Date & Time field value "Notified time should be after than event time"
+    Then User should verify the validation info message is thrown after selecting greater than current time in Notification Time field "Notified time should be after than event time"
+    Then User should verify that able to enter time in Notification Time field
+    Then User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page
+    Then User should verify the edit button is working in IR Grid
+    Then User should verify that the IR form continues to display the previously entered draft datas
+    Then User should verify the breadcrum text
+    And  User should perform all the fields
+    Then User should verify all the created details are displayed as expected
+    Then User should verify the breadcrums texts
 
-
-    #Then User should verify the validation info message is thrown after selecting Notification Time field value is lesser than Event Date & Time field value
-    #Then User should verify the validation info message is thrown after selecting greater than current time in Notification Time field "Notified time should be after than event time"
-    #Then User should verify that able to enter time in Notification Time field
-    #Then User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page
-    #Then User should verify the edit button is working in IR Grid
-    #Then User should verify the breadcrum text
-    #Then User should verify Next > button is working in IR Page
-    #Then User should verify the breadcrums texts
-    #Then User should verify all the created details are displayed as expected?
-    #Then User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page
-    #Then User should verify the view button is working in IR Grid
-    #Then User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page
     Examples: 
       | userName | password | adminName |
       | AStaff   | auto@123 | Staff     |
+    
+   
+@AllApprove
+Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
-  #     |VVCn     | Alphind@123 | Chief Nurse			|
-  #     |VPRM     | Alphind@123 | Resident Manager|
-  
-  
-  @AllApprove
-  Scenario Outline: To verify an Incident report can be approved by all levels of users.
+		Given User is on Xealei login page
+    When User should perform login as facility admin "<StaffUserName>" and "<StaffPassWord>"
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should verify the Incident report module is working
+    Then User should verify the ADD New Incident Report button is working
+		And Select the individual for whom the incident report has to be created.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for cheif nurse.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
+		Then Verify whether notification is received by cheif nurse.
+		And Approve the report by Cheif Nurse user.
+		And Verify whether the report is in "In Progress" status by Cheif Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Verify whether notification is received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Launch a new browser and enter xealei url for clinical coordinator.
+		And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
+		Then Verify whether notification is received by Clinical Coordinator.
+		And Approve the report by Clinical Coordinator user.
+		And Verify whether the report is in "In Progress" status by Clinical Coordinator user.
+		Then Launch a new browser and enter xealei url for social worker.
+		And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
+		Then Verify whether notification is received by Social Worker.
+		And Approve the report by Social Worker user.
+		And Verify whether the report is in "Finalized" status by Social Worker user.
+		
+		Examples:
+		
+		|StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| 	|ASWorker| 	|auto@123|
+		
+Scenario Outline: To verify whether cheif nurse can able to reject and reapprove the incident Report.
+     
     Given User is on Xealei login page
     When User should perform login as facility admin "<StaffUserName>" and "<StaffPassWord>"
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
@@ -165,5 +199,47 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then Switch to cheif nurse login and check whether sent back comments are available.
     And Again submit the report.
     Then Switch to Residential Manager login and approve the incident report.
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
+		And Select the individual for whom the incident report has to be created.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for cheif nurse.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
+		Then Verify whether notification is received by cheif nurse.
+		And Re-Send the report by Cheif Nurse user to staff nurse. 
+     
+    |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+     
+Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
+		Given User is on Xealei login page.
+		When User is login into Xealei application as Staff role user with valid <username> and <passowrd>.
+		Then Verify Home page is displayed.
+		Then Navigate to Reports module.
+		And Navigate to Incident Report sub module.
+		Then Click on Add New Incident Report button.
+		And Verify Incident report page is displayed.
+		And Select the individual for whom the incident report has to be created.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		When Incident report page is displayed verify whether all the data is displayed correctly.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url.
+		And Login into Xealei application as Cheif nurse role with valid "<CheifNurseUserName>" and "<CheifNursePassWord>".
+		Then Verify whether notification is received.
+		And Approve the report.
+		And Verify whether the report is in "" status.
+		Then Launch a new browser and enter xealei url.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Verify whether notification is received.
+		And Deny the report.
+		Then Switch to cheif nurse login and check whether sent back comments are available.
+		And Again submit the report.
+		Then Switch to Residential Manager login and approve the incident report.    
+    
+   |StaffUserName| |StaffPassWord| |CheifNurseUserName| |CheifNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|

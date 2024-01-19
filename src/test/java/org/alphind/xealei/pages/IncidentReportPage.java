@@ -15,7 +15,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -153,23 +152,20 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//mat-select[@placeholder='Notification Method']")
 	private WebElement notificationMethodDropdownBox;
 
-	private String notificationMethod = "//span[contains(text(),'method') and @class = 'mat-option-text']";
-
-//	@FindBy(xpath = "//span[contains(text(),'Phone Call') and @class = 'mat-option-text']")
-//	private WebElement notificationMethodPhoneCallOption;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Email') and @class = 'mat-option-text']")
-//	private WebElement notificationMethodEmailOption;
-//	
-//	@FindBy(xpath = "//span[contains(text(),'Text Message') and @class = 'mat-option-text']")
-//	private WebElement notificationMethodTextMessageOption;
+	private String notificationMethod = "//span[contains(text(),'method')]/parent::mat-option";
 
 	@FindBy(xpath = "//a[contains(text(),'Reports')]")
 	private WebElement breadCrumTxtLinkReports;
 
 	@FindBy(xpath = "//li[contains(text(),'Incident Report')]")
 	private WebElement breadCrumTxtLinkIncidentReport;
+	
+	@FindBy(xpath = "//span[contains(text(),'Incident Report')]/parent::li")
+	private WebElement breadCrumTxtLinkIncidentReportInViewPage;
 
+	
+	
+	
 	@FindBy(xpath = "//span[text()='Next ']/parent::button")
 	private WebElement nextButton;
 
@@ -342,9 +338,14 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[text()='Complete']/parent::button")
 	private WebElement completeButton;
 
+	private String IDColumnXpath = "//table/tbody/tr[rownumber]/td[1]";
+
 	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
 
 	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
+
+	// private String statusColumnXpath =
+	// "//table/tbody/tr[rowumber]/td[7]/div/span";
 
 	private String editButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'Edit')]";
 
@@ -388,6 +389,90 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//input[@ng-reflect-name='NotifyOn']")
 	private WebElement notificationDateField;
 
+	@FindBy(xpath = "//textarea[@formcontrolname = 'comments']")
+	private WebElement reviewerComments;
+
+	@FindBy(xpath = "//mat-error[contains(text(),'Notified time should be')]")
+	private WebElement lesserThanToastMsgForNotificationTime;
+
+	@FindBy(xpath = "//div[@x-lbllocval]")
+	private WebElement locationValue;
+
+	@FindBy(xpath = "//div[@x-lbl-cause]")
+	private WebElement injuryCauseValue;
+
+	@FindBy(xpath = "//div[@x-lbl-injury]")
+	private WebElement wasInjuredValue;
+
+	@FindBy(xpath = "//div[@x-lbl-injurydesc]")
+	private WebElement injuryDescriptionValue;
+
+	@FindBy(xpath = "//span[@x-lbl-siteinjuryfront]")
+	private WebElement siteOfInjuryFrontValue;
+
+	@FindBy(xpath = "//div[@x-lbl-siteinjuryback]")
+	private WebElement siteOfInjuryBackValue;
+
+	@FindBy(xpath = "//div[@x-lbl-treatment]")
+	private WebElement treatmentReceivedValue;
+
+	@FindBy(xpath = "//div[@x-lbl-future]")
+	private WebElement futureTreatmentValue;
+
+	@FindBy(xpath = "//div[@x-lbl-type]")
+	private WebElement injuryTypeValue;
+	
+	@FindBy(xpath = "//h1[@x-lbl-injurycolor]")
+	private WebElement injuryColorValue;
+	
+	@FindBy(xpath = "//div[@x-lbl-severity]")
+	private WebElement injurySeverityValue;
+
+	@FindBy(xpath = "//div[@x-lbl-notstatus]")
+	private WebElement eventNotifiStatusValue;
+
+	@FindBy(xpath = "//div[@x-lbl-notifiedper]")
+	private WebElement personNotifiedValue;
+
+	@FindBy(xpath = "//div[@x-lbl-relation]")
+	private WebElement relationshipValue;
+
+	@FindBy(xpath = "//div[@x-lbl-noton]")
+	private WebElement notificationDateAndTimeValue;
+
+	@FindBy(xpath = "//div[@x-lbl-notby]")
+	private WebElement notifiedByValue;
+
+	@FindBy(xpath = "//div[@x-lbl-notmethod]")
+	private WebElement notificationMethodValue;
+
+	String BC = "//a[text()='createdSN']/parent::li";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public WebElement getJFIFFileFormatNotSupportedToastMsg() {
 		return JFIFFileFormatNotSupportedToastMsg;
 	}
@@ -504,6 +589,59 @@ public class IncidentReportPage extends BaseClass {
 		return eventDateAndTimeCalenderIconButton;
 	}
 
+	public WebElement getLesserThanToastMsgForNotificationTime() {
+		return lesserThanToastMsgForNotificationTime;
+	}
+
+	public WebElement getAddNewIncidentReportButton() {
+		return addNewIncidentReportButton;
+	}
+
+	public WebElement getInjuryDescriptionTxtBox() {
+		return injuryDescriptionDescriptionTxtBox;
+	}
+
+	public WebElement getBreadCrumTxtLinkIncidentReport() {
+		return breadCrumTxtLinkIncidentReport;
+	}
+
+	public WebElement getBreadCrumTxtLinkReports() {
+		return breadCrumTxtLinkReports;
+	}
+	
+	public WebElement getInjuryColorValue() {
+		return injuryColorValue;
+	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * @author Nandhalala. Checks whether Incident report heading is displayed or
 	 *         not.
@@ -513,6 +651,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @return whether incident report page is displayed or not.
 	 */
 	public boolean isIncidentReportPageDisplayed() {
+
 		if (incidentReportModuleText.isDisplayed()) {
 			return true;
 		}
@@ -528,6 +667,7 @@ public class IncidentReportPage extends BaseClass {
 	public void selectIndividualDetails() {
 		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
 		String[] fullname = individualDetail.split(" ");
+
 		if (fullname.length > 2) {
 			individualDetail = fullname[0] + "  " + fullname[1];
 			for (int i = 2; i < fullname.length; i++) {
@@ -539,7 +679,6 @@ public class IncidentReportPage extends BaseClass {
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
 		select(driver, individualName);
-
 	}
 
 	/**
@@ -564,8 +703,10 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String enterInjuryDescriptionData() {
 		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3).trim();
-		sendKeys(injuryDescriptionDescriptionTxtBox, injuryDescription + " - " + randomName());
-		return injuryDescription + " - " + randomName();
+		String newDescription = injuryDescription + secondsCount();
+		sendKeys(injuryDescriptionDescriptionTxtBox, newDescription);
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18, newDescription);
+		return newDescription;
 	}
 
 	/**
@@ -580,9 +721,162 @@ public class IncidentReportPage extends BaseClass {
 		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
 		waitForFullPageElementLoad(driver);
 		select(wasPatientInjured);
-
 		waitForPageLoad(driver);
 
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Fore Head.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewForeHead() {
+		return getAttribute(frontViewForeHeadInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Face.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewFace() {
+		return getAttribute(frontViewFaceInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front Right Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightShoulder() {
+		return getAttribute(frontViewRightShoulderInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Left Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftShoulder() {
+		return getAttribute(frontViewLeftShoulderInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Chest.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewChest() {
+		return getAttribute(frontViewChestInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Abdomen.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewAbdomen() {
+		return getAttribute(frontViewAbdomenInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Right Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightArm() {
+		return getAttribute(frontViewRightArmInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Left Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftArm() {
+		return getAttribute(frontViewLefttArmInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Right Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightWrist() {
+		return getAttribute(frontViewRightWristInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Left Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftWrist() {
+		return getAttribute(frontViewLefttWristInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Right Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightKnee() {
+		return getAttribute(frontViewRightKneeInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Left Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLEftKnee() {
+		return getAttribute(frontViewLeftKneeInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Right Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewRightFoot() {
+		return getAttribute(frontViewRightFootInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Front View Left Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipFrontViewLeftFoot() {
+		return getAttribute(frontViewLeftFootInjury, "title");
 	}
 
 	/**
@@ -658,8 +952,153 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. Select whether the front view injured site.
+	 * <<<<<<< HEAD
 	 * 
+	 * @author Nandhalala. Select whether the front view injured site. =======
+	 * @author Nandhalala. Get tooltip for BAck View Head.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewHead() {
+		return getAttribute(backViewHeadInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Right Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightShoulder() {
+		return getAttribute(backViewRightShoulderInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Left Shoulder.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftShoulder() {
+		return getAttribute(backViewLeftShoulderInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Back.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewBack() {
+		return getAttribute(backViewBackInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Hip.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewHip() {
+		return getAttribute(backViewHipInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Right Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightArm() {
+		return getAttribute(backViewRightArmInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Left Arm.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftArm() {
+		return getAttribute(backViewLefttArmInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Right Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightWrist() {
+		return getAttribute(backViewRightWristInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Left Wrist.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftWrist() {
+		return getAttribute(backViewLefttWristInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Right Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightKnee() {
+		return getAttribute(backViewRightKneeInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Left Knee.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftKnee() {
+		return getAttribute(backViewLeftKneeInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Right Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewRightFoot() {
+		return getAttribute(backViewRightFootInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Get tooltip for Back View Left Foot.
+	 * 
+	 * 
+	 * @created on 09-01-2024.
+	 * 
+	 */
+	public String getTooltipBackViewLeftFoot() {
+		return getAttribute(backViewLeftFootInjury, "title");
+	}
+
+	/**
+	 * @author Nandhalala. Select whether the front view injured site. *
 	 * 
 	 * @created on 22-10-2023.
 	 * 
@@ -756,9 +1195,10 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-10-2023.
 	 */
 	public void selectInjuryType() {
+
 		String[] injuryType = readExcel("Test Datas", "Incident Reports", 1, 9).split(",");
 		for (String injurytype : injuryType) {
-			switch (injurytype) {
+			switch (injurytype.trim()) {
 			case "Abrasion":
 				click(injuryTypeAbrasionButton);
 				break;
@@ -848,7 +1288,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023
 	 */
 	public void enterNotifiedByData() {
-		String notifiedby = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+		String notifiedby = readExcel("Test Datas", "Incident Reports", 1, 16).trim();
 		sendKeys(notifedByTxtBox, notifiedby);
 	}
 
@@ -857,7 +1297,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @created on 22-12-2023.
 	 */
-	public void selectReletionship() {
+	public void selectRelationship() {
 		String relationship = readExcel("Test Datas", "Incident Reports", 1, 13).trim();
 		click(relationshipDropdown);
 		switch (relationship) {
@@ -877,10 +1317,35 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @created on 22-12-2023.
 	 */
-	public void selectNotificationMethod() {
-		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-		click(notificationMethodDropdownBox);
+	public void enterNotificationDate() {
+		
+		String currentDate = getCurrentMonth()+"/"+getCurrentDate()+"/"+getCurrentDtYearMonth("yyyy");
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
+		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+		sendKeys(notificationDateCalenderTxtbox, notificationDate);
+	}
 
+	/**
+	 * @author Nandhalala. Select the Notification Time.
+	 * 
+	 * @created on 22-12-2023.
+	 */
+	public void enterNotificationTime() {
+
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
+		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
+		sendKeys(timeTxtbox, notificationDate);
+	}
+
+	/**
+	 * @author Nandhalala. Select the Notification Method.
+	 * 
+	 * @created on 22-12-2023.
+	 */
+	public void selectNotificationMethod() {
+		
+		click(notificationMethodDropdownBox);
+		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 17).trim();
 		notificationMethod = notificationMethod.replace("method", notifiedMethod);
 		select(notifiedMethod);
 	}
@@ -894,10 +1359,13 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void clickCompleteButton() {
 		click(completeButton);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 
 	public String getRowNumber() {
+
+		waitForPageLoad(this.driver);
+		System.out.println(readExcel("Test Datas", "Incident Reports", 1, 18));
 		int i = 1;
 		for (WebElement element : injurySummaries) {
 			if (getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
@@ -919,7 +1387,122 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String getStatus(String rowNumber) {
 		String excatColumn = statusColumnXpath.replaceAll("rownumber", rowNumber);
+		return getTextString(this.driver, excatColumn);
+	}
+
+	/**
+	 * @author Nandhalala. To get the ID of the Incident report of the mentioned
+	 *         row.
+	 * 
+	 * @param rowNumber
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 27-12-2023.
+	 */
+	public String getReportID(String rowNumber) {
+		String excatColumn = IDColumnXpath.replaceAll("rownumber", rowNumber);
+		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 19, getTextString(excatColumn));
 		return getTextString(excatColumn);
+	}
+
+	/**
+	 * @author Nandhalala. To enter Chief Nurse reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 09-01-2024.
+	 */
+	public void chiefNurseReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch (decision) {
+		case "APPROVED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 20);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+		case "REJECTED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 24);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+
+		}
+	}
+
+	/**
+	 * @author Nandhalala. To enter Residential Manager reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 09-01-2024.
+	 */
+	public void residentialManagerReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch (decision) {
+		case "APPROVED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 21);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+		case "REJECTED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 25);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+
+		}
+	}
+
+	/**
+	 * @author Nandhalala. To enter Clinical coordinator reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 11-01-2024.
+	 */
+	public void clinicalCoordinatorReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch (decision) {
+		case "APPROVED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 22);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+		case "REJECTED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 26);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+
+		}
+	}
+
+	/**
+	 * @author Nandhalala. To enter social worker reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 11-01-2024.
+	 */
+	public void socialWorkerReviewerComments(String decision) {
+		decision = decision.toUpperCase();
+		switch (decision) {
+		case "APPROVED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 23);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+		case "REJECTED": {
+			String comments = readExcel("Test Datas", "Incident Reports", 1, 27);
+			sendKeys(reviewerComments, comments);
+			break;
+		}
+
+		}
 	}
 
 	public void viewButton(String rowNumber) {
@@ -983,14 +1566,6 @@ public class IncidentReportPage extends BaseClass {
 
 		click(saveButton);
 		waitForPageLoad();
-
-	}
-
-	public void injuryDescription() {
-
-		sendKeys(injuryDescriptionDescriptionTxtBox, "Twisted Ankle" + randomName());
-		String attribute = getAttribute(injuryDescriptionDescriptionTxtBox, "value");
-		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18, attribute);
 	}
 
 	public void savedSuccessfulToastMsgokButton() {
@@ -1429,11 +2004,11 @@ public class IncidentReportPage extends BaseClass {
 		String eventMonth = attribute.substring(5, 7);
 		System.out.println("Month alone - " + eventMonth);
 
-		String text = getText(datePicker);
-
-		// Mapping of numeric months to three-letter abbreviations
-		String[] monthAbbreviations = { "", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV",
-				"DEC" };
+//		String text = getText(datePicker);
+//
+//		// Mapping of numeric months to three-letter abbreviations
+//		String[] monthAbbreviations = { "", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV",
+//				"DEC" };
 
 		// Convert numeric month to integer
 		int monthNumber = Integer.parseInt(eventMonth);
@@ -1614,11 +2189,11 @@ public class IncidentReportPage extends BaseClass {
 		try {
 			Assert.assertEquals(
 					"[Selected date, month and year using dropdown] - Selected date is NOT displayed in Notification Date Field",
-					getCurrentMonth("M") + "/" + getCurrentDate() + "/" + eventYear, selectedDate);
+					getCurrentMonth() + "/" + getCurrentDate() + "/" + eventYear, selectedDate);
 
 			log(Status.PASS,
 					"[Selected date, month and year using dropdown] - Selected date is displayed in Notification Date Field Exp Dt - "
-							+ selectedDate + " Actual Dt - " + getCurrentMonth("M") + "/" + getCurrentDate() + "/"
+							+ selectedDate + " Actual Dt - " + getCurrentMonth() + "/" + getCurrentDate() + "/"
 							+ eventYear);
 
 		} catch (AssertionError e) {
@@ -1627,213 +2202,212 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
-
 	public IncidentReportPage frontViewForeHeadInjury() {
 
 		click(frontViewForeHeadInjury);
 		waitForFullPageElementLoad();
 		String clickedFrontHead = getAttribute(frontViewForeHeadInjury, "class");
-		
-		 if (clickedFrontHead.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  front view Fore Head successfully");	
+
+		if (clickedFrontHead.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  front view Fore Head successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view fore Head" );
+			log(Status.FAIL, "Unable to SELECT in Front view fore Head");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewFaceInjury() {
 
 		click(frontViewFaceInjury);
 		waitForFullPageElementLoad();
 		String clickedFace = getAttribute(frontViewFaceInjury, "class");
-		
-		 if (clickedFace.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Face successfully");	
+
+		if (clickedFace.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Face successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Face" );
+			log(Status.FAIL, "Unable to SELECT in Front view Face");
 		}
 		return this;
 	}
-	
-	
+
 	public IncidentReportPage frontViewRightShoulderInjury() {
 
 		click(frontViewRightShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedRShoulder = getAttribute(frontViewRightShoulderInjury, "class");
-		
-		 if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Right Shoulder successfully");	
+
+		if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Right Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Right Shoulder" );
+			log(Status.FAIL, "Unable to SELECT in Front view Right Shoulder");
 		}
 		return this;
 	}
-	
-	
+
 	public IncidentReportPage frontViewLeftShoulderInjury() {
 
 		click(frontViewLeftShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedLShoulder = getAttribute(frontViewLeftShoulderInjury, "class");
-		
-		 if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Left Shoulder successfully");	
+
+		if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Left Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Left Shoulder" );
+			log(Status.FAIL, "Unable to SELECT in Front view Left Shoulder");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewChestInjury() {
 
 		click(frontViewChestInjury);
 		waitForFullPageElementLoad();
 		String clickedChest = getAttribute(frontViewChestInjury, "class");
-		
-		 if (clickedChest.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Chest successfully");	
+
+		if (clickedChest.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Chest successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Chest" );
+			log(Status.FAIL, "Unable to SELECT in Front view Chest");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewAbdomenInjury() {
 
 		click(frontViewAbdomenInjury);
 		waitForFullPageElementLoad();
 		String clickedAbdomen = getAttribute(frontViewAbdomenInjury, "class");
-		
-		 if (clickedAbdomen.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Abdomen successfully");	
+
+		if (clickedAbdomen.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Abdomen successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Abdomen" );
+			log(Status.FAIL, "Unable to SELECT in Front view Abdomen");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewRightArmInjury() {
 
 		click(frontViewRightArmInjury);
 		waitForFullPageElementLoad();
 		String clickedRArm = getAttribute(frontViewRightArmInjury, "class");
-		
-		 if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Right Arm successfully");	
+
+		if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Right Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Right Arm" );
+			log(Status.FAIL, "Unable to SELECT in Front view Right Arm");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewLefttArmInjury() {
 
 		click(frontViewLefttArmInjury);
 		waitForFullPageElementLoad();
 		String clickedLArm = getAttribute(frontViewLefttArmInjury, "class");
-		
-		 if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Left Arm successfully");	
+
+		if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Left Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Left Arm" );
+			log(Status.FAIL, "Unable to SELECT in Front view Left Arm");
 		}
 		return this;
 	}
+
 	public IncidentReportPage frontViewRightWristInjury() {
 
 		click(frontViewRightWristInjury);
 		waitForFullPageElementLoad();
 		String clickedRWrist = getAttribute(frontViewRightWristInjury, "class");
-		
-		 if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Right Wrist successfully");	
+
+		if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Right Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Right Wrist" );
+			log(Status.FAIL, "Unable to SELECT in Front view Right Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage frontViewLefttWristInjury() {
 
 		click(frontViewLefttWristInjury);
 		waitForFullPageElementLoad();
 		String clickedLWrist = getAttribute(frontViewLefttWristInjury, "class");
-		
-		 if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Left Wrist successfully");	
+
+		if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Left Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Left Wrist" );
+			log(Status.FAIL, "Unable to SELECT in Front view Left Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage frontViewRightKneeInjury() {
 
 		click(frontViewRightKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedRknee = getAttribute(frontViewRightKneeInjury, "class");
-		
-		 if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Right Knee successfully");	
+
+		if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Right Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Right Knee" );
+			log(Status.FAIL, "Unable to SELECT in Front view Right Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewLeftKneeInjury() {
 
 		click(frontViewLeftKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedLknee = getAttribute(frontViewLeftKneeInjury, "class");
-		
-		 if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Left Knee successfully");	
+
+		if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Left Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Left Knee" );
+			log(Status.FAIL, "Unable to SELECT in Front view Left Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewLeftFootInjury() {
 
 		click(frontViewLeftFootInjury);
 		waitForFullPageElementLoad();
 		String clickedLFoot = getAttribute(frontViewLeftFootInjury, "class");
-		
-		 if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Left Foot successfully");	
+
+		if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Left Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Left Foot" );
+			log(Status.FAIL, "Unable to SELECT in Front view Left Foot");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage frontViewRightFootInjury() {
 
 		click(frontViewRightFootInjury);
 		waitForFullPageElementLoad();
 		String clickedRFoot = getAttribute(frontViewRightFootInjury, "class");
-		
-		 if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in Front view  Right Foot successfully");	
+
+		if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in Front view  Right Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in Front view Right Foot" );
+			log(Status.FAIL, "Unable to SELECT in Front view Right Foot");
 		}
 		return this;
 	}
-	
 
 	public IncidentReportPage backViewHeadInjury() {
 
 		click(backViewHeadInjury);
 		waitForFullPageElementLoad();
 		String clickedHead = getAttribute(backViewHeadInjury, "class");
-		
-		 if (clickedHead.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view Head successfully");	
+
+		if (clickedHead.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view Head successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Head" );
+			log(Status.FAIL, "Unable to SELECT in back view Head");
 		}
 		return this;
 	}
@@ -1843,11 +2417,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewRightShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedRShoulder = getAttribute(backViewRightShoulderInjury, "class");
-		
-		 if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Right Shoulder successfully");	
+
+		if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Right Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Right Shoulder" );
+			log(Status.FAIL, "Unable to SELECT in back view Right Shoulder");
 		}
 		return this;
 	}
@@ -1857,11 +2431,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewLeftShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedLShoulder = getAttribute(backViewLeftShoulderInjury, "class");
-		
-		 if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Left Shoulder successfully");	
+
+		if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Left Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Left Shoulder" );
+			log(Status.FAIL, "Unable to SELECT in back view Left Shoulder");
 		}
 		return this;
 	}
@@ -1871,11 +2445,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewBackInjury);
 		waitForFullPageElementLoad();
 		String clickedBack = getAttribute(backViewLeftShoulderInjury, "class");
-		
-		 if (clickedBack.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view Back side successfully");	
+
+		if (clickedBack.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view Back side successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Back side" );
+			log(Status.FAIL, "Unable to SELECT in back view Back side");
 		}
 		return this;
 	}
@@ -1885,11 +2459,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewHipInjury);
 		waitForFullPageElementLoad();
 		String clickedHip = getAttribute(backViewHipInjury, "class");
-		
-		 if (clickedHip.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view Hip successfully");	
+
+		if (clickedHip.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view Hip successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Hip" );
+			log(Status.FAIL, "Unable to SELECT in back view Hip");
 		}
 		return this;
 	}
@@ -1899,317 +2473,319 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewRightArmInjury);
 		waitForFullPageElementLoad();
 		String clickedRArm = getAttribute(backViewRightArmInjury, "class");
-		
-		 if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Right Arm successfully");	
+
+		if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Right Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Right Arm" );
+			log(Status.FAIL, "Unable to SELECT in back view Right Arm");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage backViewLefttArmInjury() {
 
 		click(backViewLefttArmInjury);
 		waitForFullPageElementLoad();
 		String clickedLArm = getAttribute(backViewLefttArmInjury, "class");
-		
-		 if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Left Arm successfully");	
+
+		if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Left Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Left Arm" );
+			log(Status.FAIL, "Unable to SELECT in back view Left Arm");
 		}
 		return this;
 	}
+
 	public IncidentReportPage backViewRightWristInjury() {
 
 		click(backViewRightWristInjury);
 		waitForFullPageElementLoad();
 		String clickedRWrist = getAttribute(backViewRightWristInjury, "class");
-		
-		 if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Right Wrist successfully");	
+
+		if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Right Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Right Wrist" );
+			log(Status.FAIL, "Unable to SELECT in back view Right Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage backViewLefttWristInjury() {
 
 		click(backViewLefttWristInjury);
 		waitForFullPageElementLoad();
 		String clickedLWrist = getAttribute(backViewLefttWristInjury, "class");
-		
-		 if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Left Wrist successfully");	
+
+		if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Left Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Left Wrist" );
+			log(Status.FAIL, "Unable to SELECT in back view Left Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage backViewRightKneeInjury() {
 
 		click(backViewRightKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedRknee = getAttribute(backViewRightKneeInjury, "class");
-		
-		 if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Right Knee successfully");	
+
+		if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Right Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Right Knee" );
+			log(Status.FAIL, "Unable to SELECT in back view Right Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage backViewLeftKneeInjury() {
 
 		click(backViewLeftKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedLknee = getAttribute(backViewLeftKneeInjury, "class");
-		
-		 if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Left Knee successfully");	
+
+		if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Left Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Left Knee" );
+			log(Status.FAIL, "Unable to SELECT in back view Left Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage backViewLeftFootInjury() {
 
 		click(backViewLeftFootInjury);
 		waitForFullPageElementLoad();
 		String clickedLFoot = getAttribute(backViewLeftFootInjury, "class");
-		
-		 if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Left Foot successfully");	
+
+		if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Left Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Left Foot" );
+			log(Status.FAIL, "Unable to SELECT in back view Left Foot");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage backViewRightFootInjury() {
 
 		click(backViewRightFootInjury);
 		waitForFullPageElementLoad();
 		String clickedRFoot = getAttribute(backViewRightFootInjury, "class");
-		
-		 if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "SELECT in back view  Right Foot successfully");	
+
+		if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
+			log(Status.PASS, "SELECT in back view  Right Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to SELECT in back view Right Foot" );
+			log(Status.FAIL, "Unable to SELECT in back view Right Foot");
 		}
 		return this;
 	}
-
 
 	public IncidentReportPage unselectFrontViewForeHeadInjury() {
 
 		click(frontViewForeHeadInjury);
 		waitForFullPageElementLoad();
 		String clickedFrontHead = getAttribute(frontViewForeHeadInjury, "class");
-		
-		 if (clickedFrontHead.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  front view Fore Head successfully");	
+
+		if (clickedFrontHead.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  front view Fore Head successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view fore Head" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view fore Head");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewFaceInjury() {
 
 		click(frontViewFaceInjury);
 		waitForFullPageElementLoad();
 		String clickedFace = getAttribute(frontViewFaceInjury, "class");
-		
-		 if (clickedFace.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Face successfully");	
+
+		if (clickedFace.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Face successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Face" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Face");
 		}
 		return this;
 	}
-	
-	
+
 	public IncidentReportPage unselectFrontViewRightShoulderInjury() {
 
 		click(frontViewRightShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedRShoulder = getAttribute(frontViewRightShoulderInjury, "class");
-		
-		 if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Right Shoulder successfully");	
+
+		if (clickedRShoulder.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Right Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Shoulder" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Shoulder");
 		}
 		return this;
 	}
-	
-	
+
 	public IncidentReportPage unselectFrontViewLeftShoulderInjury() {
 
 		click(frontViewLeftShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedLShoulder = getAttribute(frontViewLeftShoulderInjury, "class");
-		
-		 if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Left Shoulder successfully");	
+
+		if (clickedLShoulder.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Left Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Shoulder" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Shoulder");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewChestInjury() {
 
 		click(frontViewChestInjury);
 		waitForFullPageElementLoad();
 		String clickedChest = getAttribute(frontViewChestInjury, "class");
-		
-		 if (clickedChest.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Chest successfully");	
+
+		if (clickedChest.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Chest successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Chest" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Chest");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewAbdomenInjury() {
 
 		click(frontViewAbdomenInjury);
 		waitForFullPageElementLoad();
 		String clickedAbdomen = getAttribute(frontViewAbdomenInjury, "class");
-		
-		 if (clickedAbdomen.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Abdomen successfully");	
+
+		if (clickedAbdomen.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Abdomen successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Abdomen" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Abdomen");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewRightArmInjury() {
 
 		click(frontViewRightArmInjury);
 		waitForFullPageElementLoad();
 		String clickedRArm = getAttribute(frontViewRightArmInjury, "class");
-		
-		 if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Right Arm successfully");	
+
+		if (clickedRArm.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Right Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Arm" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Arm");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewLefttArmInjury() {
 
 		click(frontViewLefttArmInjury);
 		waitForFullPageElementLoad();
 		String clickedLArm = getAttribute(frontViewLefttArmInjury, "class");
-		
-		 if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Left Arm successfully");	
+
+		if (clickedLArm.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Left Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Arm" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Arm");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectFrontViewRightWristInjury() {
 
 		click(frontViewRightWristInjury);
 		waitForFullPageElementLoad();
 		String clickedRWrist = getAttribute(frontViewRightWristInjury, "class");
-		
-		 if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Right Wrist successfully");	
+
+		if (clickedRWrist.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Right Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Wrist" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectFrontViewLefttWristInjury() {
 
 		click(frontViewLefttWristInjury);
 		waitForFullPageElementLoad();
 		String clickedLWrist = getAttribute(frontViewLefttWristInjury, "class");
-		
-		 if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Left Wrist successfully");	
+
+		if (clickedLWrist.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Left Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Wrist" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectFrontViewRightKneeInjury() {
 
 		click(frontViewRightKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedRknee = getAttribute(frontViewRightKneeInjury, "class");
-		
-		 if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Right Knee successfully");	
+
+		if (clickedRknee.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Right Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Knee" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewLeftKneeInjury() {
 
 		click(frontViewLeftKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedLknee = getAttribute(frontViewLeftKneeInjury, "class");
-		
-		 if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Left Knee successfully");	
+
+		if (clickedLknee.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Left Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Knee" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewLeftFootInjury() {
 
 		click(frontViewLeftFootInjury);
 		waitForFullPageElementLoad();
 		String clickedLFoot = getAttribute(frontViewLeftFootInjury, "class");
-		
-		 if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Left Foot successfully");	
+
+		if (clickedLFoot.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Left Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Foot" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Left Foot");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectFrontViewRightFootInjury() {
 
 		click(frontViewRightFootInjury);
 		waitForFullPageElementLoad();
 		String clickedRFoot = getAttribute(frontViewRightFootInjury, "class");
-		
-		 if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in Front view  Right Foot successfully");	
+
+		if (clickedRFoot.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in Front view  Right Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Foot" );
+			log(Status.FAIL, "Unable to UN-SELECT in Front view Right Foot");
 		}
 		return this;
 	}
-	
 
 	public IncidentReportPage unselectBackViewHeadInjury() {
 
 		click(backViewHeadInjury);
 		waitForFullPageElementLoad();
 		String clickedHead = getAttribute(backViewHeadInjury, "class");
-		
-		 if (clickedHead.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view Head successfully");	
+
+		if (clickedHead.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view Head successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Head" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Head");
 		}
 		return this;
 	}
@@ -2219,11 +2795,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewRightShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedRShoulder = getAttribute(backViewRightShoulderInjury, "class");
-		
-		 if (clickedRShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Right Shoulder successfully");	
+
+		if (clickedRShoulder.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Right Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Right Shoulder" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Right Shoulder");
 		}
 		return this;
 	}
@@ -2233,11 +2809,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewLeftShoulderInjury);
 		waitForFullPageElementLoad();
 		String clickedLShoulder = getAttribute(backViewLeftShoulderInjury, "class");
-		
-		 if (clickedLShoulder.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Left Shoulder successfully");	
+
+		if (clickedLShoulder.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Left Shoulder successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Left Shoulder" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Left Shoulder");
 		}
 		return this;
 	}
@@ -2247,11 +2823,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewBackInjury);
 		waitForFullPageElementLoad();
 		String clickedBack = getAttribute(backViewLeftShoulderInjury, "class");
-		
-		 if (clickedBack.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view Back side successfully");	
+
+		if (clickedBack.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view Back side successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Back side" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Back side");
 		}
 		return this;
 	}
@@ -2261,11 +2837,11 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewHipInjury);
 		waitForFullPageElementLoad();
 		String clickedHip = getAttribute(backViewHipInjury, "class");
-		
-		 if (clickedHip.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view Hip successfully");	
+
+		if (clickedHip.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view Hip successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Hip" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Hip");
 		}
 		return this;
 	}
@@ -2275,109 +2851,209 @@ public class IncidentReportPage extends BaseClass {
 		click(backViewRightArmInjury);
 		waitForFullPageElementLoad();
 		String clickedRArm = getAttribute(backViewRightArmInjury, "class");
-		
-		 if (clickedRArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Right Arm successfully");	
+
+		if (clickedRArm.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Right Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Right Arm" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Right Arm");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectBackViewLefttArmInjury() {
 
 		click(backViewLefttArmInjury);
 		waitForFullPageElementLoad();
 		String clickedLArm = getAttribute(backViewLefttArmInjury, "class");
-		
-		 if (clickedLArm.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Left Arm successfully");	
+
+		if (clickedLArm.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Left Arm successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Left Arm" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Left Arm");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectBackViewRightWristInjury() {
 
 		click(backViewRightWristInjury);
 		waitForFullPageElementLoad();
 		String clickedRWrist = getAttribute(backViewRightWristInjury, "class");
-		
-		 if (clickedRWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Right Wrist successfully");	
+
+		if (clickedRWrist.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Right Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Right Wrist" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Right Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectBackViewLefttWristInjury() {
 
 		click(backViewLefttWristInjury);
 		waitForFullPageElementLoad();
 		String clickedLWrist = getAttribute(backViewLefttWristInjury, "class");
-		
-		 if (clickedLWrist.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Left Wrist successfully");	
+
+		if (clickedLWrist.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Left Wrist successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Left Wrist" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Left Wrist");
 		}
 		return this;
 	}
+
 	public IncidentReportPage unselectBackViewRightKneeInjury() {
 
 		click(backViewRightKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedRknee = getAttribute(backViewRightKneeInjury, "class");
-		
-		 if (clickedRknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Right Knee successfully");	
+
+		if (clickedRknee.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Right Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Right Knee" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Right Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectBackViewLeftKneeInjury() {
 
 		click(backViewLeftKneeInjury);
 		waitForFullPageElementLoad();
 		String clickedLknee = getAttribute(backViewLeftKneeInjury, "class");
-		
-		 if (clickedLknee.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Left Knee successfully");	
+
+		if (clickedLknee.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Left Knee successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Left Knee" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Left Knee");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectBackViewLeftFootInjury() {
 
 		click(backViewLeftFootInjury);
 		waitForFullPageElementLoad();
 		String clickedLFoot = getAttribute(backViewLeftFootInjury, "class");
-		
-		 if (clickedLFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Left Foot successfully");	
+
+		if (clickedLFoot.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Left Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Left Foot" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Left Foot");
 		}
 		return this;
 	}
-	
+
 	public IncidentReportPage unselectBackViewRightFootInjury() {
 
 		click(backViewRightFootInjury);
 		waitForFullPageElementLoad();
 		String clickedRFoot = getAttribute(backViewRightFootInjury, "class");
-		
-		 if (clickedRFoot.equals("ng-star-inserted injurysite selsite")) {
-			log(Status.PASS, "UN-SELECT in back view  Right Foot successfully");	
+
+		if (clickedRFoot.equals("ng-star-inserted injurysite")) {
+			log(Status.PASS, "UN-SELECT in back view  Right Foot successfully");
 		} else {
-			log(Status.FAIL, "Unable to UN-SELECT in back view Right Foot" );
+			log(Status.FAIL, "Unable to UN-SELECT in back view Right Foot");
 		}
 		return this;
 	}
 
+	public void pastTimeInNotificationTime() {
 
+		sendKeys(timeTxtbox, getPastTime("HH:MMa"));
+		click(notifedByTxtBox);
+	}
+
+	public void futureTimeInNotificationTime() {
+
+		sendKeys(timeTxtbox, getFutureTime("HH:MMa"));
+		click(notifedByTxtBox);
+	}
+
+	public void breadCrumREPORTTxtLink() {
+
+		click(breadCrumTxtLinkReports);
+	}
+
+	public String getLocationValue() {
+		return getText(locationValue);
+	}
+
+	public String getInjuryCausedValue() {
+		return getText(injuryCauseValue);
+	}
+
+	public String getWasInjuredValue() {
+		return getText(wasInjuredValue);
+	}
+
+	public String getInjuryDescriptionValue() {
+		return getText(injuryDescriptionValue);
+	}
+
+	public String getSiteOfInjuryFrontValue() {
+		return getText(siteOfInjuryFrontValue);
+	}
+
+	public String getSiteOfInjuryBackValue() {
+		return getText(siteOfInjuryBackValue);
+	}
+
+	public String getTreatmentReceivedValue() {
+		return getText(treatmentReceivedValue);
+	}
+
+	public String getFutureTreatmentValue() {
+		return getText(futureTreatmentValue);
+	}
+
+	public String getInjuryTypeValue() {
+		return getText(injuryTypeValue);
+	}
+
+	public String getInjurySeverityValue() {
+		return getText(injurySeverityValue);
+	}
+
+	public String getEventNotifiStatusValue() {
+		return getText(eventNotifiStatusValue);
+	}
+
+	public String getPersonNotifiedValue() {
+		return getText(personNotifiedValue);
+	}
+
+	public String getRelationshipValue() {
+		return getText(relationshipValue);
+	}
+
+	public String getNotificationDateAndTimeValue() {
+		return getText(notificationDateAndTimeValue);
+	}
+
+	public String getNotifiedByValue() {
+		return getText(notifiedByValue);
+	}
+
+	public String getNotificationMethodValue() {
+		return getText(notificationMethodValue);
+	}
+
+	public String getBreadCrumTxtLinkIncidentReportInViewPage() {
+		return getText(breadCrumTxtLinkIncidentReportInViewPage);
+	}
+	
+	public String breadCrumSuiteNameText() {
+
+		waitForPageLoad();
+	    String createdIndNameFromExcel = readExcel("Test Datas", "Incident Reports", 1, 28);
+		String[] splitFirstNameAlone = createdIndNameFromExcel.split(" ");
+		String getFirstName = splitFirstNameAlone[0];
+		BC = BC.replaceAll("createdSN", getFirstName);
+		String textString = getTextString(BC);
+		return textString;
+	}
+	
+
+	
 }

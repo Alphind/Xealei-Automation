@@ -27,5 +27,4 @@ dryRun = !true, monochrome = true)
 public class TC7IncidentReportTestRunner { 
 
 	
-	
 }

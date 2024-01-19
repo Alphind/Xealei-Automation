@@ -1450,7 +1450,7 @@ public class AddIndividualsPage extends BaseClass{
 
 	public AddIndividualsPage lastName(int rowNum) {
 
-		String crLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 2) + randomName();
+		String crLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 2) + secondsCount();
 		sendKeys(lastName, crLastName);
 		writeExcelToOverwrite("Test Datas", "AddIndividuals", 1, 21, crLastName);
 		return this;
