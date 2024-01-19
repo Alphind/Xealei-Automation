@@ -337,15 +337,15 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//span[text()='Complete']/parent::button")
 	private WebElement completeButton;
-
+	
+	@FindBy(xpath = "//span[text()='Re-submit to Sender']/parent::button")
+	private WebElement resubmitButton;
+	
 	private String IDColumnXpath = "//table/tbody/tr[rownumber]/td[1]";
 
 	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
 
 	private String viewButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'View')]";
-
-	// private String statusColumnXpath =
-	// "//table/tbody/tr[rowumber]/td[7]/div/span";
 
 	private String editButton = "//table/tbody/tr[rownumber]/td[8]/button/span[contains(text(),'Edit')]";
 
@@ -448,7 +448,11 @@ public class IncidentReportPage extends BaseClass {
 
 	String BC = "//a[text()='createdSN']/parent::li";
 	
+	@FindBy(xpath = "//i[@class = 'nav-link notiicon']")
+	private WebElement notificationIcon;
 	
+	@FindBy(xpath = "//span[text()='Home']/preceding::a")
+	private WebElement home;
 	
 	
 	
@@ -1361,7 +1365,19 @@ public class IncidentReportPage extends BaseClass {
 		click(completeButton);
 		waitForPageLoad(this.driver);
 	}
-
+	
+	/**
+	 * @author Nandhalala.
+	 * Click on the ReSubmit to sender button to re-send to submiter of the report.
+	 * 
+	 * @created on 27-12-2023.
+	 * 
+	 */
+	public void resubmitButton() {
+		click(resubmitButton);
+		waitForPageLoad(this.driver);
+	}
+	
 	public String getRowNumber() {
 
 		waitForPageLoad(this.driver);
@@ -1504,7 +1520,20 @@ public class IncidentReportPage extends BaseClass {
 
 		}
 	}
-
+	
+	/**
+	 * @author Nandhalala.
+	 * To enter social worker reviewer comments.
+	 * 
+	 * @param rowNumber - Accepts only approved or rejected as parameters.
+	 * @return the status value of the given row.
+	 * 
+	 * @created on 12-01-2024.
+	 */
+	public void navigateHome() {
+		click(home);
+	}
+	
 	public void viewButton(String rowNumber) {
 		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
 		select(excatColumn);
