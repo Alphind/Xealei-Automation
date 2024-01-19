@@ -21,13 +21,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
 
@@ -77,7 +80,7 @@ public class BaseClass {
 	protected Scenario s;
 	// public ThreadLocal<WebDriver> dr = new ThreadLocal<WebDriver>();
 
-	private static WebDriver driver;
+	public static WebDriver driver;
 
 	/**
 	 * To launch the browser that to be automated.
@@ -101,6 +104,28 @@ public class BaseClass {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
 		}
+	}
+	
+	public WebDriver getNewDriver() throws Exception {
+
+		WebDriver newdriver;
+		
+		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			newdriver = new ChromeDriver(getChromeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			newdriver = new EdgeDriver(getEdgeOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+
+		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			newdriver = new FirefoxDriver(getFirefoxOptions());
+			log(Status.INFO, "Browser launched in Chrome");
+		} else {
+			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
+			throw new Exception("Browser Value is not valid in config.properties file.");
+		}
+		return newdriver;
 	}
 
 	private ChromeOptions getChromeOptions() {
@@ -453,7 +478,7 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			log(Status.INFO, "Select the" + methodName);
+			log(Status.INFO, "Select the "+ methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -884,7 +909,7 @@ public class BaseClass {
 		driver.navigate().refresh();
 	}
 
-	public String randomName() {
+	public String secondsCount() {
 
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("mm:ss");
 		LocalDateTime now = LocalDateTime.now();
@@ -921,10 +946,49 @@ public class BaseClass {
 		return nxtDate;
 
 	}
+	
+	public String nextToCurrentDate() {
+
+		LocalDate date = LocalDate.now();
+//		int dayOfMonth = date.getDayOfMonth();
+//
+//		//String datePattern = (dayOfMonth <= 9) ? "d" : "dd";
+
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("dd");
+
+		String currentDate = date.format(ofPattern);
+		System.out.println("Current Date : " + currentDate);
+
+		int intValue = Integer.parseInt(currentDate);
+		int nextDate = intValue + 1;
+
+		String nxtDate = Integer.toString(nextDate);
+		System.out.println("Current Date + 1 - " + nxtDate);
+
+		return nxtDate;
+
+	}
 
 	public String getCurrentDtYearMonth(String EnterPattern) {
 
-		LocalDate currentDateYearMonth = LocalDate.now();
+		LocalDateTime currentDateYearMonth = LocalDateTime.now();
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
+		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
+		return DateAsPerGiven;
+	}
+	
+	public String getFutureTime(String EnterPattern) {
+
+		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(02);
+		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
+		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
+		return DateAsPerGiven;
+	}
+	
+	public String getPastTime(String EnterPattern) {
+
+		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Europe/London"));
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
@@ -939,7 +1003,7 @@ public class BaseClass {
 		String formattedDate = date.format(formatter);
 		return formattedDate;
 	}
-
+	
 	public String randomMobileNumber() {
 
 		Random random = new Random();
@@ -972,5 +1036,32 @@ public class BaseClass {
 
 		return formattedDate.toUpperCase();
 	}
+	
+	public String getCurrentMonth() {
 
+	LocalDate currentDate = LocalDate.now();
+	int day = currentDate.getMonthValue();
+	String format = (day <= 9) ? "M" : "MM";
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+	String formattedDate = currentDate.format(formatter);
+	return formattedDate.toUpperCase();
+	}
+	
+	
+	public String dateConversion(String Date, String Time) throws ParseException {
+					
+		        // Specify the input date format
+	        SimpleDateFormat inputFormat = new SimpleDateFormat("M/dd/yyyy hh:mma", Locale.ENGLISH);
+
+	        // Specify the desired output date format
+	        SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM dd yyyy, hh:mm a", Locale.ENGLISH);
+
+	        // Parse the input date string
+				Date date = inputFormat.parse(Date+" "+Time);
+				
+				// Format the date to the desired output format
+				String outputDateString = outputFormat.format(date);
+				return outputDateString;
+}
+	
 }

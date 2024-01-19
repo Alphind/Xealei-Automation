@@ -53,6 +53,7 @@ public class HomePage extends BaseClass {
 	public void incidentReportModule() {
 		
 		click(incidentReportModule);
+		waitForPageLoad();
 }
 	
 	
@@ -72,7 +73,6 @@ public class HomePage extends BaseClass {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		WebElement notificationElement = driver.findElement(By.xpath(idXpath));

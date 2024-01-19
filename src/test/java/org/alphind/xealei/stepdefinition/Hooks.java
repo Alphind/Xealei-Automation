@@ -37,7 +37,7 @@ public class Hooks extends BaseClass {
 	public void tearDown() throws SocketException {
 
 		reportFlush();
-//		waitForPageLoad();
+		waitForPageLoad();
 //		if (driver != null) {
 //			quit();
 //		}
