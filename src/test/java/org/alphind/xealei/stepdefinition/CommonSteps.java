@@ -26,26 +26,12 @@ public class CommonSteps extends BaseClass {
 	public void user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String expMessage) {
 
 		logStep(methodName());
-		
-		waitForPageLoad();
-//		try {
-//			Assert.assertFalse("Assert Fail", pom.getLoginPage().getUnknownErrorToastMsg().isDisplayed());
-//			log(Status.PASS, "Unknown Toast Msg is NOT diplayed");
-//			
-//		} catch (AssertionError e) {
-//			log(Status.FAIL, "Unknown error Toast msg is displayed | Error :" +e);
-//			e.getMessage();
-//			System.err.println("[ERROR] - Unknown Toast Msg is Diplayed [Toast Message] >>>  Unknown Error.Please contact administrator for more information.");
-//		} catch (NoSuchElementException e1) {
-//			AddIndividualsPage.javalog(Status.INFO, "No Unknown error Toast msg is displayed");
-//			e1.getMessage();
-//		}
 
 		System.out.println("exp Text :" + expMessage);
-		System.out.println("Actual Text :" + getText(pom.getLoginPage().getNavToHomePageSuccessfully()));
+		System.out.println("Actual Text :" + pom.getHomePage().HomeText());
 		try {
-			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage,
-					getText(pom.getLoginPage().getNavToHomePageSuccessfully()));
+			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage, pom.getHomePage().HomeText());
+					
 			log(Status.PASS, "Navigate to Home Dashboard Page");
 		} catch (AssertionError e) {
 			log(Status.FAIL, "Unable to navigate HOME Dashboard Page");

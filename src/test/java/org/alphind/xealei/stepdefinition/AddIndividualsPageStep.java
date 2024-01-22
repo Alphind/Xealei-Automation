@@ -29,8 +29,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 
-		waitForPageLoad();
-		pom.getAddIndividualsPage().navToIndividualsModule();
+		pom.getHomePage().navToIndividualsModule();
 		waitForPageLoad();
 		try {
 			Assert.assertEquals("Unable to navigate Individuals Page", "Individuals",
@@ -1243,21 +1242,6 @@ public class AddIndividualsPageStep extends BaseClass {
 
 	}
 
-	@Then("User should verify the New Individual Registration popup is closed successfully")
-	public void user_should_verify_the_new_individual_registration_popup_is_closed_successfully() throws Exception {
-
-		logStep(methodName());
-
-		waitForPageLoad();
-		if (pom.getAddIndividualsPage().getIndividuals().isEnabled()) {
-			waitForPageLoad();
-			log(Status.PASS, "New Individual Registration popup is closed successfully");
-		} else {
-
-			log(Status.FAIL, "New Individual Registration popup is NOT closed");
-			throw new Exception();
-		}
-	}
 
 	@Then("User should perform only mandatory fields in Identification tab section")
 	public void user_should_perform_only_mandatory_fields_in_identification_tab_section() {

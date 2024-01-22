@@ -55,7 +55,6 @@ Feature: Verify Xealei Individuals > Edit Individual Page
     #
   And User should verify future dates are hidden
   When User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates
-  And User should select a specific year and month in dropdown and select the date in date picker and verify the selected DOB are updated accordingly
   Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
   And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
   Then User should verify the calendar should close after click outside the calendar
@@ -65,11 +64,10 @@ Feature: Verify Xealei Individuals > Edit Individual Page
   And User should navigate to vitals tab and click add vitals button in edit individual page
   Then User should verify the breadcrums link should be display with module individual name > Edit individual
   And User should perform update with empty fields in vitals tab
- # Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
   Then User should verify the Mandatory fields info messages in vitals tab "Please select Blood Group", "Please enter blood pressure", "Please enter blood glucose", "Please enter cholesterol", "Please enter height", "Please enter weight"
   Then User should verify the valid format Mandatory fields info messages in vitals tab "Blood pressure format should be (120/80)", "Please enter valid blood glucose", "Please enter valid cholesterol", "Please enter valid height", "Please enter valid weight"
   Then User should verify that able to upload more than 1MB file in medical record
-    And User should upload medical record in edit vital tab section 
+  And User should upload medical record in edit vital tab section 
   Then User should verify that able to cancel the uploaded record file in edit vitals tab section
   Then User should verify the cancel button is working in vitals tab
 

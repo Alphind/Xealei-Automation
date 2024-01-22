@@ -14,29 +14,20 @@ Feature: Verify Xealei Login Page
     Given User is on Xealei login page
 
   Scenario: Comprehensive Login Page UI Testing
-    When User should verify the tab url address for login page
+    When User should verify the client code is addressed in tab url address in login screen
     Then User should verify the 'LOGIN' text is displayed
-    Then User should verify the Login button is disabled
-    #Not Implemented
-    # When User should perform login with invalid email format (with 2 diff format)
-    # Then User should verify the error message contains email field "Enter Valid Email"
+    Then User should verify that after landing on the login page the login button is disabled
     Then User should verify the field label name and placeholder text for Email and Password fields
-    When User should enter password in password field
+    And User should enter password in password field
     Then User should verify that entered password is **hide
     And User should click the eye icon in the Password field
     Then User should verify that entered password is Unhide
     And User should verify Forget password link is working
-    Then User should verify the copy rights "Powered by Alphind © 2023" text is displayed
-  #Not Implemented
-  #When User should click the Close icon in the Privacy Policy pop-up screen
-  #Then User should verify the pop-up should be closed
- 
- 
+    Then User should verify the copy rights "Powered by Alphind © 2024" text is displayed
+
   Scenario: To verify the error validation messages in Login page
-    And User should enter password in password field and press enter button
-    Then User should verify the error message contains email field "Please enter email ID"
-    And User should enter email in email field and click login button
-    Then User should verify the error message contains password field "Please enter password"
+    And User should verify that email field is mandatory "Please enter email ID"
+    Then User should verify that password field is mandatory "Please enter password"
     When User should perform login with invalid data
     Then User should verify the error message after performed login with invalid data "User not found"
     When User should perform login with valid email and invalid password

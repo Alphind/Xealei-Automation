@@ -36,9 +36,6 @@ public class AddIndividualsPage extends BaseClass{
 		
 	}
 
-	@FindBy(xpath = "//span[contains(text(),'Individuals')]")
-	private WebElement individuals;
-
 	@FindBy(xpath = "//h5[@x-page='Individuals']")
 	private WebElement individualsPageText;
 
@@ -878,10 +875,6 @@ public class AddIndividualsPage extends BaseClass{
 		return emergencyContact3LabelName;
 	}
 
-	public WebElement getIndividuals() {
-		return individuals;
-	}
-
 	public WebElement getIdentificationTabTick() {
 		return identificationTabTick;
 	}
@@ -986,8 +979,6 @@ public class AddIndividualsPage extends BaseClass{
 		return forwardToAddressTab;
 	}
 
-	
-	
 	
 	
 	
@@ -1241,11 +1232,6 @@ public class AddIndividualsPage extends BaseClass{
 
 		click(confirmBtn);
 		return this;
-	}
-
-	public void navToIndividualsModule() {
-
-		click(individuals);
 	}
 
 	public void addIndividualButton() {
@@ -1905,4 +1891,6 @@ public AddIndividualsPage addVitalsButton() {
 	return this;
 }
 	
+
+
 }

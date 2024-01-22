@@ -65,7 +65,7 @@ public class AddSuitesPageStep extends BaseClass {
 
 		logStep(methodName());
 		waitForPageLoad();
-		pom.getAddSuitesPage().navToSuitesModule();
+		pom.getHomePage().navToSuitesModule();
 		waitForPageLoad();
 		try {
 			Assert.assertEquals("Unable to navigate Suite Page", "Suites",

@@ -254,6 +254,12 @@ public class BaseClass {
 //		fis.close();
 //		return "data:image/png;base64" + base64;
 	}
+	
+	public String takesScreenshot(WebDriver currentDriver) {
+
+		return ((TakesScreenshot) currentDriver).getScreenshotAs(OutputType.BASE64);
+
+	}
 
 	// 15. Click
 	public void click(WebElement element) {
@@ -885,13 +891,36 @@ public class BaseClass {
 			test.log(status, message);
 		}
 	}
+	
+	public void log(Status status, String message, WebDriver currentDriver) {
+
+		String passed = getConfigureProperty("PassedScreenshots");
+		String failed = getConfigureProperty("FailedScreenshots");
+
+		if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
+				&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
+			test.log(status, message,
+					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+
+		} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
+				&& status.toString().equalsIgnoreCase("PASS")) {
+			test.log(status, message,
+					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+
+		} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
+				&& status.toString().equalsIgnoreCase("FAIL")) {
+			test.log(status, message,
+					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+		} else {
+			test.log(status, message);
+		}
+	}
 
 //   // 53. Page Backward
 
 	public void pageBackward() {
 
 		driver.navigate().back();
-		waitForFullPageElementLoad();
 		log(Status.PASS, "Navigate to backward (Back to Login page)");
 
 	}

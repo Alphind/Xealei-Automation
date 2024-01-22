@@ -78,7 +78,6 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
     Then User should verify the calendar should close after click outside the calendar
     And User should close the New Individual Registration popup
-    Then User should verify the New Individual Registration popup is closed successfully
 
   Scenario: To verify the user able to Add/Create Individual by entering only mandatory fields
     And User should upload image in photo tab section
