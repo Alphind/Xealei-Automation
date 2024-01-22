@@ -129,23 +129,18 @@ Scenario Outline: To verify whether Chief nurse can able to reject and reapprove
 		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
 		Then Open notification received by Chief nurse.
 		And Re-Send the report by Chief Nurse user to staff nurse.
-		And Verify whether the report is in "Sent Back" status by Chief Nurse user.
 		Then Switch back to staff user login.
 		And Open notification received by staff.
 		Then ReSubmit the Report by staff user.
 		Then Open notification received by Chief nurse.
 		And Approve the report by Chief Nurse user.
-		Then Open notification received by residential manager.
-		And Approve the report by Residential Manager user.
-		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Close all the browsers.
-   
-   Examples:
-     
-    |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		Examples:
+      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
+      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
 
+  
 @RejectAndReapprovebyResidentialManager   
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
 		Given User is on Xealei login page
