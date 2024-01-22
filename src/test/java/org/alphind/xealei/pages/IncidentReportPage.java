@@ -1,6 +1,6 @@
 /* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
 
-* created by Mohamed Razul, on date
+* created by Mohamed Razul
 
 * reviewed by Hajira Begam
 
@@ -159,13 +159,10 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//li[contains(text(),'Incident Report')]")
 	private WebElement breadCrumTxtLinkIncidentReport;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Incident Report')]/parent::li")
 	private WebElement breadCrumTxtLinkIncidentReportInViewPage;
 
-	
-	
-	
 	@FindBy(xpath = "//span[text()='Next ']/parent::button")
 	private WebElement nextButton;
 
@@ -244,7 +241,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "(//div[@title = 'Left Wrist'])[2]")
 	private WebElement backViewLefttWristInjury;
 
-	private String injuredIndividiual = "//mat-label[contains(text(),'Was IndividiualName injured?')]";
+	//private String injuredIndividiual = "//mat-label[contains(text(),'Was IndividiualName injured?')]";
 
 	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input") // ../preceding-sibling::div/input
 	private WebElement wasIndividiualInjuredYesRadioButton;
@@ -305,23 +302,17 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//mat-error[text() = ' Please enter notified by  ']")
 	private WebElement notifiedByValidationInfoMsg;
 
-	@FindBy(xpath = "//table//tbody//tr//td[3]")
-	private WebElement individualsGrid;
-
 	@FindBy(xpath = "//span[contains(text(),'Saved Successfully')]")
 	private WebElement savedSuccessfullToastMsg;
 
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
-	private WebElement btnToastMsgSuccessOk;
+	private WebElement btnToastMsgSuccessok;
 
 	@FindBy(xpath = "//span[contains(text(),'OK')]/parent::button")
 	private WebElement OKBtnToastMsg;
 
 	@FindBy(xpath = "//span[contains(text(),' View ')]/parent::button")
 	private WebElement viewButtonInIndividualGrid;
-
-	@FindBy(xpath = "//div[contains(text(),'Note:')]")
-	private WebElement requiredFieldsNOTEInfoMessage;
 
 	@FindBy(xpath = "//span[contains(text(),'File(1) size should be less than 1 MB')]")
 	private WebElement imgSizeToastMsg;
@@ -337,10 +328,10 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//span[text()='Complete']/parent::button")
 	private WebElement completeButton;
-	
+
 	@FindBy(xpath = "//span[text()='Re-submit to Sender']/parent::button")
 	private WebElement resubmitButton;
-	
+
 	private String IDColumnXpath = "//table/tbody/tr[rownumber]/td[1]";
 
 	private String statusColumnXpath = "//table/tbody/tr[rownumber]/td[7]/div/span";
@@ -393,7 +384,7 @@ public class IncidentReportPage extends BaseClass {
 	private WebElement reviewerComments;
 
 	@FindBy(xpath = "//mat-error[contains(text(),'Notified time should be')]")
-	private WebElement lesserThanToastMsgForNotificationTime;
+	private WebElement lesserThanNotifiedTimeInfoMsg;
 
 	@FindBy(xpath = "//div[@x-lbllocval]")
 	private WebElement locationValue;
@@ -421,10 +412,10 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//div[@x-lbl-type]")
 	private WebElement injuryTypeValue;
-	
+
 	@FindBy(xpath = "//h1[@x-lbl-injurycolor]")
 	private WebElement injuryColorValue;
-	
+
 	@FindBy(xpath = "//div[@x-lbl-severity]")
 	private WebElement injurySeverityValue;
 
@@ -447,12 +438,16 @@ public class IncidentReportPage extends BaseClass {
 	private WebElement notificationMethodValue;
 
 	String BC = "//a[text()='createdSN']/parent::li";
-	
+
 	@FindBy(xpath = "//i[@class = 'nav-link notiicon']")
 	private WebElement notificationIcon;
-	
+
 	@FindBy(xpath = "//span[text()='Home']/preceding::a")
 	private WebElement home;
+
+	@FindBy(xpath = "//div[contains(@class,'alert aler')]")
+	private WebElement noteInfoMsg;
+
 	
 	
 	
@@ -460,192 +455,481 @@ public class IncidentReportPage extends BaseClass {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public WebElement getJFIFFileFormatNotSupportedToastMsg() {
-		return JFIFFileFormatNotSupportedToastMsg;
+	/**
+	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Bread crum 'Incident Report' (text).
+	 */
+	public String getIncidentReportModuleText() {
+		return getText(incidentReportModuleText);
 	}
 
-	public WebElement getSavedSuccessfullToastMsg() {
-		return savedSuccessfullToastMsg;
+	/**
+	 * Get the Save button "Attribute value" in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Save button "Attribute value".
+	 */
+	public String getSaveButtonAttributeValue(String value) {
+		return getAttribute(saveButton, value);
 	}
 
-	public WebElement getBtnToastMsgSuccessOk() {
-		return btnToastMsgSuccessOk;
+	/**
+	 * Get the "Exceeds the current time" info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getExceedCurrentTimeIneventDateAndTimeValidationInfoMsgText() {
+		return getText(exceedCurrentTimeIneventDateAndTimeValidationInfoMsg);
 	}
 
-	public WebElement getIndividualsGrid() {
-		return individualsGrid;
+	/**
+	 * Get the "Individual’s Details" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getIndividualsDetailsValidationInfoMsgText() {
+		return getText(individualsDetailsValidationInfoMsg);
 	}
 
-	public WebElement getInjurySeverityValidationInfoMsg() {
-		return injurySeverityValidationInfoMsg;
+	/**
+	 * Get the "What caused the fall?" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getFallCausedValidationInfoMsgText() {
+		return getText(fallCausedValidationInfoMsg);
 	}
 
-	public WebElement getPersonNotifiedValidationInfoMsg() {
-		return personNotifiedValidationInfoMsg;
+	/**
+	 * Get the "Injury Description" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getInjuryDescriptionValidationInfoMsgText() {
+		return getText(injuryDescriptionValidationInfoMsg);
 	}
 
-	public WebElement getRelationshipValidationInfoMsg() {
-		return relationshipValidationInfoMsg;
+	/**
+	 * Get the "Was Individual injured?" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getChooseWasIndInjuredRadioButtonValidationInfoMsgText() {
+		return getText(chooseWasIndInjuredRadioButtonValidationInfoMsg);
 	}
 
-	public WebElement getChooseNotifiationDateValidationInfoMsg() {
-		return chooseNotifiationDateValidationInfoMsg;
+	/**
+	 * Get the "Injury Site?" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getInjurySiteValidationInfoMsgText() {
+		return getText(injurySiteValidationInfoMsg);
 	}
-
-	public WebElement getChooseNotifiationTimeValidationInfoMsg() {
-		return chooseNotifiationTimeValidationInfoMsg;
-	}
-
-	public WebElement getNotifiedValidationInfoMsg() {
-		return notifiedByValidationInfoMsg;
-	}
-
-	public WebElement getIncidentReportModuleText() {
-		return incidentReportModuleText;
-	}
-
-	public WebElement getSaveButton() {
-		return saveButton;
-	}
-
-	public WebElement getNextButton() {
-		return nextButton;
-	}
-
-	public WebElement getIndividualsDetailsValidationInfoMsg() {
-		return individualsDetailsValidationInfoMsg;
-	}
-
-	public WebElement getExceedCurrentTimeIneventDateAndTimeValidationInfoMsg() {
-		return exceedCurrentTimeIneventDateAndTimeValidationInfoMsg;
-	}
-
-	public WebElement getFallCausedValidationInfoMsg() {
-		return fallCausedValidationInfoMsg;
-	}
-
-	public WebElement getInjuryDescriptionValidationInfoMsg() {
-		return injuryDescriptionValidationInfoMsg;
-	}
-
-	public WebElement getChooseWasIndInjuredRadioButtonValidationInfoMsg() {
-		return chooseWasIndInjuredRadioButtonValidationInfoMsg;
-	}
-
-	public WebElement getInjurySiteValidationInfoMsg() {
-		return injurySiteValidationInfoMsg;
-	}
-
-	public WebElement getTreatmentReceivedValidationInfoMsg() {
-		return treatmentReceivedValidationInfoMsg;
-	}
-
-	public WebElement getFutureTreatmentValidationInfoMsg() {
-		return futureTreatmentValidationInfoMsg;
-	}
-
-	public WebElement getEventDateAndTimeValidationInfoMsg() {
-		return eventDateAndTimeValidationInfoMsg;
-	}
-
-	public WebElement getInjuryTypeValidationInfoMsg() {
-		return injuryTypeValidationInfoMsg;
-	}
-
-	public WebElement getInjuryColorValidationInfoMsg() {
-		return injuryColorValidationInfoMsg;
-	}
-
-	public WebElement getRequiredFieldsNOTEInfoMessage() {
-		return requiredFieldsNOTEInfoMessage;
-	}
-
-	public WebElement getImgSizeToastMsg() {
-		return imgSizeToastMsg;
-	}
-
-	public WebElement getEventNotifiedDefaultValue() {
-		return eventNotifiedDefaultValue;
-	}
-
-	public WebElement getCompleteButton() {
-		return completeButton;
-	}
-
-	public WebElement getEventDateAndTimeCalenderIconButton() {
-		return eventDateAndTimeCalenderIconButton;
-	}
-
-	public WebElement getLesserThanToastMsgForNotificationTime() {
-		return lesserThanToastMsgForNotificationTime;
-	}
-
-	public WebElement getAddNewIncidentReportButton() {
-		return addNewIncidentReportButton;
-	}
-
-	public WebElement getInjuryDescriptionTxtBox() {
-		return injuryDescriptionDescriptionTxtBox;
-	}
-
-	public WebElement getBreadCrumTxtLinkIncidentReport() {
-		return breadCrumTxtLinkIncidentReport;
-	}
-
-	public WebElement getBreadCrumTxtLinkReports() {
-		return breadCrumTxtLinkReports;
-	}
-	
-	public WebElement getInjuryColorValue() {
-		return injuryColorValue;
-	}
-
-
 
 	
+	/**
+	 * Get the "Treatment Received" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getTreatmentReceivedValidationInfoMsgText() {
+		return getText(treatmentReceivedValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Future Treatment" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getFutureTreatmentValidationInfoMsgText() {
+		return getText(futureTreatmentValidationInfoMsg);
+	}
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Get the "Event Date & Time" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getEventDateAndTimeValidationInfoMsgText() {
+		return getText(eventDateAndTimeValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Injury Type" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getInjuryTypeValidationInfoMsgText() {
+		return getText(injuryTypeValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Injury Color" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getInjuryColorValidationInfoMsgText() {
+		return getText(injuryColorValidationInfoMsg);
+	}	
+
+	/**
+	 * Get the "How severe was the injury?" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getInjurySeverityValidationInfoMsgText() {
+		return getText(injurySeverityValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Person Notified" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getPersonNotifiedValidationInfoMsgText() {
+		return getText(personNotifiedValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Relationship" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getRelationshipValidationInfoMsgText() {
+		return getText(relationshipValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Notification Date" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getChooseNotifiationDateValidationInfoMsgText() {
+		return getText(chooseNotifiationDateValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Time" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getChooseNotifiationTimeValidationInfoMsgText() {
+		return getText(chooseNotifiationTimeValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Notified By" field info message (text) in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getNotifiedValidationInfoMsgText() {
+		return getText(notifiedByValidationInfoMsg);
+	}
+
+	/**
+	 * Get the "Note:...." validation info (text) in Reports > Incident Report view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getNOTEInfoMsgText() {
+		return getText(noteInfoMsg);
+	}
+
+	/**
+	 * Get the "Time" field for Lesser than event Date & Time validation info (text)  in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return info message text.
+	 */
+	public String getLesserThanNotifiedTimeInfoMsgText() {
+		return getText(lesserThanNotifiedTimeInfoMsg);
+	}
+
+	/**
+	 * Get the "Incident Report" Bread crum (text)  in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Bread crum text.
+	 */
+	public String getBreadCrumTxtLinkIncidentReportText() {
+		return getText(breadCrumTxtLinkIncidentReport);
+	}
+
+	/**
+	 * Get the "Reports" Bread crum (text)  in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Bread crum text.
+	 */
+	public String getBreadCrumTxtLinkReportsText() {
+		return getText(breadCrumTxtLinkReports);
+	}
+
+	/**
+	 * Get the "Injury Description" Attribute value in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Injury Description field "Attribute value".
+	 */
+	public String getInjuryDescriptionTxtBoxAttributeValue() {
+		return getAttribute(injuryDescriptionDescriptionTxtBox, "value");
+	}
+
+	/**
+	 * Get the "Injury Color" Attribute value in Reports > Incident Report Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Injury Color field "Attribute value".
+	 */
+	public String getInjuryColorValueAttributeValue() {
+		return getAttribute(injuryColorValue, "style");
+	}
+
+	/**
+	 * Get the "Saved Successfull!" Toast Msg (text).
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return toast msg (text).
+	 */
+	public String getSavedSuccessfullToastMsgText() {
+		return getText(savedSuccessfullToastMsg);
+	}
+
+	/**
+	 * Delete the "Event date & Time" field exist data
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void deleteEventDtAndTimeFieldExistingData() {
+
+		deleteExistFieldData(eventDateAndTimeCalenderIconButton);
+	}
+
+	/**
+	 * Delete the "Injury Description" field exist data
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void deleteInjuryDescriptionExistingTxtBoxValue() {
+
+		deleteExistFieldData(injuryDescriptionDescriptionTxtBox);
+	}
+
+	/**
+	 * Check whether the "Reports" Bread crum (text) is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "Reports" Bread crum (text) is displayed or not.
+	 */
+	public boolean isBCReportsTextDisplayed() {
+
+		String BCText = getText(breadCrumTxtLinkReports);
+		if (BCText.equals("Reports")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the "Incident Report" Bread crum (text) is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "Incident Report" Bread crum (text) is displayed or not.
+	 */
+	public boolean isBCIncidentReportTextDisplayed() {
+
+		String BCText = getText(breadCrumTxtLinkIncidentReport);
+
+		if (BCText.equals("Incident Report")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the "Save" button is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "Save" button is displayed or not.
+	 */
+	public boolean isSaveButtonDisplayed() {
+
+		if (saveButton.isDisplayed()) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the "Complete" button is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "Complete" button is displayed or not.
+	 */
+	public boolean isCompleteButtonIsDisabled() {
+
+		String completeButtonGetAttribute = getAttribute(completeButton, "ng-reflect-disabled");
+		if (completeButtonGetAttribute.equalsIgnoreCase("true")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the "default option (Yes)" is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return default option (Yes) is selected or not.
+	 */
+	public boolean isDefaultOptionIsSelected() {
+
+		String defaultOptionIsSelected = getAttribute(eventNotifiedDefaultValue, "ng-reflect-value");
+
+		if (defaultOptionIsSelected.equalsIgnoreCase("true")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the "Add New Incident Report" button is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Add New Incident Report button is displayed or not.
+	 */
+	public boolean isAddNewIncidentReportButtonDisplayed() {
+
+		if (addNewIncidentReportButton.isDisplayed()) {
+			return true;
+		}
+		return false;
+
+	}
+
 	/**
 	 * @author Nandhalala. Checks whether Incident report heading is displayed or
 	 *         not.
@@ -706,7 +990,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023
 	 */
 	public String enterInjuryDescriptionData() {
-		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3).trim();
+		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3);
 		String newDescription = injuryDescription + secondsCount();
 		sendKeys(injuryDescriptionDescriptionTxtBox, newDescription);
 		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 18, newDescription);
@@ -956,11 +1240,9 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * <<<<<<< HEAD
+	 * @author Nandhalala. 
 	 * 
-	 * @author Nandhalala. Select whether the front view injured site. =======
-	 * @author Nandhalala. Get tooltip for BAck View Head.
-	 * 
+	 * Get tooltip for BAck View Head.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -970,8 +1252,9 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. Get tooltip for Back View Right Shoulder.
+	 * @author Nandhalala. 
 	 * 
+	 * Get tooltip for Back View Right Shoulder.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -1322,8 +1605,8 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void enterNotificationDate() {
-		
-		String currentDate = getCurrentMonth()+"/"+getCurrentDate()+"/"+getCurrentDtYearMonth("yyyy");
+
+		String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
 		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
 		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
 		sendKeys(notificationDateCalenderTxtbox, notificationDate);
@@ -1347,11 +1630,11 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void selectNotificationMethod() {
-		
+
 		click(notificationMethodDropdownBox);
-		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 17).trim();
+		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 17);
 		notificationMethod = notificationMethod.replace("method", notifiedMethod);
-		select(notifiedMethod);
+		select(notificationMethod);
 	}
 
 	/**
@@ -1365,10 +1648,10 @@ public class IncidentReportPage extends BaseClass {
 		click(completeButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	/**
-	 * @author Nandhalala.
-	 * Click on the ReSubmit to sender button to re-send to submiter of the report.
+	 * @author Nandhalala. Click on the ReSubmit to sender button to re-send to
+	 *         submiter of the report.
 	 * 
 	 * @created on 27-12-2023.
 	 * 
@@ -1377,7 +1660,7 @@ public class IncidentReportPage extends BaseClass {
 		click(resubmitButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	public String getRowNumber() {
 
 		waitForPageLoad(this.driver);
@@ -1520,10 +1803,9 @@ public class IncidentReportPage extends BaseClass {
 
 		}
 	}
-	
+
 	/**
-	 * @author Nandhalala.
-	 * To enter social worker reviewer comments.
+	 * @author Nandhalala. To enter social worker reviewer comments.
 	 * 
 	 * @param rowNumber - Accepts only approved or rejected as parameters.
 	 * @return the status value of the given row.
@@ -1533,24 +1815,54 @@ public class IncidentReportPage extends BaseClass {
 	public void navigateHome() {
 		click(home);
 	}
-	
+
+	/**
+	 * Click on the created IR view button with the help of Row Num to view the Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @param rowNumber - Accepts only IR Grid Row number as parameters.
+	 */
 	public void viewButton(String rowNumber) {
+		try {
 		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
 		select(excatColumn);
 		waitForPageLoad();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	/**
+	 * Click on the created IR edit button to edit the Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @param rowNumber - Accepts only IR Grid Row number as parameters.
+	 */
 	public void editButton(String rowNumber) {
 		String excatColumn = editButton.replaceAll("rownumber", rowNumber);
 		select(excatColumn);
 		waitForPageLoad();
 	}
 
+	/**
+	 * Click on the Edit button in IR form page to edit the Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void EditButton() {
 		click(IRFormEditButton);
 		waitForPageLoad();
 	}
 
+	/**
+	 * Click on the "Add New Incident Report" button to create Manual Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void addNewIncidentReportButton() {
 
 		waitForPageLoad();
@@ -1564,11 +1876,23 @@ public class IncidentReportPage extends BaseClass {
 
 	}
 
+	/**
+	 * Click on the "Next" button to complete the Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void nextButton() {
 
 		click(nextButton);
 	}
 
+	/**
+	 * Select the "Individual’s Details" dropdown.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void selectIndividualDetailsDropdown() {
 
 		click(individualDetailsDropDown);
@@ -1577,36 +1901,63 @@ public class IncidentReportPage extends BaseClass {
 		select(selectIndDetails);
 	}
 
+	/**
+	 * Select the "Was Individual Injurerd?" Radio button
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void wasIndividualInjuredRadioButton() {
 
-		wasIndividualInjuredYesRadioButton = wasIndividualInjuredYesRadioButton.replaceAll("?", "Yes");
-		select(wasIndividualInjuredYesRadioButton);
-		waitForPageLoad();
-	}
-
-	public void wasPatientInjuredRadioButton() {
-
-		wasPatientInjured = wasPatientInjured.replaceAll("isInjured", "Yes");
+		String wasIndividualInjured = readExcel("Test Datas", "Incident Reports", 1, 4);
+		wasPatientInjured = wasPatientInjured.replaceAll("isInjured", wasIndividualInjured);
 		select(wasPatientInjured);
 		waitForPageLoad();
 	}
-
+	
+	/**
+	 * Click on the "Save" button to save the Incident Report.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void saveButton() {
 
 		click(saveButton);
 		waitForPageLoad();
 	}
 
+	/**
+	 * Click on the Toast Message "ok" button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void savedSuccessfulToastMsgokButton() {
 
-		click(btnToastMsgSuccessOk);
+		click(btnToastMsgSuccessok);
 	}
 
+	/**
+	 * Click on the Toast Message "OK" button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * . 
+	 */
 	public void ToastMsgOKButton() {
 
 		click(OKBtnToastMsg);
 	}
 
+	/**
+	 * Enter the 'Event Date & Time' field data from excel
+	 * 
+	 * If (YES): Get the Data from EXCEL.
+	 * If (NO): Get the Current Data Automatically. 
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void eventDateAndTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
@@ -1630,22 +1981,42 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Enter the data from excel sheet to 'Event Date & Time' text area box.
+	 *
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void eventDateAndFutureTime() {
 
 		sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime("MM/dd/yyyyhh:mma"));
 	}
 
+	/**
+	 * Get the Selected Individual Name
+	 *
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public String getIndividualNameFromWasIndividualInjured() {
 		return getText(wasIndividualInjuredText);
 	}
 
+	/**
+	 * Upload more than 1MB size file format in Injury Photos field
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @param fileName - Accept only file name (i.e:- PNG)
+	 * @param formatType - Accept only format type (i.e:- png)
+	 */
 	public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
 
 		if (getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")
 				&& getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")) {
 
 			click(attachmentIconButton);
-			sleep(3000);
+			sleep(2000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -1667,11 +2038,11 @@ public class IncidentReportPage extends BaseClass {
 				robot.keyRelease(KeyEvent.VK_ENTER);
 
 				try {
-					waitForVisiblityOfElement(getImgSizeToastMsg(), 5);
+					waitForVisiblityOfElement(imgSizeToastMsg, 5);
 					Assert.assertEquals("File size should be less than 1 MB Toast msg is Not Displayed as expected",
-							"File(1) size should be less than 1 MB", getText(getImgSizeToastMsg()));
+							"File(1) size should be less than 1 MB", getText(imgSizeToastMsg));
 					log(Status.PASS, "File size should be less than 1 MB Toast msg is displayed successfully - "
-							+ getText(getImgSizeToastMsg()));
+							+ getText(imgSizeToastMsg));
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
@@ -1690,13 +2061,21 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Upload JFIF file format in Injury Photos field
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @param fileName - Accept only file name (i.e:- JFIF)
+	 * @param formatType - Accept only format type (i.e:- jfif)
+	 */
 	public void jfifFileUpload(String fileName, String formatType) {
 
 		if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(3000);
+			sleep(2000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -1718,9 +2097,10 @@ public class IncidentReportPage extends BaseClass {
 				robot.keyRelease(KeyEvent.VK_ENTER);
 
 				try {
-					waitForVisiblityOfElement(getImgSizeToastMsg(), 5);
+					waitForVisiblityOfElement(imgSizeToastMsg, 5);
 					Assert.assertEquals("Unable to restrict the JFIF File format", "JFIF format is not supported",
 							getText(JFIFFileFormatNotSupportedToastMsg));
+
 					log(Status.PASS, "JFIF FIle Format is NOT supported");
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
@@ -1742,13 +2122,21 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Upload a file in Injury Photos field
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @param fileName - Accept only supported file name (i.e:- PNG,jpeg)
+	 * @param formatType - Accept only supported format type (i.e:- png,jpeg)
+	 */
 	public void Upload(String fileName, String formatType) {
 
 		if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(3000);
+			sleep(2000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -1784,6 +2172,12 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * To delete the uploaded file in "Injury Photo" field
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void deleteTheUploadedFile() {
 
 		if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
@@ -1795,6 +2189,12 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Select the (Abrasion) data from 'Injury Type' field and verify whether the option is selected or not
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage abrasion() {
 
 		click(injuryTypeAbrasionButton);
@@ -1807,6 +2207,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Bleeding) data from 'Injury Type' field and verify whether the option is selected or not
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public IncidentReportPage bleeding() {
 
 		click(injuryTypeBleedingButton);
@@ -1820,6 +2226,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Bruise) data from 'Injury Type' field and verify whether the option is selected or not
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public IncidentReportPage bruise() {
 		click(injuryTypeBruiseButton);
 		String Bruise = getAttribute(injuryTypeBleedingButton, "class");
@@ -1831,6 +2243,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Scratch) data from 'Injury Type' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public IncidentReportPage scratch() {
 		click(injuryTypeScratchButton);
 		String Scratch = getAttribute(injuryTypeScratchButton, "class");
@@ -1843,6 +2261,12 @@ public class IncidentReportPage extends BaseClass {
 
 	}
 
+	/**
+	 * Un-Select the (Abrasion) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage abrasionForUnselect() {
 
 		click(injuryTypeAbrasionButton);
@@ -1855,6 +2279,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the (Bleeding) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage bleedingForUnselect() {
 
 		click(injuryTypeBleedingButton);
@@ -1868,6 +2298,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the (Bruise) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage bruiseForUnselect() {
 
 		click(injuryTypeBruiseButton);
@@ -1881,6 +2317,12 @@ public class IncidentReportPage extends BaseClass {
 
 	}
 
+	/**
+	 * Un-Select the (Scratch) data from 'Injury Type' field and verify  whether the option is Un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage scratchForUnselect() {
 
 		click(injuryTypeScratchButton);
@@ -1894,6 +2336,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Light) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage lightOption() {
 
 		try {
@@ -1906,6 +2354,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Medium) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage mediumOption() {
 
 		try {
@@ -1919,6 +2373,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (High) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage highOption() {
 
 		try {
@@ -1932,6 +2392,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Green color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage greenColor() {
 
 		try {
@@ -1944,6 +2410,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Red color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage redColor() {
 
 		try {
@@ -1956,6 +2428,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Black color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage blackColor() {
 
 		try {
@@ -1968,6 +2446,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the (Brown color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage brownColor() {
 
 		try {
@@ -1980,11 +2464,23 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Click the "Notification Date" field calender icon.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public void notificationDateFieldCalenderIconButton() {
 
 		click(btnCalendar);
 	}
 
+	/**
+	 * Select the DD/MM/YYY in "Notification Date" field using date picker.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public void selectDateInDatePickerAndVerify() {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());
@@ -2006,6 +2502,12 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Verify the previous date is disabled based on event date & time in "Notification Date" field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public IncidentReportPage verifyPreviousDatesIsDisabled() {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
@@ -2033,12 +2535,6 @@ public class IncidentReportPage extends BaseClass {
 		String eventMonth = attribute.substring(5, 7);
 		System.out.println("Month alone - " + eventMonth);
 
-//		String text = getText(datePicker);
-//
-//		// Mapping of numeric months to three-letter abbreviations
-//		String[] monthAbbreviations = { "", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV",
-//				"DEC" };
-
 		// Convert numeric month to integer
 		int monthNumber = Integer.parseInt(eventMonth);
 
@@ -2046,20 +2542,7 @@ public class IncidentReportPage extends BaseClass {
 		if (monthNumber < 1 || monthNumber > 12) {
 			throw new IllegalArgumentException("Invalid month number: " + eventMonth);
 		}
-//    
-//   String MentionedMonthInNumeric = monthAbbreviations[monthNumber];
-//
-//   System.out.println(monthAbbreviations[monthNumber]);
-//   
-//   while(true) {
-//	   
-//   if(text.equals(MentionedMonthInNumeric+" "+eventYear)) {
-//	   break;
-//   }
-//   else {
-//		click(leftArrowBtn);
-//	}
-//   
+ 
 		if (eventMonth.equals("01") || eventMonth.equals("02") || eventMonth.equals("03") || eventMonth.equals("04")
 				|| eventMonth.equals("05") || eventMonth.equals("06") || eventMonth.equals("07")
 				|| eventMonth.equals("08") || eventMonth.equals("09") || eventMonth.equals("10")
@@ -2081,6 +2564,12 @@ public class IncidentReportPage extends BaseClass {
 
 	}
 
+	/**
+	 * Verify future date is disabled based on event date & time in "Notification Date" field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public void verifyNextToTheCurrentDateIsDisabled() {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
@@ -2152,6 +2641,12 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Select Date-Month-Year in "Notification Date" field using date picker.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 *
+	 */
 	public void selectNotificateDateUsingDD() {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
@@ -2231,6 +2726,12 @@ public class IncidentReportPage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Select the front view (Head) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewForeHeadInjury() {
 
 		click(frontViewForeHeadInjury);
@@ -2245,6 +2746,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Face) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewFaceInjury() {
 
 		click(frontViewFaceInjury);
@@ -2259,6 +2766,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Right shoulder) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewRightShoulderInjury() {
 
 		click(frontViewRightShoulderInjury);
@@ -2273,6 +2786,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Left shoulder) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewLeftShoulderInjury() {
 
 		click(frontViewLeftShoulderInjury);
@@ -2287,6 +2806,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Chest) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewChestInjury() {
 
 		click(frontViewChestInjury);
@@ -2301,6 +2826,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Abdomen) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewAbdomenInjury() {
 
 		click(frontViewAbdomenInjury);
@@ -2315,6 +2846,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Right Arm) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewRightArmInjury() {
 
 		click(frontViewRightArmInjury);
@@ -2329,6 +2866,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Left Arm) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewLefttArmInjury() {
 
 		click(frontViewLefttArmInjury);
@@ -2343,6 +2886,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Right Wrist) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewRightWristInjury() {
 
 		click(frontViewRightWristInjury);
@@ -2357,6 +2906,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Left Wrist) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewLefttWristInjury() {
 
 		click(frontViewLefttWristInjury);
@@ -2371,6 +2926,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Right Knee) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewRightKneeInjury() {
 
 		click(frontViewRightKneeInjury);
@@ -2385,6 +2946,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Left Knee) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewLeftKneeInjury() {
 
 		click(frontViewLeftKneeInjury);
@@ -2399,6 +2966,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Left Foot) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewLeftFootInjury() {
 
 		click(frontViewLeftFootInjury);
@@ -2413,6 +2986,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the front view (Right Foot) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage frontViewRightFootInjury() {
 
 		click(frontViewRightFootInjury);
@@ -2427,6 +3006,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Head) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewHeadInjury() {
 
 		click(backViewHeadInjury);
@@ -2441,6 +3026,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Right shoulder) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewRightShoulderInjury() {
 
 		click(backViewRightShoulderInjury);
@@ -2455,6 +3046,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Left shoulder) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewLeftShoulderInjury() {
 
 		click(backViewLeftShoulderInjury);
@@ -2469,6 +3066,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Back) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewBackInjury() {
 
 		click(backViewBackInjury);
@@ -2483,6 +3086,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Hip) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewHipInjury() {
 
 		click(backViewHipInjury);
@@ -2497,6 +3106,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Right Arm) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewRightArmInjury() {
 
 		click(backViewRightArmInjury);
@@ -2511,6 +3126,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Left Arm) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewLefttArmInjury() {
 
 		click(backViewLefttArmInjury);
@@ -2525,6 +3146,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Right Wrist) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewRightWristInjury() {
 
 		click(backViewRightWristInjury);
@@ -2539,6 +3166,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Left Wrist) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewLefttWristInjury() {
 
 		click(backViewLefttWristInjury);
@@ -2553,6 +3186,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Right Knee) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewRightKneeInjury() {
 
 		click(backViewRightKneeInjury);
@@ -2567,6 +3206,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Left Knee) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewLeftKneeInjury() {
 
 		click(backViewLeftKneeInjury);
@@ -2581,6 +3226,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Left Foot) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewLeftFootInjury() {
 
 		click(backViewLeftFootInjury);
@@ -2595,6 +3246,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Select the back view (Right Foot) in 'injured site' field and verify whether the option is selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage backViewRightFootInjury() {
 
 		click(backViewRightFootInjury);
@@ -2609,6 +3266,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Head) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewForeHeadInjury() {
 
 		click(frontViewForeHeadInjury);
@@ -2623,6 +3286,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Face) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewFaceInjury() {
 
 		click(frontViewFaceInjury);
@@ -2637,6 +3306,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Right shoulder) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewRightShoulderInjury() {
 
 		click(frontViewRightShoulderInjury);
@@ -2651,6 +3326,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Left shoulder) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewLeftShoulderInjury() {
 
 		click(frontViewLeftShoulderInjury);
@@ -2665,6 +3346,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Chest) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewChestInjury() {
 
 		click(frontViewChestInjury);
@@ -2679,6 +3366,13 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	
+	/**
+	 * Un-Select the front view (Abdomen) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewAbdomenInjury() {
 
 		click(frontViewAbdomenInjury);
@@ -2693,6 +3387,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Right Arm) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewRightArmInjury() {
 
 		click(frontViewRightArmInjury);
@@ -2707,6 +3407,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Left Arm) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewLefttArmInjury() {
 
 		click(frontViewLefttArmInjury);
@@ -2721,6 +3427,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Right Wrist) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewRightWristInjury() {
 
 		click(frontViewRightWristInjury);
@@ -2735,6 +3447,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Left Wrist) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewLefttWristInjury() {
 
 		click(frontViewLefttWristInjury);
@@ -2749,6 +3467,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Right Knee) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewRightKneeInjury() {
 
 		click(frontViewRightKneeInjury);
@@ -2763,6 +3487,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Left Knee) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewLeftKneeInjury() {
 
 		click(frontViewLeftKneeInjury);
@@ -2777,6 +3507,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Left foot) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewLeftFootInjury() {
 
 		click(frontViewLeftFootInjury);
@@ -2791,6 +3527,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the front view (Right foot) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectFrontViewRightFootInjury() {
 
 		click(frontViewRightFootInjury);
@@ -2805,6 +3547,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Head) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewHeadInjury() {
 
 		click(backViewHeadInjury);
@@ -2819,6 +3567,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Right shoulder) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewRightShoulderInjury() {
 
 		click(backViewRightShoulderInjury);
@@ -2833,6 +3587,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Left shoulder) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewLeftShoulderInjury() {
 
 		click(backViewLeftShoulderInjury);
@@ -2847,6 +3607,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Back) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewBackInjury() {
 
 		click(backViewBackInjury);
@@ -2861,6 +3627,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Hip) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewHipInjury() {
 
 		click(backViewHipInjury);
@@ -2875,6 +3647,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Right Arm) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewRightArmInjury() {
 
 		click(backViewRightArmInjury);
@@ -2889,6 +3667,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Left Arm) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewLefttArmInjury() {
 
 		click(backViewLefttArmInjury);
@@ -2903,6 +3687,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Right Wrist) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewRightWristInjury() {
 
 		click(backViewRightWristInjury);
@@ -2917,6 +3707,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Left Wrist) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewLefttWristInjury() {
 
 		click(backViewLefttWristInjury);
@@ -2931,6 +3727,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Right Knee) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewRightKneeInjury() {
 
 		click(backViewRightKneeInjury);
@@ -2945,6 +3747,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Left Knee) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewLeftKneeInjury() {
 
 		click(backViewLeftKneeInjury);
@@ -2959,6 +3767,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Left foot) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewLeftFootInjury() {
 
 		click(backViewLeftFootInjury);
@@ -2973,6 +3787,12 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Un-Select the back view (Right foot) in 'injured site' field and verify whether the option is un-selected or not.
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public IncidentReportPage unselectBackViewRightFootInjury() {
 
 		click(backViewRightFootInjury);
@@ -2987,102 +3807,277 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
+	/**
+	 * Enter past time in "Time" field
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public void pastTimeInNotificationTime() {
 
 		sendKeys(timeTxtbox, getPastTime("HH:MMa"));
 		click(notifedByTxtBox);
 	}
 
+	/**
+	 * Enter future time in "Time" field
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public void futureTimeInNotificationTime() {
 
 		sendKeys(timeTxtbox, getFutureTime("HH:MMa"));
 		click(notifedByTxtBox);
 	}
 
+	/**
+	 * Click the Breadcrum text "Report"
+	 *  
+	 * @author Alphi-MohamedRazul 
+	 * 
+	 */
 	public void breadCrumREPORTTxtLink() {
 
 		click(breadCrumTxtLinkReports);
 	}
 
+	/**
+	 * Get the 'Location' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Location' field entered data(text).
+	 */
 	public String getLocationValue() {
 		return getText(locationValue);
 	}
 
+	/**
+	 * Get the 'Cause' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'What Cause the fall' field entered data(text).
+	 */
 	public String getInjuryCausedValue() {
 		return getText(injuryCauseValue);
 	}
 
+	/**
+	 * Get the 'Injury' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Was Individual Injured?' field selected data(text).
+	 */
 	public String getWasInjuredValue() {
 		return getText(wasInjuredValue);
 	}
 
+	/**
+	 * Get the 'Injury Description' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Injury Description' field entered data(text).
+	 */
 	public String getInjuryDescriptionValue() {
 		return getText(injuryDescriptionValue);
 	}
 
+	/**
+	 * Get the 'Site of Injury' field front view selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Injury Site' field front view selected data(text).
+	 */
 	public String getSiteOfInjuryFrontValue() {
 		return getText(siteOfInjuryFrontValue);
 	}
 
+	/**
+	 * Get the 'Site of Injury' field back view selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Injury Site' field back view selected data(text).
+	 */
 	public String getSiteOfInjuryBackValue() {
 		return getText(siteOfInjuryBackValue);
 	}
 
+	/**
+	 * Get the 'Treatment Received' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Treatment Received' field entered data(text).
+	 */
 	public String getTreatmentReceivedValue() {
 		return getText(treatmentReceivedValue);
 	}
 
+	/**
+	 * Get the 'Future Treatment' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Future Treatment' field entered data(text).
+	 */
 	public String getFutureTreatmentValue() {
 		return getText(futureTreatmentValue);
 	}
 
+	/**
+	 * Get the 'Injury Type' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Injury Type' field selected data(text).
+	 */
 	public String getInjuryTypeValue() {
 		return getText(injuryTypeValue);
 	}
 
+	/**
+	 * Get the 'Severity' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'How severe was the injury?' field selected data(text).
+	 */
 	public String getInjurySeverityValue() {
 		return getText(injurySeverityValue);
 	}
 
+	/**
+	 * Get the 'Event Notification Status' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Was Event Notified?' field selected data(text).
+	 */
 	public String getEventNotifiStatusValue() {
 		return getText(eventNotifiStatusValue);
 	}
 
+	/**
+	 * Get the 'Person Notified' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Person Notified' field entered data(text).
+	 */
 	public String getPersonNotifiedValue() {
 		return getText(personNotifiedValue);
 	}
 
+	/**
+	 * Get the 'Relationship' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Relationship' field selected data(text).
+	 */
 	public String getRelationshipValue() {
 		return getText(relationshipValue);
 	}
 
+	/**
+	 * Get the 'Notification Date & Time' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Notification Date' & 'Time' field entered data(text).
+	 */
 	public String getNotificationDateAndTimeValue() {
 		return getText(notificationDateAndTimeValue);
 	}
 
+	/**
+	 * Get the 'Notified By' field entered data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Notified By' field entered data(text).
+	 */
 	public String getNotifiedByValue() {
 		return getText(notifiedByValue);
 	}
 
+	/**
+	 * Get the 'Notification Method' field selected data in IR view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return 'Notification Method' field selected data(text).
+	 */
 	public String getNotificationMethodValue() {
 		return getText(notificationMethodValue);
 	}
 
+	/**
+	 * Get the "Incident Report" Bread crum (text)  in Reports > Individual Name > Incident Report view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return Bread crum 'Incident Report' (text).
+	 */
 	public String getBreadCrumTxtLinkIncidentReportInViewPage() {
 		return getText(breadCrumTxtLinkIncidentReportInViewPage);
 	}
+
 	
-	public String breadCrumSuiteNameText() {
+	String createdIndNameFromExcel;
+	/**
+	 * Get the 'Individual Name' Bread crum (text)  in Reports > Individual Name > Incident Report view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return Bread crum 'Individual Name' (text).
+	 */
+	public String breadCrumIndividualNameText() {
 
 		waitForPageLoad();
-	    String createdIndNameFromExcel = readExcel("Test Datas", "Incident Reports", 1, 28);
+		createdIndNameFromExcel = readExcel("Test Datas", "Incident Reports", 1, 28);
 		String[] splitFirstNameAlone = createdIndNameFromExcel.split(" ");
 		String getFirstName = splitFirstNameAlone[0];
 		BC = BC.replaceAll("createdSN", getFirstName);
 		String textString = getTextString(BC);
 		return textString;
 	}
-	
 
-	
+	/**
+	 * Check whether the 'Individual Name' Bread crum (text)  in equal to the actual Individual name in Reports > Individual Name > Incident Report view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return if equals [TRUE] | if not equals [FALSE] .
+	 */
+	public boolean isBcIndividualNameTextIsEqualAsExpected() {
+
+		if (breadCrumIndividualNameText().equals(createdIndNameFromExcel.split(" ")[0])) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check whether the 'Incident Report' Bread crum (text) in equal to the actual text in Reports > Individual Name > Incident Report view Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @return if equals [TRUE] | if not equals [FALSE] .
+	 */
+	public boolean isBCIncidentReportTextIsDisplayed() {
+
+		if (getText(breadCrumTxtLinkIncidentReportInViewPage).equals("Incident Report")) {
+			return true;
+		}
+		return false;
+	}
+
+
 }

@@ -34,8 +34,7 @@ public class AddSuitesPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//span[contains(text(),'Suites')]/parent::a")
-	private WebElement suitesModule;
+	
 
 	@FindBy(xpath = "//h5[contains(text(),'Suites')]")
 	private WebElement suitesPage;
@@ -129,9 +128,7 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "//button[@mat-raised-button]")
 	private WebElement EditSuite;
 
-	public WebElement getSuitesModule() {
-		return suitesModule;
-	}
+
 
 	public WebElement getBtnAddSuites() {
 		return btnAddSuites;
@@ -252,17 +249,6 @@ public class AddSuitesPage extends BaseClass {
 	 * 
 	 */
 
-	
-	
-	public void navToSuitesModule() {
-
-		if (suitesModule.isDisplayed()) {
-			click(suitesModule);
-			waitForPageLoad();
-		} else {
-			log(Status.FAIL, "Unable to click the Suites Module");
-		}
-	}
 
 	public void btnAddSuite() {
 
