@@ -129,23 +129,18 @@ Scenario Outline: To verify whether Chief nurse can able to reject and reapprove
 		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
 		Then Open notification received by Chief nurse.
 		And Re-Send the report by Chief Nurse user to staff nurse.
-		And Verify whether the report is in "Sent Back" status by Chief Nurse user.
 		Then Switch back to staff user login.
 		And Open notification received by staff.
 		Then ReSubmit the Report by staff user.
 		Then Open notification received by Chief nurse.
 		And Approve the report by Chief Nurse user.
-		Then Open notification received by residential manager.
-		And Approve the report by Residential Manager user.
-		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Close all the browsers.
-   
-   Examples:
-     
-    |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		Examples:
+      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
+      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
 
+  
 @RejectAndReapprovebyResidentialManager   
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
 		Given User is on Xealei login page
@@ -183,3 +178,303 @@ Examples:
    |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
 		
 		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+
+@NotificationAlert		
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from notification.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+
+Examples:    
+    
+  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		
+
+@NotificationAlertAllApprove
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open notification received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Launch a new browser and enter xealei url for clinical coordinator.
+		And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
+		Then Open notification received by Clinical Coordinator.
+		And Approve the report by Clinical Coordinator user.
+		And Verify whether the report is in "In Progress" status by Clinical Coordinator user.
+		Then Launch a new browser and enter xealei url for social worker.
+		And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
+		Then Verify whether notification received by Social Worker.
+		And Approve the report by Social Worker user.
+		And Verify whether the report is in "Finalized" status by Social Worker user.
+		Then Close all the browsers.
+
+Examples:    
+    
+  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+
+@NotificationAlertRejectAndReapprovebyChiefNurse		
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and Chief nurse can able to reject and reapprove the incident Report from notification.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Re-Send the report by Chief Nurse user to staff nurse.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Close all the browsers.
+		
+		Examples:
+      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
+      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
+		
+@NotificationAlertRejectAndReapprovebyResidentialManager   
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and residential manager can able to reject and reapprove the incident Report from notification.		
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open notification received by residential manager.
+		And Re-Send the report by Residential Manager user.
+		And Verify whether the report is in "Sent Back" status by Residential Manager user.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Open notification received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Close all the browsers.
+    
+Examples:    
+    
+   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		
+		
+@NotificationAlertThroughGrid		
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification Triggered from a sensor.
+		Then Open IR received by staff from sensor in Grid.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+
+Examples:    
+    
+  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+			
+@NotificationAlertThroughGridAllApprove
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and approved by all level of users.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification Triggered from a sensor.
+		Then Open IR received by staff from sensor in Grid.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open notification received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Launch a new browser and enter xealei url for clinical coordinator.
+		And Login into Xealei application as CLinical Coordinator role with valid "<CCUserName>" and "<CCPassWord>".
+		Then Open notification received by Clinical Coordinator.
+		And Approve the report by Clinical Coordinator user.
+		And Verify whether the report is in "In Progress" status by Clinical Coordinator user.
+		Then Launch a new browser and enter xealei url for social worker.
+		And Login into Xealei application as Social Worker role with valid "<SWUserName>" and "<SWPassWord>".
+		Then Verify whether notification received by Social Worker.
+		And Approve the report by Social Worker user.
+		And Verify whether the report is in "Finalized" status by Social Worker user.
+		Then Close all the browsers.
+
+Examples:    
+    
+  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		
+
+
+@NotificationAlertThroughGridRejectAndReapprovebyChiefNurse
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and Chief nurse can able to reject and reapprove the incident Report.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification Triggered from a sensor.
+		Then Open IR received by staff from sensor in Grid.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Re-Send the report by Chief Nurse user to staff nurse.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Close all the browsers.
+		
+		Examples:
+      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
+      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
+	
+
+
+@NotificationAlertThroughGridRejectAndReapprovebyResidentialManager
+Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and residential manager can able to reject and reapprove the incident Report from notification.
+		Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification Triggered from a sensor.
+		Then Open IR received by staff from sensor in Grid.
+		Then Select fall radio button and enter description.
+		Then Click Save and Proceed to IR button.
+		Then Verify text in what casued the fall matches with Description.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		And Verify whether the report is in "In Progress" status by Chief Nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open notification received by residential manager.
+		And Re-Send the report by Residential Manager user.
+		And Verify whether the report is in "Sent Back" status by Residential Manager user.
+		Then Switch back to staff user login.
+		And Open notification received by staff.
+		Then ReSubmit the Report by staff user.
+		Then Open notification received by Chief nurse.
+		And Approve the report by Chief Nurse user.
+		Then Open notification received by residential manager.
+		And Approve the report by Residential Manager user.
+		And Verify whether the report is in "In Progress" status by Residential Manager user.
+		Then Close all the browsers.
+    
+Examples:    
+    
+   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+		
+@Chat		
+Scenario Outline: To verify chat option in IR.		
+		Given User is on Xealei login page
+    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should verify the Incident report module is working
+    Then User should verify the ADD New Incident Report button is working
+		And Select the individual for whom the incident report has to be created.
+		Then Enter all the details of the Incident.
+		Then Click on next button.
+		And Click on complete button.
+		And Verify whether the report is in pending status.
+		And Click view button on staff user.
+		Then Send chat message for staff user.
+		Then Launch a new browser and enter xealei url for Chief nurse.
+		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
+		Then Open IR received by Chief nurse.
+		Then Click View button for chief nurse user.
+		And Verify staff message is received by cheif nurse.
+#		Then Send chat message for cheif nurse user.
+#		Then Launch a new browser and enter xealei url for residential manager.
+#		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+#		Then Open IR received by residential manager.
+#		And Send chat message for residential manager user.
+#		Then Verify staff message is received by Residential Manager.
+#		Then Verify cheif nurse message is received by Residential Manager.
+#		Then Verify Residential manager message received by staff.
+#		Then Verify Residential manager message received by cheif nurse.
+		Then Close all the browsers.
+
+Examples:    
+    
+   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+		
+		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
+
+
