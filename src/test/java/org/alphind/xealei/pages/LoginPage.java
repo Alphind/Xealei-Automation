@@ -1,6 +1,6 @@
 /* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
 
-* created by Mohamed Razul, on date
+* created by Mohamed Razul
 
 * reviewed by Hajira Begam
 
@@ -21,29 +21,22 @@ import com.aventstack.extentreports.Status;
 
 public class LoginPage extends BaseClass {
 
-	/*
-	 * Description - All the Login Module/Page locators are stored here..
-	 */
-
 	private WebDriver driver;
-	
+
 	public LoginPage(WebDriver driver) {
-		
+
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
-	@FindBy(xpath = "//p[contains(text(),'Powered by Alphind © 2023')]")
-	private WebElement copyRightsTxtInLoginScreen;
 
 	@FindBy(xpath = "//h3[contains(text(),'LOGIN')]")
 	private WebElement loginTextVerification;
 
 	@FindBy(xpath = "(//span[@class='text-danger']/parent::mat-label)[1]")
-	private WebElement UNMandatoryVerification;
+	private WebElement emailMandatoryFieldLabelText;
 
 	@FindBy(xpath = "(//span[@class='text-danger']/parent::mat-label)[2]")
-	private WebElement PassMandatoryVerification;
+	private WebElement passwordMandatoryFieldLabelText;
 
 	@FindBy(xpath = "//img[@class='show-hide-pwd1']")
 	private WebElement eyeShow;
@@ -61,7 +54,7 @@ public class LoginPage extends BaseClass {
 	private WebElement privacyPolicyContent;
 
 	@FindBy(xpath = "//p[@class='text-muted text-center mt-6']")
-	private WebElement bottomText;
+	private WebElement copyRightsText;
 
 	@FindBy(xpath = "//input[@placeholder='Email']")
 	private WebElement userName;
@@ -71,9 +64,6 @@ public class LoginPage extends BaseClass {
 
 	@FindBy(xpath = "//button[text()='Login ']")
 	private WebElement loginButton;
-
-	@FindBy(xpath = "//h5[@x-page='home']")
-	private WebElement navToHomePageSuccessfully;
 
 	@FindBy(xpath = "//span[contains(text(),'User not found')]")
 	private WebElement userNotFoundErrorMessage;
@@ -92,112 +82,260 @@ public class LoginPage extends BaseClass {
 	private WebElement unknownErrorToastMsg;
 
 	@FindBy(xpath = "//span[contains(text(),'OK')]/parent::button")
-	private WebElement toastMsgOkButton;
-	
+	private WebElement toastMsgOKButton;
+
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
 	private WebElement toastMsgokButton;
-	
-	
 
-	public WebElement getCopyRightsTxtInLoginScreen() {
-		return copyRightsTxtInLoginScreen;
-	}
-
-	public WebElement getLoginTextVerification() {
-		return loginTextVerification;
-	}
-
-	public WebElement getUNMandatoryVerification() {
-		return UNMandatoryVerification;
-	}
-
-	public WebElement getPassMandatoryVerification() {
-		return PassMandatoryVerification;
-	}
-
-	public WebElement getEyeShow() {
-		return eyeShow;
-	}
-
-	public WebElement getForgotPassword() {
-		return forgotPassword;
-	}
-
-	public WebElement getLnkPrivacyPolicy() {
-		return lnkPrivacyPolicy;
-	}
-
-	public WebElement getBottomText() {
-		return bottomText;
-	}
-
-	public WebElement getPrivacyPolicyContent() {
-		return privacyPolicyContent;
-	}
-
-	public WebElement getUserName() {
-		return userName;
-	}
-
-	public WebElement getPassword() {
-		return password;
-	}
-
-	public WebElement getLoginButton() {
-		return loginButton;
-	}
-
-	public WebElement getNavToHomePageSuccessfully() {
-		return navToHomePageSuccessfully;
-	}
-
-	public WebElement getUserNotFoundErrorMessage() {
-		return userNotFoundErrorMessage;
-	}
-
-	public WebElement getIncorrectPasswordErrorMessage() {
-		return incorrectPasswordErrorMessage;
-	}
-
-	public WebElement getErrorMessageForEmail() {
-		return errorMessageForEmail;
-	}
-
-	public WebElement getErrorMessageForPassword() {
-		return errorMessageForPassword;
-	}
-
-	public WebElement getUnknownErrorToastMsg() {
-		return unknownErrorToastMsg;
-	}
-
-	public WebElement getToastMsgOkButton() {
-		return toastMsgOkButton;
-	}
-	
-	public WebElement getToastMsgokButton() {
-		return toastMsgokButton;
-	}
-	
-	public WebElement getForgotPasswordHyperLink() {
-		return forgotPasswordHyperLink;
-	}
-
-	/*
-	 * Description - Below method helps to perform the Testcase actions for Login
-	 * Page..
+	/**
+	 * Get the "LOGIN" (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return LOGIN (text).
 	 */
+	public String getLoginTextVerification() {
+		return getText(loginTextVerification);
+	}
 
+	/**
+	 * Get the Login button "Attribute value" in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Login button "Attribute value".
+	 */
+	public String getLoginButtonAttribute() {
+		return getAttribute(loginButton, "ng-reflect-ng-class");
+	}
+
+	/**
+	 * Get the Email* field Label (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Email* field label (text).
+	 */
+	public String getEmailMandatoryFieldLabelText() {
+		return getText(emailMandatoryFieldLabelText);
+	}
+
+	/**
+	 * Get the Password* field Label (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Password* field label (text).
+	 */
+	public String getPassMandatoryFieldLabelText() {
+		return getText(passwordMandatoryFieldLabelText);
+	}
+
+	/**
+	 * Get the Email* field "Attribute value" in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Email* field "Attribute value".
+	 */
+	public String getUserNameFieldAttributeValue(String value) {
+		return getAttribute(userName, value);
+	}
+
+	/**
+	 * Get the Password* field "Attribute value" in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Password* field "Attribute value".
+	 */
+	public String getPasswordFieldAttributeValue(String value) {
+		return getAttribute(password, value);
+	}
+
+	/**
+	 * Get the Copy Rights (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return copy rights(text).
+	 */
+	public String getCopyRightsText() {
+		return getText(copyRightsText);
+	}
+
+	/**
+	 * Get the Email* field Info (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Email* field Info(text).
+	 */
+	public String getEmailMFInfoMessageText() {
+		return getText(errorMessageForEmail);
+	}
+
+	/**
+	 * Get the Password* field Info (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return Password* field Info(text).
+	 */
+	public String getPasswordMFInfoMessageText() {
+		return getText(errorMessageForPassword);
+	}
+
+	/**
+	 * Get the "User Not Found" ToastMsg (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "User Not Found" ToastMsg (text).
+	 */
+	public String getUserNotFoundErrorMessageText() {
+		return getText(userNotFoundErrorMessage);
+	}
+
+	/**
+	 * Get the "Incorrect Password" ToastMsg (text) in Login Page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 * @return "Incorrect Password" ToastMsg (text).
+	 */
+	public String getIncorrectPasswordErrorMessageText() {
+		return getText(incorrectPasswordErrorMessage);
+	}
+
+	/**
+	 * Enter the invalid data to 'Email*' field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
 	public void email() {
 
-		sendKeys(getUserName(), "Doc@Medi.com");
+		sendKeys(userName, "Doc@Medi.com");
 	}
 
+	/**
+	 * Enter the invalid data to 'password*' field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
 	public void password() {
 
 		waitForPageLoad(this.driver);
-		sendKeys(getPassword(), "xe23Dal%q3");
+		sendKeys(password, "xe23Dal%q3");
 	}
+
+
+
+	/**
+	 * Click the "Eye" Icon.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void eyeIcon() {
+		click(eyeShow);
+	}
+
+	/**
+	 * Click the "forgot password" text link.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void forgotPasswordHyperLink() {
+
+		click(forgotPasswordHyperLink);
+	}
+
+	/**
+	 * Click the Toast message "OK" Button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void ToastMsgOkButton() {
+
+		click(toastMsgOKButton);
+	}
+
+	/**
+	 * Click the Toast message "ok" Button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void ToastMsgokButton() {
+
+		click(toastMsgokButton);
+	}
+
+	/**
+	 * To delete the existing Email field data.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void deleteExistingEmailFieldData() {
+
+		deleteExistFieldData(userName);
+	}
+
+	/**
+	 * To delete the existing Password field data.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void deleteExistingPasswordFieldData() {
+
+		deleteExistFieldData(password);
+	}
+
 
 	public void loginButton() {
 		
@@ -206,34 +344,33 @@ public class LoginPage extends BaseClass {
 		
 	}
 	
-	public void eyeIcon() {
-		click(eyeShow); 
-	}
-	
-	public void forgotPasswordHyperLink() {
-		
-		click(forgotPasswordHyperLink); 
-	}
-	
-	
-	public void privacyPolicyTextLink() {
 
-		click(lnkPrivacyPolicy);
-	}
 	
-	 public void ToastMsgOkButton() {
-			
-		   click(toastMsgOkButton);
-	}
-	 
-	 public void ToastMsgokButton() {
-			
-		   click(toastMsgokButton);
+
+	/**
+	 * Press ENTER key.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void pressEnterKeyInPasswordField() {
+
+
+		clickEnter(password);
 	}
 
 	String email;
 
-	public void validEmail(int rowNum){
+	/**
+	 * Enter the valid data from excel sheet to 'Email*' field.
+	 * 
+	 * @author Alphi-MohamedRazul.
+	 *
+	 * @created on 22-12-2023.
+	 */
+	public void validEmail(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
 
@@ -241,25 +378,25 @@ public class LoginPage extends BaseClass {
 
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			sendKeys(getUserName(), email);
+			sendKeys(userName, email);
 			log(Status.INFO, "Enter QA environment Email/userName");
-			clickEnter(getPassword());
+			clickEnter(password);
 			waitForPageLoad();
 			break;
 		}
 		case "PREPROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			sendKeys(getUserName(), email);
+			sendKeys(userName, email);
 			log(Status.INFO, "Enter PREPROD environment email/userName");
-			clickEnter(getPassword());
+			clickEnter(password);
 			waitForPageLoad();
 			break;
 		}
 		case "PROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			sendKeys(getUserName(), email);
+			sendKeys(userName, email);
 			log(Status.INFO, "Enter PROD environment email/userName");
-			clickEnter(getPassword());
+			clickEnter(password);
 			waitForPageLoad();
 			break;
 		}
@@ -273,6 +410,13 @@ public class LoginPage extends BaseClass {
 
 	String passWord;
 
+	/**
+	 * Enter the valid data from excel sheet to 'Password*' field.
+	 * 
+	 * @author Alphi-MohamedRazul.
+	 *
+	 * @created on 22-12-2023.
+	 */
 	public void validPassword(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
@@ -282,21 +426,21 @@ public class LoginPage extends BaseClass {
 		case "QA": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			waitForPageLoad();
-			sendKeys(getPassword(), passWord);
+			sendKeys(password, passWord);
 			log(Status.INFO, "Enter QA environment Password");
-			break; 
+			break;
 		}
 		case "PREPROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			waitForPageLoad();
-			sendKeys(getPassword(), passWord);
+			sendKeys(password, passWord);
 			log(Status.INFO, "Enter PREPROD environment Password");
 			break;
 		}
 		case "PROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			waitForPageLoad();
-			sendKeys(getPassword(), passWord);
+			sendKeys(password, passWord);
 			log(Status.INFO, "Enter PROD environment Password");
 			break;
 		}
@@ -306,6 +450,57 @@ public class LoginPage extends BaseClass {
 		}
 
 		}
+	}
+
+	/**
+	 * Checks whether forgot password link is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 1/19/2024
+	 * 
+	 * @return whether forgot password link is displayed or not.
+	 */
+	public boolean isForgotPasswordLinkDisplayed() {
+
+		if (forgotPasswordHyperLink.isEnabled()) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Checks whether EyeIcon in Password field is displayed or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 1/19/2024
+	 * 
+	 * @return whether EyeIcon in Password field is displayed or not.
+	 */
+	public boolean isEyeIconInPasswordFieldIsDisplayed() {
+
+		if (eyeShow.isDisplayed()) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Checks whether Navigate to forgot password page or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 1/19/2024
+	 * 
+	 * @return whether the forgot password page is displayed or not.
+	 */
+	public boolean isForgotPasswordPageIsDisplayed() {
+
+		if (forgotPassword.isDisplayed()) {
+			return true;
+		}
+		return false;
 	}
 
 }
