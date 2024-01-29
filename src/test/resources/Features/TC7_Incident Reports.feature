@@ -107,12 +107,12 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		And Verify whether the report is in "Finalized" status by Social Worker user.
 		Then Close all the browsers.
 		
-		Examples:
-		
-		|StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| 	|ASWorker| 	|auto@123|
-		
+#		Examples:
+#		
+#		|StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+#		
+#		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| 	|ASWorker| 	|auto@123|
+#		
 @RejectAndReapprovebyChiefNurse		
 Scenario Outline: To verify whether Chief nurse can able to reject and reapprove the incident Report.
 

@@ -468,11 +468,7 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
 	private WebElement userName;
 	
-	
-	
-	
-	
-	
+
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
 	 * 
@@ -1847,12 +1843,11 @@ public class IncidentReportPage extends BaseClass {
 
 		try {
 		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
-		select(excatColumn);
+		select(this.driver,excatColumn);
 		waitForPageLoad();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -1983,19 +1978,13 @@ public class IncidentReportPage extends BaseClass {
 	public void eventDateAndTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-		case "YES": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
+		case "YES","": {
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mm"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
 		}
 		case "NO": {
-			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
-			break;
-		}
-		case "": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
@@ -4070,7 +4059,6 @@ public class IncidentReportPage extends BaseClass {
 		String textString = getTextString(BC);
 		return textString;
 	}
-
 	
 	/**
 	 * @author Nandhalala.
@@ -4130,10 +4118,10 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 25-01-2024.
 	 */
 	public String getUserName() {
+		waitForPageLoad(this.driver);
 		return userName.getText().trim();
 	}
 	
-
 	/**
 	 * Check whether the 'Individual Name' Bread crum (text)  in equal to the actual Individual name in Reports > Individual Name > Incident Report view Page.
 	 * 

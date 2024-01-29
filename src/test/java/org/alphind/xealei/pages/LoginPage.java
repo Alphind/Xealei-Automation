@@ -257,7 +257,18 @@ public class LoginPage extends BaseClass {
 		sendKeys(password, "xe23Dal%q3");
 	}
 
+	/**
+	 * Click the "Login" button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 19/01/2024
+	 * 
+	 */
+	public void loginButton() {
 
+		click(loginButton);
+	}
 
 	/**
 	 * Click the "Eye" Icon.
@@ -336,17 +347,6 @@ public class LoginPage extends BaseClass {
 		deleteExistFieldData(password);
 	}
 
-
-	public void loginButton() {
-		
-		click(loginButton);
-		waitForPageLoad(this.driver);
-		
-	}
-	
-
-	
-
 	/**
 	 * Press ENTER key.
 	 * 
@@ -356,7 +356,6 @@ public class LoginPage extends BaseClass {
 	 * 
 	 */
 	public void pressEnterKeyInPasswordField() {
-
 
 		clickEnter(password);
 	}

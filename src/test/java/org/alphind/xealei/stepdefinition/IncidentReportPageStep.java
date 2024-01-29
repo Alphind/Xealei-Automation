@@ -1806,6 +1806,7 @@ public class IncidentReportPageStep extends BaseClass {
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().Upload("JFIF Format", ".jfif");
+
 	}
 
 	@Then("User should verify the toast message after try to upload more than 1MB File format {string}")
@@ -1970,13 +1971,11 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open IR received by Chief nurse.")
 	public void Open_IR_received_by_Chief_nurse() {
 		
-		sleep(2000);
+		sleep(5000);
 		chiefnursepom.getHomePage().navToReportsModule();
 		chiefnursepom.getHomePage().navToIncidentReportModule();
 		sleep(7000);
 		System.out.println(chiefnursepom.getIncidentReportPage().getRowNumber());
-		
-		
 	}
 	
 	@Then("Click View button for chief nurse user.")

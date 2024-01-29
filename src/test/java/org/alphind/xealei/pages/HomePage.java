@@ -74,7 +74,7 @@ public class HomePage extends BaseClass {
 	
 	private String iminButton = "//tbody/tr[XX]/td[5]/button/span[contains(text(),'in')]";
 	
-	
+
 
 	/**
 	 * Get the login user name (text) in Home Page.
@@ -181,6 +181,7 @@ public class HomePage extends BaseClass {
 		click(notificationElement);
 		waitForPageLoad(this.driver);
 	}
+
 	
 	public void fallAlertNotification(String dateandtimeofFall) throws Exception {
 		waitForPageLoad(this.driver);
@@ -273,6 +274,6 @@ public class HomePage extends BaseClass {
 		String description = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
 		sendKeys(alertNotificationDescriptionText, description);
 	}
-	
+
 
 }
