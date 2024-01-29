@@ -15,10 +15,14 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -449,12 +453,22 @@ public class IncidentReportPage extends BaseClass {
 	private WebElement noteInfoMsg;
 
 	
+	@FindBy(xpath = "//textarea[@formcontrolname = 'message']")
+	private WebElement chatMessageArea;
 	
+	@FindBy(xpath = "//button[@title = 'Attachment' and @type = 'submit']")
+	private WebElement chatAttachmentButton;
 	
+	@FindBy(xpath = "//button[@title = 'Send Message' and @type = 'submit']")
+	private WebElement chatSendButton;
 	
+	private String chatMessageTextXpath = "//div[@class = 'msg-info-name' and contains(text(),'XX')]"
+			+ "/parent::div/following-sibling::div";
 	
+	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
+	private WebElement userName;
 	
-	
+
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
 	 * 
@@ -1824,9 +1838,12 @@ public class IncidentReportPage extends BaseClass {
 	 * @param rowNumber - Accepts only IR Grid Row number as parameters.
 	 */
 	public void viewButton(String rowNumber) {
+
+		waitForPageLoad(this.driver);
+
 		try {
 		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
-		select(excatColumn);
+		select(this.driver,excatColumn);
 		waitForPageLoad();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1843,7 +1860,7 @@ public class IncidentReportPage extends BaseClass {
 	public void editButton(String rowNumber) {
 		String excatColumn = editButton.replaceAll("rownumber", rowNumber);
 		select(excatColumn);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 
 	/**
@@ -1854,7 +1871,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void EditButton() {
 		click(IRFormEditButton);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 
 	/**
@@ -1865,7 +1882,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void addNewIncidentReportButton() {
 
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 
 		if (addNewIncidentReportButton.isDisplayed()) {
 			click(addNewIncidentReportButton);
@@ -1961,19 +1978,13 @@ public class IncidentReportPage extends BaseClass {
 	public void eventDateAndTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-		case "YES": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
+		case "YES","": {
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mm"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
 		}
 		case "NO": {
-			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
-			break;
-		}
-		case "": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
@@ -4048,7 +4059,69 @@ public class IncidentReportPage extends BaseClass {
 		String textString = getTextString(BC);
 		return textString;
 	}
-
+	
+	/**
+	 * @author Nandhalala.
+	 * 
+	 * Get text from what caused the fall field.
+	 *
+	 * return The text data from what caused the fall field.
+	 * @created on 24-01-2024.
+	 */
+	public String getWhatCausedTheFall() {
+		return getAttribute(whatCausedTheFallDescriptionTxtBox, "value");
+		
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * 
+	 * Send Chat message.
+	 *
+	 * 
+	 * @created on 25-01-2024.
+	 */
+	public void sendChatMessage(String chatMessage) {
+		
+		sendKeys(chatMessageArea, chatMessage);
+		click(chatSendButton);
+		
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * 
+	 * Get Chat message.
+	 *
+	 * 
+	 * @created on 25-01-2024.
+	 */
+	public Map<String, String> getChatMessagesFromUser(String userName) {
+		
+		chatMessageTextXpath = chatMessageTextXpath.replaceAll("XX", userName);
+		List<WebElement> chatElements =  this.driver.findElements(By.xpath(chatMessageTextXpath));
+		Map<String,String> chatMessages = new HashMap<String, String>();
+		int n = 1;
+		for(WebElement chat : chatElements) {
+			chatMessages.put(n+" message", chat.getText());
+			++n;
+		}
+		return chatMessages;
+	}
+	
+	/**
+	 * @author Nandhalala.
+	 * 
+	 * Get username of current Login.
+	 *
+	 * 
+	 * @created on 25-01-2024.
+	 */
+	public String getUserName() {
+		waitForPageLoad(this.driver);
+		return userName.getText().trim();
+	}
+	
 	/**
 	 * Check whether the 'Individual Name' Bread crum (text)  in equal to the actual Individual name in Reports > Individual Name > Incident Report view Page.
 	 * 

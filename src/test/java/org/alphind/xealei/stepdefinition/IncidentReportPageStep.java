@@ -2,7 +2,9 @@ package org.alphind.xealei.stepdefinition;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
 import java.text.ParseException;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,6 +17,10 @@ import com.aventstack.extentreports.Status;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class IncidentReportPageStep extends BaseClass {
 
@@ -1231,7 +1237,6 @@ public class IncidentReportPageStep extends BaseClass {
 			    waitForPageLoad(swDriver);
 			    swDriver.manage().window().maximize();
 			}
-
 			
 			/**
 			 * Created by Nandhalala.
@@ -1801,6 +1806,7 @@ public class IncidentReportPageStep extends BaseClass {
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().Upload("JFIF Format", ".jfif");
+
 	}
 
 	@Then("User should verify the toast message after try to upload more than 1MB File format {string}")
@@ -1826,4 +1832,172 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		staffpom.getIncidentReportPage().selectInjuryType();
 	}
+	
+	private String alertTime;
+	/**
+	 * Created by Nandhalala.
+	 */
+	@When("Notification is Triggered from a sensor.")
+	public void Notification_is_Triggered_from_a_sensor() {
+		String[] dateTime = getCurrentDtYearMonth("M/dd/yyyy hh:mma").split(" ");
+		//String time = dateTime.replaceAll(".*(.{7})", "$1");
+		String date = dateTime[0];
+		String time = dateTime[1];
+		try {
+			alertTime = dateConversion(date,time);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		File jsonFile = new File("./JSON/fall.json");
+		RequestSpecification request = RestAssured.given();
+		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
+									.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
+									.post();
+		sleep(5000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@When("Notification Triggered from a sensor.")
+	public void Notification_Triggered_from_a_sensor() {
+		String dateTime = getCurrentDtYearMonth("MMM dd, yyyy, hh:mm");
+		alertTime = dateTime;
+		
+		File jsonFile = new File("./JSON/fall.json");
+		RequestSpecification request = RestAssured.given();
+		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
+									.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
+									.post();
+		sleep(5000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Open notification received by staff from sensor.")
+	public void Open_notification_received_by_staff_from_sensor() {
+		String[] temp = alertTime.split(",");
+		temp[2] = temp[2].trim();
+		if(temp[2].charAt(0) == '0') {
+			temp[2]=temp[2].substring(1);
+		}
+		
+		String time = temp[0]+","+temp[1]+","+" "+temp[2];
+		
+		try {
+			staffpom.getHomePage().fallAlertNotification(time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sleep(2000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Open IR received by staff from sensor in Grid.")
+	public void Open_IR_received_by_staff_from_sensor_in_Grid() {
+		String[] temp = alertTime.split(",");
+		temp[2] = temp[2].trim();
+		if(temp[2].charAt(0) == '0') {
+			temp[2]=temp[2].substring(1);
+		}
+		
+		String time = temp[0]+","+temp[1]+","+" "+temp[2];
+		try {
+			staffpom.getHomePage().fallAlertFromGrid(time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Select fall radio button and enter description.")
+	public void Select_fall_radio_button_and_enter_description() {
+		staffpom.getHomePage().alertNotificationFalladioButton();
+		staffpom.getHomePage().alertNotificationDescription();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Click Save and Proceed to IR button.")
+	public void Click_Save_and_Proceed_to_IR_button() {
+		staffpom.getHomePage().saveandproccedtoTR();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Verify text in what casued the fall matches with Description.")
+	public void Verify_text_in_what_casued_the_fall_matches_with_Description() {
+		
+		String actual = staffpom.getIncidentReportPage().getWhatCausedTheFall();
+		String expected = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
+		assertEquals(actual, expected, "The actual value is : "+actual+"but the expected value is : "+expected);
+		
+	}
+	
+	private String staffName;
+	private String chiefNurseName;
+	private String managerName;
+	private String clinicalCoordinatorName;
+	private String socialWorkerName;
+	private String staffMessage = "Staff test Message";
+	private String chiefNurseMessage = "Chief nurse Message";
+	private String managerMessage = "Manager Message";
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Click view button on staff user.")
+	public void Click_view_button_on_staff_user() {
+		staffpom.getIncidentReportPage().viewButton(staffpom.getIncidentReportPage().getRowNumber());
+		staffName = staffpom.getIncidentReportPage().getUserName();
+		staffName=staffName.replaceAll("Staff", "").trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Send chat message for staff user.")
+	public void Send_chat_message_for_staff_user() {
+		staffpom.getIncidentReportPage().sendChatMessage(staffMessage);
+	}
+	
+	@Then("Open IR received by Chief nurse.")
+	public void Open_IR_received_by_Chief_nurse() {
+		
+		sleep(5000);
+		chiefnursepom.getHomePage().navToReportsModule();
+		chiefnursepom.getHomePage().navToIncidentReportModule();
+		sleep(7000);
+		System.out.println(chiefnursepom.getIncidentReportPage().getRowNumber());
+	}
+	
+	@Then("Click View button for chief nurse user.")
+	public void Click_View_button_for_chief_nurse_user() {
+		String rownumber = chiefnursepom.getIncidentReportPage().getRowNumber();
+		chiefnursepom.getIncidentReportPage().viewButton(rownumber);
+		chiefNurseName = chiefnursepom.getIncidentReportPage().getUserName();
+		chiefNurseName = chiefNurseName.replaceAll("Chief Nurse", "").trim();
+		System.out.println(chiefNurseName);
+	}
+	
+	@Then("Verify staff message is received by cheif nurse.")
+	public void Verify_staff_message_is_received_by_cheif_nurse() {
+		boolean flag = false;
+		Map<String, String> messages = chiefnursepom.getIncidentReportPage().getChatMessagesFromUser(staffName);
+		for(Map.Entry<String, String> entry : messages.entrySet()) {
+			System.out.println(entry.getKey() + "/" + entry.getValue());
+			if(entry.getValue().equals(staffMessage)) {
+				flag = true;
+			}
+		}
+		assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+	}
+	
 }
