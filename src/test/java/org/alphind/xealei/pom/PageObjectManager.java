@@ -14,9 +14,11 @@ import org.alphind.xealei.pages.AddIndividualsPage;
 import org.alphind.xealei.pages.AddSuitesPage;
 import org.alphind.xealei.pages.EditIndividualsPage;
 import org.alphind.xealei.pages.EditSuitesPage;
+import org.alphind.xealei.pages.ForgotPasswordPage;
 import org.alphind.xealei.pages.HomePage;
 import org.alphind.xealei.pages.IncidentReportPage;
 import org.alphind.xealei.pages.LoginPage;
+import org.alphind.xealei.stepdefinition.ForgotPasswordPageStep;
 import org.openqa.selenium.WebDriver;
 
 public class PageObjectManager {
@@ -34,6 +36,7 @@ public class PageObjectManager {
 	private EditIndividualsPage editIndividualsPage;
 	private IncidentReportPage incidentReportPage;
 	private HomePage homePage;
+	private ForgotPasswordPage forgotPasswordPage;
 	
 	
 	public PageObjectManager(WebDriver driver) {
@@ -55,12 +58,10 @@ public class PageObjectManager {
 		return (addSuitesPage == null) ? addSuitesPage = new AddSuitesPage(driver) : addSuitesPage;
 	}
 	
-
 	public EditSuitesPage getEditSuitesPage() {
 		return (editSuitesPage == null) ? editSuitesPage = new EditSuitesPage(driver) : editSuitesPage;
 		
 	}
-	
 	
 	public AddIndividualsPage getAddIndividualsPage() {
 		return (addIndividualsPage == null) ? addIndividualsPage = new AddIndividualsPage(driver) : addIndividualsPage;
@@ -74,6 +75,10 @@ public class PageObjectManager {
 	
 	public IncidentReportPage getIncidentReportPage() {
 		return (incidentReportPage == null) ? incidentReportPage = new IncidentReportPage(driver) : incidentReportPage;
+	}
+	
+	public ForgotPasswordPage getForgotPasswordPage() {
+		return (forgotPasswordPage == null) ? forgotPasswordPage = new ForgotPasswordPage(driver) : forgotPasswordPage;
 	}
 	
 	

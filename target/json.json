@@ -1,0 +1,277 @@
+[
+  {
+    "line": 11,
+    "elements": [
+      {
+        "start_timestamp": "2024-01-25T13:41:12.003Z",
+        "before": [
+          {
+            "result": {
+              "duration": 10735285100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 14,
+        "name": "To verify the Xealei Forgot Page",
+        "description": "",
+        "id": "verify-xealei-forgot-page;to-verify-the-xealei-forgot-page",
+        "after": [
+          {
+            "result": {
+              "duration": 737029700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 11967100,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2282893100,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "User should verify Forget password link is working",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_should_verify_forget_password_link_is_working()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 421873200,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "User must verify the tab url address for FORGOT PASSWORD screen",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_tab_url_address_for_forgot_password_screen()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 262297400,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "User must verify the Forgot Password text is displayed \"FORGOT PASSWORD\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"FORGOT PASSWORD\"",
+                  "offset": 55
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_forgot_password_text_is_displayed(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 477722000,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "User must verify the Lable name \u0026 Place holder text for Email field",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_lable_name_place_holder_text_for_email_field()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 499663600,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "User must click  the Reset button without perform Email field and verify the info message is displayed \"Email is required\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Email is required\"",
+                  "offset": 103
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_click_the_reset_button_without_perform_email_field_and_verify_the_info_message_is_displayed(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 3749967800,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "User must verify the Email field for formats \"Please enter a valid email address\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please enter a valid email address\"",
+                  "offset": 45
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_field_for_formats(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2838408800,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "User must verify the Email field with invalid data \"Email ID not exist\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Email ID not exist\"",
+                  "offset": 51
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_field_with_invalid_data(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2932156400,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "User must verify the email field for unregistered user \"Email ID not exist\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Email ID not exist\"",
+                  "offset": 55
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_field_for_unregistered_user(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "User must verify the email for blocked user",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_for_blocked_user()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 996900,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "User must verify the email for Inactive user",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_for_inactive_user()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2588077400,
+              "status": "passed"
+            },
+            "line": 26,
+            "name": "User must verify the email field with valid data",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_field_with_valid_data()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 432841200,
+              "status": "passed"
+            },
+            "line": 27,
+            "name": "User must verify the email sent successfully content",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_email_sent_successfully_content()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 481710800,
+              "status": "passed"
+            },
+            "line": 28,
+            "name": "User must verify the Try Again text link is working",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_try_again_text_link_is_working()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1400256700,
+              "status": "passed"
+            },
+            "line": 29,
+            "name": "User must verify the login button in forgot password screen",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_the_login_button_in_forgot_password_screen()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 30,
+            "name": "User must verify after click Reset button the error msg should displayed under EMAIL as \"Please enter a valid email address\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please enter a valid email address\"",
+                  "offset": 88
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.ForgotPasswordPageStep.user_must_verify_after_click_reset_button_the_error_msg_should_displayed_under_email_as(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@FP"
+          }
+        ]
+      }
+    ],
+    "name": "Verify Xealei Forgot Page",
+    "description": "",
+    "id": "verify-xealei-forgot-page",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/Features/TC2_Forgot%20Password.feature",
+    "tags": []
+  }
+]

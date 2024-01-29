@@ -407,4 +407,7 @@ public class AddSuitesPage extends BaseClass {
 		click(txtRtnToSuitesBreadCrum);
 	}
 
+	
+	
+	
 }

@@ -188,28 +188,6 @@ public class LoginPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should verify Forget password link is working")
-	public void user_should_verify_forget_password_link_is_working() {
-
-		logStep(methodName());
-
-		if (pom.getLoginPage().isForgotPasswordLinkDisplayed()) {
-			
-			pom.getLoginPage().forgotPasswordHyperLink();
-
-			try {
-				Assert.assertTrue(pom.getLoginPage().isForgotPasswordPageIsDisplayed());
-				log(Status.PASS, "Navigate to Forgot Password Page");
-				pageBackward();
-			} catch (AssertionError e) {
-				log(Status.FAIL, e.getMessage());
-				e.printStackTrace();
-			}
-		} else {
-			log(Status.FAIL, "Unable to click Forget password? textlink");
-			System.err.println("[ERROR] >>>> Unable to click Forget password? textlink");
-		}
-	}
 
 	@Then("User should verify the copy rights {string} text is displayed")
 	public void user_should_verify_the_copy_rights_text_is_displayed(String expCopyRightsTxt) {

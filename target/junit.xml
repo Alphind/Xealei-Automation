@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="30.864">
+    <testcase classname="Verify Xealei Forgot Page" name="To verify the Xealei Forgot Page" time="30.028">
+        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+And User should verify Forget password link is working......................passed
+Then User must verify the tab url address for FORGOT PASSWORD screen........passed
+Then User must verify the Forgot Password text is displayed "FORGOT PASSWORD".passed
+Then User must verify the Lable name & Place holder text for Email field....passed
+Then User must click  the Reset button without perform Email field and verify the info message is displayed "Email is required".passed
+Then User must verify the Email field for formats "Please enter a valid email address".passed
+Then User must verify the Email field with invalid data "Email ID not exist".passed
+Then User must verify the email field for unregistered user "Email ID not exist".passed
+Then User must verify the email for blocked user............................passed
+Then User must verify the email for Inactive user...........................passed
+Then User must verify the email field with valid data.......................passed
+Then User must verify the email sent successfully content...................passed
+Then User must verify the Try Again text link is working....................passed
+Then User must verify the login button in forgot password screen............passed
+Then User must verify after click Reset button the error msg should displayed under EMAIL as "Please enter a valid email address".passed
+]]></system-out>
+    </testcase>
+</testsuite>

@@ -1,3 +1,13 @@
+#/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+#
+#* created by Mohamed Razul
+#
+#* reviewed by Hajira Begam
+#
+#* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+#
+#*/
+
 @All-Scenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 

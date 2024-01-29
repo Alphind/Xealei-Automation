@@ -46,6 +46,7 @@ public class HomePage extends BaseClass {
 
 	private String idXpath = "//p[contains(text(),'ID')]";
 
+	
 	/**
 	 * Get the login user name (text) in Home Page.
 	 * 

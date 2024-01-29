@@ -22,7 +22,6 @@ Feature: Verify Xealei Login Page
     Then User should verify that entered password is **hide
     And User should click the eye icon in the Password field
     Then User should verify that entered password is Unhide
-    And User should verify Forget password link is working
     Then User should verify the copy rights "Powered by Alphind © 2024" text is displayed
 
   Scenario: To verify the error validation messages in Login page
@@ -32,6 +31,7 @@ Feature: Verify Xealei Login Page
     Then User should verify the error message after performed login with invalid data "User not found"
     When User should perform login with valid email and invalid password
     Then User should verify the Toastbar message after performed login with valid email and invalid password 'Incorrect password'
+    Then User must verify the Inactive user data "The client facility is inactive. For more information, please contact the administrator"
 
   Scenario: To verify Xealei Login page by click the ENTER key with valid credentials
     When User should perform login with valid email and password by click the Enter key

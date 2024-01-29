@@ -4,32 +4,52 @@
 #
 #* reviewed by 
 #
-#* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+#* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization   * is prohibited without prior and proper license agreement
 #
 #*/
 
 Feature: Verify Xealei Forgot Page
 
-  Scenario Outline: To verify the web url link for forgot password page
+@FP
+  Scenario Outline: To verify the Xealei FORGOT PASSWORD-POP UP Page
     Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
+    And User should verify Forget password link is working
+    Then User must verify the tab url address for FORGOT PASSWORD screen
+    Then User must verify the Forgot Password text is displayed "FORGOT PASSWORD"
+    Then User must verify the Lable name & Place holder text for Email field
+    Then User must click  the Reset button without perform Email field and verify the info message is displayed "Email is required"
+    #BUG
+    Then User must verify the Email field for formats "Please enter a valid email address"
+    Then User must verify the Email field with invalid data "Email ID not exist"
+    Then User must verify the email field for unregistered user "Email ID not exist"
+    Then User must verify the email for blocked user
+    Then User must verify the email for Inactive user
+    Then User must verify the email field with valid data
+    Then User must verify the email sent successfully content
+    Then User must verify the Try Again text link is working
+    Then User must verify the login button in forgot password screen
+    
 
-  Scenario Outline: To verify the image, fields, logo & button
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    Then User must verify the xealei Logo is displayed in forgot page
-    Then User must verify the Forgot Password text is displayed in forgot page
-    Then User must verify Enter your email text is displayed in forgot page
-    Then User must verify the Email field contains * symbol in forgot page
-    Then User must verify the Email textbox contains "Enter email" text in forgot page
-    Then User must verify the "Reset" text is displayed in Reset button
-    Then User must verify the Remember it? text is displayed
-    Then User must verify the Login text is displayed
-    Then User must verify the copy rights "Powered by Alphind © 2023" text is displayed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   Scenario Outline: To verify the Reset password email field with invalid format
     Given User is on Xealei login page
@@ -37,7 +57,7 @@ Feature: Verify Xealei Forgot Page
     And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
     Then User must also verify the web url after successfully navigate to forgot password page
     And User must perform reset password with invalid data format
-    Then User must verify after click Reset button the error msg should displayed under EMAIL as "Please enter a valid email address"
+    
 
   Scenario Outline: To verify the Reset password email field with invalid data
     Given User is on Xealei login page
