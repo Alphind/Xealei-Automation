@@ -1067,6 +1067,42 @@ public class BaseClass {
 
 		return formattedDate.toUpperCase();
 	}
+
+	public String getMonth() {
+
+		LocalDate currentDate = LocalDate.now();
+		int day = currentDate.getMonthValue();
+		
+		LocalDate previousMonthDate = currentDate.minusMonths(1);
+		String format = (day <= 9) ? "M" : "MM";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+		String formattedDate = previousMonthDate.format(formatter);
+
+		return formattedDate.toUpperCase();
+	}
+
+	public String getYear() {
+
+		LocalDate currentDate = LocalDate.now();
+
+		if(currentDate.getMonth().toString().equals("JANUARY")) {
+			LocalDate previousMonthDate = currentDate.minusMonths(1);
+
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY");
+			String formattedDate = previousMonthDate.format(formatter);
+			return formattedDate;
+
+		} else {
+
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY");
+			String formattedDate = currentDate.format(formatter);
+			return formattedDate;
+		}
+		
+	}
+	
+	
+	
 	
 	public String getCurrentMonth() {
 

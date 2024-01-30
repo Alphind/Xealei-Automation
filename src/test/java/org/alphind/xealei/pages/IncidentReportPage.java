@@ -15,7 +15,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1659,6 +1658,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void clickCompleteButton() {
+		sleep(1000);
 		click(completeButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1671,6 +1671,8 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void resubmitButton() {
+		waitForFullPageElementLoad(this.driver);
+		sleep(1000);
 		click(resubmitButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1827,6 +1829,8 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 12-01-2024.
 	 */
 	public void navigateHome() {
+		waitForFullPageElementLoad(this.driver);
+		sleep(1000);
 		click(home);
 	}
 
@@ -1979,7 +1983,7 @@ public class IncidentReportPage extends BaseClass {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 		case "YES","": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mm"));
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
@@ -2027,7 +2031,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")) {
 
 			click(attachmentIconButton);
-			sleep(2000);
+			sleep(3000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -2086,7 +2090,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(2000);
+			sleep(3000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -2147,7 +2151,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(2000);
+			sleep(3000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;

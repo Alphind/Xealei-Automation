@@ -1,3 +1,13 @@
+#/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+#
+#* created by Mohamed Razul
+#
+#* reviewed by Hajira Begam
+#
+#* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+#
+#*/
+
 @All-Scenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
@@ -38,10 +48,7 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     
     Then User should verify that able to spot the injury on Injury site front & Back view
     Then User should verify that able to unselect the injury on Injury site front & Back view
-    
-    ##ISSUE FACING##
-    #Then User should verify that able to upload upload JFIF Format
-    
+    Then User should verify that able to upload upload JFIF Format
     Then User should verify that able to upload more than 1MB File format
     Then User should verify that able to upload files or images
     Then User should verify the delete icon is working on image under injury photo field
@@ -107,12 +114,7 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		And Verify whether the report is in "Finalized" status by Social Worker user.
 		Then Close all the browsers.
 		
-#		Examples:
-#		
-#		|StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-#		
-#		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| 	|ASWorker| 	|auto@123|
-#		
+
 @RejectAndReapprovebyChiefNurse		
 Scenario Outline: To verify whether Chief nurse can able to reject and reapprove the incident Report.
 
@@ -137,11 +139,7 @@ Scenario Outline: To verify whether Chief nurse can able to reject and reapprove
 		And Approve the report by Chief Nurse user.
 		Then Close all the browsers.
 		
-		Examples:
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
-
-  
+		
 @RejectAndReapprovebyResidentialManager   
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
 		Given User is on Xealei login page
@@ -174,13 +172,8 @@ Scenario Outline: To verify whether residential manager can able to reject and r
 		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Close all the browsers.
     
-Examples:    
-    
-   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
 
-@NotificationAlert		
+@Don'tRun	
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from notification.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -191,12 +184,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
 
-Examples:    
-    
-  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-		
+
 
 @NotificationAlertAllApprove
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
@@ -234,14 +222,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Verify whether the report is in "Finalized" status by Social Worker user.
 		Then Close all the browsers.
 
-Examples:    
-    
-  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-
 @NotificationAlertRejectAndReapprovebyChiefNurse		
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and Chief nurse can able to reject and reapprove the incident Report from notification.
+		
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
 		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
@@ -265,9 +248,6 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Approve the report by Chief Nurse user.
 		Then Close all the browsers.
 		
-		Examples:
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
 		
 @NotificationAlertRejectAndReapprovebyResidentialManager   
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and residential manager can able to reject and reapprove the incident Report from notification.		
@@ -281,7 +261,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Verify text in what casued the fall matches with Description.
 		Then Enter all the details of the Incident.
 		Then Click on next button.
-		And Click on complete button.
+		And  Click on complete button.
 		And Verify whether the report is in pending status.
 		Then Launch a new browser and enter xealei url for Chief nurse.
 		And Login into Xealei application as Chief nurse role with valid "<ChiefNurseUserName>" and "<ChiefNursePassWord>".
@@ -302,15 +282,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Approve the report by Residential Manager user.
 		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Close all the browsers.
-    
-Examples:    
-    
-   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
+    		
 		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-		
-		
-@NotificationAlertThroughGrid		
+@Don'tRun		
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -321,12 +295,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
 
-Examples:    
-    
-  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-			
+	
 @NotificationAlertThroughGridAllApprove
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and approved by all level of users.
 		Given User is on Xealei login page
@@ -363,12 +332,6 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Verify whether the report is in "Finalized" status by Social Worker user.
 		Then Close all the browsers.
 
-Examples:    
-    
-  |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-	|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-		
 
 
 @NotificationAlertThroughGridRejectAndReapprovebyChiefNurse
@@ -396,10 +359,6 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Approve the report by Chief Nurse user.
 		Then Close all the browsers.
 		
-		Examples:
-      | StaffUserName |  | StaffPassWord |  | CheifNurseUserName |  | CheifNursePassWord |  | RMUserName |  | RMPassWord |  | CCUserName |  | CCPassWord |  | SWUserName |  | SWPassWord |
-      | AStaff        |  | auto@123      |  | AChief_Nu          |  | auto@123           |  | AManager   |  | auto@123   |  | AClinical  |  | auto@123   |  | ASWorker   |  | auto@123   |
-	
 
 
 @NotificationAlertThroughGridRejectAndReapprovebyResidentialManager
@@ -436,12 +395,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Verify whether the report is in "In Progress" status by Residential Manager user.
 		Then Close all the browsers.
     
-Examples:    
-    
-   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-		
+
 @Chat		
 Scenario Outline: To verify chat option in IR.		
 		Given User is on Xealei login page

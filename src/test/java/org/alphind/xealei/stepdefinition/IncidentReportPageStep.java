@@ -43,8 +43,8 @@ public class IncidentReportPageStep extends BaseClass {
 
 		logStep(methodName());
 
-			staffpom.getLoginPage().validEmail(1);
-			staffpom.getLoginPage().validPassword(1);
+			staffpom.getLoginPage().validEmail(2);
+			staffpom.getLoginPage().validPassword(2);
 			waitForFullPageElementLoad(staffDriver);
 			staffpom.getLoginPage().loginButton();
 		
@@ -1302,11 +1302,8 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				logStep(methodName());
 				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				sleep(2000);
+				waitForFullPageElementLoad(chiefnurseDriver);
 			    chiefnursepom.getIncidentReportPage().chiefNurseReviewerComments("approved");
 			    chiefnursepom.getIncidentReportPage().clickCompleteButton();
 			}
@@ -1319,11 +1316,9 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				logStep(methodName());
 				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				sleep(2000);
+				waitForFullPageElementLoad(rmDriver);
+				
 			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");
 			    rmpom.getIncidentReportPage().clickCompleteButton();
 			}
@@ -1336,11 +1331,9 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				logStep(methodName());
 				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				sleep(2000);
+				waitForFullPageElementLoad(ccDriver);
+				
 			    ccpom.getIncidentReportPage().clinicalCoordinatorReviewerComments("approved");
 			    ccpom.getIncidentReportPage().clickCompleteButton();
 			}
@@ -1353,11 +1346,9 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				logStep(methodName());
 				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				sleep(2000);
+				waitForFullPageElementLoad(swDriver);
+				
 			    swpom.getIncidentReportPage().socialWorkerReviewerComments("approved");
 			    swpom.getIncidentReportPage().clickCompleteButton();
 			}
@@ -1370,11 +1361,9 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				logStep(methodName());
 				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				sleep(2000);
+				waitForFullPageElementLoad();
+				
 			    chiefnursepom.getIncidentReportPage().chiefNurseReviewerComments("rejected");
 			    chiefnursepom.getIncidentReportPage().resubmitButton();
 			}
@@ -1407,7 +1396,7 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				Set<String> handle = staffDriver.getWindowHandles();
 				staffDriver.getWindowHandle();
-				staffpom.getIncidentReportPage().navigateHome();
+				//staffpom.getIncidentReportPage().navigateHome();
 			}
 			
 			/**

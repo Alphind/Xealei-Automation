@@ -29,8 +29,11 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 
+		waitForPageLoad();
+		
 		pom.getHomePage().navToIndividualsModule();
 		waitForPageLoad();
+		
 		try {
 			Assert.assertEquals("Unable to navigate Individuals Page", "Individuals",
 					getText(pom.getAddIndividualsPage().getIndividualsPageText()));
@@ -602,7 +605,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualNameInAddressTabVerification(), 5);
-
+            waitForFullPageElementLoad();
 			Assert.assertEquals("First,Middle & Last Name is not displayed in Address tab section", expIndName,
 					getText(pom.getAddIndividualsPage().getIndividualNameInAddressTabVerification()));
 			log(Status.PASS, "First,Middle & Last Name is displayed in Address tab section Ind Name - "
@@ -614,7 +617,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualDOBInAddressTabVerification(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("DOB is not displayed in Address tab section", expDob,
 					getText(pom.getAddIndividualsPage().getIndividualDOBInAddressTabVerification()));
 			log(Status.PASS, "DOB is displayed in Address tab section Ind DOB - "
@@ -644,7 +647,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualNameInPreferenceTabVerification(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("First,Middel & Last Name is not displayed in Preference tab section", expIndName,
 					getText(pom.getAddIndividualsPage().getIndividualNameInPreferenceTabVerification()));
 			log(Status.PASS, "First,Middel & Last Name is displayed in Preference tab section Ind Name - "
@@ -655,7 +658,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualDOBInPreferenceTabVerification(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("DOB is not displayed in Preference tab section", expDob,
 					getText(pom.getAddIndividualsPage().getIndividualDOBInPreferenceTabVerification()));
 			log(Status.PASS, "DOB is displayed in Preference tab section Ind DOB - "
@@ -666,7 +669,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getIndividualAddressInPreferenceTabVerification(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Address is not displayed in Preference tab section", expAddress,
 					getText(pom.getAddIndividualsPage().getIndividualAddressInPreferenceTabVerification()));
 			log(Status.PASS, "Address is displayed in Preference tab section Ind Address - "
@@ -695,7 +698,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for FirstName* field is not displayed",
 					expValidationMsgForFrstName, getText(pom.getAddIndividualsPage().getLimitValMsgForFrstName()));
 			log(Status.PASS, "Limit validation msg for FirstName* field is displayed - "
@@ -718,7 +721,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for LastName* field is not displayed",
 					expValidationMsgForLastName, getText(pom.getAddIndividualsPage().getLimitValMsgForLastName()));
 			log(Status.PASS, "Limit validation msg for LastName* field is displayed - "
@@ -749,7 +752,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for FirstName* field is not displayed",
 					expValidationMsgForFrstName, getText(pom.getAddIndividualsPage().getLimitValMsgForFrstName()));
 			log(Status.PASS, "Limit validation msg for FirstName* field is displayed - "
@@ -769,6 +772,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 5);
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for LastName* field is not displayed",
 					expValidationMsgForLastName, getText(pom.getAddIndividualsPage().getLimitValMsgForLastName()));
 			log(Status.PASS, "Limit validation msg for LastName* field is displayed - "
@@ -793,7 +797,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact2 FirstName* field", EmFN,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField()));
 			log(Status.PASS, "MF validation message is displayed for Em.Contact2 FirstName* field - "
@@ -819,7 +823,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactRelationshipField(),
 					5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact2 Relationship* field",
 					EmRelationship,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactRelationshipField()));
@@ -833,7 +837,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactPhNoField(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact2 Ph.No* field", EmPhNo,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactPhNoField()));
 			log(Status.PASS, "MF validation message is displayed for Em.Contact2 Ph.No* field - "
@@ -870,7 +874,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for FirstName* field is not displayed",
 					expValidationMsgForFrstName, getText(pom.getAddIndividualsPage().getLimitValMsgForFrstName()));
 			log(Status.PASS, "Limit validation msg for FirstName* field is displayed - "
@@ -889,7 +893,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for LastName* field is not displayed",
 					expValidationMsgForLastName, getText(pom.getAddIndividualsPage().getLimitValMsgForLastName()));
 			log(Status.PASS, "Limit validation msg for LastName* field is displayed - "
@@ -913,7 +917,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact3 FirstName* field", EmFN,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField()));
 			log(Status.PASS, "MF validation message is displayed for Em.Contact3 FirstName* field - "
@@ -927,6 +931,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactLNField(), 5);
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact3 LastName* field", EmLN,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactLNField()));
 			log(Status.PASS, "MF validation message is displayed for Em.Contact3 LastName* field - "
@@ -940,7 +945,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactRelationshipField(),
 					5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact3 Relationship* field",
 					EmRelationship,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactRelationshipField()));
@@ -953,7 +958,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactPhNoField(), 5);
-
+			waitForFullPageElementLoad();
 			Assert.assertEquals("MF validation message is NOT displayed for Em.Contact3 Ph.No* field", EmPhNo,
 					getText(pom.getAddIndividualsPage().getValidationErrMsgForEmContactPhNoField()));
 			log(Status.PASS, "MF validation message is displayed for Em.Contact3 Ph.No* field - "
@@ -1197,7 +1202,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		logStep(methodName());
 
 		String selectedDate = getAttribute(pom.getAddIndividualsPage().getDob(), "value");
-
+        System.out.println("Selected Date is - "+selectedDate);
+		
 		String expDate = readExcel("Test Datas", "AddIndividuals", 1, 22);
 		String expYear = readExcel("Test Datas", "AddIndividuals", 1, 25);
 
@@ -1205,10 +1211,10 @@ public class AddIndividualsPageStep extends BaseClass {
 		try {
 			Assert.assertEquals(
 					"[Selected date, month and year using dropdown] - Selected date is NOT displayed in DOB* Field",
-					previousMonth("MM") + "/" + expDate + "/" + expYear, selectedDate);
+					getMonth() + "/" + expDate + "/" + expYear, selectedDate);
 			log(Status.PASS,
 					"[Selected date, month and year using dropdown] - Selected date is displayed in DOB* Field Exp Dt - "
-							+ previousMonth("MM") + "/" + expDate + "/" + expYear + " | Act Dt - " + selectedDate);
+							+ getMonth() + "/" + expDate + "/" + expYear + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -1409,12 +1415,15 @@ public class AddIndividualsPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-		String id = getText(pom.getAddIndividualsPage().getIndID()).substring(4, 7);
+		String newIndNum[] = getText(pom.getAddIndividualsPage().getIndID()).split(" ");
+		System.out.println(newIndNum[1]);
+		String id = newIndNum[1].replace(')', ' ').toString().trim();
+		
+
 		System.out.println("CREATED IND ID - "+id);
 		
 		writeExcel("Test Datas", "CreatedIndividuals", 2, id);
 		
-
 		String ID = getText(pom.getAddIndividualsPage().getTxtNewIndID());
 		System.out.println("NEW IND ID- " + ID);
 
@@ -1505,11 +1514,16 @@ public class AddIndividualsPageStep extends BaseClass {
 					+ " | ACT Name - " + createdIndividual);
 			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, createdIndividual);
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, createdIndividual);
+			String[] split = createdIndividual.split(" ");
+			String IndfirstName = split[0];
+			String IndLastNameName = split[2];
+			System.out.println("Created FrstName & LastName -"+IndfirstName+" "+IndLastNameName);
 			
-			System.out.println("Created Ind & Selected Suite -" +createdIndividual+actualSelectedSuite);			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 28, IndfirstName+" "+IndLastNameName);
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+actualSelectedSuite);
+			System.out.println("Created Ind & Selected Suite -" +createdIndividual+"("+actualSelectedSuite+")");			
+			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+actualSelectedSuite+")");
 			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1912,11 +1926,17 @@ public class AddIndividualsPageStep extends BaseClass {
 					+ " | ACT Name - " + createdIndividual);
 			writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, createdIndividual);
 		
-            writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, createdIndividual);
+			String[] split = createdIndividual.split(" ");
+			String IndfirstName = split[0];
+			String IndLastNameName = split[2];
 			
-			System.out.println("Created Ind & Selected Suite -" +createdIndividual+actualSelectedSuite);			
+            System.out.println("Created FrstName & LastName -"+IndfirstName+" "+IndLastNameName);
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+actualSelectedSuite);
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 28, IndfirstName+" "+IndLastNameName);
+			
+			System.out.println("Created Ind & Selected Suite -" +createdIndividual+"("+actualSelectedSuite+")");			
+			
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+actualSelectedSuite+")");
 			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -2102,6 +2122,7 @@ public class AddIndividualsPageStep extends BaseClass {
 					getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
 			log(Status.PASS, "EmergencyContact Phone Number is displayed as expected Exp EmCPhNum - " + expPhoneNumber
 					+ " | Act EmCPhNum - " + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
+		
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -2198,6 +2219,7 @@ public class AddIndividualsPageStep extends BaseClass {
 			waitForVisiblityOfElement(pom.getEditIndividualsPage().getValidationInfoMsgForBGField(), 5);
 			Assert.assertEquals("MF validation message is NOT displayed in Blood Group* field as expected",
 					expBGInfoMsg, getText(pom.getEditIndividualsPage().getValidationInfoMsgForBGField()));
+		
 			log(Status.PASS,
 					"MF validation message is displayed under Blood Group* field EXP info msg - " + expBGInfoMsg
 							+ " | ACT info msg - "
