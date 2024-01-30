@@ -508,7 +508,7 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
-	public void searchBox(int rowNum){
+	public void searchBox(){
 
 		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		for (int i = 0; i < crIndividualLastName.length(); i++) {
@@ -729,7 +729,7 @@ public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
 			&& getConfigureProperty("MedicalRecordFileUpload").equalsIgnoreCase("Yes")) {
 		
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 		
 		String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {
@@ -780,7 +780,7 @@ public void Upload(String fileName, String formatType){
 			&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 
 		String MRFilePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {
@@ -876,7 +876,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 			&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 
 		String MRFilePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {

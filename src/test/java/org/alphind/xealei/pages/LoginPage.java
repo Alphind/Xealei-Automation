@@ -44,9 +44,6 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//a[contains(text(),'Forgot password?')]")
 	private WebElement forgotPasswordHyperLink;
 
-	@FindBy(xpath = "//h3[@class='login-head']")
-	private WebElement forgotPassword;
-
 	@FindBy(xpath = "//a[text()='Privacy Policy']")
 	private WebElement lnkPrivacyPolicy;
 
@@ -267,6 +264,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void loginButton() {
 
+		sleep(2000);
 		click(loginButton);
 	}
 
@@ -485,21 +483,24 @@ public class LoginPage extends BaseClass {
 		return false;
 	}
 
+	
 	/**
-	 * Checks whether Navigate to forgot password page or not.
+	 * Check whether the Login text-link is working or not IN FORGOT PASSWORD Page
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * @created on 1/19/2024
+	 * Created on 25/01/2024
 	 * 
-	 * @return whether the forgot password page is displayed or not.
+	 * @return if working : true | else : false
 	 */
-	public boolean isForgotPasswordPageIsDisplayed() {
+	public boolean isLoginPageIsDisplayed() {
 
-		if (forgotPassword.isDisplayed()) {
+		if (loginTextVerification.isDisplayed()) {
 			return true;
 		}
 		return false;
 	}
+	
 
+	
 }

@@ -76,6 +76,7 @@ public class HomePage extends BaseClass {
 	
 
 
+	
 	/**
 	 * Get the login user name (text) in Home Page.
 	 * 
@@ -159,7 +160,9 @@ public class HomePage extends BaseClass {
 	 * 
 	 */
 	public void navToIndividualsModule() {
+		
 		if (individualsModule.isDisplayed()) {
+			waitForFullPageElementLoad();
 			click(individualsModule);
 			waitForPageLoad();
 		} else {
@@ -169,7 +172,10 @@ public class HomePage extends BaseClass {
 
 	public void notificationIcon(String ReportID) {
 		waitForPageLoad(this.driver);
+		sleep(2000);
 		click(notificationIcon);
+		waitForFullPageElementLoad(this.driver);
+		
 		idXpath = idXpath.replace("ID", ReportID);
 		try {
 			Thread.sleep(5000);
@@ -186,6 +192,7 @@ public class HomePage extends BaseClass {
 	public void fallAlertNotification(String dateandtimeofFall) throws Exception {
 		waitForPageLoad(this.driver);
 		click(notificationIcon);
+		sleep(2000);
 		List<String> fallAlertTexts = new ArrayList<String>();
 		int count = 0;
 		for(WebElement alert : fallAlerts) {
