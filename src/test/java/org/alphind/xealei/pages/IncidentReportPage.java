@@ -15,7 +15,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1620,10 +1619,24 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void enterNotificationDate() {
 
-		String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
-		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
-		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
-		sendKeys(notificationDateCalenderTxtbox, notificationDate);
+		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
+			case "YES","": {
+				String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
+				writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
+				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+				sendKeys(notificationDateCalenderTxtbox, notificationDate);
+				break;
+			}
+			case "NO" : {
+				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14);
+				sendKeys(notificationDateCalenderTxtbox, notificationDate);
+				break;
+			}
+		}
+//		String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
+//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
+//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+//		sendKeys(notificationDateCalenderTxtbox, notificationDate);
 	}
 
 	/**
@@ -1633,9 +1646,22 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void enterNotificationTime() {
 
-		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
-		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-		sendKeys(timeTxtbox, notificationDate);
+		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
+				case "YES","": {
+					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
+					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
+					sendKeys(timeTxtbox, notificationDate);
+					break;
+				}
+				case "NO" :{
+					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
+					sendKeys(timeTxtbox, notificationDate);
+					break;
+				}
+			}
+//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
+//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
+//		sendKeys(timeTxtbox, notificationDate);
 	}
 
 	/**
@@ -4081,8 +4107,20 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @created on 25-01-2024.
 	 */
-	public void sendChatMessage(String chatMessage) {
-		
+	public void sendChatMessage(String userType) {
+		String chatMessage  = switch (userType.toUpperCase()) {
+		case "STAFF" -> {
+			yield readExcel("Test Datas", "Incident Reports", 1, 30);
+		}
+		case "NURSE", "CHIEF NURSE" -> {
+			yield readExcel("Test Datas", "Incident Reports", 1, 31);
+		}
+		case "MANAGER","RESIDENT MANAGER","RESIDENTAL MANAGER" -> {
+			yield readExcel("Test Datas", "Incident Reports", 1, 32);
+		}
+		default ->
+			throw new IllegalArgumentException("Unexpected value: " + userType);
+		};
 		sendKeys(chatMessageArea, chatMessage);
 		click(chatSendButton);
 		
@@ -4098,12 +4136,12 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public Map<String, String> getChatMessagesFromUser(String userName) {
 		
-		chatMessageTextXpath = chatMessageTextXpath.replaceAll("XX", userName);
-		List<WebElement> chatElements =  this.driver.findElements(By.xpath(chatMessageTextXpath));
+		String chatmessagetextxpath = chatMessageTextXpath.replaceAll("XX", userName);
+		List<WebElement> chatElements =  driver.findElements(By.xpath(chatmessagetextxpath));
 		Map<String,String> chatMessages = new HashMap<String, String>();
 		int n = 1;
 		for(WebElement chat : chatElements) {
-			chatMessages.put(n+" message", chat.getText());
+			chatMessages.put(n+" - message", chat.getText());
 			++n;
 		}
 		return chatMessages;

@@ -461,15 +461,16 @@ Scenario Outline: To verify chat option in IR.
 		Then Open IR received by Chief nurse.
 		Then Click View button for chief nurse user.
 		And Verify staff message is received by cheif nurse.
-#		Then Send chat message for cheif nurse user.
-#		Then Launch a new browser and enter xealei url for residential manager.
-#		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
-#		Then Open IR received by residential manager.
-#		And Send chat message for residential manager user.
-#		Then Verify staff message is received by Residential Manager.
-#		Then Verify cheif nurse message is received by Residential Manager.
-#		Then Verify Residential manager message received by staff.
-#		Then Verify Residential manager message received by cheif nurse.
+		Then Send chat message for chief nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open IR received by residential manager.
+		Then Click View button for residential manager user.
+		And Send chat message for residential manager user.
+		Then Verify staff message is received by Residential Manager.
+		Then Verify chief nurse message is received by Residential Manager.
+		Then Verify Residential manager message received by staff.
+		Then Verify Residential manager message received by cheif nurse.
 		Then Close all the browsers.
 
 Examples:    

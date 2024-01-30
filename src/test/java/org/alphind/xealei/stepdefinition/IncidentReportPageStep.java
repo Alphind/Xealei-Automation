@@ -6,15 +6,12 @@ import java.io.File;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.Status;
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -1404,8 +1401,7 @@ public class IncidentReportPageStep extends BaseClass {
 			public void Switch_back_to_staff_user_login() {
 				
 				logStep(methodName());
-				
-				Set<String> handle = staffDriver.getWindowHandles();
+				//Set<String> handle = staffDriver.getWindowHandles();
 				staffDriver.getWindowHandle();
 				staffpom.getIncidentReportPage().navigateHome();
 			}
@@ -1417,8 +1413,7 @@ public class IncidentReportPageStep extends BaseClass {
 			public void Switch_back_to_Chief_nurse_user_login() {
 				
 				logStep(methodName());
-				
-				Set<String> handle = staffDriver.getWindowHandles();
+				//Set<String> handle = staffDriver.getWindowHandles();
 				staffDriver.getWindowHandle();
 				staffpom.getIncidentReportPage().navigateHome();
 			}
@@ -1673,6 +1668,7 @@ public class IncidentReportPageStep extends BaseClass {
 		waitForFullPageElementLoad(chiefnurseDriver);
 		sleep(2000);
 		chiefnursepom.getLoginPage().loginButton();
+		waitForPageLoad(chiefnurseDriver);
 	}
 	
 	/**
@@ -1851,8 +1847,12 @@ public class IncidentReportPageStep extends BaseClass {
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
-									.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
-									.post();
+							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
+							.post();
+		System.out.println("The status code for fall alert triggered from sensor is : " 
+									+ response.getStatusCode());
+		log(Status.INFO, "The status code for fall alert triggered from sensor is : " 
+									+ response.getStatusCode());
 		sleep(5000);
 	}
 	
@@ -1867,8 +1867,13 @@ public class IncidentReportPageStep extends BaseClass {
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
-									.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
-									.post();
+							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
+							.post();
+		System.out.println("The status code for fall alert triggered from sensor is : " 
+				+ response.getStatusCode());
+		log(Status.INFO, "The status code for fall alert triggered from sensor is : " 
+				+ response.getStatusCode());
+		
 		sleep(5000);
 	}
 	
@@ -1937,14 +1942,25 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		String actual = staffpom.getIncidentReportPage().getWhatCausedTheFall();
 		String expected = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
-		assertEquals(actual, expected, "The actual value is : "+actual+"but the expected value is : "+expected);
+		try {
+			assertEquals(actual, expected, "The actual value is : "+actual
+					+"but the expected value is : "+expected);
+			log(Status.PASS, "The text in fall description text box is : "+actual);
+		}catch (AssertionError e) {
+			log(Status.FAIL, "The text in fall description text box is : "+actual+
+					"but the expected text is : "+expected);
+			log(Status.WARNING, e.getMessage());
+		}
+		
 		
 	}
 	
 	private String staffName;
 	private String chiefNurseName;
 	private String managerName;
+	@SuppressWarnings("unused")
 	private String clinicalCoordinatorName;
+	@SuppressWarnings("unused")
 	private String socialWorkerName;
 	private String staffMessage = "Staff test Message";
 	private String chiefNurseMessage = "Chief nurse Message";
@@ -1965,7 +1981,24 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Send chat message for staff user.")
 	public void Send_chat_message_for_staff_user() {
-		staffpom.getIncidentReportPage().sendChatMessage(staffMessage);
+		staffpom.getIncidentReportPage().sendChatMessage("Staff");
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Send chat message for chief nurse user.")
+	public void Send_chat_message_for_chief_nurse_user() {
+		chiefnursepom.getIncidentReportPage().sendChatMessage("Chief Nurse");
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Send chat message for residential manager user.")
+	public void Send_chat_message_for_residential_manager_user() {
+		rmpom.getIncidentReportPage().sendChatMessage("Resident Manager");
+		sleep(2000);
 	}
 	
 	@Then("Open IR received by Chief nurse.")
@@ -1975,7 +2008,17 @@ public class IncidentReportPageStep extends BaseClass {
 		chiefnursepom.getHomePage().navToReportsModule();
 		chiefnursepom.getHomePage().navToIncidentReportModule();
 		sleep(7000);
-		System.out.println(chiefnursepom.getIncidentReportPage().getRowNumber());
+//		System.out.println(chiefnursepom.getIncidentReportPage().getRowNumber());
+	}
+	
+	@Then("Open IR received by residential manager.")
+	public void Open_IR_received_by_residential_manager() {
+		
+		sleep(5000);
+		rmpom.getHomePage().navToReportsModule();
+		rmpom.getHomePage().navToIncidentReportModule();
+		sleep(7000);
+//		System.out.println(rmpom.getIncidentReportPage().getRowNumber());
 	}
 	
 	@Then("Click View button for chief nurse user.")
@@ -1984,20 +2027,145 @@ public class IncidentReportPageStep extends BaseClass {
 		chiefnursepom.getIncidentReportPage().viewButton(rownumber);
 		chiefNurseName = chiefnursepom.getIncidentReportPage().getUserName();
 		chiefNurseName = chiefNurseName.replaceAll("Chief Nurse", "").trim();
-		System.out.println(chiefNurseName);
+//		System.out.println(chiefNurseName);
+	}
+	
+	@Then("Click View button for residential manager user.")
+	public void Click_View_button_for_residential_manager_user() {
+		String rownumber = rmpom.getIncidentReportPage().getRowNumber();
+		rmpom.getIncidentReportPage().viewButton(rownumber);
+		managerName = rmpom.getIncidentReportPage().getUserName();
+		managerName = managerName.replaceAll("Resident Manager", "").trim();
+//		System.out.println(managerName);
 	}
 	
 	@Then("Verify staff message is received by cheif nurse.")
 	public void Verify_staff_message_is_received_by_cheif_nurse() {
+		sleep(5000);
 		boolean flag = false;
-		Map<String, String> messages = chiefnursepom.getIncidentReportPage().getChatMessagesFromUser(staffName);
+		Map<String, String> messages = chiefnursepom.getIncidentReportPage().getChatMessagesFromUser("Staff");
 		for(Map.Entry<String, String> entry : messages.entrySet()) {
-			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getValue());
+//			System.out.println(staffMessage);
 			if(entry.getValue().equals(staffMessage)) {
 				flag = true;
 			}
 		}
-		assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+		try {
+			assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+			log(Status.PASS, "The message sent by staff received by chief nurse is : " 
+					+ staffMessage);
+		}catch (AssertionError e) {
+			log(Status.FAIL, "The message sent by staff received by chief nurse is not : " 
+					+ staffMessage);
+			log(Status.WARNING, e.getMessage());
+		}
+		
 	}
+	
+	@Then("Verify staff message is received by Residential Manager.")
+	public void Verify_staff_message_is_received_by_Residential_Manager() {
+		sleep(5000);
+		boolean flag = false;
+		Map<String, String> messages = rmpom.getIncidentReportPage().getChatMessagesFromUser("Staff");
+		for(Map.Entry<String, String> entry : messages.entrySet()) {
+//			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getValue());
+//			System.out.println(staffMessage);
+			if(entry.getValue().equals(staffMessage)) {
+				flag = true;
+			}
+		}
+		try {
+			assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+			log(Status.PASS, "The message sent by staff received by manager is : " 
+					+ staffMessage);
+		}catch (AssertionError e) {
+			log(Status.FAIL, "The message sent by staff received by manager is not : " 
+					+ staffMessage);
+			log(Status.WARNING, e.getMessage());
+		}
+		
+	}
+	
+	@Then("Verify chief nurse message is received by Residential Manager.")
+	public void Verify_chief_nurse_message_is_received_by_Residential_Manager() {
+		sleep(5000);
+		boolean flag = false;
+		Map<String, String> messages = rmpom.getIncidentReportPage().getChatMessagesFromUser("Nurse");
+		for(Map.Entry<String, String> entry : messages.entrySet()) {
+//			System.out.println(entry.getKey() + " / " + entry.getValue());
+//			System.out.println(entry.getValue());
+//			System.out.println(chiefNurseMessage);
+			if(entry.getValue().equals(chiefNurseMessage)) {
+				flag = true;
+			}
+		}
+		try {
+			assertEquals(flag, true,"The expected message from Chief Nurse is is : " 
+					+chiefNurseMessage);
+			log(Status.PASS, "The message sent by chief nurse received by manager is : " 
+					+ chiefNurseMessage);
+		}catch (AssertionError e) {
+			log(Status.FAIL, "The message sent by chief nurse received by manager is not : " 
+					+ chiefNurseMessage);
+			log(Status.WARNING, e.getMessage());
+		}
+
+	}
+	
+	@Then("Verify Residential manager message received by staff.")
+	public void Verify_Residential_manager_message_is_received_by_staff() {
+		sleep(5000);
+		boolean flag = false;
+		Map<String, String> messages = staffpom.getIncidentReportPage()
+				.getChatMessagesFromUser("Manager");
+		for(Map.Entry<String, String> entry : messages.entrySet()) {
+//			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getValue());
+//			System.out.println(managerMessage);
+			if(entry.getValue().equals(managerMessage)) {
+				flag = true;
+			}
+		}
+		try {
+			assertEquals(flag, true,"The expected message from Manager is : "+managerMessage);
+			log(Status.PASS, "The message sent by manager received by staff is : " 
+					+ managerMessage);
+		}catch(AssertionError e) {
+			log(Status.FAIL, "The message sent by manager received by staff is not : " 
+					+ managerMessage);
+			log(Status.WARNING, e.getMessage());
+		}
+		
+	}
+	
+	@Then("Verify Residential manager message received by cheif nurse.")
+	public void Verify_Residential_manager_message_is_received_by_cheif_nurse() {
+		sleep(5000);
+		boolean flag = false;
+		Map<String, String> messages = chiefnursepom.getIncidentReportPage()
+				.getChatMessagesFromUser("Manager");
+		for(Map.Entry<String, String> entry : messages.entrySet()) {
+//			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getValue());
+//			System.out.println(managerMessage);
+			if(entry.getValue().equals(managerMessage)) {
+				flag = true;
+			}
+		}
+		try {
+			assertEquals(flag, true,"The expected message from Manager is : "+managerMessage);
+			log(Status.PASS, "The message sent by manager received by chief nurse is : " 
+					+ managerMessage);
+		}catch(AssertionError e) {
+			log(Status.FAIL, "The message sent by manager received by chief nurse is not : " 
+					+ managerMessage);
+			log(Status.WARNING, e.getMessage());
+		}
+		
+	}
+	
 	
 }

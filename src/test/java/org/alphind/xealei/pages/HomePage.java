@@ -106,7 +106,7 @@ public class HomePage extends BaseClass {
 	 */
 	public void navToReportsModule() {
 
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 		click(ReportsModule);
 	}
 
@@ -119,7 +119,7 @@ public class HomePage extends BaseClass {
 	public void navToIncidentReportModule() {
 
 		click(incidentReportModule);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 
 	/**
