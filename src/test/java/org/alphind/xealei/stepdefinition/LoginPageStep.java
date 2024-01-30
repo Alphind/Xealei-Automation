@@ -274,12 +274,12 @@ public class LoginPageStep extends BaseClass {
 			Assert.assertEquals("User Not Found-Toastbar msg is not displayed as expected", expUNFErrorMessage,	pom.getLoginPage().getUserNotFoundErrorMessageText());
 			log(Status.PASS, "User Not Found-Toastbar msg text is displayed - "	+ pom.getLoginPage().getUserNotFoundErrorMessageText());
 
-			pom.getLoginPage().ToastMsgOkButton();
-
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
+		
+		pom.getLoginPage().ToastMsgOkButton();
 
 	}
 

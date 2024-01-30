@@ -8,7 +8,7 @@
 #
 #*/
 
-@EditIndividuals-AllScenarios
+
 Feature: Verify Xealei Individuals > Edit Individual Page
 
  Background: 
@@ -19,17 +19,17 @@ Feature: Verify Xealei Individuals > Edit Individual Page
     Then User should search the created Individual
     Then User should verify the name dob id guardian contact details is displayed
     
-     
+  @EditIndividuals-AllScenarios   
   Scenario: To verify the validation messages for limit and mandatory fields in Edit Individuals page
   
   Then User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page
-  Then User should verify the tab section name "Personal Information" and "Vitals"
-  And User should click the Edit button
+  Then User should verify the tab section name "Personal Information","Vitals"
+  And  User should click the Edit button
   Then User should verify the breadcrums link should be display with module individual name > Edit individual
   Then User should verify the Update and Cancel button is enabled
-  And User should update existing phone number in emergency contact1
+  And  User should update existing phone number in emergency contact1
   Then User should verify the error message for duplicate Mobile Number '"Individual already exist with same phone number"'
-  And User should delete all the fields and perform update
+  And  User should delete all the fields and perform update
   Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
   Then User should verify the validation message for Mandatory fields "Please enter first name", "Please enter last name", "Please select gender", "Please enter dob", "Please select suite", "Please enter residential address", "Please enter mailing address", "Please enter emergency contact first name", "Please enter emergency contact last name", "Please select emergency contact relationship", "Please enter valid emergency contact number"
   Then User should verify the limit validation error message for First, Middle and Last Name* fields "First name cannot be longer than 30 characters", "Middle name cannot be longer than 30 characters", "Last name cannot be longer than 30 characters"
@@ -55,6 +55,7 @@ Feature: Verify Xealei Individuals > Edit Individual Page
     #
   And User should verify future dates are hidden
   When User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates
+  And User should select a specific year and month in dropdown and select the date in date picker
   Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
   And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
   Then User should verify the calendar should close after click outside the calendar

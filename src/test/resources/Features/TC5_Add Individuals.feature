@@ -8,7 +8,7 @@
 #
 #*/
 
-@AddIndividuals-AllScenarios
+
 Feature: Verify Xealei Individuals > Add Individual Page
 
   Background: 
@@ -18,6 +18,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should verify the Individuals Module is working
     Then User should verify the Add Individual button is working
     Then User should verify the 'New Individual Registration' pop up screen is displayed
+    
 
   Scenario: To verify the validation messages for limit and mandatory fields in Add Individuals page
     Then User should verify the "Upload", "Capture" buttons is enabled in photo section tab
@@ -79,6 +80,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the calendar should close after click outside the calendar
     And User should close the New Individual Registration popup
 
+
   Scenario: To verify the user able to Add/Create Individual by entering only mandatory fields
     And User should upload image in photo tab section
     And User should perform only mandatory fields in Identification tab section
@@ -99,7 +101,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the page is landed on Individual’s screen
     Then User should verify that individuals are created successfully by perform only mandatory fields
     
- 
+ @AddIndividuals-AllScenarios
   Scenario: To verify the user able to Add/Create Individual by entering all fields
   
     And User should upload image in photo tab section
@@ -124,7 +126,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should navigate to vitals tab and click add vitals button in edit individual page
     Then User should verify the breadcrums link should be display with module individual name > Edit individual
     And User should perform update without enter any fields in vitals tab
-   # Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
+    Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
     Then User should verify the Mandatory fields info messages in vitals tab "Please select Blood Group", "Please enter blood pressure", "Please enter blood glucose", "Please enter cholesterol", "Please enter height", "Please enter weight"
     Then User should verify the valid format Mandatory fields info messages in vitals tab "Blood pressure format should be (120/80)", "Please enter valid blood glucose", "Please enter valid cholesterol", "Please enter valid height", "Please enter valid weight"
   

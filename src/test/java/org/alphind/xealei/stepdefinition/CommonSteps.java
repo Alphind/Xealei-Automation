@@ -29,6 +29,7 @@ public class CommonSteps extends BaseClass {
 
 		System.out.println("exp Text :" + expMessage);
 		System.out.println("Actual Text :" + pom.getHomePage().HomeText());
+		
 		try {
 			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage, pom.getHomePage().HomeText());
 					

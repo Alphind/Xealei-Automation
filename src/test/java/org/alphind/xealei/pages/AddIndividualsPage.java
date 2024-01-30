@@ -1001,9 +1001,9 @@ public class AddIndividualsPage extends BaseClass{
 
 		try {
 			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					getCurrentDtYearMonth("MM/" + getCurrentDate() + "/yyyy"), selectedDate);
+					getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
 			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - "
-					+ getCurrentDtYearMonth("MM/" + getCurrentDate() + "/yyyy") + " | Act Dt - " + selectedDate);
+					+ getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -1079,6 +1079,7 @@ public class AddIndividualsPage extends BaseClass{
 		while (true) {
 			String text = getText(datePicker);
 			log(Status.INFO, "Get the default Month Year Text while open the calender - " + text);
+			
 			if (text.equalsIgnoreCase(previousMonth("MMM yyyy"))) {
 				log(Status.INFO, "Found Previous Month -" + text);
 				break;
@@ -1101,9 +1102,9 @@ public class AddIndividualsPage extends BaseClass{
 
 		try {
 			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					previousMonth("MM") + "/" + chooseDateFromExcel + getCurrentDtYearMonth("/yyyy"), selectedDate);
+					previousMonth("MM") + "/" + chooseDateFromExcel + "/"+getYear(), selectedDate);
 			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - " + previousMonth("MM") + "/"
-					+ chooseDateFromExcel + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
+					+ chooseDateFromExcel + "/"+getYear() + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -1165,7 +1166,7 @@ public class AddIndividualsPage extends BaseClass{
 	public void rightSideArrow(int rowNum) {
 
 		String chooseDateFromExcel = readExcel("Test Datas", "AddIndividuals", rowNum, 22);
-		sendKeys(getDob(), previousMonth("MM") + "/" + chooseDateFromExcel + "/" + getCurrentDtYearMonth("yyyy"));
+		sendKeys(getDob(), getMonth() + "/" + chooseDateFromExcel + "/" + getYear());
 
 		datePicker();
 
@@ -1180,9 +1181,9 @@ public class AddIndividualsPage extends BaseClass{
 		try {
 
 			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					getCurrentDtYearMonth("MM/" + getCurrentDate() + "/yyyy"), selectedDate);
+					getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
 			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - "
-					+ getCurrentDtYearMonth("MM/" + getCurrentDate() + "/yyyy") + " | Act Dt - " + selectedDate);
+					+ getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();

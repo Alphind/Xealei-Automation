@@ -18,7 +18,7 @@ public class EditIndividualsStep extends BaseClass {
 
 		logStep(methodName());
 
-		pom.getEditIndividualsPage().searchBox(1);
+		pom.getEditIndividualsPage().searchBox();
 
 	}
 
@@ -27,10 +27,18 @@ public class EditIndividualsStep extends BaseClass {
 
 		logStep(methodName());
 
-		String IndName = getText(pom.getEditIndividualsPage().getIndividualSearchBox());
+		waitForPageLoad();
+		waitForFullPageElementLoad();
 		
-		if(IndName.equals(readExcel("Test Datas", "AddIndividuals", 1, 26))){			
+		String IndName = getAttribute(pom.getEditIndividualsPage().getIndividualSearchBox(),"value");
+		
+				System.out.println("Actual Searched Ind Name - "+IndName);
+				System.out.println("Expected Searched Ind Name - "+readExcel("Test Datas", "AddIndividuals", 1, 26));
+				
+		if(IndName.equals(readExcel("Test Datas", "AddIndividuals", 1, 26))){
+			
 		try {
+			
 			String expIndividualName = readExcel("Test Datas", "AddIndividuals", 1, 26);
 			Assert.assertEquals("Created Individual Name Mismatched", expIndividualName,
 					getText(pom.getEditIndividualsPage().getCreatedIndName()));
@@ -55,7 +63,7 @@ public class EditIndividualsStep extends BaseClass {
 
 		try {
 			String expIndId = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 2);
-			Assert.assertEquals("Created Ind ID Mismatched", "IIN00".concat(expIndId),
+			Assert.assertEquals("Created Ind ID Mismatched", "IIN000".concat(expIndId),
 					getText(pom.getEditIndividualsPage().getCreatedID()));
 			log(Status.PASS, "Ind ID is displayed as expected EXP Ind ID - " + expIndId + " | ACT Ind ID - "
 					+ getText(pom.getEditIndividualsPage().getCreatedID()));
@@ -93,7 +101,8 @@ public class EditIndividualsStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-		} else if(IndName.equals(readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1))){
+		}	
+	     else if(IndName.equals(readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1))){
 			
 			try {
 				String expIndividualName = readExcel("Test Datas", "EditIndividuals", 1, 26);
@@ -157,8 +166,11 @@ public class EditIndividualsStep extends BaseClass {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
+			
+	     } else {
+	    	 log(Status.FAIL, "Searched Individual Name doesn't displayed as expected");
 		}
-		
+
 	}
 
 	@Then("User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page")
@@ -190,9 +202,9 @@ public class EditIndividualsStep extends BaseClass {
 		pom.getEditIndividualsPage().EditButton();
 
 	}
-
-	@Then("User should verify the tab section name {string} and {string}")
-	public void user_should_verify_the_tab_section_name_and(String expPersonalTab, String expVitalsTab) {
+	
+	@Then("User should verify the tab section name {string},{string}")
+	public void user_should_verify_the_tab_section_name(String expPersonalTab, String expVitalsTab) {
 
 		logStep(methodName());
 
@@ -219,8 +231,6 @@ public class EditIndividualsStep extends BaseClass {
 		}
 
 	}
-
-	
 
 	@Then("User should verify the Update and Cancel button is enabled")
 	public void user_should_verify_the_update_and_cancel_button_is_enabled() {
@@ -934,12 +944,18 @@ public class EditIndividualsStep extends BaseClass {
 					writeExcelLastRow("Test Datas", "CreatedIndividuals", 1, updatedIndividual);
 					
 					writeExcelLastRow("Test Datas", "UpdatedIndividuals", 1, updatedIndividual);
-				    writeExcelToOverwrite("Test Datas", "Incident Reports", 19, 1, updatedIndividual);
-						
-						System.out.println("Created Ind & Selected Suite -" +updatedIndividual+actualSelectedSuite);			
-						
-						writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, updatedIndividual+actualSelectedSuite);
-						
+					
+					String[] split = updatedIndividual.split(" ");
+					String IndfirstName = split[0];
+					String IndLastNameName = split[2];
+					
+		            System.out.println("Updated Ind FrstName & LastName -"+IndfirstName+" "+IndLastNameName);
+					
+					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 28, IndfirstName+" "+IndLastNameName);
+					
+					System.out.println("Updated Ind & Selected Suite -" +updatedIndividual+"("+actualSelectedSuite+")");			
+					
+					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, updatedIndividual+"("+actualSelectedSuite+")");
 					
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());

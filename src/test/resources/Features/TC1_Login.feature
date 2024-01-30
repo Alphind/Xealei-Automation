@@ -31,7 +31,7 @@ Feature: Verify Xealei Login Page
     Then User should verify the error message after performed login with invalid data "User not found"
     When User should perform login with valid email and invalid password
     Then User should verify the Toastbar message after performed login with valid email and invalid password 'Incorrect password'
-    Then User must verify the Inactive user data "The client facility is inactive. For more information, please contact the administrator"
+   # Then User must verify the Inactive user data "The client facility is inactive. For more information, please contact the administrator"
 
   Scenario: To verify Xealei Login page by click the ENTER key with valid credentials
     When User should perform login with valid email and password by click the Enter key

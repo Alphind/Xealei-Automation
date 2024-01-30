@@ -264,6 +264,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void loginButton() {
 
+		sleep(2000);
 		click(loginButton);
 	}
 

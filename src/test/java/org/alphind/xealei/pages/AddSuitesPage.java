@@ -33,9 +33,8 @@ public class AddSuitesPage extends BaseClass {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
 	
-
+	
 	@FindBy(xpath = "//h5[contains(text(),'Suites')]")
 	private WebElement suitesPage;
 
