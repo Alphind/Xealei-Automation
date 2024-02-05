@@ -66,6 +66,12 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "//div[text() = 'No Fall']/parent::label/parent::mat-radio-button")
 	private WebElement alertNotificationNoFallRadioButton;
 	
+	@FindBy(xpath = "//mat-select[@formcontrolname='noFallReason']")
+	private WebElement noFallReasonDropDown;
+	
+	private String dropdownOption = "//span[@class = 'mat-option-text' "
+			+ "and contains(text(),'XX')]";
+	
 	@FindBy(xpath = "//textarea[@formcontrolname='fallDescription']")
 	private WebElement alertNotificationDescriptionText;
 	
@@ -73,6 +79,9 @@ public class HomePage extends BaseClass {
 	private List<WebElement> dateAndTimeColumn;
 	
 	private String iminButton = "//tbody/tr[XX]/td[5]/button/span[contains(text(),'in')]";
+	
+	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
+	private WebElement firstFallAlert;
 	
 
 
@@ -211,6 +220,33 @@ public class HomePage extends BaseClass {
 		click(this.driver.findElement(By.xpath(fallAlertXpath)));
 	}
 	
+	
+	public void firstFallAlertNotification() throws Exception {
+		waitForPageLoad(this.driver);
+		click(notificationIcon);
+		sleep(2000);
+//		List<String> fallAlertTexts = new ArrayList<String>();
+//		int count = 0;
+//		for(WebElement alert : fallAlerts) {
+//			fallAlertTexts.add(alert.getText());
+//		}
+//		if(Objects.isNull(fallAlertTexts)) {
+//			throw new Exception("No Fall alert found.");
+//		}
+//		for(String falltime : fallAlertTexts) {
+//			++count;
+//			if(falltime.contains(dateandtimeofFall)) {
+//				break;
+//			}
+//		}
+//		fallAlertXpath =fallAlertXpath.replaceAll("XX", String.valueOf(count));
+//		click(this.driver.findElement(By.xpath(fallAlertXpath)));
+		
+		click(firstFallAlert);
+		
+	}
+	
+	
 	/**
 	 * created by Nandhalala
 	 * @throws Exception 
@@ -252,6 +288,14 @@ public class HomePage extends BaseClass {
 	/**
 	 * Created by Nandhalala
 	 */
+	public void alertConfirmButton() {
+		click(alertNotificationConfirmButton);
+		waitForPageLoad(this.driver);
+	}
+	
+	/**
+	 * Created by Nandhalala
+	 */
 	public void alert() {
 		click(alertNotificationSaveAndroceedToIRButton);
 	}
@@ -259,7 +303,7 @@ public class HomePage extends BaseClass {
 	/**
 	 * Created by Nandhalala
 	 */
-	public void alertNotificationFalladioButton() {
+	public void alertNotificationFallRadioButton() {
 		waitForPageLoad(this.driver);
 		click(alertNotificationFallRadioButton);
 		waitForPageLoad(this.driver);
@@ -268,10 +312,22 @@ public class HomePage extends BaseClass {
 	/**
 	 * Created by Nandhalala
 	 */
-	public void alertNotificationNoFalladioButton() {
+	public void alertNotificationNoFallRadioButton() {
 		waitForPageLoad(this.driver);
 		click(alertNotificationNoFallRadioButton);
 		waitForPageLoad(this.driver);
+	}
+	
+	/**
+	 * Created by Nandhalala
+	 */
+	public void alertNotificationSelectNoFallReason() {
+		waitForPageLoad(this.driver);
+		click(noFallReasonDropDown);
+		waitForPageLoad(this.driver);
+		String noFallReason = readExcel("Test Datas", "Incident Reports", 1, 33).trim();
+		String noFallReasonXpath = dropdownOption.replaceAll("XX", noFallReason);
+		click(this.driver.findElement(By.xpath(noFallReasonXpath)));
 	}
 	
 	/**
@@ -281,6 +337,15 @@ public class HomePage extends BaseClass {
 		String description = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
 		sendKeys(alertNotificationDescriptionText, description);
 	}
-
+	
+	/**
+	 * Created by Nandhalala
+	 */
+	public void alertNotificationNoFallDescription() {
+		String description = readExcel("Test Datas", "Incident Reports", 1, 34).trim();
+		sendKeys(alertNotificationDescriptionText, description);
+	}
+	
+	
 
 }

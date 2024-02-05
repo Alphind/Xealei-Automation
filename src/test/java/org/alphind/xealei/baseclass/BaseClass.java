@@ -44,6 +44,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -652,24 +653,38 @@ public class BaseClass {
 	// 42. Wait for Loading
 
 	public void waitForPageLoad() {
-
-//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
-//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
-		wait.until(ExpectedConditions.invisibilityOf(loading));
+		
+		try {
+//			WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//			WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+			WebElement loading = driver
+					.findElement(By.xpath("//span[contains(@class,'cloader')]"));
+//			WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+			wait.until(ExpectedConditions.invisibilityOf(loading));
+		}catch (NoSuchElementException e) {
+			
+		}
 
 	}
 	
 	//Added new method for handling multiple drivers
-	//creTED BY NANDHALALA
+	//CREATED BY NANDHALALA
 	public void waitForPageLoad(WebDriver currentdriver) {
 
-//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
-//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
-		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
-		wait.until(ExpectedConditions.invisibilityOf(loading));
+		try {
+//			WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//			WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+			//span[contains(@class,'cloader')] --> new load element
+			WebElement loading = currentdriver
+					.findElement(By.xpath("//span[contains(@class,'cloader')]"));
+//			WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),"
+//					+ "'Loading')]"));
+			WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
+			wait.until(ExpectedConditions.invisibilityOf(loading));
+		}catch (NoSuchElementException e) {
+			
+		}
 
 	}
 

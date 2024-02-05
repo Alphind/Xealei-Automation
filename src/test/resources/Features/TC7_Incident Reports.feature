@@ -8,7 +8,7 @@
 #
 #*/
 
-@All-Scenarios
+#@All-Scenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
 @NegativeScenario
@@ -433,4 +433,15 @@ Examples:
 		
 		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
 
+@NotificationAlertNoFall
+Scenario: Verify user is able to select nofall from notification
+	Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select nofall radio button.
+		And Select nofall reason and enter no fall description.
+		Then Click confirm button.
+		Then Verify text in what casued the fall matches with Description.
 

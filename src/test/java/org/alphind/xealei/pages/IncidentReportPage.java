@@ -467,6 +467,9 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
 	private WebElement userName;
 	
+	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
+	private WebElement firstFallAlert;
+	
 
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.

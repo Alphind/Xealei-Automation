@@ -55,7 +55,7 @@ public class IncidentReportPageStep extends BaseClass {
 		staffpom.getLoginPage().validEmail(2);
 		staffpom.getLoginPage().validPassword(2);
 		
-	waitForPageLoad(staffDriver);
+	//waitForPageLoad(staffDriver);
 	waitForFullPageElementLoad(staffDriver);
 	sleep(2000);
 	staffpom.getLoginPage().loginButton();
@@ -1878,7 +1878,7 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 		
 		String time = temp[0]+","+temp[1]+","+" "+temp[2];
-		
+		System.out.println(time);
 		try {
 			staffpom.getHomePage().fallAlertNotification(time);
 		} catch (Exception e) {
@@ -1911,8 +1911,25 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select fall radio button and enter description.")
 	public void Select_fall_radio_button_and_enter_description() {
-		staffpom.getHomePage().alertNotificationFalladioButton();
+		staffpom.getHomePage().alertNotificationFallRadioButton();
 		staffpom.getHomePage().alertNotificationDescription();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Select nofall radio button.")
+	public void Select_nofall_radio_button() {
+		staffpom.getHomePage().alertNotificationFallRadioButton();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Select nofall reason and enter no fall description.")
+	public void Select_nofall_reason_and_enter_no_fall_description() {
+		staffpom.getHomePage().alertNotificationSelectNoFallReason();
+		staffpom.getHomePage().alertNotificationNoFallDescription();
 	}
 	
 	/**
@@ -1921,6 +1938,14 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click Save and Proceed to IR button.")
 	public void Click_Save_and_Proceed_to_IR_button() {
 		staffpom.getHomePage().saveandproccedtoTR();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Click confirm button.")
+	public void Click_confirm_button() {
+		staffpom.getHomePage().alertConfirmButton();
 	}
 	
 	/**
