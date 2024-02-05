@@ -11,7 +11,11 @@
         "steps": [
           {
             "result": {
+<<<<<<< HEAD
+              "duration": 14959900,
+=======
               "duration": 112698300,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
               "status": "passed"
             },
             "line": 14,
@@ -20,93 +24,19 @@
               "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
             },
             "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 10769074500,
-              "status": "passed"
-            },
-            "line": 15,
-            "name": "User should perform login with valid email and password",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 4028322200,
-              "status": "passed"
-            },
-            "line": 16,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Home\"",
-                  "offset": 77
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 21539348100,
-              "status": "passed"
-            },
-            "line": 17,
-            "name": "User should verify the Suite Module is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_suite_module_is_working()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 480714400,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "User should verify suite page tab url address for suites page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_suite_page_tab_url_address_for_suites_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 30358795700,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "User should verify the Add Suite button is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 299197600,
-              "status": "passed"
-            },
-            "line": 20,
-            "name": "User should verify the Add Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_pop_up_screen_is_displayed()"
-            },
-            "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2024-02-05T09:59:02.035Z",
+        "start_timestamp": "2024-02-05T05:56:07.455Z",
         "before": [
           {
             "result": {
-              "duration": 8694744300,
+<<<<<<< HEAD
+              "duration": 10260178800,
+=======
+              "duration": 10769074500,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
               "status": "passed"
             },
             "match": {
@@ -114,15 +44,16 @@
             }
           }
         ],
-        "line": 22,
-        "name": "To verify the buttons functionality and error validation and info messages in Add Suite Page",
+        "line": 16,
+        "name": "Comprehensive Login Page UI Testing",
         "description": "",
-        "id": "verify-xealei-suites-\u003e-add-suites-page;to-verify-the-buttons-functionality-and-error-validation-and-info-messages-in-add-suite-page",
+        "id": "verify-xealei-login-page;comprehensive-login-page-ui-testing",
         "after": [
           {
             "result": {
-              "duration": 16191687700,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [eceb6caa1cf510bd03bb2aae8c64575e, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54419}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54419/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: eceb6caa1cf510bd03bb2aae8c64575e\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 15695881300,
+              "status": "failed"
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
@@ -134,24 +65,280 @@
         "steps": [
           {
             "result": {
-              "duration": 1067146000,
+              "duration": 530580700,
               "status": "passed"
             },
-            "line": 23,
-            "name": "User should verify the limit error info message for Suite Name* field \"Suite Name must be minimum 3 characters\"",
+            "line": 17,
+            "name": "User should verify the client code is addressed in tab url address in login screen",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_client_code_is_addressed_in_tab_url_address_in_login_screen()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 265290600,
+=======
+              "duration": 4028322200,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "User should verify the \u0027LOGIN\u0027 text is displayed",
             "match": {
               "arguments": [
                 {
-                  "val": "\"Suite Name must be minimum 3 characters\"",
-                  "offset": 70
+                  "val": "\u0027LOGIN\u0027",
+                  "offset": 23
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_limit_error_info_message_for_suite_name_field(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_text_is_displayed(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
+<<<<<<< HEAD
+              "duration": 202455400,
+=======
+              "duration": 21539348100,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "User should verify that after landing on the login page the login button is disabled",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_after_landing_on_the_login_page_the_login_button_is_disabled()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 755978800,
+=======
+              "duration": 480714400,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "User should verify the field label name and placeholder text for Email and Password fields",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [eceb6caa1cf510bd03bb2aae8c64575e, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54419}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54419/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: eceb6caa1cf510bd03bb2aae8c64575e\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:674)\r\n\tat org.alphind.xealei.pages.LoginPage.password(LoginPage.java:253)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_password_in_password_field(LoginPageStep.java:138)\r\n\tat ✽.User should enter password in password field(file:///C:/Xealei/xealei1/src/test/resources/Features/TC1_Login.feature:21)\r\n",
+              "duration": 15024375000,
+              "status": "failed"
+            },
+            "line": 21,
+            "name": "User should enter password in password field",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_enter_password_in_password_field()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 22,
+            "name": "User should verify that entered password is **hide",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_hide()"
+=======
+              "duration": 30358795700,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "User should verify the Add Suite button is working",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_button_is_working()"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "status": "skipped"
+            },
+            "line": 23,
+            "name": "User should click the eye icon in the Password field",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_click_the_eye_icon_in_the_password_field()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 24,
+            "name": "User should verify that entered password is Unhide",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_that_entered_password_is_unhide()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 25,
+            "name": "User should verify the copy rights \"Powered by Alphind © 2024\" text is displayed",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Powered by Alphind © 2024\"",
+                  "offset": 35
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_copy_rights_text_is_displayed(java.lang.String)"
+=======
+              "duration": 299197600,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "User should verify the Add Suite pop up screen is displayed",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_pop_up_screen_is_displayed()"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login-AllScenarios"
+          }
+        ]
+      },
+      {
+<<<<<<< HEAD
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 997900,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-02-05T05:56:50.572Z",
+        "before": [
+          {
+            "result": {
+              "duration": 5795495900,
+=======
+        "start_timestamp": "2024-02-05T09:59:02.035Z",
+        "before": [
+          {
+            "result": {
+              "duration": 8694744300,
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+<<<<<<< HEAD
+        "line": 27,
+        "name": "To verify the error validation messages in Login page",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-the-error-validation-messages-in-login-page",
+        "after": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [e14052c072ccfe38ab617615989d943d, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54469}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54469/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: e14052c072ccfe38ab617615989d943d\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 15143251600,
+              "status": "failed"
+=======
+        "line": 22,
+        "name": "To verify the buttons functionality and error validation and info messages in Add Suite Page",
+        "description": "",
+        "id": "verify-xealei-suites-\u003e-add-suites-page;to-verify-the-buttons-functionality-and-error-validation-and-info-messages-in-add-suite-page",
+        "after": [
+          {
+            "result": {
+              "duration": 16191687700,
+              "status": "passed"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+<<<<<<< HEAD
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [e14052c072ccfe38ab617615989d943d, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54469}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54469/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: e14052c072ccfe38ab617615989d943d\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:674)\r\n\tat org.alphind.xealei.pages.LoginPage.password(LoginPage.java:253)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_verify_that_email_field_is_mandatory(LoginPageStep.java:218)\r\n\tat ✽.User should verify that email field is mandatory \"Please enter email ID\"(file:///C:/Xealei/xealei1/src/test/resources/Features/TC1_Login.feature:28)\r\n",
+              "duration": 16292899300,
+              "status": "failed"
+            },
+            "line": 28,
+            "name": "User should verify that email field is mandatory \"Please enter email ID\"",
+=======
+              "duration": 1067146000,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "User should verify the limit error info message for Suite Name* field \"Suite Name must be minimum 3 characters\"",
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please enter email ID\"",
+                  "offset": 49
+                }
+              ],
+<<<<<<< HEAD
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_verify_that_email_field_is_mandatory(java.lang.String)"
+=======
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_limit_error_info_message_for_suite_name_field(java.lang.String)"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "User should verify that password field is mandatory \"Please enter password\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please enter password\"",
+                  "offset": 52
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_verify_that_password_field_is_mandatory(java.lang.String)"
+=======
               "duration": 653251300,
               "status": "passed"
             },
@@ -165,11 +352,139 @@
                 }
               ],
               "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_field_suite_name_is_mandatory(java.lang.String)"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
             },
             "keyword": "Then "
           },
           {
             "result": {
+<<<<<<< HEAD
+              "duration": 999100,
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "User should perform login with invalid data",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_invalid_data()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "name": "User should verify the error message after performed login with invalid data \"User not found\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"User not found\"",
+                  "offset": 77
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_error_message_after_performed_login_with_invalid_data(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 32,
+            "name": "User should perform login with valid email and invalid password",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_invalid_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 33,
+            "name": "User should verify the Toastbar message after performed login with valid email and invalid password \u0027Incorrect password\u0027",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Incorrect password\u0027",
+                  "offset": 100
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_verify_the_toastbar_message_after_performed_login_with_valid_email_and_invalid_password(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login-AllScenarios"
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 996500,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-02-05T05:57:27.907Z",
+        "before": [
+          {
+            "result": {
+              "duration": 4966594100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 36,
+        "name": "To verify Xealei Login page by click the ENTER key with valid credentials",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-xealei-login-page-by-click-the-enter-key-with-valid-credentials",
+        "after": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [d5d8ea0dfcdc9ccb7e426fc2e6bf1430, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54519}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54519/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: d5d8ea0dfcdc9ccb7e426fc2e6bf1430\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 15134533700,
+              "status": "failed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [d5d8ea0dfcdc9ccb7e426fc2e6bf1430, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54519}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54519/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: d5d8ea0dfcdc9ccb7e426fc2e6bf1430\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.pages.LoginPage.validEmail(LoginPage.java:381)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password_by_click_the_enter_key(LoginPageStep.java:323)\r\n\tat ✽.User should perform login with valid email and password by click the Enter key(file:///C:/Xealei/xealei1/src/test/resources/Features/TC1_Login.feature:37)\r\n",
+              "duration": 16501850400,
+              "status": "failed"
+            },
+            "line": 37,
+            "name": "User should perform login with valid email and password by click the Enter key",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password_by_click_the_enter_key()"
+=======
               "duration": 90719856800,
               "status": "passed"
             },
@@ -195,16 +510,25 @@
             "name": "User should perform only non-mandatory fields",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_perform_only_non_mandatory_fields()"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
             },
             "keyword": "And "
           },
           {
             "result": {
+<<<<<<< HEAD
+              "duration": 999400,
+              "status": "skipped"
+            },
+            "line": 38,
+            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
+=======
               "duration": 358038200,
               "status": "passed"
             },
             "line": 27,
             "name": "User should verify the error message contains for Mandatory fields \"Please Enter Suite Name\"",
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
             "match": {
               "arguments": [
                 {
@@ -212,6 +536,98 @@
                   "offset": 67
                 }
               ],
+<<<<<<< HEAD
+              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login-AllScenarios"
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User is on Xealei login page",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2024-02-05T05:58:04.577Z",
+        "before": [
+          {
+            "result": {
+              "duration": 3761241700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 40,
+        "name": "To verify Xealei Login page with valid credentials",
+        "description": "",
+        "id": "verify-xealei-login-page;to-verify-xealei-login-page-with-valid-credentials",
+        "after": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [5c6325b60ef36fbddcc2c6b2a85c1b2c, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54566}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54566/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 5c6325b60ef36fbddcc2c6b2a85c1b2c\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 15110059300,
+              "status": "failed"
+            },
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@class,\u0027cloader\u0027)]\"}\n  (Session info: chrome\u003d121.0.6167.140)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002719.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [5c6325b60ef36fbddcc2c6b2a85c1b2c, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\ALPHI-~1\\AppData\\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54566}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54566/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 5c6325b60ef36fbddcc2c6b2a85c1b2c\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:659)\r\n\tat org.alphind.xealei.pages.LoginPage.validEmail(LoginPage.java:381)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password(LoginPageStep.java:334)\r\n\tat ✽.User should perform login with valid email and password(file:///C:/Xealei/xealei1/src/test/resources/Features/TC1_Login.feature:41)\r\n",
+              "duration": 16458823400,
+              "status": "failed"
+            },
+            "line": 41,
+            "name": "User should perform login with valid email and password",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 42,
+            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Home\"",
+                  "offset": 77
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
+=======
               "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_error_message_contains_for_mandatory_fields(java.lang.String)"
             },
             "keyword": "Then "
@@ -255,22 +671,45 @@
             "name": "User should verify the x icon in add suites screen is working",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_icon_in_add_suites_screen_is_working()"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
+<<<<<<< HEAD
+            "name": "@Login-AllScenarios"
+=======
             "name": "@Suites-AllScenarios"
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
           }
         ]
       }
     ],
+<<<<<<< HEAD
+    "name": "Verify Xealei Login Page",
+    "description": "",
+    "id": "verify-xealei-login-page",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/Features/TC1_Login.feature",
+    "tags": [
+      {
+        "name": "@Login-AllScenarios",
+        "type": "Tag",
+        "location": {
+          "line": 10,
+          "column": 1
+        }
+      }
+    ]
+=======
     "name": "Verify Xealei Suites \u003e Add Suites Page",
     "description": "",
     "id": "verify-xealei-suites-\u003e-add-suites-page",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/TC3_Add%20Suites.feature",
     "tags": []
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
   }
 ]

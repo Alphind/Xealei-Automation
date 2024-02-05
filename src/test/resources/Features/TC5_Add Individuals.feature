@@ -75,7 +75,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the calendar should close after click outside the calendar
     And User should close the New Individual Registration popup
 
-
+ @AddIndividuals-AllScenarios
   Scenario: To verify the user able to Add/Create Individual by entering only mandatory fields
     And User should upload image in photo tab section
     And User should perform only mandatory fields in Identification tab section
