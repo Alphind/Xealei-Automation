@@ -13,7 +13,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.Status;
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -1839,16 +1838,6 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		logStep(methodName());
 		
-//		String date = getCurrentMonth()+"/"+getCurrentDate()+"/"+getCurrentDtYearMonth("yyyy");
-//		
-//		//String[] dateTime = getCurrentDtYearMonth("M/dd/yyyy hh:mma").split(" ");
-//		//String time = dateTime.replaceAll(".*(.{7})", "$1");
-////		String date = dateTime[0];
-////		String time = dateTime[1];
-//		
-//		alertTime = dayMonthYearConversion(date,getCurrentDtYearMonth("hh:mma"));
-//		System.out.println("Notified Date & Time - "+alertTime);
-		
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
@@ -1869,8 +1858,8 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		System.out.println("The status code for fall alert triggered from sensor is : " 
 									+ response.getStatusCode());
-		log(Status.INFO, "Alert Triggered Successfully : " 
-									+ response.getStatusCode());
+		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
+									
 		sleep(5000);
 	}
 	
@@ -1882,16 +1871,12 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		logStep(methodName());
 		
-//		String dateTime = getCurrentDtYearMonth("MMM")+" "+getCurrentDate()+", "+getCurrentDtYearMonth("yyyy, hh:mm");
-//
-//		//String dateTime = getCurrentDtYearMonth("MMM dd, yyyy, hh:mm");
-//		alertTime = dateTime;
-//		System.out.println("Notified Date & Time in GRID - "+alertTime);
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
 							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
 							.post();
+		
 		if(response.getStatusCode() == 200) {
 			String dateTime = getCurrentDtYearMonth("MMM")+" "+getCurrentDate()+", "+getCurrentDtYearMonth("yyyy, hh:mm");
 
@@ -1901,9 +1886,8 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 		System.out.println("The status code for fall alert triggered from sensor is : " 
 				+ response.getStatusCode());
-		log(Status.INFO, "Alert Triggered Successfully : " 
-				+ response.getStatusCode());
-		
+		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
+
 		sleep(5000);
 	}
 	
@@ -1994,10 +1978,11 @@ public class IncidentReportPageStep extends BaseClass {
 		String actual = staffpom.getIncidentReportPage().getWhatCausedTheFall();
 		String expected = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
 		try {
-			assertEquals("The actual value is : "+actual
-					+"but the expected value is : "+expected,expected,actual);
+			
+			assertEquals("The actual value is : "+actual +"but the expected value is : "+expected,expected,actual);
+
 			log(Status.PASS, "The text in fall description text box is : "+actual);
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 			log(Status.FAIL, "The text in fall description text box is : "+actual+
 					"but the expected text is : "+expected);
 			log(Status.WARNING, e.getMessage());
@@ -2080,7 +2065,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void Open_IR_received_by_residential_manager() {
 		
 		logStep(methodName());
-		
+
 		sleep(5000);
 		rmpom.getHomePage().navToReportsModule();
 		rmpom.getHomePage().navToIncidentReportModule();
@@ -2129,6 +2114,7 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
+
 			Assert.assertTrue("The expected message from staff is : "+staffMessage,flag);
 			log(Status.PASS, "The message sent by staff received by chief nurse is : " 
 					+ staffMessage);
@@ -2144,7 +2130,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void Verify_staff_message_is_received_by_Residential_Manager() {
 		
 		logStep(methodName());
-		
+
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = rmpom.getIncidentReportPage().getChatMessagesFromUser("Staff");
@@ -2158,6 +2144,7 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 		try {
 			Assert.assertTrue("The expected message from staff is : "+staffMessage,flag);
+
 			log(Status.PASS, "The message sent by staff received by manager is : " 
 					+ staffMessage);
 		}catch (AssertionError e) {
@@ -2187,9 +2174,11 @@ public class IncidentReportPageStep extends BaseClass {
 		try {
 			Assert.assertTrue("The expected message from Chief Nurse is is : " 
 					+chiefNurseMessage,flag);
+
 			log(Status.PASS, "The message sent by chief nurse received by manager is : " 
 					+ chiefNurseMessage);
-		}catch (AssertionError e) {
+			
+		} catch (AssertionError e) {
 			log(Status.FAIL, "The message sent by chief nurse received by manager is not : " 
 					+ chiefNurseMessage);
 			log(Status.WARNING, e.getMessage());
@@ -2216,6 +2205,7 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 		try {
 			Assert.assertTrue("The expected message from Manager is : "+managerMessage,flag);
+
 			log(Status.PASS, "The message sent by manager received by staff is : " 
 					+ managerMessage);
 		}catch(AssertionError e) {
@@ -2244,7 +2234,9 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
+
 			Assert.assertTrue("The expected message from Manager is : "+managerMessage,flag);
+
 			log(Status.PASS, "The message sent by manager received by chief nurse is : " 
 					+ managerMessage);
 		}catch(AssertionError e) {

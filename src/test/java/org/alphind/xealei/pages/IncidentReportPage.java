@@ -1638,25 +1638,23 @@ public class IncidentReportPage extends BaseClass {
 	public void enterNotificationDate() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-		case "YES", "": {
-			String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
-			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
-			sendKeys(notificationDateCalenderTxtbox, notificationDate);
-			break;
+
+			case "YES","": {
+				String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
+				writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
+				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+				sendKeys(notificationDateCalenderTxtbox, notificationDate);
+				break;
+			}
+			case "NO" : {
+				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14);
+				sendKeys(notificationDateCalenderTxtbox, notificationDate);
+				break;
+			}
 		}
-		case "NO": {
-			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14);
-			sendKeys(notificationDateCalenderTxtbox, notificationDate);
-			break;
-		}
-		}
-//		String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
-//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
-//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
-//		sendKeys(notificationDateCalenderTxtbox, notificationDate);
 	}
 
+	
 	/**
 	 * @author Nandhalala. Select the Notification Time.
 	 * 
@@ -1665,21 +1663,19 @@ public class IncidentReportPage extends BaseClass {
 	public void enterNotificationTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-		case "YES", "": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
-			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-			sendKeys(timeTxtbox, notificationDate);
-			break;
-		}
-		case "NO": {
-			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
-			sendKeys(timeTxtbox, notificationDate);
-			break;
-		}
-		}
-//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
-//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-//		sendKeys(timeTxtbox, notificationDate);
+
+		case "YES","": {
+					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
+					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
+					sendKeys(timeTxtbox, notificationDate);
+					break;
+				}
+				case "NO" :{
+					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
+					sendKeys(timeTxtbox, notificationDate);
+					break;
+				}
+			}
 	}
 
 	/**
@@ -4224,17 +4220,19 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 25-01-2024.
 	 */
 	public void sendChatMessage(String userType) {
-		String chatMessage = switch (userType.toUpperCase()) {
+
+		String chatMessage  = switch (userType.toUpperCase()) {
 		case "STAFF" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 30);
 		}
 		case "NURSE", "CHIEF NURSE" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 31);
 		}
-		case "MANAGER", "RESIDENT MANAGER", "RESIDENTAL MANAGER" -> {
+		case "MANAGER","RESIDENT MANAGER","RESIDENTAL MANAGER" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 32);
 		}
-		default -> throw new IllegalArgumentException("Unexpected value: " + userType);
+		default ->
+			throw new IllegalArgumentException("Unexpected value: " + userType);
 		};
 		sendKeys(chatMessageArea, chatMessage);
 		click(chatSendButton);

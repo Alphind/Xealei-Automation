@@ -7,7 +7,7 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-@Suites-AllScenarios
+
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 
@@ -18,7 +18,8 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify suite page tab url address for suites page
     Then User should verify the Add Suite button is working
     Then User should verify the Add Suite pop up screen is displayed
-
+    
+@Suites-AllScenarios
   Scenario: To verify the buttons functionality and error validation and info messages in Add Suite Page
     Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters"
     Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name"
@@ -28,6 +29,7 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should perform Add Suite without enter any fields
     Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name"
     Then User should verify the x icon in add suites screen is working
+
 
   #Scenario: To verify the data formats and field limits in Suite > Add Suite Page
   #Then User should verify the field 'Suite Name' for limit

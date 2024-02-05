@@ -11,6 +11,7 @@
         "steps": [
           {
             "result": {
+              "duration": 112698300,
               "status": "passed"
             },
             "line": 14,
@@ -22,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 4509112000,
+              "duration": 10769074500,
               "status": "passed"
             },
             "line": 15,
@@ -34,7 +35,7 @@
           },
           {
             "result": {
-              "duration": 5191197300,
+              "duration": 4028322200,
               "status": "passed"
             },
             "line": 16,
@@ -52,7 +53,7 @@
           },
           {
             "result": {
-              "duration": 27445494000,
+              "duration": 21539348100,
               "status": "passed"
             },
             "line": 17,
@@ -64,7 +65,7 @@
           },
           {
             "result": {
-              "duration": 477721700,
+              "duration": 480714400,
               "status": "passed"
             },
             "line": 18,
@@ -76,7 +77,7 @@
           },
           {
             "result": {
-              "duration": 30438676400,
+              "duration": 30358795700,
               "status": "passed"
             },
             "line": 19,
@@ -88,7 +89,7 @@
           },
           {
             "result": {
-              "duration": 350145800,
+              "duration": 299197600,
               "status": "passed"
             },
             "line": 20,
@@ -101,11 +102,11 @@
         ]
       },
       {
-        "start_timestamp": "2024-02-05T07:32:46.819Z",
+        "start_timestamp": "2024-02-05T09:59:02.035Z",
         "before": [
           {
             "result": {
-              "duration": 6572507200,
+              "duration": 8694744300,
               "status": "passed"
             },
             "match": {
@@ -120,9 +121,8 @@
         "after": [
           {
             "result": {
-              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [f107c29ac231a0995c7e1164cb0343f0, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: f107c29ac231a0995c7e1164cb0343f0\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:658)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
-              "duration": 103711600,
-              "status": "failed"
+              "duration": 16191687700,
+              "status": "passed"
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
@@ -134,7 +134,7 @@
         "steps": [
           {
             "result": {
-              "duration": 1143432700,
+              "duration": 1067146000,
               "status": "passed"
             },
             "line": 23,
@@ -152,7 +152,7 @@
           },
           {
             "result": {
-              "duration": 660285100,
+              "duration": 653251300,
               "status": "passed"
             },
             "line": 24,
@@ -170,9 +170,8 @@
           },
           {
             "result": {
-              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [f107c29ac231a0995c7e1164cb0343f0, screenshot {}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: f107c29ac231a0995c7e1164cb0343f0\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)\r\n\tat org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)\r\n\tat org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)\r\n\tat org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)\r\n\tat org.alphind.xealei.pages.AddSuitesPage.existSuiteName(AddSuitesPage.java:289)\r\n\tat org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(AddSuitesPageStep.java:210)\r\n\tat ✽.User should create a suite and verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:25)\r\n",
-              "duration": 63313628700,
-              "status": "failed"
+              "duration": 90719856800,
+              "status": "passed"
             },
             "line": 25,
             "name": "User should create a suite and verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027",
@@ -189,8 +188,8 @@
           },
           {
             "result": {
-              "duration": 998500,
-              "status": "skipped"
+              "duration": 1570801900,
+              "status": "passed"
             },
             "line": 26,
             "name": "User should perform only non-mandatory fields",
@@ -201,7 +200,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 358038200,
+              "status": "passed"
             },
             "line": 27,
             "name": "User should verify the error message contains for Mandatory fields \"Please Enter Suite Name\"",
@@ -218,7 +218,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 1535894200,
+              "status": "passed"
             },
             "line": 28,
             "name": "User should perform Add Suite without enter any fields",
@@ -229,7 +230,8 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 338093800,
+              "status": "passed"
             },
             "line": 29,
             "name": "User should verify the error message contains for Mandatory fields \"Please Enter Suite Name\"",
@@ -246,196 +248,13 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 482716900,
+              "status": "passed"
             },
             "line": 30,
             "name": "User should verify the x icon in add suites screen is working",
             "match": {
               "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_icon_in_add_suites_screen_is_working()"
-            },
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "name": "@Suites-AllScenarios"
-          }
-        ]
-      },
-      {
-        "line": 13,
-        "name": "",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "duration": 989800,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "User is on Xealei login page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_is_on_xealei_login_page()"
-            },
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [0d64f70bce431bf3fa8e42e86d6a0c3e, screenshot {}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 0d64f70bce431bf3fa8e42e86d6a0c3e\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)\r\n\tat org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)\r\n\tat org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)\r\n\tat org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)\r\n\tat org.alphind.xealei.pages.LoginPage.validEmail(LoginPage.java:360)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password(LoginPageStep.java:268)\r\n\tat ✽.User should perform login with valid email and password(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:15)\r\n",
-              "duration": 146606400,
-              "status": "failed"
-            },
-            "line": 15,
-            "name": "User should perform login with valid email and password",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 16,
-            "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Home\"",
-                  "offset": 77
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.CommonSteps.user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 17,
-            "name": "User should verify the Suite Module is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_suite_module_is_working()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 18,
-            "name": "User should verify suite page tab url address for suites page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_suite_page_tab_url_address_for_suites_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 19,
-            "name": "User should verify the Add Suite button is working",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 20,
-            "name": "User should verify the Add Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_pop_up_screen_is_displayed()"
-            },
-            "keyword": "Then "
-          }
-        ]
-      },
-      {
-        "start_timestamp": "2024-02-05T07:35:07.177Z",
-        "before": [
-          {
-            "result": {
-              "duration": 4748307900,
-              "status": "passed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.setUp(io.cucumber.java.Scenario)"
-            }
-          }
-        ],
-        "line": 42,
-        "name": "To verify user able to Add/Create Suites by entering all fields also verify the \u0027Bread Crums\u0027 link",
-        "description": "",
-        "id": "verify-xealei-suites-\u003e-add-suites-page;to-verify-user-able-to-add/create-suites-by-entering-all-fields-also-verify-the--bread-crums--link",
-        "after": [
-          {
-            "result": {
-              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [0d64f70bce431bf3fa8e42e86d6a0c3e, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 0d64f70bce431bf3fa8e42e86d6a0c3e\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:658)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
-              "duration": 262297700,
-              "status": "failed"
-            },
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 43,
-            "name": "User should perform all fields and verify the toast message after perform all fields \"Saved Successfully!!\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"Saved Successfully!!\"",
-                  "offset": 85
-                }
-              ],
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_perform_all_fields_and_verify_the_toast_message_after_perform_all_fields(java.lang.String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 44,
-            "name": "User should verify all fields are created successsfully",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_all_fields_are_created_successsfully()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 45,
-            "name": "User should verify the breadcrums link should be display with module suite name \u003e selected suite name",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 46,
-            "name": "User should verify after click the breadcrums link it should be return to Suite searched page",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page()"
             },
             "keyword": "Then "
           }
@@ -452,15 +271,6 @@
     "id": "verify-xealei-suites-\u003e-add-suites-page",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/TC3_Add%20Suites.feature",
-    "tags": [
-      {
-        "name": "@Suites-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
+    "tags": []
   }
 ]
