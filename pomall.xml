@@ -33,14 +33,19 @@ license agreement
           <version>3.2.1</version>
 				<configuration>
 					<!-- Specify your test runner classes here -->
+					
+					<threadCount>6</threadCount>
+					
 					<includes>
 					<include>org.alphind.xealei.runner.TC1LoginTestRunner</include>
 					<include>org.alphind.xealei.runner.TC3AddSuitesTestRunner</include>
 					<include>org.alphind.xealei.runner.TC4EditSuitesTestRunner</include>
 					<include>org.alphind.xealei.runner.TC5AddIndividualsTestRunner</include>	
-					<include>org.alphind.xealei.runner.TC6EditIndividualsTestRunner</include>	
+					<include>org.alphind.xealei.runner.TC6EditIndividualsTestRunner</include>
 					</includes>
+					
 				</configuration>
+				
 				<dependencies>
 					<dependency>
 							<groupId>org.apache.maven.surefire</groupId>
@@ -125,20 +130,6 @@ license agreement
 			<version>4.9.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>7.7.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-testng</artifactId>
-			<version>7.13.0</version>
-		</dependency>
-
 		<!--
 		https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
 		<dependency>
@@ -152,23 +143,6 @@ license agreement
 			<groupId>com.beust</groupId>
 			<artifactId>jcommander</artifactId>
 			<version>1.78</version>
-		</dependency>
-
-
-		<!--
-		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.17.1</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.17.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -193,13 +167,6 @@ license agreement
 			<scope>provided</scope>
 		</dependency>
 		
-<!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
-<dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>1.0.2</version>
-</dependency>
-
 <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
 <dependency>
     <groupId>io.rest-assured</groupId>

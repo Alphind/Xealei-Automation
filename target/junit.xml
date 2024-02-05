@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <testsuite errors="0" failures="4" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="4" time="153.672">
     <testcase classname="Verify Xealei Login Page" name="Comprehensive Login Page UI Testing" time="42.915">
         <failure message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@class,'cloader')]&quot;}&#10;  (Session info: chrome=121.0.6167.140)&#10;For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception&#10;Build info: version: '4.11.0', revision: '040bc5406b'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '19.0.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [eceb6caa1cf510bd03bb2aae8c64575e, findElement {using=xpath, value=//span[contains(@class,'cloader')]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.140, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\ALPHI-~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54419}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54419/devtoo..., se:cdpVersion: 121.0.6167.140, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: eceb6caa1cf510bd03bb2aae8c64575e" type="org.openqa.selenium.NoSuchElementException"><![CDATA[Given User is on Xealei login page..........................................passed
@@ -150,5 +151,25 @@ Session ID: 5c6325b60ef36fbddcc2c6b2a85c1b2c
 	at org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password(LoginPageStep.java:334)
 	at ✽.User should perform login with valid email and password(file:///C:/Xealei/xealei1/src/test/resources/Features/TC1_Login.feature:41)
 ]]></failure>
+=======
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="190.242">
+    <testcase classname="Verify Xealei Suites &gt; Add Suites Page" name="To verify the buttons functionality and error validation and info messages in Add Suite Page" time="189.43">
+        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+When User should perform login with valid email and password................passed
+Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
+And User should verify the Suite Module is working..........................passed
+Then User should verify suite page tab url address for suites page..........passed
+Then User should verify the Add Suite button is working.....................passed
+Then User should verify the Add Suite pop up screen is displayed............passed
+Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters".passed
+Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name".passed
+And User should create a suite and verify duplicate validation for Suite name '"Suite Name already exists."'.passed
+And User should perform only non-mandatory fields...........................passed
+Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name".passed
+Then User should perform Add Suite without enter any fields.................passed
+Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name".passed
+Then User should verify the x icon in add suites screen is working..........passed
+]]></system-out>
+>>>>>>> fe6036e98284d6f1d097bff563cf067e60356f47
     </testcase>
 </testsuite>

@@ -10,6 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
 
 tags = "@NotificationAlertNoFall",
+
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 

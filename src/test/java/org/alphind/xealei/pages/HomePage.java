@@ -80,6 +80,8 @@ public class HomePage extends BaseClass {
 	
 	private String iminButton = "//tbody/tr[XX]/td[5]/button/span[contains(text(),'in')]";
 	
+	private String eventValue = "//tbody/tr[XX]/td[3]/div/span";
+	
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
 	
@@ -181,7 +183,7 @@ public class HomePage extends BaseClass {
 
 	public void notificationIcon(String ReportID) {
 		waitForPageLoad(this.driver);
-		sleep(2000);
+		sleep(6000);
 		click(notificationIcon);
 		waitForFullPageElementLoad(this.driver);
 		
@@ -220,30 +222,39 @@ public class HomePage extends BaseClass {
 		click(this.driver.findElement(By.xpath(fallAlertXpath)));
 	}
 	
+
 	
+//	public void firstFallAlertNotification() throws Exception {
+//		waitForPageLoad(this.driver);
+//		click(notificationIcon);
+//		sleep(2000);
+////		List<String> fallAlertTexts = new ArrayList<String>();
+////		int count = 0;
+////		for(WebElement alert : fallAlerts) {
+////			fallAlertTexts.add(alert.getText());
+////		}
+////		if(Objects.isNull(fallAlertTexts)) {
+////			throw new Exception("No Fall alert found.");
+////		}
+////		for(String falltime : fallAlertTexts) {
+////			++count;
+////			if(falltime.contains(dateandtimeofFall)) {
+////				break;
+////			}
+////		}
+////		fallAlertXpath =fallAlertXpath.replaceAll("XX", String.valueOf(count));
+////		click(this.driver.findElement(By.xpath(fallAlertXpath)));
+//		
+//		click(firstFallAlert);
+		
+
 	public void firstFallAlertNotification() throws Exception {
 		waitForPageLoad(this.driver);
 		click(notificationIcon);
-		sleep(2000);
-//		List<String> fallAlertTexts = new ArrayList<String>();
-//		int count = 0;
-//		for(WebElement alert : fallAlerts) {
-//			fallAlertTexts.add(alert.getText());
-//		}
-//		if(Objects.isNull(fallAlertTexts)) {
-//			throw new Exception("No Fall alert found.");
-//		}
-//		for(String falltime : fallAlertTexts) {
-//			++count;
-//			if(falltime.contains(dateandtimeofFall)) {
-//				break;
-//			}
-//		}
-//		fallAlertXpath =fallAlertXpath.replaceAll("XX", String.valueOf(count));
-//		click(this.driver.findElement(By.xpath(fallAlertXpath)));
-		
+		waitForPageLoad(this.driver);
+		sleep(7000);
 		click(firstFallAlert);
-		
+
 	}
 	
 	
@@ -328,6 +339,15 @@ public class HomePage extends BaseClass {
 		String noFallReason = readExcel("Test Datas", "Incident Reports", 1, 33).trim();
 		String noFallReasonXpath = dropdownOption.replaceAll("XX", noFallReason);
 		click(this.driver.findElement(By.xpath(noFallReasonXpath)));
+	}
+	
+	/**
+	 * Created by Nandhalala
+	 */
+	public String firstEventTextInGrid() {
+		waitForPageLoad(this.driver);
+		String noFallReasonXpath = eventValue.replaceAll("XX", "1");
+		return getTextString(noFallReasonXpath).trim();
 	}
 	
 	/**

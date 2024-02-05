@@ -411,6 +411,9 @@ public class AddIndividualsPage extends BaseClass{
 	@FindBy(xpath = "//span[@class='font14'][@x-et-v-dob-val]")
 	private WebElement createdDOB;
 
+	String selectNextToTheCurrentDate = "//div[text()='nextDate']/parent::td";
+	
+	
 	@FindBy(xpath = "//span[@class='font14'][@x-et-v-gen-val]")
 	private WebElement createdGender;
 
@@ -1010,105 +1013,146 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
-	public void verifyFutureDateIsDisabled() {
 
-		int febMonthDates = 28;
-		int MaxDate = 29;
-		int currentDate = Integer.parseInt(futureDate(+0));
+	public void futureDatesAreHidden() {
 
-		if (getCurrentDtYearMonth("MMM").equals("JAN") || getCurrentDtYearMonth("MMM").equals("MAR")
-				|| getCurrentDtYearMonth("MMM").equals("MAY") || getCurrentDtYearMonth("MMM").equals("JUL")
-				|| getCurrentDtYearMonth("MMM").equals("AUG") || getCurrentDtYearMonth("MMM").equals("OCT")
-				|| getCurrentDtYearMonth("MMM").equals("DEC") && getCurrentDtYearMonth("dd").equals("31")) {
+		String currentMonth = getCurrentDtYearMonth("MM");
+		String currentDate = getCurrentDtYearMonth("dd");
+		String currentYear = getCurrentDtYearMonth("yyyy");
+		
+		int intEventDt = Integer.parseInt(currentDate);
+		int intEventYear = Integer.parseInt(currentYear);
 
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+		
+		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
+				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
 
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-			}
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
 
-		} else if (getCurrentDtYearMonth("MMM").equals("APR") || getCurrentDtYearMonth("MMM").equals("JUN")
-				|| getCurrentDtYearMonth("MMM").equals("SEP")
-				|| getCurrentDtYearMonth("MMM").equals("NOV") && getCurrentDtYearMonth("dd").equals("30")) {
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
 
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-			}
-		} else if (currentDate <= MaxDate) {
-
-			selectNextDate = selectNextDate.replaceAll("selectDate", futureDate(+1));
-			WebElement getNextDate = findElementByXpath(selectNextDate);
-
-			String nextDATE = getAttribute(getNextDate, "aria-disabled");
-
-			if (nextDATE.equals("true")) {
-				log(Status.PASS, "The next date is disabled to the current date");
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
 			} else {
-				log(Status.FAIL, "The next date is NOT disabled to the current date");
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
-		} else if (getCurrentDtYearMonth("MMM").equals("FEB") && getCurrentDtYearMonth("dd").equals("29")) {
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+			
+		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
+				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
+				|| currentMonth.equals("12")) && currentDate.equals("31")) {
 
 			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 
 			if (rightArrow.equalsIgnoreCase("true")) {
 				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-			}
-		} else if (currentDate <= febMonthDates) {
-
-			selectNextDate = selectNextDate.replaceAll("selectDate", futureDate(+1));
-			WebElement getNextDate = findElementByXpath(selectNextDate);
-
-			String nextDATE = getAttribute(getNextDate, "aria-disabled");
-
-			if (nextDATE.equals("true")) {
-				log(Status.PASS, "The next date is disabled to the current date");
 			} else {
-				log(Status.FAIL, "The next date is NOT disabled to the current date");
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
 			}
-		}
 
-		else {
-			log(Status.INFO, "Reached the Month END");
-		}
+		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+				|| currentMonth.equals("11")) && intEventDt <=29) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+
+		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+				|| currentMonth.equals("11")) && currentDate.equals("30")) {
+
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+			} else {
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+			}
+
+		} else if (currentMonth.equals("02") && intEventDt <=28 && (intEventYear%4!=0)) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+
+		} else if (currentMonth.equals("02") && ((intEventDt > 28 && (intEventYear%4==0)) || (intEventDt==28 &&(intEventYear%4!=0)) )) {
+
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+			} else {
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+			}
+			
+		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+	}
 	}
 
-	public void selectGivenDateFromExcel(int rowNum) {
 
-		while (true) {
-			String text = getText(datePicker);
-			log(Status.INFO, "Get the default Month Year Text while open the calender - " + text);
-			
-			if (text.equalsIgnoreCase(previousMonth("MMM yyyy"))) {
-				log(Status.INFO, "Found Previous Month -" + text);
-				break;
-			} else {
-				click(leftArrowBtn);
-			}
-		}
+	public void verifyLeftAndRightArrow() {
 
-		String chooseDateFromExcel = readExcel("Test Datas", "AddIndividuals", 1, 22);
-
-		try {
-			currentDate = currentDate.replaceAll("Date", chooseDateFromExcel);
-			select(currentDate);
-			log(Status.INFO, "Select the date in date picker - DATE " + chooseDateFromExcel);
-		} catch (Exception e) {
-			log(Status.FAIL, e.getMessage());
-		}
-
-		String selectedDate = getAttribute(dob, "value");
-
-		try {
-			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					previousMonth("MM") + "/" + chooseDateFromExcel + "/"+getYear(), selectedDate);
-			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - " + previousMonth("MM") + "/"
-					+ chooseDateFromExcel + "/"+getYear() + " | Act Dt - " + selectedDate);
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
+	if(getAttribute(leftArrowBtn, "disabled").equals("true") && getAttribute(rightArrowBtn, "disabled").equals("true")) {
+		log(Status.PASS, "Left and Right Arrow button in datepicker is disabled");
+	} else {
+		log(Status.FAIL, "Left and Right Arrow button is NOT disabled");
+	}
 
 	}
 
@@ -1466,7 +1510,9 @@ public class AddIndividualsPage extends BaseClass{
 
 	public AddIndividualsPage selectSuite(int rowNum) {
 
+		sleep(1000);
 		click(selectSuite);
+		waitForFullPageElementLoad();
 		String existSUITE = readExcel("Test Datas", "AddIndividuals", rowNum, 6);
 		selectExistSuite = selectExistSuite.replaceAll("existSuiteName", existSUITE);
 		select(selectExistSuite);

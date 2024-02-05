@@ -143,8 +143,8 @@ public class AddSuitesPageStep extends BaseClass {
 
 	}
 
-	@Then("User should verify duplicate validation for Suite name {string}")
-	public void user_should_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) {
+	@Then("User should create a suite and verify duplicate validation for Suite name {string}")
+	public void user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) {
 
 		logStep(methodName());
 
@@ -163,11 +163,13 @@ public class AddSuitesPageStep extends BaseClass {
 			String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
 			writeExcelToOverwrite("Test Datas","AddSuites", 1, 6, createdSuite);
 			
+			pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-		pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+		
 
 		
 		try {
@@ -176,11 +178,13 @@ public class AddSuitesPageStep extends BaseClass {
 			
 			e.printStackTrace();
 		}
-		waitForPageLoad();
-		waitForFullPageElementLoad();
-		sleep(2000);
+		
 
 		try {
+			waitForPageLoad();
+			waitForFullPageElementLoad();
+			sleep(2000);
+			waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
 			String expSuiteName = readExcel("Test Datas", "AddSuites", 1, 6);
 			Assert.assertEquals("Created SuiteName Mismatched", expSuiteName,
 					getText(pom.getAddSuitesPage().getCreatedSuiteName()));
@@ -211,12 +215,14 @@ public class AddSuitesPageStep extends BaseClass {
 			log(Status.PASS, "Suite Name already exists. Toast Message is displayed - "
 					+ getText(pom.getAddSuitesPage().getSNExitsToastMsg()));
 
+			pom.getAddSuitesPage().snAlreadyExistToastMsgOkButton();
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 		waitForPageLoad();
-		pom.getAddSuitesPage().snAlreadyExistToastMsgOkButton();
+		
 	}
 
 	@Then("User should perform only non-mandatory fields")
