@@ -11,7 +11,6 @@
         "steps": [
           {
             "result": {
-              "duration": 997100,
               "status": "passed"
             },
             "line": 14,
@@ -23,7 +22,7 @@
           },
           {
             "result": {
-              "duration": 5452417200,
+              "duration": 4509112000,
               "status": "passed"
             },
             "line": 15,
@@ -35,7 +34,7 @@
           },
           {
             "result": {
-              "duration": 3133618500,
+              "duration": 5191197300,
               "status": "passed"
             },
             "line": 16,
@@ -53,7 +52,7 @@
           },
           {
             "result": {
-              "duration": 7155856600,
+              "duration": 27445494000,
               "status": "passed"
             },
             "line": 17,
@@ -65,7 +64,7 @@
           },
           {
             "result": {
-              "duration": 354053800,
+              "duration": 477721700,
               "status": "passed"
             },
             "line": 18,
@@ -77,48 +76,36 @@
           },
           {
             "result": {
-              "duration": 12606280800,
+              "duration": 30438676400,
               "status": "passed"
             },
             "line": 19,
-            "name": "User should search the created suite",
+            "name": "User should verify the Add Suite button is working",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_search_the_created_suite()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_button_is_working()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 3177501100,
+              "duration": 350145800,
               "status": "passed"
             },
             "line": 20,
-            "name": "User should verify the Edit Suite button is working",
+            "name": "User should verify the Add Suite pop up screen is displayed",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2460416100,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "User should verify the Edit Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_pop_up_screen_is_displayed()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_pop_up_screen_is_displayed()"
             },
             "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2024-01-30T11:38:41.927Z",
+        "start_timestamp": "2024-02-05T07:32:46.819Z",
         "before": [
           {
             "result": {
-              "duration": 4400230600,
+              "duration": 6572507200,
               "status": "passed"
             },
             "match": {
@@ -126,15 +113,16 @@
             }
           }
         ],
-        "line": 23,
-        "name": "To verify the buttons functionality and error validation and info messages in Edit Suite Page",
+        "line": 22,
+        "name": "To verify the buttons functionality and error validation and info messages in Add Suite Page",
         "description": "",
-        "id": "verify-xealei-suites-\u003e-edit-suites-page;to-verify-the-buttons-functionality-and-error-validation-and-info-messages-in-edit-suite-page",
+        "id": "verify-xealei-suites-\u003e-add-suites-page;to-verify-the-buttons-functionality-and-error-validation-and-info-messages-in-add-suite-page",
         "after": [
           {
             "result": {
-              "duration": 2277909100,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [f107c29ac231a0995c7e1164cb0343f0, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: f107c29ac231a0995c7e1164cb0343f0\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:658)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 103711600,
+              "status": "failed"
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
@@ -146,11 +134,11 @@
         "steps": [
           {
             "result": {
-              "duration": 1138954600,
+              "duration": 1143432700,
               "status": "passed"
             },
-            "line": 24,
-            "name": "User should verify the limit error info message for Suite Name* field \"Suite Name must be minimum 3 characters\" in edit suite page",
+            "line": 23,
+            "name": "User should verify the limit error info message for Suite Name* field \"Suite Name must be minimum 3 characters\"",
             "match": {
               "arguments": [
                 {
@@ -158,74 +146,119 @@
                   "offset": 70
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_limit_error_info_message_for_suite_Name_field_in_edit_suite_page(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_limit_error_info_message_for_suite_name_field(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 1880967100,
+              "duration": 660285100,
               "status": "passed"
             },
-            "line": 25,
-            "name": "User should verify the Edit Suite form for mandatory \"Please Enter Suite Name\"",
+            "line": 24,
+            "name": "User should verify the field Suite Name * is mandatory \"Please Enter Suite Name\"",
             "match": {
               "arguments": [
                 {
                   "val": "\"Please Enter Suite Name\"",
-                  "offset": 53
+                  "offset": 55
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_form_for_mandatory_and(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_field_suite_name_is_mandatory(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 2983024100,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [f107c29ac231a0995c7e1164cb0343f0, screenshot {}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: f107c29ac231a0995c7e1164cb0343f0\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)\r\n\tat org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)\r\n\tat org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)\r\n\tat org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)\r\n\tat org.alphind.xealei.pages.AddSuitesPage.existSuiteName(AddSuitesPage.java:289)\r\n\tat org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(AddSuitesPageStep.java:210)\r\n\tat ✽.User should create a suite and verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:25)\r\n",
+              "duration": 63313628700,
+              "status": "failed"
             },
-            "line": 26,
-            "name": "User should verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027 in edit suite page",
+            "line": 25,
+            "name": "User should create a suite and verify duplicate validation for Suite name \u0027\"Suite Name already exists.\"\u0027",
             "match": {
               "arguments": [
                 {
                   "val": "\u0027\"Suite Name already exists.\"\u0027",
-                  "offset": 55
+                  "offset": 74
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_duplicate_validation_for_suite_name_in_edit_suite_page(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(java.lang.String)"
             },
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "result": {
-              "duration": 434834300,
-              "status": "passed"
+              "duration": 998500,
+              "status": "skipped"
+            },
+            "line": 26,
+            "name": "User should perform only non-mandatory fields",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_perform_only_non_mandatory_fields()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
             },
             "line": 27,
-            "name": "User should verify the x icon in edit suite screen is working",
+            "name": "User should verify the error message contains for Mandatory fields \"Please Enter Suite Name\"",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_x_icon_in_edit_suite_screen_is_working()"
+              "arguments": [
+                {
+                  "val": "\"Please Enter Suite Name\"",
+                  "offset": 67
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_error_message_contains_for_mandatory_fields(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 11416463600,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 28,
-            "name": "User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen",
+            "name": "User should perform Add Suite without enter any fields",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_user_able_to_change_the_status_as_InActive_and_is_displayed_accordingly_on_update_of_availability_field_in_edit_screen()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user__should_perform_add_suites_without_enter_any_fields()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "User should verify the error message contains for Mandatory fields \"Please Enter Suite Name\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Please Enter Suite Name\"",
+                  "offset": 67
+                }
+              ],
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_error_message_contains_for_mandatory_fields(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "User should verify the x icon in add suites screen is working",
+            "match": {
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_icon_in_add_suites_screen_is_working()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@EditSuites-AllScenarios"
+            "name": "@Suites-AllScenarios"
           }
         ]
       },
@@ -238,6 +271,7 @@
         "steps": [
           {
             "result": {
+              "duration": 989800,
               "status": "passed"
             },
             "line": 14,
@@ -249,8 +283,9 @@
           },
           {
             "result": {
-              "duration": 4283541200,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [0d64f70bce431bf3fa8e42e86d6a0c3e, screenshot {}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 0d64f70bce431bf3fa8e42e86d6a0c3e\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)\r\n\tat org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)\r\n\tat org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)\r\n\tat org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)\r\n\tat org.alphind.xealei.pages.LoginPage.validEmail(LoginPage.java:360)\r\n\tat org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password(LoginPageStep.java:268)\r\n\tat ✽.User should perform login with valid email and password(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:15)\r\n",
+              "duration": 146606400,
+              "status": "failed"
             },
             "line": 15,
             "name": "User should perform login with valid email and password",
@@ -261,8 +296,7 @@
           },
           {
             "result": {
-              "duration": 4087066900,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 16,
             "name": "User should verify once the page is navigated to HOME_DASHBOARD successfully \"Home\"",
@@ -279,8 +313,7 @@
           },
           {
             "result": {
-              "duration": 4406213500,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 17,
             "name": "User should verify the Suite Module is working",
@@ -291,8 +324,7 @@
           },
           {
             "result": {
-              "duration": 350063300,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 18,
             "name": "User should verify suite page tab url address for suites page",
@@ -303,48 +335,34 @@
           },
           {
             "result": {
-              "duration": 10286485000,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 19,
-            "name": "User should search the created suite",
+            "name": "User should verify the Add Suite button is working",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_search_the_created_suite()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_button_is_working()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 3213412600,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 20,
-            "name": "User should verify the Edit Suite button is working",
+            "name": "User should verify the Add Suite pop up screen is displayed",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_button_is_working()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1913878500,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "User should verify the Edit Suite pop up screen is displayed",
-            "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_edit_suite_pop_up_screen_is_displayed()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_add_suite_pop_up_screen_is_displayed()"
             },
             "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2024-01-30T11:39:40.859Z",
+        "start_timestamp": "2024-02-05T07:35:07.177Z",
         "before": [
           {
             "result": {
-              "duration": 10057100200,
+              "duration": 4748307900,
               "status": "passed"
             },
             "match": {
@@ -352,15 +370,16 @@
             }
           }
         ],
-        "line": 39,
-        "name": "To verify user able to Edit/Update Suites by entering all fields also verify the \u0027Bread Crums\u0027 link in Edit Suite Page",
+        "line": 42,
+        "name": "To verify user able to Add/Create Suites by entering all fields also verify the \u0027Bread Crums\u0027 link",
         "description": "",
-        "id": "verify-xealei-suites-\u003e-edit-suites-page;to-verify-user-able-to-edit/update-suites-by-entering-all-fields-also-verify-the--bread-crums--link-in-edit-suite-page",
+        "id": "verify-xealei-suites-\u003e-add-suites-page;to-verify-user-able-to-add/create-suites-by-entering-all-fields-also-verify-the--bread-crums--link",
         "after": [
           {
             "result": {
-              "duration": 772935500,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchWindowException: no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome\u003d121.0.6167.139)\nBuild info: version: \u00274.11.0\u0027, revision: \u0027040bc5406b\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.8.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [0d64f70bce431bf3fa8e42e86d6a0c3e, findElement {using\u003dxpath, value\u003d//span[contains(@class,\u0027cloader\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\\Users\\admin\\AppData\\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 0d64f70bce431bf3fa8e42e86d6a0c3e\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)\r\n\tat org.alphind.xealei.baseclass.BaseClass.waitForPageLoad(BaseClass.java:658)\r\n\tat org.alphind.xealei.stepdefinition.Hooks.tearDown(Hooks.java:40)\r\n",
+              "duration": 262297700,
+              "status": "failed"
             },
             "match": {
               "location": "org.alphind.xealei.stepdefinition.Hooks.tearDown()"
@@ -372,83 +391,58 @@
         "steps": [
           {
             "result": {
-              "duration": 6694099800,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 40,
-            "name": "User should update all fields and verify the toast message after update all fields \"Saved Successfully!!\" in edit Suite Page",
+            "line": 43,
+            "name": "User should perform all fields and verify the toast message after perform all fields \"Saved Successfully!!\"",
             "match": {
               "arguments": [
                 {
                   "val": "\"Saved Successfully!!\"",
-                  "offset": 83
+                  "offset": 85
                 }
               ],
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(java.lang.String)"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_perform_all_fields_and_verify_the_toast_message_after_perform_all_fields(java.lang.String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 22584589800,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 41,
-            "name": "User should verify all fields are created successsfully in edit Suite Page",
+            "line": 44,
+            "name": "User should verify all fields are created successsfully",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_all_fields_are_created_successsfully_in_edit_suite_page()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_all_fields_are_created_successsfully()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 638293400,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 42,
-            "name": "User should verify the breadcrums link should be display with module suite name \u003e selected suite name in edit suite page",
+            "line": 45,
+            "name": "User should verify the breadcrums link should be display with module suite name \u003e selected suite name",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name_in_edit_suite_page()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 2484353500,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 43,
-            "name": "User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page",
+            "line": 46,
+            "name": "User should verify after click the breadcrums link it should be return to Suite searched page",
             "match": {
-              "location": "org.alphind.xealei.stepdefinition.EditSuitesPageStep.user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page_in_edit_suite_page()"
+              "location": "org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@EditSuites-AllScenarios"
-          }
-        ]
-      }
-    ],
-    "name": "Verify Xealei Suites \u003e Edit Suites Page",
-    "description": "",
-    "id": "verify-xealei-suites-\u003e-edit-suites-page",
-    "keyword": "Feature",
-    "uri": "file:src/test/resources/Features/TC4_Edit%20Suites.feature",
-    "tags": [
-      {
-        "name": "@EditSuites-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
-  }
-]: "@Suites-AllScenarios"
+            "name": "@Suites-AllScenarios"
           }
         ]
       }
@@ -461,29 +455,6 @@
     "tags": [
       {
         "name": "@Suites-AllScenarios",
-        "type": "Tag",
-        "location": {
-          "line": 10,
-          "column": 1
-        }
-      }
-    ]
-  }
-]  "tags": [
-          {
-            "name": "@Login-AllScenarios"
-          }
-        ]
-      }
-    ],
-    "name": "Verify Xealei Login Page",
-    "description": "",
-    "id": "verify-xealei-login-page",
-    "keyword": "Feature",
-    "uri": "file:src/test/resources/Features/TC1_Login.feature",
-    "tags": [
-      {
-        "name": "@Login-AllScenarios",
         "type": "Tag",
         "location": {
           "line": 10,

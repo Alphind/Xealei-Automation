@@ -22,7 +22,7 @@ Feature: Verify Xealei Suites > Add Suites Page
   Scenario: To verify the buttons functionality and error validation and info messages in Add Suite Page
     Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters"
     Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name"
-    Then User should verify duplicate validation for Suite name '"Suite Name already exists."'
+    And User should create a suite and verify duplicate validation for Suite name '"Suite Name already exists."'
     And User should perform only non-mandatory fields
     Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name"
     Then User should perform Add Suite without enter any fields

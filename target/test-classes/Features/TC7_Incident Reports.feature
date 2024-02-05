@@ -7,8 +7,7 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-
-@All-Scenarios
+@IR-AllScenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
 @NegativeScenario
@@ -23,29 +22,15 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then User should verify Next > button is working
     Then User should verify the validation info message under all fields "Please select the individual details", "Please choose event on", "Please enter fall caused", "Please choose was injured", "Please enter fall description", "Please select injury site", "Please enter treatment received", "Please enter future treatment", "Please select the injury type", "Please select injury color", "Please choose was the injury serve", "Please enter person notify", "Please choose relationship", "Please choose notify date", "Please choose time", "Please enter notified by"
     Then User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields
-   #Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
+    #Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
     Then User should verify the respective individual report status "Draft"
     Then User should verify the view button is working in IR Grid
     Then User should verify the error message in Incident Report Page "Note: Fill out the required fields using the edit option if you would like to submit or complete the report"
     Then User should verify the complete button is disabled
     Then User should verify the edit button is working in IR submission page
-    Then User should verify the injury question section should display with selected individual name in field
-    
-    #And User should click on the calendar icon in Event Date & Time field
-    #Then User should verify the date & time picker is appeared
-    #And User should select a valid date in date picker and verify the selected date should be displayed in Event Date & Time field
-    #Then User should verify future dates are hidden in date & time picker
-    
+    Then User should verify the injury question section should display with selected individual name in field    
     And User should enter the Event Date & Time greater than current time
     Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"   
-   
-    #When User should click on the up arrow to navigate to the previous month and verify the calendar should display the previous months dates
-    #And User should select a specific year and month in dropdown and select the date and verify the selected date are updated accordingly
-    #Then User should verify the selected date, month and year using dropdown is updated in Event Date & Time field accordingly
-    #And User should click on the down arrow to navigate to the current month and verify the calendar should display the current months dates
-    #Then User should verify the Event Date & Time calendar is close after click outside the calendar
-    #Then User should verify the tool tip message is displayed on mouse over on Injury site front & Back view
-    
     Then User should verify that able to spot the injury on Injury site front & Back view
     Then User should verify that able to unselect the injury on Injury site front & Back view
     Then User should verify that able to upload upload JFIF Format
@@ -62,8 +47,10 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then User should verify the date picker should appeared
     Then User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date
     And  User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly
+  
    #NOT IMPLEMENTED
    #Then User should verify the validation info message is thrown after selecting Notification Time field value is lesser than Event Date & Time field value "Notified time should be after than event time"
+    
     Then User should verify the validation info message is thrown after selecting greater than current time in Notification Time field "Notified time should be after than event time"
     Then User should verify that able to enter time in Notification Time field
     Then User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page
@@ -73,13 +60,9 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     And  User should perform all the fields
     Then User should verify all the created details are displayed as expected
     Then User should verify the breadcrums texts
-
-    Examples: 
-      | userName | password | adminName |
-      | AStaff   | auto@123 | Staff     |
-    
+        
    
-@AllApprove
+@AllApproveScenario
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
 		Given User is on Xealei login page
@@ -115,7 +98,7 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 		Then Close all the browsers.
 		
 
-@RejectAndReapprovebyChiefNurse		
+@RejectAndReapprovebyChiefNurseScenario	
 Scenario Outline: To verify whether Chief nurse can able to reject and reapprove the incident Report.
 
     Given User is on Xealei login page
@@ -140,7 +123,7 @@ Scenario Outline: To verify whether Chief nurse can able to reject and reapprove
 		Then Close all the browsers.
 		
 		
-@RejectAndReapprovebyResidentialManager   
+@RejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
 		Given User is on Xealei login page
     When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -183,10 +166,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Select fall radio button and enter description.
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
+		
 
-
-
-@NotificationAlertAllApprove
+@NotificationAlertAllApproveScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -222,7 +204,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		And Verify whether the report is in "Finalized" status by Social Worker user.
 		Then Close all the browsers.
 
-@NotificationAlertRejectAndReapprovebyChiefNurse		
+@NotificationAlertRejectAndReapprovebyChiefNurseScenario	
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and Chief nurse can able to reject and reapprove the incident Report from notification.
 		
 		Given User is on Xealei login page
@@ -249,7 +231,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Close all the browsers.
 		
 		
-@NotificationAlertRejectAndReapprovebyResidentialManager   
+@NotificationAlertRejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and residential manager can able to reject and reapprove the incident Report from notification.		
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -296,7 +278,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Verify text in what casued the fall matches with Description.
 
 	
-@NotificationAlertThroughGridAllApprove
+@NotificationAlertThroughGridAllApproveScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and approved by all level of users.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -334,7 +316,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 
 
 
-@NotificationAlertThroughGridRejectAndReapprovebyChiefNurse
+@NotificationAlertThroughGridRejectAndReapprovebyChiefNurseScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and Chief nurse can able to reject and reapprove the incident Report.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -361,7 +343,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 
 
-@NotificationAlertThroughGridRejectAndReapprovebyResidentialManager
+@NotificationAlertThroughGridRejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and residential manager can able to reject and reapprove the incident Report from notification.
 		Given User is on Xealei login page
 		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -396,7 +378,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Close all the browsers.
     
 
-@Chat		
+@ChatScenario
 Scenario Outline: To verify chat option in IR.		
 		Given User is on Xealei login page
     When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
@@ -415,21 +397,15 @@ Scenario Outline: To verify chat option in IR.
 		Then Open IR received by Chief nurse.
 		Then Click View button for chief nurse user.
 		And Verify staff message is received by cheif nurse.
-#		Then Send chat message for cheif nurse user.
-#		Then Launch a new browser and enter xealei url for residential manager.
-#		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
-#		Then Open IR received by residential manager.
-#		And Send chat message for residential manager user.
-#		Then Verify staff message is received by Residential Manager.
-#		Then Verify cheif nurse message is received by Residential Manager.
-#		Then Verify Residential manager message received by staff.
-#		Then Verify Residential manager message received by cheif nurse.
+		Then Send chat message for chief nurse user.
+		Then Launch a new browser and enter xealei url for residential manager.
+		And Login into Xealei application as Residential Manager role with valid "<RMUserName>" and "<RMPassWord>".
+		Then Open IR received by residential manager.
+		Then Click View button for residential manager user.
+		And Send chat message for residential manager user.
+		Then Verify staff message is received by Residential Manager.
+		Then Verify chief nurse message is received by Residential Manager.
+		Then Verify Residential manager message received by staff.
+		Then Verify Residential manager message received by cheif nurse.
 		Then Close all the browsers.
-
-Examples:    
-    
-   |StaffUserName| |StaffPassWord| |ChiefNurseUserName| |ChiefNursePassWord| |RMUserName| |RMPassWord| |CCUserName| |CCPassWord| |SWUserName| |SWPassWord|
-		
-		|AStaff| 				|auto@123| 			|AChief_Nu| 				 |auto@123| 					|AManager| 	 |auto@123| 	|AClinical|  |auto@123| |ASWorker| |auto@123|
-
 

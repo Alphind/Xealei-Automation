@@ -294,6 +294,7 @@ public class EditSuitesPageStep extends BaseClass {
 						sleep(2000);
 
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
 							String expSuiteName = readExcel("Test Datas", "EditSuites", 2, 6);
 							Assert.assertEquals("Updated SuiteName Mismatched", expSuiteName,
 									getText(pom.getAddSuitesPage().getCreatedSuiteName()));
@@ -311,6 +312,7 @@ public class EditSuitesPageStep extends BaseClass {
 							e1.printStackTrace();
 						}
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getDefaultLocationName(), 10);
 							String expLocation = readExcel("Test Datas", "EditSuites", 1, 1);
 							Assert.assertEquals("Default LocationName  Mismatched", expLocation,
 									getText(pom.getAddSuitesPage().getDefaultLocationName()));
@@ -323,6 +325,7 @@ public class EditSuitesPageStep extends BaseClass {
 						}
 
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedLength(), 10);
 							String expLength = readExcel("Test Datas", "EditSuites", 1, 2);
 							Assert.assertEquals("updated Length data Mismatched", expLength,
 									getText(pom.getAddSuitesPage().getCreatedLength()));
@@ -334,6 +337,7 @@ public class EditSuitesPageStep extends BaseClass {
 						}
 
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedWidth(), 10);
 							String expWidth = readExcel("Test Datas", "EditSuites", 1, 3);
 							Assert.assertEquals("updated width data  Mismatched", expWidth,
 									getText(pom.getAddSuitesPage().getCreatedWidth()));
@@ -346,6 +350,7 @@ public class EditSuitesPageStep extends BaseClass {
 						}
 
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedHeight(), 10);
 							String expHeight = readExcel("Test Datas", "EditSuites", 1, 4);
 							Assert.assertEquals("updated height data Mismatched", expHeight,
 									getText(pom.getAddSuitesPage().getCreatedHeight()));

@@ -74,6 +74,9 @@ public class HomePage extends BaseClass {
 	
 	private String iminButton = "//tbody/tr[XX]/td[5]/button/span[contains(text(),'in')]";
 	
+	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
+	private WebElement firstFallAlert;
+	
 
 
 	
@@ -107,7 +110,7 @@ public class HomePage extends BaseClass {
 	 */
 	public void navToReportsModule() {
 
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 		click(ReportsModule);
 	}
 
@@ -120,7 +123,7 @@ public class HomePage extends BaseClass {
 	public void navToIncidentReportModule() {
 
 		click(incidentReportModule);
-		waitForPageLoad();
+		waitForPageLoad(this.driver);
 	}
 
 	/**
@@ -172,7 +175,7 @@ public class HomePage extends BaseClass {
 
 	public void notificationIcon(String ReportID) {
 		waitForPageLoad(this.driver);
-		sleep(2000);
+		sleep(6000);
 		click(notificationIcon);
 		waitForFullPageElementLoad(this.driver);
 		
@@ -210,6 +213,15 @@ public class HomePage extends BaseClass {
 		fallAlertXpath =fallAlertXpath.replaceAll("XX", String.valueOf(count));
 		click(this.driver.findElement(By.xpath(fallAlertXpath)));
 	}
+	
+	public void firstFallAlertNotification() throws Exception {
+		waitForPageLoad(this.driver);
+		click(notificationIcon);
+		waitForPageLoad(this.driver);
+		sleep(7000);
+		click(firstFallAlert);
+	}
+	
 	
 	/**
 	 * created by Nandhalala
@@ -259,7 +271,7 @@ public class HomePage extends BaseClass {
 	/**
 	 * Created by Nandhalala
 	 */
-	public void alertNotificationFalladioButton() {
+	public void alertNotificationFallRadioButton() {
 		waitForPageLoad(this.driver);
 		click(alertNotificationFallRadioButton);
 		waitForPageLoad(this.driver);

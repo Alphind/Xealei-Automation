@@ -31,6 +31,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Random;
 
@@ -44,6 +45,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +67,6 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.github.javafaker.Faker;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -653,12 +654,12 @@ public class BaseClass {
 
 	public void waitForPageLoad() {
 
-//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
-//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		try {
+		WebElement loading = driver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
-
+		} catch (NoSuchElementException e) {
+		}
 	}
 	
 	//Added new method for handling multiple drivers
@@ -667,7 +668,9 @@ public class BaseClass {
 
 //		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
 //		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		//span[contains(@class,'cloader')] --> new load element
+//		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		WebElement loading = currentdriver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 
@@ -1011,7 +1014,7 @@ public class BaseClass {
 	public String getFutureTime(String EnterPattern) {
 
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(02);
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(2);
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
@@ -1044,16 +1047,6 @@ public class BaseClass {
 			mobileNumber.append(random.nextInt(10));
 		}
 		return mobileNumber.toString();
-	}
-
-	public void randomNames() {
-
-		Faker faker = new Faker();
-
-		String randomFirstName = faker.name().firstName();
-		String randomLastName = faker.name().lastName();
-
-		System.out.println("Generated Name: " + randomFirstName + " " + randomLastName);
 	}
 
 	public String previousMonth(String pattern) {
@@ -1115,7 +1108,7 @@ public class BaseClass {
 	}
 	
 	
-	public String dateConversion(String Date, String Time) throws ParseException {
+	public String dateConversionForHandleAlert(String Date, String Time) throws ParseException {
 					
 		        // Specify the input date format
 	        SimpleDateFormat inputFormat = new SimpleDateFormat("M/dd/yyyy hh:mma", Locale.ENGLISH);
@@ -1130,5 +1123,40 @@ public class BaseClass {
 				String outputDateString = outputFormat.format(date);
 				return outputDateString;
 }
+	
+	
+	public String dayMonthYearConversion(String DMY, String time) {
+	
+	 SimpleDateFormat inputFormat = new SimpleDateFormat("M/d/yyyy hh:mma", Locale.ENGLISH);
+
+     // Define the desired output date format
+     SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM d yyyy, hh:mm a", Locale.ENGLISH);
+
+     // Provide an example input date string
+    // String inputDateString = "2/1/2024 10:30AM";
+     
+     String outputDateString = null;
+
+     try {
+         // Parse the input date string
+         Date date = inputFormat.parse(DMY+" "+time);
+
+         // Format the day using single 'd' if the day is before 10, 'dd' otherwise
+         String dayFormat = (date.getDate() < 9) ? "d" : "dd";
+         outputFormat.applyPattern("EEEE, MMMM " + dayFormat + " yyyy, hh:mm a");
+
+         // Format the parsed date using the output format
+         outputDateString = outputFormat.format(date);
+
+         System.out.println("Input Date: " + date);
+         System.out.println("Output Date: " + outputDateString);
+     } catch (ParseException e) {
+         e.printStackTrace();
+     }
+     
+    	 return outputDateString;
+	}
+	
+
 	
 }

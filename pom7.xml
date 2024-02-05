@@ -34,7 +34,7 @@ license agreement
 				<configuration>
 					<!-- Specify your test runner classes here -->
 					<includes>
-						<include>org.alphind.xealei.runner.TC5EditIndividualsTestRunner</include>
+						<include>org.alphind.xealei.runner.TC7IncidentReportsTestRunner</include>
 					</includes>
 				</configuration>
 				<dependencies>

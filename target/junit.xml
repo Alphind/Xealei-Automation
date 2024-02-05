@@ -1,34 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="130.83">
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify the buttons functionality and error validation and info messages in Edit Suite Page" time="58.879">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
+<testsuite errors="0" failures="2" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="145.718">
+    <testcase classname="Verify Xealei Suites &gt; Add Suites Page" name="To verify the buttons functionality and error validation and info messages in Add Suite Page" time="140.221">
+        <failure message="no such window: target window already closed&#10;from unknown error: web view not found&#10;  (Session info: chrome=121.0.6167.139)&#10;Build info: version: '4.11.0', revision: '040bc5406b'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [f107c29ac231a0995c7e1164cb0343f0, screenshot {}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: f107c29ac231a0995c7e1164cb0343f0" type="org.openqa.selenium.NoSuchWindowException"><![CDATA[Given User is on Xealei login page..........................................passed
 When User should perform login with valid email and password................passed
 Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
 And User should verify the Suite Module is working..........................passed
 Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters" in edit suite page.passed
-Then User should verify the Edit Suite form for mandatory "Please Enter Suite Name".passed
-Then User should verify duplicate validation for Suite name '"Suite Name already exists."' in edit suite page.passed
-Then User should verify the x icon in edit suite screen is working..........passed
-Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen.passed
-]]></system-out>
+Then User should verify the Add Suite button is working.....................passed
+Then User should verify the Add Suite pop up screen is displayed............passed
+Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters".passed
+Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name".passed
+And User should create a suite and verify duplicate validation for Suite name '"Suite Name already exists."'.failed
+And User should perform only non-mandatory fields...........................skipped
+Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name".skipped
+Then User should perform Add Suite without enter any fields.................skipped
+Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name".skipped
+Then User should verify the x icon in add suites screen is working..........skipped
+
+StackTrace:
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=121.0.6167.139)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f107c29ac231a0995c7e1164cb0343f0, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64481}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64481/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f107c29ac231a0995c7e1164cb0343f0
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)
+	at org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)
+	at org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)
+	at org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)
+	at org.alphind.xealei.pages.AddSuitesPage.existSuiteName(AddSuitesPage.java:289)
+	at org.alphind.xealei.stepdefinition.AddSuitesPageStep.user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(AddSuitesPageStep.java:210)
+	at ✽.User should create a suite and verify duplicate validation for Suite name '"Suite Name already exists."'(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:25)
+]]></failure>
     </testcase>
-    <testcase classname="Verify Xealei Suites &gt; Edit Suites Page" name="To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page" time="71.776">
-        <system-out><![CDATA[Given User is on Xealei login page..........................................passed
-When User should perform login with valid email and password................passed
-Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".passed
-And User should verify the Suite Module is working..........................passed
-Then User should verify suite page tab url address for suites page..........passed
-Then User should search the created suite...................................passed
-Then User should verify the Edit Suite button is working....................passed
-Then User should verify the Edit Suite pop up screen is displayed...........passed
-And User should update all fields and verify the toast message after update all fields "Saved Successfully!!" in edit Suite Page.passed
-Then User should verify all fields are created successsfully in edit Suite Page.passed
-Then User should verify the breadcrums link should be display with module suite name > selected suite name in edit suite page.passed
-Then User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page.passed
-]]></system-out>
+    <testcase classname="Verify Xealei Suites &gt; Add Suites Page" name="To verify user able to Add/Create Suites by entering all fields also verify the 'Bread Crums' link" time="5.163">
+        <failure message="no such window: target window already closed&#10;from unknown error: web view not found&#10;  (Session info: chrome=121.0.6167.139)&#10;Build info: version: '4.11.0', revision: '040bc5406b'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [0d64f70bce431bf3fa8e42e86d6a0c3e, screenshot {}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 0d64f70bce431bf3fa8e42e86d6a0c3e" type="org.openqa.selenium.NoSuchWindowException"><![CDATA[Given User is on Xealei login page..........................................passed
+When User should perform login with valid email and password................failed
+Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home".skipped
+And User should verify the Suite Module is working..........................skipped
+Then User should verify suite page tab url address for suites page..........skipped
+Then User should verify the Add Suite button is working.....................skipped
+Then User should verify the Add Suite pop up screen is displayed............skipped
+And User should perform all fields and verify the toast message after perform all fields "Saved Successfully!!".skipped
+Then User should verify all fields are created successsfully................skipped
+Then User should verify the breadcrums link should be display with module suite name > selected suite name.skipped
+Then User should verify after click the breadcrums link it should be return to Suite searched page.skipped
+
+StackTrace:
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=121.0.6167.139)
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [0d64f70bce431bf3fa8e42e86d6a0c3e, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.139, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64688}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64688/devtoo..., se:cdpVersion: 121.0.6167.139, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 0d64f70bce431bf3fa8e42e86d6a0c3e
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)
+	at org.alphind.xealei.baseclass.BaseClass.takesScreenshot(BaseClass.java:244)
+	at org.alphind.xealei.baseclass.BaseClass.log(BaseClass.java:882)
+	at org.alphind.xealei.baseclass.BaseClass.sendKeys(BaseClass.java:193)
+	at org.alphind.xealei.pages.LoginPage.validEmail(LoginPage.java:360)
+	at org.alphind.xealei.stepdefinition.LoginPageStep.user_should_perform_login_with_valid_email_and_password(LoginPageStep.java:268)
+	at ✽.User should perform login with valid email and password(file:///C:/Automation%20Testing/Xealei/src/test/resources/Features/TC3_Add%20Suites.feature:15)
+]]></failure>
     </testcase>
 </testsuite>
