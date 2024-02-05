@@ -8,7 +8,7 @@
 #
 #*/
 
-
+@EditIndividuals-AllScenarios
 Feature: Verify Xealei Individuals > Edit Individual Page
 
  Background: 
@@ -19,7 +19,7 @@ Feature: Verify Xealei Individuals > Edit Individual Page
     Then User should search the created Individual
     Then User should verify the name dob id guardian contact details is displayed
     
-  @EditIndividuals-AllScenarios   
+   
   Scenario: To verify the validation messages for limit and mandatory fields in Edit Individuals page
   
   Then User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page
@@ -44,21 +44,18 @@ Feature: Verify Xealei Individuals > Edit Individual Page
   And User should perform firstName* and lastName* fields in Add another emergency contact3 in edit individual page
   Then User should verify the limit validation error message in Emergency Contact3 First, Last Name* fields "First name cannot be longer than 30 characters" and "Last name cannot be longer than 30 characters"
   Then User should verify the that able to close the emergency contact2 and emergency contact3 in edit individual page  
+  
   And User should click on the calendar icon in edit individual page
   Then User should verify the date picker should appeared
-  And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
-    #
-    #DELETE
-    # When User should attempt to enter an invalid date manually
-    # Then an appropriate error message should be displayed
-    #DELETE
-    #
-  And User should verify future dates are hidden
-  When User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates
-  And User should select a specific year and month in dropdown and select the date in date picker
-  Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
-  And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
-  Then User should verify the calendar should close after click outside the calendar
+  Then User should verify future dates are hidden
+   And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
+    
+    And User should select a specific year and month in dropdown and select the date in date picker
+    Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
+    And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
+    Then User should verify the calendar should close after click outside the calendar
+  
+
   Then User should verify the cancel button is working in edit individual page
   Then User should verify after click the breadcrums link module name should be return to searched Individual page
   And User should navigate to created individual

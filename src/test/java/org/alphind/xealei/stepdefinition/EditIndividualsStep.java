@@ -63,6 +63,8 @@ public class EditIndividualsStep extends BaseClass {
 
 		try {
 			String expIndId = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 2);
+			sleep(1000);
+			waitForVisiblityOfElement(pom.getEditIndividualsPage().getCreatedID(), 10);
 			Assert.assertEquals("Created Ind ID Mismatched", "IIN000".concat(expIndId),
 					getText(pom.getEditIndividualsPage().getCreatedID()));
 			log(Status.PASS, "Ind ID is displayed as expected EXP Ind ID - " + expIndId + " | ACT Ind ID - "
@@ -128,8 +130,10 @@ public class EditIndividualsStep extends BaseClass {
 			}
 
 			try {
+				sleep(1000);
+				waitForVisiblityOfElement(pom.getEditIndividualsPage().getCreatedID(), 10);
 				String expIndId = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 2);
-				Assert.assertEquals("Created Ind ID Mismatched", "IIN00".concat(expIndId),
+				Assert.assertEquals("Created Ind ID Mismatched", "IIN000".concat(expIndId),
 						getText(pom.getEditIndividualsPage().getCreatedID()));
 				log(Status.PASS, "Ind ID is displayed as expected EXP Ind ID - " + expIndId + " | ACT Ind ID - "
 						+ getText(pom.getEditIndividualsPage().getCreatedID()));

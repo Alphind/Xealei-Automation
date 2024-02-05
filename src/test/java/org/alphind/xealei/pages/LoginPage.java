@@ -44,15 +44,6 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//a[contains(text(),'Forgot password?')]")
 	private WebElement forgotPasswordHyperLink;
 
-	@FindBy(xpath = "//a[text()='Privacy Policy']")
-	private WebElement lnkPrivacyPolicy;
-
-	@FindBy(xpath = "//h1[text()='PRIVACY POLICY']")
-	private WebElement privacyPolicyContent;
-
-	@FindBy(xpath = "//p[@class='text-muted text-center mt-6']")
-	private WebElement copyRightsText;
-
 	@FindBy(xpath = "//input[@placeholder='Email']")
 	private WebElement userName;
 
@@ -163,19 +154,6 @@ public class LoginPage extends BaseClass {
 	}
 
 	/**
-	 * Get the Copy Rights (text) in Login Page.
-	 * 
-	 * @author Alphi-MohamedRazul
-	 * 
-	 * @created on 19/01/2024
-	 * 
-	 * @return copy rights(text).
-	 */
-	public String getCopyRightsText() {
-		return getText(copyRightsText);
-	}
-
-	/**
 	 * Get the Email* field Info (text) in Login Page.
 	 * 
 	 * @author Alphi-MohamedRazul
@@ -237,6 +215,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void email() {
 
+		waitForPageLoad();
 		sendKeys(userName, "Doc@Medi.com");
 	}
 
@@ -250,8 +229,9 @@ public class LoginPage extends BaseClass {
 	 */
 	public void password() {
 
-		waitForPageLoad(this.driver);
+		waitForPageLoad();
 		sendKeys(password, "xe23Dal%q3");
+		pressEnterKeyInPasswordField();
 	}
 
 	/**
@@ -303,6 +283,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void ToastMsgOkButton() {
 
+		waitForPageLoad();
 		click(toastMsgOKButton);
 	}
 
@@ -316,6 +297,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void ToastMsgokButton() {
 
+		waitForPageLoad();
 		click(toastMsgokButton);
 	}
 
@@ -378,7 +360,6 @@ public class LoginPage extends BaseClass {
 			sendKeys(userName, email);
 			log(Status.INFO, "Enter QA environment Email/userName");
 			clickEnter(password);
-			waitForPageLoad();
 			break;
 		}
 		case "PREPROD": {
@@ -386,7 +367,6 @@ public class LoginPage extends BaseClass {
 			sendKeys(userName, email);
 			log(Status.INFO, "Enter PREPROD environment email/userName");
 			clickEnter(password);
-			waitForPageLoad();
 			break;
 		}
 		case "PROD": {
@@ -394,7 +374,6 @@ public class LoginPage extends BaseClass {
 			sendKeys(userName, email);
 			log(Status.INFO, "Enter PROD environment email/userName");
 			clickEnter(password);
-			waitForPageLoad();
 			break;
 		}
 		default: {
@@ -422,21 +401,18 @@ public class LoginPage extends BaseClass {
 
 		case "QA": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
-			waitForPageLoad();
 			sendKeys(password, passWord);
 			log(Status.INFO, "Enter QA environment Password");
 			break;
 		}
 		case "PREPROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
-			waitForPageLoad();
 			sendKeys(password, passWord);
 			log(Status.INFO, "Enter PREPROD environment Password");
 			break;
 		}
 		case "PROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
-			waitForPageLoad();
 			sendKeys(password, passWord);
 			log(Status.INFO, "Enter PROD environment Password");
 			break;

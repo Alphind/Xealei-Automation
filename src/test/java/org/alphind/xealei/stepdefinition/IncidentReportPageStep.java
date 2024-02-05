@@ -1,11 +1,12 @@
 package org.alphind.xealei.stepdefinition;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Objects;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
@@ -157,8 +158,8 @@ public class IncidentReportPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-
-		staffpom.getIncidentReportPage().selectIndividualDetailsDropdown();
+		
+		staffpom.getIncidentReportPage().selectIndividualDetails();
 
 		staffpom.getIncidentReportPage().eventDateAndTime();
 
@@ -416,11 +417,19 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		System.out.println(
 				"Actual ind name -" + staffpom.getIncidentReportPage().getIndividualNameFromWasIndividualInjured());
-		String selectedIndividualName = readExcel("Test Datas", "Incident Reports", 1, 28);
-
+		String selectedIndividualName = readExcel("Test Datas", "Incident Reports", 1, 0);
+		String[] split = selectedIndividualName.split(" ");
+		String firstName = split[0];
+		String MiddleName = split[1];
+		
+		int a =split[2].indexOf('(');
+		String LastName = split[2].substring(0, a);
+		
+		System.out.println("WAS Injured"+split[0]+" "+split[1]+" "+LastName);
+		
 		try {
 			Assert.assertEquals("Individual name is NOT displayed in Was injured? field",
-					"Was " + selectedIndividualName + " injured?",
+					"Was " + firstName+" "+MiddleName+" "+LastName + " injured?",
 					staffpom.getIncidentReportPage().getIndividualNameFromWasIndividualInjured());
 			log(Status.PASS, "Respective Individual name is displayed in Was injured? field");
 		} catch (Exception e) {
@@ -456,7 +465,11 @@ public class IncidentReportPageStep extends BaseClass {
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
-		}
+		
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+		e.printStackTrace();
+	}
 	}
 
 	@Then("User should verify that able to spot the injury on Injury site front & Back view")
@@ -617,8 +630,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 		logStep(methodName());
 		
-		staffpom.getIncidentReportPage().verifyPreviousDatesIsDisabled().verifyNextToTheCurrentDateIsDisabled();
-
+		staffpom.getIncidentReportPage().verifyPreviousDatesIsDisabled().verifyFutureDateIsDisable();
 	}
 
 	@Then("User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly")
@@ -1017,11 +1029,11 @@ public class IncidentReportPageStep extends BaseClass {
 			String GetNotifiedDateFromExcel = readExcel("Test Datas", "Incident Reports", 1, 14);
 			String GetNotifiedTimeFromExcel = readExcel("Test Datas", "Incident Reports", 1, 15);
 			Assert.assertEquals("Notification Date&Time field :Entered data is NOT accurately displayed as expected",
-					dateConversion(GetNotifiedDateFromExcel, GetNotifiedTimeFromExcel),
+					dayMonthYearConversion(GetNotifiedDateFromExcel,GetNotifiedTimeFromExcel),
 					staffpom.getIncidentReportPage().getNotificationDateAndTimeValue());
 			log(Status.PASS,
 					"Notification Date&Time field :Entered data is accurately displayed as expected | Exp Data - "
-							+ dateConversion(GetNotifiedDateFromExcel, GetNotifiedTimeFromExcel) + " | Actual Data - "
+							+ dayMonthYearConversion(GetNotifiedDateFromExcel, GetNotifiedTimeFromExcel) + " | Actual Data - "
 							+ staffpom.getIncidentReportPage().getNotificationDateAndTimeValue());
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1144,8 +1156,8 @@ public class IncidentReportPageStep extends BaseClass {
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
 			    try {
-				    assertEquals(status, "Pending",
-				    		"The expected value is : Pending /nbut actual is : "+status);
+				    assertEquals(
+				    		"The expected value is : Pending /nbut actual is : "+status,"Pending",status);
 				    log(Status.PASS, "The Incident Report submitted by the staff is in "
 				    		+ "pending status.",staffDriver);
 				} catch (Exception e) {
@@ -1168,7 +1180,7 @@ public class IncidentReportPageStep extends BaseClass {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			    logStep(methodName());
+			    
 			    chiefnurseDriver.get("https://xat.qa.xealei.com/login");
 			    chiefnursepom = new PageObjectManager(chiefnurseDriver);
 			    waitForPageLoad(chiefnurseDriver);
@@ -1188,7 +1200,7 @@ public class IncidentReportPageStep extends BaseClass {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			    logStep(methodName());
+			    
 			    rmDriver.get("https://xat.qa.xealei.com/login");
 			    rmpom = new PageObjectManager(rmDriver);
 			    waitForPageLoad(rmDriver);
@@ -1208,7 +1220,7 @@ public class IncidentReportPageStep extends BaseClass {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			    logStep(methodName());
+			    
 			    ccDriver.get("https://xat.qa.xealei.com/login");
 			    ccpom = new PageObjectManager(ccDriver);
 			    waitForPageLoad(ccDriver);
@@ -1228,7 +1240,7 @@ public class IncidentReportPageStep extends BaseClass {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			    logStep(methodName());
+			    
 			    swDriver.get("https://xat.qa.xealei.com/login");
 			    swpom = new PageObjectManager(swDriver);
 			    waitForPageLoad(swDriver);
@@ -1418,8 +1430,8 @@ public class IncidentReportPageStep extends BaseClass {
 				String rowNumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
 			    try {
-			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-				    		" but the expected is : "+status);
+			    	assertEquals("The actual status is : "+actualStatus+
+				    		" but the expected is : "+status,status,actualStatus);
 				    log(Status.PASS, "The Incident Report approved by the Chief nurse is in "
 				    		+ status+" status.",chiefnurseDriver);
 				} catch (Exception e) {
@@ -1440,8 +1452,8 @@ public class IncidentReportPageStep extends BaseClass {
 			    String actualStatus = rmpom.getIncidentReportPage().getStatus(rowNumber);
 			    
 			    try {
-			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-				    		" but the expected is : "+status);
+			    	assertEquals("The actual status is : "+actualStatus+
+				    		" but the expected is : "+status,status,actualStatus);
 			    	log(Status.PASS, "The Incident Report approved by the residential manager is in "
 				    		+ status+" status.",rmDriver);
 				} catch (Exception e) {
@@ -1462,8 +1474,8 @@ public class IncidentReportPageStep extends BaseClass {
 			    String actualStatus =	ccpom.getIncidentReportPage().getStatus(rowNumber);
 			    
 			    try {
-			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-				    		" but the expected is : "+status);
+			    	assertEquals("The actual status is : "+actualStatus+
+				    		" but the expected is : "+status,status,actualStatus);
 			    	log(Status.PASS, "The Incident Report approved by the Clincal Coordinator is in "
 				    		+ status+" status.",ccDriver);
 				} catch (Exception e) {
@@ -1484,8 +1496,8 @@ public class IncidentReportPageStep extends BaseClass {
 			    String actualStatus =	swpom.getIncidentReportPage().getStatus(rowNumber);
 			    
 			    try {
-			    	assertEquals(actualStatus, status, "The actual status is : "+actualStatus+
-				    		" but the expected is : "+status);
+			    	assertEquals("The actual status is : "+actualStatus+
+				    		" but the expected is : "+status,status,actualStatus);
 			    	log(Status.PASS, "The Incident Report approved by the social worker is in "
 				    		+ status+" status.",swDriver);
 				} catch (Exception e) {
@@ -1587,6 +1599,8 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		logStep(methodName());
 		
+		waitForFullPageElementLoad(staffDriver);
+		sleep(2000);
 		staffpom.getIncidentReportPage().eventDateAndTime();
 		staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
 		staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
@@ -1632,7 +1646,7 @@ public class IncidentReportPageStep extends BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		logStep(methodName());
+		
 		chiefnurseDriver.get("https://xat.qa.xealei.com/login");
 		chiefnursepom = new PageObjectManager(chiefnurseDriver);
 		waitForPageLoad(chiefnurseDriver);
@@ -1726,8 +1740,6 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	
-
-
 	/**
 	 * Created by Nandhalala.
 	 */
@@ -1738,8 +1750,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 		String rowNumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 		String actualStatus = chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
-		assertEquals(actualStatus, status,
-				"The actual status is : " + actualStatus + " but the expected is : " + status);
+		assertEquals("The actual status is : " + actualStatus + " but the expected is : " + status,status,actualStatus);
 	}
 
 
@@ -1822,26 +1833,33 @@ public class IncidentReportPageStep extends BaseClass {
 	/**
 	 * Created by Nandhalala.
 	 */
-	@When("Notification is Triggered from a sensor.")
+		@When("Notification is Triggered from a sensor.")
 	public void Notification_is_Triggered_from_a_sensor() {
-		String[] dateTime = getCurrentDtYearMonth("M/dd/yyyy hh:mma").split(" ");
-		//String time = dateTime.replaceAll(".*(.{7})", "$1");
-		String date = dateTime[0];
-		String time = dateTime[1];
-		try {
-			alertTime = dateConversion(date,time);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		
+		logStep(methodName());
+		
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
 							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
 							.post();
+		
+		if(response.getStatusCode() == 200) {
+			String date = getCurrentMonth()+"/"+getCurrentDate()+"/"+getCurrentDtYearMonth("yyyy");
+			
+			//String[] dateTime = getCurrentDtYearMonth("M/dd/yyyy hh:mma").split(" ");
+			//String time = dateTime.replaceAll(".*(.{7})", "$1");
+//			String date = dateTime[0];
+//			String time = dateTime[1];
+			
+			alertTime = dayMonthYearConversion(date,getCurrentDtYearMonth("hh:mma"));
+			System.out.println("Notified Date & Time - "+alertTime);
+		}
+		
 		System.out.println("The status code for fall alert triggered from sensor is : " 
 									+ response.getStatusCode());
-		log(Status.INFO, "The status code for fall alert triggered from sensor is : " 
-									+ response.getStatusCode());
+		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
+									
 		sleep(5000);
 	}
 	
@@ -1850,19 +1868,26 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@When("Notification Triggered from a sensor.")
 	public void Notification_Triggered_from_a_sensor() {
-		String dateTime = getCurrentDtYearMonth("MMM dd, yyyy, hh:mm");
-		alertTime = dateTime;
+		
+		logStep(methodName());
 		
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
 							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
 							.post();
+		
+		if(response.getStatusCode() == 200) {
+			String dateTime = getCurrentDtYearMonth("MMM")+" "+getCurrentDate()+", "+getCurrentDtYearMonth("yyyy, hh:mm");
+
+			//String dateTime = getCurrentDtYearMonth("MMM dd, yyyy, hh:mm");
+			alertTime = dateTime;
+			System.out.println("Notified Date & Time in GRID - "+alertTime);
+		}
 		System.out.println("The status code for fall alert triggered from sensor is : " 
 				+ response.getStatusCode());
-		log(Status.INFO, "The status code for fall alert triggered from sensor is : " 
-				+ response.getStatusCode());
-		
+		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
+
 		sleep(5000);
 	}
 	
@@ -1871,6 +1896,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Open notification received by staff from sensor.")
 	public void Open_notification_received_by_staff_from_sensor() {
+		
+		logStep(methodName());
+		
 		String[] temp = alertTime.split(",");
 		temp[2] = temp[2].trim();
 		if(temp[2].charAt(0) == '0') {
@@ -1884,6 +1912,13 @@ public class IncidentReportPageStep extends BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+//		try {
+//			staffpom.getHomePage().firstFallAlertNotification();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		sleep(2000);
 	}
 	
@@ -1892,6 +1927,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Open IR received by staff from sensor in Grid.")
 	public void Open_IR_received_by_staff_from_sensor_in_Grid() {
+		
+		logStep(methodName());
+		
 		String[] temp = alertTime.split(",");
 		temp[2] = temp[2].trim();
 		if(temp[2].charAt(0) == '0') {
@@ -1911,7 +1949,10 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select fall radio button and enter description.")
 	public void Select_fall_radio_button_and_enter_description() {
-		staffpom.getHomePage().alertNotificationFalladioButton();
+		
+		logStep(methodName());
+		
+		staffpom.getHomePage().alertNotificationFallRadioButton();
 		staffpom.getHomePage().alertNotificationDescription();
 	}
 	
@@ -1920,6 +1961,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Click Save and Proceed to IR button.")
 	public void Click_Save_and_Proceed_to_IR_button() {
+		
+		logStep(methodName());
+	
 		staffpom.getHomePage().saveandproccedtoTR();
 	}
 	
@@ -1929,13 +1973,16 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify text in what casued the fall matches with Description.")
 	public void Verify_text_in_what_casued_the_fall_matches_with_Description() {
 		
+		logStep(methodName());
+		
 		String actual = staffpom.getIncidentReportPage().getWhatCausedTheFall();
 		String expected = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
 		try {
-			assertEquals(actual, expected, "The actual value is : "+actual
-					+"but the expected value is : "+expected);
+			
+			assertEquals("The actual value is : "+actual +"but the expected value is : "+expected,expected,actual);
+
 			log(Status.PASS, "The text in fall description text box is : "+actual);
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 			log(Status.FAIL, "The text in fall description text box is : "+actual+
 					"but the expected text is : "+expected);
 			log(Status.WARNING, e.getMessage());
@@ -1960,6 +2007,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Click view button on staff user.")
 	public void Click_view_button_on_staff_user() {
+		
+		logStep(methodName());
+		
 		staffpom.getIncidentReportPage().viewButton(staffpom.getIncidentReportPage().getRowNumber());
 		staffName = staffpom.getIncidentReportPage().getUserName();
 		staffName=staffName.replaceAll("Staff", "").trim();
@@ -1970,6 +2020,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Send chat message for staff user.")
 	public void Send_chat_message_for_staff_user() {
+		
+		logStep(methodName());
+		
 		staffpom.getIncidentReportPage().sendChatMessage("Staff");
 	}
 	
@@ -1978,6 +2031,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Send chat message for chief nurse user.")
 	public void Send_chat_message_for_chief_nurse_user() {
+		
+		logStep(methodName());
+		
 		chiefnursepom.getIncidentReportPage().sendChatMessage("Chief Nurse");
 	}
 	
@@ -1986,12 +2042,17 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Send chat message for residential manager user.")
 	public void Send_chat_message_for_residential_manager_user() {
+		
+		logStep(methodName());
+		
 		rmpom.getIncidentReportPage().sendChatMessage("Resident Manager");
 		sleep(2000);
 	}
 	
 	@Then("Open IR received by Chief nurse.")
 	public void Open_IR_received_by_Chief_nurse() {
+		
+		logStep(methodName());
 		
 		sleep(5000);
 		chiefnursepom.getHomePage().navToReportsModule();
@@ -2003,6 +2064,8 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open IR received by residential manager.")
 	public void Open_IR_received_by_residential_manager() {
 		
+		logStep(methodName());
+
 		sleep(5000);
 		rmpom.getHomePage().navToReportsModule();
 		rmpom.getHomePage().navToIncidentReportModule();
@@ -2012,6 +2075,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Click View button for chief nurse user.")
 	public void Click_View_button_for_chief_nurse_user() {
+		
+		logStep(methodName());
+		
 		String rownumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 		chiefnursepom.getIncidentReportPage().viewButton(rownumber);
 		chiefNurseName = chiefnursepom.getIncidentReportPage().getUserName();
@@ -2021,6 +2087,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Click View button for residential manager user.")
 	public void Click_View_button_for_residential_manager_user() {
+		
+		logStep(methodName());
+		
 		String rownumber = rmpom.getIncidentReportPage().getRowNumber();
 		rmpom.getIncidentReportPage().viewButton(rownumber);
 		managerName = rmpom.getIncidentReportPage().getUserName();
@@ -2030,6 +2099,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify staff message is received by cheif nurse.")
 	public void Verify_staff_message_is_received_by_cheif_nurse() {
+		
+		logStep(methodName());
+		
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = chiefnursepom.getIncidentReportPage().getChatMessagesFromUser("Staff");
@@ -2042,7 +2114,8 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
-			assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+
+			Assert.assertTrue("The expected message from staff is : "+staffMessage,flag);
 			log(Status.PASS, "The message sent by staff received by chief nurse is : " 
 					+ staffMessage);
 		}catch (AssertionError e) {
@@ -2055,6 +2128,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify staff message is received by Residential Manager.")
 	public void Verify_staff_message_is_received_by_Residential_Manager() {
+		
+		logStep(methodName());
+
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = rmpom.getIncidentReportPage().getChatMessagesFromUser("Staff");
@@ -2067,7 +2143,8 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
-			assertEquals(flag, true,"The expected message from staff is : "+staffMessage);
+			Assert.assertTrue("The expected message from staff is : "+staffMessage,flag);
+
 			log(Status.PASS, "The message sent by staff received by manager is : " 
 					+ staffMessage);
 		}catch (AssertionError e) {
@@ -2080,6 +2157,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify chief nurse message is received by Residential Manager.")
 	public void Verify_chief_nurse_message_is_received_by_Residential_Manager() {
+		
+		logStep(methodName());
+		
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = rmpom.getIncidentReportPage().getChatMessagesFromUser("Nurse");
@@ -2092,11 +2172,13 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
-			assertEquals(flag, true,"The expected message from Chief Nurse is is : " 
-					+chiefNurseMessage);
+			Assert.assertTrue("The expected message from Chief Nurse is is : " 
+					+chiefNurseMessage,flag);
+
 			log(Status.PASS, "The message sent by chief nurse received by manager is : " 
 					+ chiefNurseMessage);
-		}catch (AssertionError e) {
+			
+		} catch (AssertionError e) {
 			log(Status.FAIL, "The message sent by chief nurse received by manager is not : " 
 					+ chiefNurseMessage);
 			log(Status.WARNING, e.getMessage());
@@ -2106,6 +2188,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify Residential manager message received by staff.")
 	public void Verify_Residential_manager_message_is_received_by_staff() {
+		
+		logStep(methodName());
+		
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = staffpom.getIncidentReportPage()
@@ -2119,7 +2204,8 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
-			assertEquals(flag, true,"The expected message from Manager is : "+managerMessage);
+			Assert.assertTrue("The expected message from Manager is : "+managerMessage,flag);
+
 			log(Status.PASS, "The message sent by manager received by staff is : " 
 					+ managerMessage);
 		}catch(AssertionError e) {
@@ -2132,6 +2218,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify Residential manager message received by cheif nurse.")
 	public void Verify_Residential_manager_message_is_received_by_cheif_nurse() {
+		
+		logStep(methodName());
+		
 		sleep(5000);
 		boolean flag = false;
 		Map<String, String> messages = chiefnursepom.getIncidentReportPage()
@@ -2145,7 +2234,9 @@ public class IncidentReportPageStep extends BaseClass {
 			}
 		}
 		try {
-			assertEquals(flag, true,"The expected message from Manager is : "+managerMessage);
+
+			Assert.assertTrue("The expected message from Manager is : "+managerMessage,flag);
+
 			log(Status.PASS, "The message sent by manager received by chief nurse is : " 
 					+ managerMessage);
 		}catch(AssertionError e) {

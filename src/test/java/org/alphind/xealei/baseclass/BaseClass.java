@@ -31,6 +31,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Random;
 
@@ -44,6 +45,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +67,6 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.github.javafaker.Faker;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -91,15 +92,15 @@ public class BaseClass {
 
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver(getChromeOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver(getEdgeOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
 			 driver = new FirefoxDriver(getFirefoxOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 		} else {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
@@ -112,15 +113,15 @@ public class BaseClass {
 		
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
 			newDriver = new ChromeDriver(getChromeOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
 			newDriver = new EdgeDriver(getEdgeOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
 			 newDriver = new FirefoxDriver(getFirefoxOptions());
-			log(Status.INFO, "Browser launched in Chrome");
+			//log(Status.INFO, "Browser launched in Chrome");
 		} else {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
@@ -187,7 +188,7 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.sendKeys(datasToSend);
-			log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
+			//log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -199,7 +200,7 @@ public class BaseClass {
 	public void backSpace(WebElement element) {
 
 		element.sendKeys(Keys.BACK_SPACE);
-		log(Status.INFO, "Delete the last keyword");
+		//log(Status.INFO, "Delete the last keyword");
 	}
 
 	// 9. To get the text/data's
@@ -266,7 +267,7 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.click();
-			log(Status.INFO, "Click the " + methodName);
+			////log(Status.INFO, "Click the " + methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -275,7 +276,7 @@ public class BaseClass {
 	public void clickEnter(WebElement element) {
 		try {
 			element.sendKeys(Keys.ENTER);
-			log(Status.INFO, "Click ENTER key");
+			////log(Status.INFO, "Click ENTER key");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -284,20 +285,20 @@ public class BaseClass {
 	public void deleteExistFieldData(WebElement element) {
 		element.sendKeys(Keys.CONTROL + "a");
 		element.sendKeys(Keys.BACK_SPACE);
-		log(Status.INFO, "Delete the existing field data");
+		////log(Status.INFO, "Delete the existing field data");
 	}
 
 	public void deleteExistPhoneData(WebElement element) {
 		for (int i = 0; i < 15; i++)
 			element.sendKeys(Keys.BACK_SPACE);
-		log(Status.INFO, "Delete the existing phone data");
+		////log(Status.INFO, "Delete the existing phone data");
 	}
 
 	// 16. Close
 
 	public void close() {
 		// dr.get().close();
-		log(Status.INFO, "Close the browser");
+		//log(Status.INFO, "Close the browser");
 		driver.close();
 
 	}
@@ -307,7 +308,7 @@ public class BaseClass {
 
 	public void quit() {
 		// dr.get().quit();
-		log(Status.INFO, "Quit the browser");
+		//log(Status.INFO, "Quit the browser");
 		driver.quit();
 	}
 
@@ -422,7 +423,7 @@ public class BaseClass {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
-			log(Status.INFO, "Wait for elementToBeClickable");
+			//log(Status.INFO, "Wait for elementToBeClickable");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -436,7 +437,7 @@ public class BaseClass {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.textToBePresentInElement(element, text));
-			log(Status.INFO, "Wait for textToBePresentInElement");
+			//log(Status.INFO, "Wait for textToBePresentInElement");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -449,7 +450,7 @@ public class BaseClass {
 		// Duration.ofSeconds(seconds));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
-		log(Status.INFO, "Wait for Page Loading...");
+		//log(Status.INFO, "Wait for Page Loading...");
 	}
 
 	// 30. findElement --- > ByTagName
@@ -486,7 +487,7 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			log(Status.INFO, "Select the "+ methodName);
+			//log(Status.INFO, "Select the "+ methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -498,7 +499,7 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			log(Status.INFO, "Select the" + methodName);
+			//log(Status.INFO, "Select the" + methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -616,7 +617,7 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.sendKeys(data, Keys.ENTER);
-			log(Status.INFO, "Click the " + methodName + "using sendKeyWithEnter");
+			//log(Status.INFO, "Click the " + methodName + "using sendKeyWithEnter");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -653,12 +654,12 @@ public class BaseClass {
 
 	public void waitForPageLoad() {
 
-//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
-//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		try {
+		WebElement loading = driver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
-
+		} catch (NoSuchElementException e) {
+		}
 	}
 	
 	//Added new method for handling multiple drivers
@@ -667,7 +668,9 @@ public class BaseClass {
 
 //		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
 //		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		//span[contains(@class,'cloader')] --> new load element
+//		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+		WebElement loading = currentdriver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 
@@ -759,17 +762,17 @@ public class BaseClass {
 
 		case "QA": {
 			driver.get(readExcel("Test Datas", "Environments", 1, 1));
-			log(Status.INFO, "Choosed environment - QA");
+			//log(Status.INFO, "Choosed environment - QA");
 			break;
 		}
 		case "PREPROD": {
 			driver.get(readExcel("Test Datas", "Environments", 2, 1));
-			log(Status.INFO, "Choosed environment - PREPROD");
+			//log(Status.INFO, "Choosed environment - PREPROD");
 			break;
 		}
 		case "PROD": {
 			driver.get(readExcel("Test Datas", "Environments", 3, 1));
-			log(Status.INFO, "Choosed environment - PROD");
+			//log(Status.INFO, "Choosed environment - PROD");
 			break;
 		}
 		default: {
@@ -803,7 +806,7 @@ public class BaseClass {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("argument[0].scrollIntoView()", element);
-		log(Status.INFO, "Scroll into an view");
+		//log(Status.INFO, "Scroll into an view");
 	}
 
 //		// 46. Scroll Bottom of the page - (JavaScript Executor)
@@ -813,7 +816,7 @@ public class BaseClass {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		log(Status.INFO, "Scroll down to  bottom of the page");
+		//log(Status.INFO, "Scroll down to  bottom of the page");
 	}
 
 //      //49. Full Page Load - getPageLoad
@@ -953,7 +956,7 @@ public class BaseClass {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("window.scrollBy(0,-250)");
-		log(Status.INFO, "Scroll into an view");
+		//log(Status.INFO, "Scroll into an view");
 	}
 
 	public String futureDate(int num) {
@@ -1011,7 +1014,7 @@ public class BaseClass {
 	public String getFutureTime(String EnterPattern) {
 
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(02);
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(2);
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
@@ -1044,16 +1047,6 @@ public class BaseClass {
 			mobileNumber.append(random.nextInt(10));
 		}
 		return mobileNumber.toString();
-	}
-
-	public void randomNames() {
-
-		Faker faker = new Faker();
-
-		String randomFirstName = faker.name().firstName();
-		String randomLastName = faker.name().lastName();
-
-		System.out.println("Generated Name: " + randomFirstName + " " + randomLastName);
 	}
 
 	public String previousMonth(String pattern) {
@@ -1115,7 +1108,7 @@ public class BaseClass {
 	}
 	
 	
-	public String dateConversion(String Date, String Time) throws ParseException {
+	public String dateConversionForHandleAlert(String Date, String Time) throws ParseException {
 					
 		        // Specify the input date format
 	        SimpleDateFormat inputFormat = new SimpleDateFormat("M/dd/yyyy hh:mma", Locale.ENGLISH);
@@ -1130,5 +1123,40 @@ public class BaseClass {
 				String outputDateString = outputFormat.format(date);
 				return outputDateString;
 }
+	
+	
+	public String dayMonthYearConversion(String DMY, String time) {
+	
+	 SimpleDateFormat inputFormat = new SimpleDateFormat("M/d/yyyy hh:mma", Locale.ENGLISH);
+
+     // Define the desired output date format
+     SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM d yyyy, hh:mm a", Locale.ENGLISH);
+
+     // Provide an example input date string
+    // String inputDateString = "2/1/2024 10:30AM";
+     
+     String outputDateString = null;
+
+     try {
+         // Parse the input date string
+         Date date = inputFormat.parse(DMY+" "+time);
+
+         // Format the day using single 'd' if the day is before 10, 'dd' otherwise
+         String dayFormat = (date.getDate() < 9) ? "d" : "dd";
+         outputFormat.applyPattern("EEEE, MMMM " + dayFormat + " yyyy, hh:mm a");
+
+         // Format the parsed date using the output format
+         outputDateString = outputFormat.format(date);
+
+         System.out.println("Input Date: " + date);
+         System.out.println("Output Date: " + outputDateString);
+     } catch (ParseException e) {
+         e.printStackTrace();
+     }
+     
+    	 return outputDateString;
+	}
+	
+
 	
 }

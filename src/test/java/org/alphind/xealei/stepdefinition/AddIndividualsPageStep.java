@@ -1141,6 +1141,15 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 	}
+	
+	@Then("User should verify future dates are hidden")
+	public void user_should_verify_future_dates_are_hidden() {
+
+		logStep(methodName());
+
+			pom.getAddIndividualsPage().futureDatesAreHidden();
+		
+	}
 
 	@Then("User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field")
 	public void user_should_select_a_valid_date_in_date_picker_and_verify_the_selected_date_should_be_displayed_in_the_dob_field() {
@@ -1149,45 +1158,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		pom.getAddIndividualsPage().selectCurrentDateInDatePicker();
 	}
-
-//				@When("User should attempt to enter an invalid date manually")
-//				public void user_should_attempt_to_enter_an_invalid_date_manually() {
-//				    
-//				    logStep(methodName());
-//				    
-//				    
-//				}
-//				
-//				@Then("an appropriate error message should be displayed")
-//				public void an_appropriate_error_message_should_be_displayed() {
-//				    
-//					
-//				    logStep(methodName());
-//				}
-
-	@Then("User should verify future dates are hidden")
-	public void user_should_verify_future_dates_are_hidden() {
-
-		logStep(methodName());
-
-		pom.getAddIndividualsPage().datePicker();
-
-		try {
-			pom.getAddIndividualsPage().verifyFutureDateIsDisabled();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@When("User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates")
-	public void user_should_click_on_the_left_arrow_to_navigate_to_the_previous_month_and_verify_the_calendar_should_display_the_previous_months_dates() {
-
-		logStep(methodName());
-
-		pom.getAddIndividualsPage().selectGivenDateFromExcel(1);
-	}
-
+		
 	@When("User should select a specific year and month in dropdown and select the date in date picker")
 	public void user_should_select_a_specific_year_and_month_in_dropdown_and_select_the_date_in_date_picker() {
 

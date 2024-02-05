@@ -311,6 +311,7 @@ public class EditSuitesPage extends BaseClass {
 	
 	public void editButton() {
 		
+		waitForPageLoad();
 		sleep(3000);
 		click(btnEditSuite);
 	}

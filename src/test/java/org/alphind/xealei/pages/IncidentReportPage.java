@@ -244,7 +244,8 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "(//div[@title = 'Left Wrist'])[2]")
 	private WebElement backViewLefttWristInjury;
 
-	//private String injuredIndividiual = "//mat-label[contains(text(),'Was IndividiualName injured?')]";
+	// private String injuredIndividiual = "//mat-label[contains(text(),'Was
+	// IndividiualName injured?')]";
 
 	@FindBy(xpath = "(//div[text()='Yes'])[1]/preceding-sibling::div/input") // ../preceding-sibling::div/input
 	private WebElement wasIndividiualInjuredYesRadioButton;
@@ -451,22 +452,20 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//div[contains(@class,'alert aler')]")
 	private WebElement noteInfoMsg;
 
-	
 	@FindBy(xpath = "//textarea[@formcontrolname = 'message']")
 	private WebElement chatMessageArea;
-	
+
 	@FindBy(xpath = "//button[@title = 'Attachment' and @type = 'submit']")
 	private WebElement chatAttachmentButton;
-	
+
 	@FindBy(xpath = "//button[@title = 'Send Message' and @type = 'submit']")
 	private WebElement chatSendButton;
-	
+
 	private String chatMessageTextXpath = "//div[@class = 'msg-info-name' and contains(text(),'XX')]"
 			+ "/parent::div/following-sibling::div";
-	
+
 	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
 	private WebElement userName;
-	
 
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
@@ -495,7 +494,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Exceeds the current time" info message (text) in Reports > Incident Report Page.
+	 * Get the "Exceeds the current time" info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -508,7 +508,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Individual’s Details" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Individual’s Details" field info message (text) in Reports >
+	 * Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -521,7 +522,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "What caused the fall?" field info message (text) in Reports > Incident Report Page.
+	 * Get the "What caused the fall?" field info message (text) in Reports >
+	 * Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -534,7 +536,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Injury Description" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Injury Description" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -547,7 +550,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Was Individual injured?" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Was Individual injured?" field info message (text) in Reports >
+	 * Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -560,7 +564,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Injury Site?" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Injury Site?" field info message (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -572,9 +577,9 @@ public class IncidentReportPage extends BaseClass {
 		return getText(injurySiteValidationInfoMsg);
 	}
 
-	
 	/**
-	 * Get the "Treatment Received" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Treatment Received" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -587,7 +592,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Future Treatment" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Future Treatment" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -599,9 +605,9 @@ public class IncidentReportPage extends BaseClass {
 		return getText(futureTreatmentValidationInfoMsg);
 	}
 
-	
 	/**
-	 * Get the "Event Date & Time" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Event Date & Time" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -614,7 +620,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Injury Type" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Injury Type" field info message (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -627,7 +634,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Injury Color" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Injury Color" field info message (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -637,10 +645,11 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String getInjuryColorValidationInfoMsgText() {
 		return getText(injuryColorValidationInfoMsg);
-	}	
+	}
 
 	/**
-	 * Get the "How severe was the injury?" field info message (text) in Reports > Incident Report Page.
+	 * Get the "How severe was the injury?" field info message (text) in Reports >
+	 * Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -653,7 +662,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Person Notified" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Person Notified" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -666,7 +676,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Relationship" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Relationship" field info message (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -679,7 +690,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Notification Date" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Notification Date" field info message (text) in Reports > Incident
+	 * Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -705,7 +717,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Notified By" field info message (text) in Reports > Incident Report Page.
+	 * Get the "Notified By" field info message (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -718,7 +731,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Note:...." validation info (text) in Reports > Incident Report view Page.
+	 * Get the "Note:...." validation info (text) in Reports > Incident Report view
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -731,7 +745,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Time" field for Lesser than event Date & Time validation info (text)  in Reports > Incident Report Page.
+	 * Get the "Time" field for Lesser than event Date & Time validation info (text)
+	 * in Reports > Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -744,7 +759,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Incident Report" Bread crum (text)  in Reports > Incident Report Page.
+	 * Get the "Incident Report" Bread crum (text) in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -757,7 +773,7 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Reports" Bread crum (text)  in Reports > Incident Report Page.
+	 * Get the "Reports" Bread crum (text) in Reports > Incident Report Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -770,7 +786,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Injury Description" Attribute value in Reports > Incident Report Page.
+	 * Get the "Injury Description" Attribute value in Reports > Incident Report
+	 * Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -967,16 +984,16 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectIndividualDetails() {
 		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
-		String[] fullname = individualDetail.split(" ");
-
-		if (fullname.length > 2) {
-			individualDetail = fullname[0] + "  " + fullname[1];
-			for (int i = 2; i < fullname.length; i++) {
-				individualDetail = individualDetail + " " + fullname[i];
-			}
-		} else {
-			individualDetail = fullname[0] + "  " + fullname[1];
-		}
+//		String[] fullname = individualDetail.split(" ");
+//
+//		if (fullname.length > 2) {
+//			individualDetail = fullname[0] + "  " + fullname[1];
+//			for (int i = 2; i < fullname.length; i++) {
+//				individualDetail = individualDetail + " " + fullname[i];
+//			}
+//		} else {
+//			individualDetail = fullname[0] + "  " + fullname[1];
+//		}
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
 		select(driver, individualName);
@@ -990,6 +1007,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-12-2023.
 	 */
 	public void enterWhatCausedTheFallData() {
+		deleteExistFieldData(whatCausedTheFallDescriptionTxtBox);
 		String WhatCausedTheFall = readExcel("Test Datas", "Incident Reports", 1, 2).trim();
 		sendKeys(whatCausedTheFallDescriptionTxtBox, WhatCausedTheFall);
 		waitForPageLoad(driver);
@@ -1253,9 +1271,9 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. 
+	 * @author Nandhalala.
 	 * 
-	 * Get tooltip for BAck View Head.
+	 *         Get tooltip for BAck View Head.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -1265,9 +1283,9 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. 
+	 * @author Nandhalala.
 	 * 
-	 * Get tooltip for Back View Right Shoulder.
+	 *         Get tooltip for Back View Right Shoulder.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -1620,6 +1638,7 @@ public class IncidentReportPage extends BaseClass {
 	public void enterNotificationDate() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
+
 			case "YES","": {
 				String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
 				writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
@@ -1633,12 +1652,9 @@ public class IncidentReportPage extends BaseClass {
 				break;
 			}
 		}
-//		String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
-//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
-//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
-//		sendKeys(notificationDateCalenderTxtbox, notificationDate);
 	}
 
+	
 	/**
 	 * @author Nandhalala. Select the Notification Time.
 	 * 
@@ -1647,7 +1663,8 @@ public class IncidentReportPage extends BaseClass {
 	public void enterNotificationTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-				case "YES","": {
+
+		case "YES","": {
 					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
 					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 					sendKeys(timeTxtbox, notificationDate);
@@ -1659,9 +1676,6 @@ public class IncidentReportPage extends BaseClass {
 					break;
 				}
 			}
-//		writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
-//		String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-//		sendKeys(timeTxtbox, notificationDate);
 	}
 
 	/**
@@ -1862,7 +1876,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Click on the created IR view button with the help of Row Num to view the Incident Report.
+	 * Click on the created IR view button with the help of Row Num to view the
+	 * Incident Report.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -1871,11 +1886,11 @@ public class IncidentReportPage extends BaseClass {
 	public void viewButton(String rowNumber) {
 
 		waitForPageLoad(this.driver);
-
+		sleep(1000);
 		try {
-		String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
-		select(this.driver,excatColumn);
-		waitForPageLoad();
+			String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
+			select(this.driver, excatColumn);
+			waitForPageLoad();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1897,8 +1912,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Click on the Edit button in IR form page to edit the Incident Report.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void EditButton() {
 		click(IRFormEditButton);
@@ -1906,10 +1920,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Click on the "Add New Incident Report" button to create Manual Incident Report.
+	 * Click on the "Add New Incident Report" button to create Manual Incident
+	 * Report.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void addNewIncidentReportButton() {
 
@@ -1927,8 +1941,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Click on the "Next" button to complete the Incident Report.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void nextButton() {
 
@@ -1938,22 +1951,21 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Select the "Individual’s Details" dropdown.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void selectIndividualDetailsDropdown() {
 
 		click(individualDetailsDropDown);
 
-		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails", "Arlia  Thomas(SUITE B)");
+		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails",
+				readExcel("Test Datas", "Incident Reports", 1, 0));
 		select(selectIndDetails);
 	}
 
 	/**
 	 * Select the "Was Individual Injurerd?" Radio button
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void wasIndividualInjuredRadioButton() {
 
@@ -1962,12 +1974,11 @@ public class IncidentReportPage extends BaseClass {
 		select(wasPatientInjured);
 		waitForPageLoad();
 	}
-	
+
 	/**
 	 * Click on the "Save" button to save the Incident Report.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void saveButton() {
 
@@ -1978,8 +1989,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Click on the Toast Message "ok" button.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void savedSuccessfulToastMsgokButton() {
 
@@ -1989,8 +1999,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Click on the Toast Message "OK" button.
 	 * 
-	 * @author Alphi-MohamedRazul
-	 * . 
+	 * @author Alphi-MohamedRazul .
 	 */
 	public void ToastMsgOKButton() {
 
@@ -2000,8 +2009,8 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * Enter the 'Event Date & Time' field data from excel
 	 * 
-	 * If (YES): Get the Data from EXCEL.
-	 * If (NO): Get the Current Data Automatically. 
+	 * If (YES): Get the Data from EXCEL. If (NO): Get the Current Data
+	 * Automatically.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -2009,7 +2018,7 @@ public class IncidentReportPage extends BaseClass {
 	public void eventDateAndTime() {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
-		case "YES","": {
+		case "YES", "": {
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
@@ -2030,9 +2039,10 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void eventDateAndFutureTime() {
-
-		sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime("MM/dd/yyyyhh:mma"));
-	}
+		
+		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
+			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
+		}
 
 	/**
 	 * Get the Selected Individual Name
@@ -2049,7 +2059,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * @param fileName - Accept only file name (i.e:- PNG)
+	 * @param fileName   - Accept only file name (i.e:- PNG)
 	 * @param formatType - Accept only format type (i.e:- png)
 	 */
 	public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
@@ -2057,6 +2067,8 @@ public class IncidentReportPage extends BaseClass {
 		if (getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")
 				&& getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")) {
 
+			waitForFullPageElementLoad();
+			
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -2108,7 +2120,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * @param fileName - Accept only file name (i.e:- JFIF)
+	 * @param fileName   - Accept only file name (i.e:- JFIF)
 	 * @param formatType - Accept only format type (i.e:- jfif)
 	 */
 	public void jfifFileUpload(String fileName, String formatType) {
@@ -2117,7 +2129,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(3000);
+			sleep(5000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -2139,11 +2151,11 @@ public class IncidentReportPage extends BaseClass {
 				robot.keyRelease(KeyEvent.VK_ENTER);
 
 				try {
-					waitForVisiblityOfElement(imgSizeToastMsg, 5);
+					waitForVisiblityOfElement(JFIFFileFormatNotSupportedToastMsg, 5);
 					Assert.assertEquals("Unable to restrict the JFIF File format", "JFIF format is not supported",
 							getText(JFIFFileFormatNotSupportedToastMsg));
 
-					log(Status.PASS, "JFIF FIle Format is NOT supported");
+					log(Status.PASS, "Toast Message is displayed - " + getText(JFIFFileFormatNotSupportedToastMsg));
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
@@ -2169,7 +2181,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * @param fileName - Accept only supported file name (i.e:- PNG,jpeg)
+	 * @param fileName   - Accept only supported file name (i.e:- PNG,jpeg)
 	 * @param formatType - Accept only supported format type (i.e:- png,jpeg)
 	 */
 	public void Upload(String fileName, String formatType) {
@@ -2177,6 +2189,8 @@ public class IncidentReportPage extends BaseClass {
 		if (getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
+			waitForFullPageElementLoad();
+			
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -2232,7 +2246,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Abrasion) data from 'Injury Type' field and verify whether the option is selected or not
+	 * Select the (Abrasion) data from 'Injury Type' field and verify whether the
+	 * option is selected or not
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2250,7 +2265,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Bleeding) data from 'Injury Type' field and verify whether the option is selected or not
+	 * Select the (Bleeding) data from 'Injury Type' field and verify whether the
+	 * option is selected or not
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -2269,7 +2285,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Bruise) data from 'Injury Type' field and verify whether the option is selected or not
+	 * Select the (Bruise) data from 'Injury Type' field and verify whether the
+	 * option is selected or not
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -2286,7 +2303,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Scratch) data from 'Injury Type' field and verify whether the option is selected or not.
+	 * Select the (Scratch) data from 'Injury Type' field and verify whether the
+	 * option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -2304,7 +2322,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the (Abrasion) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * Un-Select the (Abrasion) data from 'Injury Type' field and verify whether the
+	 * option is Un-selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2322,7 +2341,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the (Bleeding) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * Un-Select the (Bleeding) data from 'Injury Type' field and verify whether the
+	 * option is Un-selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2341,7 +2361,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the (Bruise) data from 'Injury Type' field and verify whether the option is Un-selected or not.
+	 * Un-Select the (Bruise) data from 'Injury Type' field and verify whether the
+	 * option is Un-selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2360,7 +2381,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the (Scratch) data from 'Injury Type' field and verify  whether the option is Un-selected or not.
+	 * Un-Select the (Scratch) data from 'Injury Type' field and verify whether the
+	 * option is Un-selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2379,7 +2401,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Light) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * Select the (Light) data from 'How severe was the injury?' field and verify
+	 * whether the option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2397,7 +2420,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Medium) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * Select the (Medium) data from 'How severe was the injury?' field and verify
+	 * whether the option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2416,7 +2440,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (High) data from 'How severe was the injury?' field and verify whether the option is selected or not.
+	 * Select the (High) data from 'How severe was the injury?' field and verify
+	 * whether the option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2435,7 +2460,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Green color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * Select the (Green color) from 'Injury Color' field and verify whether the
+	 * option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2453,7 +2479,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Red color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * Select the (Red color) from 'Injury Color' field and verify whether the
+	 * option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2471,7 +2498,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Black color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * Select the (Black color) from 'Injury Color' field and verify whether the
+	 * option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2489,7 +2517,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the (Brown color) from 'Injury Color' field and verify whether the option is selected or not.
+	 * Select the (Brown color) from 'Injury Color' field and verify whether the
+	 * option is selected or not.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2545,7 +2574,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Verify the previous date is disabled based on event date & time in "Notification Date" field.
+	 * Verify the previous date is disabled based on event date & time in
+	 * "Notification Date" field.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
@@ -2569,7 +2599,7 @@ public class IncidentReportPage extends BaseClass {
 		String PrevDate = Integer.toString(PreviousDate);
 		System.out.println("Current Date - 1 - " + PrevDate);
 
-		int NextDt = intValue - 1;
+		int NextDt = intValue + 1;
 
 		String NextDate = Integer.toString(NextDt);
 		System.out.println("Current Date + 1 - " + NextDate);
@@ -2584,35 +2614,38 @@ public class IncidentReportPage extends BaseClass {
 		if (monthNumber < 1 || monthNumber > 12) {
 			throw new IllegalArgumentException("Invalid month number: " + eventMonth);
 		}
- 
-		if (eventMonth.equals("01") || eventMonth.equals("02") || eventMonth.equals("03") || eventMonth.equals("04")
+
+		if ((eventMonth.equals("01") || eventMonth.equals("02") || eventMonth.equals("03") || eventMonth.equals("04")
 				|| eventMonth.equals("05") || eventMonth.equals("06") || eventMonth.equals("07")
 				|| eventMonth.equals("08") || eventMonth.equals("09") || eventMonth.equals("10")
-				|| eventMonth.equals("11") || eventMonth.equals("12") && (convertEventDateToInt < 01)) {
+				|| eventMonth.equals("11") || eventMonth.equals("12")) && (convertEventDateToInt >= 2)) {
 
 			selectNextDate = selectNextDate.replaceAll("selectDate", PrevDate);
 			WebElement getPreviousDate = findElementByXpath(selectNextDate);
 
 			String previousDate = getAttribute(getPreviousDate, "aria-disabled");
-
+                  System.out.println("If block - "+previousDate);
+                  
 			if (previousDate.equals("true")) {
 				log(Status.PASS, "The Previous dates are disabled to the current date in Notification Date field");
 			}
-		} else if (eventDate.equals("01")) {
-
-			log(Status.INFO, "The Mentioned date in event is 01");
+			
+		} else if (convertEventDateToInt == 1) {
+			System.out.println("Else If block - "+convertEventDateToInt);
+			log(Status.INFO, "Cant check the previous date because the Mentioned date in event is 01");
 		}
 		return this;
 
 	}
 
 	/**
-	 * Verify future date is disabled based on event date & time in "Notification Date" field.
+	 * Verify future date is disabled based on event date & time in "Notification
+	 * Date" field.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 *
 	 */
-	public void verifyNextToTheCurrentDateIsDisabled() {
+	public void verifyFutureDateIsDisable() {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
 		System.out.println("value - " + attribute);
@@ -2623,10 +2656,16 @@ public class IncidentReportPage extends BaseClass {
 		String eventMonth = attribute.substring(5, 7);
 		System.out.println("Month alone - " + eventMonth);
 
+		String eventYear = attribute.substring(0, 4);
+		System.out.println("Year alone - " + eventYear);
+		
+		int eventYEAR = Integer.parseInt(eventYear);
+		
 		int intEventDt = Integer.parseInt(eventDate);
 
-		if (eventMonth.equals("01") || eventMonth.equals("03") || eventMonth.equals("05") || eventMonth.equals("07")
-				|| eventMonth.equals("08") || eventMonth.equals("10") || eventMonth.equals("12") && intEventDt < 31) {
+		
+		if ((eventMonth.equals("01") || eventMonth.equals("03") || eventMonth.equals("05") || eventMonth.equals("07")
+				|| eventMonth.equals("08") || eventMonth.equals("10") || eventMonth.equals("12")) && intEventDt <= 30) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2639,14 +2678,14 @@ public class IncidentReportPage extends BaseClass {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 
-		} else if (eventMonth.equals("01") || eventMonth.equals("03") || eventMonth.equals("05")
+		} else if ((eventMonth.equals("01") || eventMonth.equals("03") || eventMonth.equals("05")
 				|| eventMonth.equals("07") || eventMonth.equals("08") || eventMonth.equals("10")
-				|| eventMonth.equals("12") && eventDate.equals("31")) {
+				|| eventMonth.equals("12")) && eventDate.equals("31")) {
 
 			log(Status.INFO, "Reached Month end date");
 
-		} else if (eventMonth.equals("04") || eventMonth.equals("06") || eventMonth.equals("09")
-				|| eventMonth.equals("11") && intEventDt < 30) {
+		} else if ((eventMonth.equals("04") || eventMonth.equals("06") || eventMonth.equals("09")
+				|| eventMonth.equals("11")) && intEventDt <=29) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2659,12 +2698,12 @@ public class IncidentReportPage extends BaseClass {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 
-		} else if (eventMonth.equals("04") || eventMonth.equals("06") || eventMonth.equals("09")
-				|| eventMonth.equals("11") && eventDate.equals("30")) {
+		} else if ((eventMonth.equals("04") || eventMonth.equals("06") || eventMonth.equals("09")
+				|| eventMonth.equals("11")) && eventDate.equals("30")) {
 
 			log(Status.INFO, "Reached Month end date");
 
-		} else if (eventMonth.equals("02") && intEventDt < 29) {
+		} else if (eventMonth.equals("02") && intEventDt <=28 && (eventYEAR%4!=0)) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2677,10 +2716,23 @@ public class IncidentReportPage extends BaseClass {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 
-		} else if (eventMonth.equals("02") && eventDate.equals("29")) {
+		} else if (eventMonth.equals("02") && ((intEventDt > 28 && (eventYEAR%4==0)) || (intEventDt==28 &&(eventYEAR%4!=0)) )) {
 
 			log(Status.INFO, "Reached Month end date");
-		}
+			
+		} else if (eventMonth.equals("02") && intEventDt == 28 && (eventYEAR%4==0)) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+	}
 	}
 
 	/**
@@ -2769,9 +2821,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Head) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Head) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewForeHeadInjury() {
@@ -2789,9 +2842,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Face) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Face) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewFaceInjury() {
@@ -2809,9 +2863,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Right shoulder) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Right shoulder) in 'injured site' field and verify
+	 * whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewRightShoulderInjury() {
@@ -2829,9 +2884,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Left shoulder) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Left shoulder) in 'injured site' field and verify
+	 * whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewLeftShoulderInjury() {
@@ -2849,9 +2905,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Chest) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Chest) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewChestInjury() {
@@ -2869,9 +2926,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Abdomen) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Abdomen) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewAbdomenInjury() {
@@ -2889,9 +2947,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Right Arm) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Right Arm) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewRightArmInjury() {
@@ -2909,9 +2968,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Left Arm) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Left Arm) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewLefttArmInjury() {
@@ -2929,9 +2989,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Right Wrist) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Right Wrist) in 'injured site' field and verify
+	 * whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewRightWristInjury() {
@@ -2949,9 +3010,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Left Wrist) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Left Wrist) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewLefttWristInjury() {
@@ -2969,9 +3031,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Right Knee) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Right Knee) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewRightKneeInjury() {
@@ -2989,9 +3052,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Left Knee) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Left Knee) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewLeftKneeInjury() {
@@ -3009,9 +3073,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Left Foot) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Left Foot) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewLeftFootInjury() {
@@ -3029,9 +3094,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the front view (Right Foot) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the front view (Right Foot) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage frontViewRightFootInjury() {
@@ -3049,9 +3115,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Head) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Head) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewHeadInjury() {
@@ -3069,9 +3136,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Right shoulder) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Right shoulder) in 'injured site' field and verify
+	 * whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewRightShoulderInjury() {
@@ -3089,9 +3157,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Left shoulder) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Left shoulder) in 'injured site' field and verify
+	 * whether the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewLeftShoulderInjury() {
@@ -3109,9 +3178,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Back) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Back) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewBackInjury() {
@@ -3129,9 +3199,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Hip) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Hip) in 'injured site' field and verify whether the
+	 * option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewHipInjury() {
@@ -3149,9 +3220,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Right Arm) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Right Arm) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewRightArmInjury() {
@@ -3169,9 +3241,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Left Arm) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Left Arm) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewLefttArmInjury() {
@@ -3189,9 +3262,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Right Wrist) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Right Wrist) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewRightWristInjury() {
@@ -3209,9 +3283,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Left Wrist) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Left Wrist) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewLefttWristInjury() {
@@ -3229,9 +3304,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Right Knee) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Right Knee) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewRightKneeInjury() {
@@ -3249,9 +3325,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Left Knee) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Left Knee) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewLeftKneeInjury() {
@@ -3269,9 +3346,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Left Foot) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Left Foot) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewLeftFootInjury() {
@@ -3289,9 +3367,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Select the back view (Right Foot) in 'injured site' field and verify whether the option is selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Select the back view (Right Foot) in 'injured site' field and verify whether
+	 * the option is selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage backViewRightFootInjury() {
@@ -3309,9 +3388,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Head) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Head) in 'injured site' field and verify whether
+	 * the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewForeHeadInjury() {
@@ -3329,9 +3409,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Face) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Face) in 'injured site' field and verify whether
+	 * the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewFaceInjury() {
@@ -3349,9 +3430,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Right shoulder) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Right shoulder) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewRightShoulderInjury() {
@@ -3369,9 +3451,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Left shoulder) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Left shoulder) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewLeftShoulderInjury() {
@@ -3389,9 +3472,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Chest) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Chest) in 'injured site' field and verify whether
+	 * the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewChestInjury() {
@@ -3408,11 +3492,11 @@ public class IncidentReportPage extends BaseClass {
 		return this;
 	}
 
-	
 	/**
-	 * Un-Select the front view (Abdomen) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Abdomen) in 'injured site' field and verify whether
+	 * the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewAbdomenInjury() {
@@ -3430,9 +3514,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Right Arm) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Right Arm) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewRightArmInjury() {
@@ -3450,9 +3535,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Left Arm) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Left Arm) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewLefttArmInjury() {
@@ -3470,9 +3556,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Right Wrist) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Right Wrist) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewRightWristInjury() {
@@ -3490,9 +3577,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Left Wrist) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Left Wrist) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewLefttWristInjury() {
@@ -3510,9 +3598,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Right Knee) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Right Knee) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewRightKneeInjury() {
@@ -3530,9 +3619,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Left Knee) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Left Knee) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewLeftKneeInjury() {
@@ -3550,9 +3640,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Left foot) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Left foot) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewLeftFootInjury() {
@@ -3570,9 +3661,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the front view (Right foot) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the front view (Right foot) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectFrontViewRightFootInjury() {
@@ -3590,9 +3682,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Head) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Head) in 'injured site' field and verify whether the
+	 * option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewHeadInjury() {
@@ -3610,9 +3703,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Right shoulder) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Right shoulder) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewRightShoulderInjury() {
@@ -3630,9 +3724,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Left shoulder) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Left shoulder) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewLeftShoulderInjury() {
@@ -3650,9 +3745,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Back) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Back) in 'injured site' field and verify whether the
+	 * option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewBackInjury() {
@@ -3670,9 +3766,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Hip) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Hip) in 'injured site' field and verify whether the
+	 * option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewHipInjury() {
@@ -3690,9 +3787,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Right Arm) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Right Arm) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewRightArmInjury() {
@@ -3710,9 +3808,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Left Arm) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Left Arm) in 'injured site' field and verify whether
+	 * the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewLefttArmInjury() {
@@ -3730,9 +3829,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Right Wrist) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Right Wrist) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewRightWristInjury() {
@@ -3750,9 +3850,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Left Wrist) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Left Wrist) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewLefttWristInjury() {
@@ -3770,9 +3871,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Right Knee) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Right Knee) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewRightKneeInjury() {
@@ -3790,9 +3892,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Left Knee) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Left Knee) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewLeftKneeInjury() {
@@ -3810,9 +3913,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Left foot) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Left foot) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewLeftFootInjury() {
@@ -3830,9 +3934,10 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Un-Select the back view (Right foot) in 'injured site' field and verify whether the option is un-selected or not.
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * Un-Select the back view (Right foot) in 'injured site' field and verify
+	 * whether the option is un-selected or not.
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public IncidentReportPage unselectBackViewRightFootInjury() {
@@ -3851,8 +3956,8 @@ public class IncidentReportPage extends BaseClass {
 
 	/**
 	 * Enter past time in "Time" field
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public void pastTimeInNotificationTime() {
@@ -3863,8 +3968,8 @@ public class IncidentReportPage extends BaseClass {
 
 	/**
 	 * Enter future time in "Time" field
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public void futureTimeInNotificationTime() {
@@ -3875,8 +3980,8 @@ public class IncidentReportPage extends BaseClass {
 
 	/**
 	 * Click the Breadcrum text "Report"
-	 *  
-	 * @author Alphi-MohamedRazul 
+	 * 
+	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public void breadCrumREPORTTxtLink() {
@@ -4061,7 +4166,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Get the "Incident Report" Bread crum (text)  in Reports > Individual Name > Incident Report view Page.
+	 * Get the "Incident Report" Bread crum (text) in Reports > Individual Name >
+	 * Incident Report view Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -4071,10 +4177,11 @@ public class IncidentReportPage extends BaseClass {
 		return getText(breadCrumTxtLinkIncidentReportInViewPage);
 	}
 
-	
 	String createdIndNameFromExcel;
+
 	/**
-	 * Get the 'Individual Name' Bread crum (text)  in Reports > Individual Name > Incident Report view Page.
+	 * Get the 'Individual Name' Bread crum (text) in Reports > Individual Name >
+	 * Incident Report view Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -4090,29 +4197,30 @@ public class IncidentReportPage extends BaseClass {
 		String textString = getTextString(BC);
 		return textString;
 	}
-	
+
 	/**
 	 * @author Nandhalala.
 	 * 
-	 * Get text from what caused the fall field.
+	 *         Get text from what caused the fall field.
 	 *
-	 * return The text data from what caused the fall field.
+	 *         return The text data from what caused the fall field.
 	 * @created on 24-01-2024.
 	 */
 	public String getWhatCausedTheFall() {
 		return getAttribute(whatCausedTheFallDescriptionTxtBox, "value");
-		
+
 	}
-	
+
 	/**
 	 * @author Nandhalala.
 	 * 
-	 * Send Chat message.
+	 *         Send Chat message.
 	 *
 	 * 
 	 * @created on 25-01-2024.
 	 */
 	public void sendChatMessage(String userType) {
+
 		String chatMessage  = switch (userType.toUpperCase()) {
 		case "STAFF" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 30);
@@ -4128,34 +4236,34 @@ public class IncidentReportPage extends BaseClass {
 		};
 		sendKeys(chatMessageArea, chatMessage);
 		click(chatSendButton);
-		
+
 	}
-	
+
 	/**
 	 * @author Nandhalala.
 	 * 
-	 * Get Chat message.
+	 *         Get Chat message.
 	 *
 	 * 
 	 * @created on 25-01-2024.
 	 */
 	public Map<String, String> getChatMessagesFromUser(String userName) {
-		
+
 		String chatmessagetextxpath = chatMessageTextXpath.replaceAll("XX", userName);
-		List<WebElement> chatElements =  driver.findElements(By.xpath(chatmessagetextxpath));
-		Map<String,String> chatMessages = new HashMap<String, String>();
+		List<WebElement> chatElements = driver.findElements(By.xpath(chatmessagetextxpath));
+		Map<String, String> chatMessages = new HashMap<String, String>();
 		int n = 1;
-		for(WebElement chat : chatElements) {
-			chatMessages.put(n+" - message", chat.getText());
+		for (WebElement chat : chatElements) {
+			chatMessages.put(n + " - message", chat.getText());
 			++n;
 		}
 		return chatMessages;
 	}
-	
+
 	/**
 	 * @author Nandhalala.
 	 * 
-	 * Get username of current Login.
+	 *         Get username of current Login.
 	 *
 	 * 
 	 * @created on 25-01-2024.
@@ -4164,9 +4272,10 @@ public class IncidentReportPage extends BaseClass {
 		waitForPageLoad(this.driver);
 		return userName.getText().trim();
 	}
-	
+
 	/**
-	 * Check whether the 'Individual Name' Bread crum (text)  in equal to the actual Individual name in Reports > Individual Name > Incident Report view Page.
+	 * Check whether the 'Individual Name' Bread crum (text) in equal to the actual
+	 * Individual name in Reports > Individual Name > Incident Report view Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -4181,7 +4290,8 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * Check whether the 'Incident Report' Bread crum (text) in equal to the actual text in Reports > Individual Name > Incident Report view Page.
+	 * Check whether the 'Incident Report' Bread crum (text) in equal to the actual
+	 * text in Reports > Individual Name > Incident Report view Page.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -4194,6 +4304,5 @@ public class IncidentReportPage extends BaseClass {
 		}
 		return false;
 	}
-
 
 }

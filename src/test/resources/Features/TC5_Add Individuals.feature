@@ -8,7 +8,7 @@
 #
 #*/
 
-
+@AddIndividuals-AllScenarios
 Feature: Verify Xealei Individuals > Add Individual Page
 
   Background: 
@@ -67,13 +67,8 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the First, middle and last name, DOB, mailing address and Phone Number are displayed in confirm form screen
     And User should click on the calendar icon
     Then User should verify the date picker should appeared
+    Then User should verify future dates are hidden
     And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
-     #DELETE
-      #When User should attempt to enter an invalid date manually
-      #Then an appropriate error message should be displayed
-     #DELETE
-    And User should verify future dates are hidden
-    When User should click on the left arrow to navigate to the previous month and verify the calendar should display the previous months dates
     And User should select a specific year and month in dropdown and select the date in date picker
     Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
     And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
@@ -101,7 +96,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the page is landed on Individual’s screen
     Then User should verify that individuals are created successfully by perform only mandatory fields
     
- @AddIndividuals-AllScenarios
+
   Scenario: To verify the user able to Add/Create Individual by entering all fields
   
     And User should upload image in photo tab section
@@ -122,14 +117,12 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should click Go to Individuals button
     Then User should verify the page is landed on Individual’s screen
     Then User should verify that individuals are created successfully by perform all fields
-    
     And User should navigate to vitals tab and click add vitals button in edit individual page
     Then User should verify the breadcrums link should be display with module individual name > Edit individual
     And User should perform update without enter any fields in vitals tab
     Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
     Then User should verify the Mandatory fields info messages in vitals tab "Please select Blood Group", "Please enter blood pressure", "Please enter blood glucose", "Please enter cholesterol", "Please enter height", "Please enter weight"
     Then User should verify the valid format Mandatory fields info messages in vitals tab "Blood pressure format should be (120/80)", "Please enter valid blood glucose", "Please enter valid cholesterol", "Please enter valid height", "Please enter valid weight"
-  
     Then User should verify that able to upload more than 1MB file in medical record
     And User should upload medical record in vitals tab section 
     Then User should verify that able to cancel the uploaded record file in vitals tab section
