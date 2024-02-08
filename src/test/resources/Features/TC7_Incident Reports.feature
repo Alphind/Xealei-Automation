@@ -7,6 +7,9 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
+
+
+
 @IR-AllScenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
@@ -410,4 +413,18 @@ Scenario Outline: To verify chat option in IR.
 		Then Verify Residential manager message received by staff.
 		Then Verify Residential manager message received by cheif nurse.
 		Then Close all the browsers.
+
+
+@NotificationAlertNoFall
+Scenario: Verify user is able to select nofall from notification
+	Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		When Notification is Triggered from a sensor.
+		Then Open notification received by staff from sensor.
+		Then Select nofall radio button.
+		And Select nofall reason and enter no fall description.
+		Then Click confirm button.
+		Then Verify Nofall text in grid.
+
 

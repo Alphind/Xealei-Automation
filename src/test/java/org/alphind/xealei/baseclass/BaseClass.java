@@ -719,6 +719,7 @@ public class BaseClass {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
+
 	}
 	
 	public void waitForAjexPageLoad() {

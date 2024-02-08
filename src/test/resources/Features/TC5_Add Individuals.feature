@@ -76,8 +76,9 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should perform Add Individual with different phone number
     Then User should verify the First, middle and last name, DOB, mailing address and Phone Number are displayed in confirm form screen
     And User should close the New Individual Registration popup
-    
 
+
+ @AddIndividuals-AllScenarios
   Scenario: To verify the user able to Add/Create Individual by entering only mandatory fields
     And User should upload image in photo tab section
     And User should perform only mandatory fields in Identification tab section
