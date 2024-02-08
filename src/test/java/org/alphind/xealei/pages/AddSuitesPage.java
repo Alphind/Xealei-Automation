@@ -26,7 +26,6 @@ public class AddSuitesPage extends BaseClass {
 	 * Description - All the Suites Module/Page locators are stored here.
 	 * 
 	 */
-
 	private WebDriver driver;
 	
 	public AddSuitesPage(WebDriver driver) {
@@ -265,21 +264,21 @@ public class AddSuitesPage extends BaseClass {
 		return this;
 	}
 	
-	public AddSuitesPage enterSuiteName(int rowNum) {
+	public AddSuitesPage enterSuiteName(int rowNum) throws Exception{
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
-		//log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
+		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
 		sendKeys(suiteName, suiteNameFromExcel);
 		return this;
 	}
 
-	public AddSuitesPage suiteName(int rowNum) {
+	public AddSuitesPage suiteName(int rowNum) throws Exception {
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
-		//log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
+		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
 		sendKeys(suiteName, suiteNameFromExcel);
 		String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, suiteNameFromExcel);
-		//log(Status.INFO, "Write the created suite in excel -" + writeExcel);
+		log(Status.INFO, "Write the created suite in excel -" + writeExcel);
 		return this;
 	}
 
@@ -287,7 +286,7 @@ public class AddSuitesPage extends BaseClass {
 
 		String duplicateSuiteName = readExcel("Test Datas", "AddSuites", rowNum, 6);
 		sendKeys(suiteName, duplicateSuiteName);
-		//log(Status.INFO, "Getting suite name data from excel -" + duplicateSuiteName);
+		log(Status.INFO, "Getting suite name data from excel -" + duplicateSuiteName);
 		return this;
 	}
 
@@ -298,24 +297,24 @@ public class AddSuitesPage extends BaseClass {
 		String widthData = (readExcel("Test Datas", "AddSuites", rownum, 3));
 		String heightData = (readExcel("Test Datas", "AddSuites", rownum, 4));
 
-		//log(Status.INFO, "Getting Length data from excel -" + lengthData);
-		//log(Status.INFO, "Getting Width data from excel -" + widthData);
-		//log(Status.INFO, "Getting Height data from excel -" + heightData);
+		log(Status.INFO, "Getting Length data from excel -" + lengthData);
+		log(Status.INFO, "Getting Width data from excel -" + widthData);
+		log(Status.INFO, "Getting Height data from excel -" + heightData);
 
 		if (Objects.nonNull(lengthData) && !lengthData.equals("")) {
 			sendKeys(length, lengthData);
 		} else {
-			//log(Status.INFO, "Length data is empty.");
+			log(Status.INFO, "Length data is empty.");
 		}
 		if (Objects.nonNull(widthData) && !widthData.equals("")) {
 			sendKeys(width, widthData);
 		} else {
-			//log(Status.INFO, "Width data is empty.");
+			log(Status.INFO, "Width data is empty.");
 		}
 		if (Objects.nonNull(heightData) && !heightData.equals("")) {
 			sendKeys(height, heightData);
 		} else {
-			//log(Status.INFO, "Height data is empty.");
+			log(Status.INFO, "Height data is empty.");
 		}
 		return this;
 	}
@@ -359,17 +358,15 @@ public class AddSuitesPage extends BaseClass {
 		}
 		
 		backSpace(suitesSearchBox);
-		waitForPageLoad();
 		int length = createdSuite.length();
         char lastLetter = createdSuite.charAt(length-1);
         String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
-		
-		waitForPageLoad();
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {
 			click(searchCreatedSN);
+			waitForPageLoad();
 			log(Status.PASS, "Searched suite is displayed successfully by clicking suite label name");
 		} else {
 			log(Status.FAIL, "Searched suite is not displayed as expected");

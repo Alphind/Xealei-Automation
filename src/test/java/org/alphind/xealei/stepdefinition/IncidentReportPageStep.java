@@ -78,12 +78,19 @@ public class IncidentReportPageStep extends BaseClass {
 
 	}
 
+	@Then("User verify the Navigation of REPORTS module")
+	public void user_verify_the_navigation_of_reports_module() {
+	    
+		logStep(methodName());
+		
+		staffpom.getHomePage().navToReportsModule();
+	}
+	
 	@Then("User should verify the Incident report module is working")
 	public void user_should_verify_the_incident_report_module_is_working() {
 
 		logStep(methodName());
 		
-		staffpom.getHomePage().navToReportsModule();
 		staffpom.getHomePage().navToIncidentReportModule();
 
 		try {
@@ -136,7 +143,7 @@ public class IncidentReportPageStep extends BaseClass {
 			String expInjuryDescriptionInfoMsgText, String expInjurySiteInfoMsgText, String expTreatmentReceivedInfoMsgText,
 			String expFutureTreatmentInfoMsgText, String expInjuryTypeInfoMsgText, String expInjuryColorInfoMsgText,
 			String expInjurySevereInfoMsgText, String expPersonNotifiedInfoMsgText, String expRelationshipInfoMsgText,
-			String expNotificationDateInfoMsgText, String expNotificationTimeInfoMsgText, String expNotifiedByInfoMsgText) {
+			String expNotificationDateInfoMsgText, String expNotificationTimeInfoMsgText, String expNotifiedByInfoMsgText) throws Exception {
 
 		logStep(methodName());
 		
@@ -310,7 +317,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields")
-	public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() {
+	public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() throws Exception {
 
 		logStep(methodName());
 		
@@ -439,7 +446,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should enter the Event Date & Time greater than current time")
-	public void user_should_enter_the_event_date_time_greater_than_current_time() {
+	public void user_should_enter_the_event_date_time_greater_than_current_time() throws Exception {
 
 		logStep(methodName());
 		
@@ -518,16 +525,16 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should verify that able to upload upload JFIF Format")
-	public void user_should_verify_that_able_to_upload_upload_jfif_format() {
+	@Then("User should verify that able to upload upload JFIF Format in Injury photos")
+	public void user_should_verify_that_able_to_upload_upload_jfif_format_in_injury_photos() {
 
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().jfifFileUpload("JFIF Format", "jfif");
 	}
 
-	@Then("User should verify that able to upload more than 1MB File format")
-	public void user_should_verify_that_able_to_upload_more_than_1mb_file_format() {
+	@Then("User should verify that able to upload more than 1MB File format in Injury photos")
+	public void user_should_verify_that_able_to_upload_more_than_1mb_file_format_in_injury_photos() {
 
 		logStep(methodName());
 		
@@ -535,8 +542,8 @@ public class IncidentReportPageStep extends BaseClass {
 
 	}
 
-	@Then("User should verify that able to upload files or images")
-	public void user_should_verify_that_able_to_upload_files_or_images() {
+	@Then("User should verify that able to upload files or images in Injury photos")
+	public void user_should_verify_that_able_to_upload_files_or_images_in_injury_photos() {
 
 		logStep(methodName());
 		
@@ -558,16 +565,16 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should verify that whether able to selecting multiple option values under Injury Type field")
-	public void user_should_verify_that_whether_able_to_selecting_multiple_option_values_under_injury_type_field() {
+	@Then("User should verify whether able to select multiple option values under Injury Type field")
+	public void user_should_verify_whether_able_to_select_multiple_option_values_under_injury_type_field() {
 
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().abrasion().bleeding().bruise().scratch();
 	}
 
-	@Then("User should verify that whether able to unselect the selected option values under Injury Type field")
-	public void user_should_verify_that_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
+	@Then("User should verify whether able to unselect the selected option values under Injury Type field")
+	public void user_should_verify_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
 
 		logStep(methodName());
 		
@@ -608,7 +615,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should verify that able to enter current date and time in Event Date & Time field")
-	public void user_should_verify_that_able_to_enter_current_date_and_time_in_event_date_time_field() {
+	public void user_should_verify_that_able_to_enter_current_date_and_time_in_event_date_time_field() throws Exception {
 
 		logStep(methodName());
 		
@@ -626,7 +633,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date")
-	public void user_should_verify_that_the_notification_date_calendar_field_only_allows_selecting_dates_from_the_event_date_and_time_to_the_current_date() {
+	public void user_should_verify_that_the_notification_date_calendar_field_only_allows_selecting_dates_from_the_event_date_and_time_to_the_current_date() throws Exception {
 
 		logStep(methodName());
 		
@@ -634,7 +641,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly")
-	public void user_should_select_a_notified_date_using_dropdown_in_date_picker_and_verify_the_selected_notified_date_are_updated_accordingly() {
+	public void user_should_select_a_notified_date_using_dropdown_in_date_picker_and_verify_the_selected_notified_date_are_updated_accordingly() throws Exception {
 
 		logStep(methodName());
 		
@@ -643,7 +650,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 	@Then("User should verify the validation info message is thrown after selecting Notification Time field value is lesser than Event Date & Time field value {string}")
 	public void user_should_verify_the_validation_info_message_is_thrown_after_selecting_notification_time_field_value_is_lesser_than_event_date_time_field_value(
-			String expLesserThanNoticationTimeToastMsg) {
+			String expLesserThanNoticationTimeToastMsg) throws Exception {
 		
 		logStep(methodName());
 		
@@ -666,7 +673,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 	@Then("User should verify the validation info message is thrown after selecting greater than current time in Notification Time field {string}")
 	public void user_should_verify_the_validation_info_message_is_thrown_after_selecting_greater_than_current_time_in_notification_time_field(
-			String expGreaterThanNoticationTimeToastMsg) {
+			String expGreaterThanNoticationTimeToastMsg) throws Exception {
 
 		logStep(methodName());
 		
@@ -688,15 +695,15 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should verify that able to enter time in Notification Time field")
-	public void user_should_verify_that_able_to_enter_time_in_notification_time_field() {
+	public void user_should_verify_that_able_to_enter_time_in_notification_time_field() throws Exception {
 
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().enterNotificationTime();
 	}
 
-	@Then("User should verify that after click the breadcrum text Report the page is navigated to the list of incident Reports page")
-	public void user_should_verify_that_after_click_the_breadcrum_text_report_the_page_is_navigated_to_the_list_of_incident_reports_page() {
+	@Then("User should verify on click the breadcrum text Report the page is navigated to the list of incident Reports page")
+	public void user_should_verify_on_click_the_breadcrum_text_report_the_page_is_navigated_to_the_list_of_incident_reports_page() {
 
 		logStep(methodName());
 		
@@ -758,7 +765,7 @@ public class IncidentReportPageStep extends BaseClass {
 	}
 
 	@Then("User should perform all the fields")
-	public void user_should_perform_all_the_fields() {
+	public void user_should_perform_all_the_fields() throws Exception {
 
 		logStep(methodName());
 		
@@ -1593,9 +1600,10 @@ public class IncidentReportPageStep extends BaseClass {
 
 	/**
 	 * Created by Nandhalala.
+	 * @throws Exception 
 	 */
 	@Then("Enter all the details of the Incident.")
-	public void enter_all_the_details_of_the_incident() {
+	public void enter_all_the_details_of_the_incident() throws Exception {
 		
 		logStep(methodName());
 		
@@ -1832,9 +1840,10 @@ public class IncidentReportPageStep extends BaseClass {
 	private String alertTime;
 	/**
 	 * Created by Nandhalala.
+	 * @throws Exception 
 	 */
 		@When("Notification is Triggered from a sensor.")
-	public void Notification_is_Triggered_from_a_sensor() {
+	public void Notification_is_Triggered_from_a_sensor() throws Exception {
 		
 		logStep(methodName());
 		
@@ -1865,9 +1874,10 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	/**
 	 * Created by Nandhalala.
+	 * @throws Exception 
 	 */
 	@When("Notification Triggered from a sensor.")
-	public void Notification_Triggered_from_a_sensor() {
+	public void Notification_Triggered_from_a_sensor() throws Exception {
 		
 		logStep(methodName());
 		

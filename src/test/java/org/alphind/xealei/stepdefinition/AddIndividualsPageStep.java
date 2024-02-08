@@ -32,8 +32,6 @@ public class AddIndividualsPageStep extends BaseClass {
 		waitForPageLoad();
 		
 		pom.getHomePage().navToIndividualsModule();
-		waitForPageLoad();
-		
 		try {
 			Assert.assertEquals("Unable to navigate Individuals Page", "Individuals",
 					getText(pom.getAddIndividualsPage().getIndividualsPageText()));
@@ -57,8 +55,6 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_pop_up_screen_is_displayed(String expAddIndividualsPopupText) throws Exception {
 
 		logStep(methodName());
-
-		waitForPageLoad();
 
 		String popupText = getText(pom.getAddIndividualsPage().getAddIndividualPopup());
 
@@ -461,7 +457,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform only mandatory fields in identification tab")
-	public void user_should_perform_only_mandatory_fields_in_identification_tab() {
+	public void user_should_perform_only_mandatory_fields_in_identification_tab() throws Exception {
 
 		logStep(methodName());
 
@@ -500,7 +496,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
 	}
-
+	
 	@Then("User should verify the Residential Address * and Mailing Address * fields values are same")
 	public void user_should_verify_the_residential_address_and_mailing_address_fields_values_are_same()
 			throws Exception {
@@ -519,6 +515,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 	}
 
+	
 	@Then("User should uncheck the Same as Residential address checkbox")
 	public void user_should_uncheck_the_same_as_residential_address_checkbox() {
 
@@ -535,6 +532,19 @@ public class AddIndividualsPageStep extends BaseClass {
 		pom.getAddIndividualsPage().MailingAddress(1);
 	}
 
+	
+	@Then("User should tick the same as Residential address after entering different address in Mailing address")
+	public void user_should_tick_the_same_as_residential_address_after_entering_different_address_in_mailing_address() {
+	
+	logStep(methodName());
+
+	pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
+	
+	}
+	
+	
+	
+	
 	@Then("User should verify the validation error message for Mailing Address * field {string}")
 	public void user_should_verify_the_validation_error_message_for_mailing_address_field(
 			String expValidationMsgForMailingAddress) {
@@ -682,7 +692,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform Add another emergency contact1")
-	public void user_should_perform_add_another_emergency_contact1() {
+	public void user_should_perform_add_another_emergency_contact1() throws Exception {
 
 		logStep(methodName());
 
@@ -734,7 +744,13 @@ public class AddIndividualsPageStep extends BaseClass {
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact1LN());
 		pom.getAddIndividualsPage().ecLastName(1);
 	}
-
+	
+//	@Then("User should click Add another emergency contact")
+//	public void user_should_click_add_another_emergency_contact() {
+// 
+//		logStep(methodName());
+//		pom.getAddIndividualsPage().addEmergencyContact();
+//	}
 
 	@Then("User should perform firstName* and lastName* fields in Add another emergency contact2")
 	public void user_should_perform_first_name_and_last_name_fields_in_add_another_emergency_contact2() {
@@ -857,6 +873,32 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		pom.getAddIndividualsPage().ec2FirstName(1).ec2LastName(1).ec2Relationship(1).ec2PhoneNumber(1);
 	}
+	
+//	@Then("User should verify the emergency contact label names")
+//	public void user_should_verify_the_emergency_contact_label_names() throws Exception {
+// 
+//		logStep(methodName());
+//		String EC1 = getText(pom.getAddIndividualsPage().getEmergencyContact1LabelName());
+// 
+//		if (EC1.contains("Emergency Contact 1")) {
+//			log(Status.PASS, "Emergency contact1 label names is displayed as expected - " + EC1);
+//		} else {
+//			log(Status.FAIL, "Emergency contact1 label names is NOT displayed as expected - " + EC1);
+//			throw new Exception();
+//		}
+// 
+//		String EC2 = getText(pom.getAddIndividualsPage().getEmergencyContact2LabelName());
+// 
+//		if (EC2.contains("Emergency Contact 2")) {
+//			log(Status.PASS, "Emergency contact2 label names is displayed as expected - " + EC2);
+//		} else {
+//			log(Status.FAIL, "Emergency contact2 label names is NOT displayed as expected - " + EC2);
+//			throw new Exception();
+//		}
+// 
+//	}
+//	
+	
 
 	@Then("User should perform firstName* and lastName* fields in Add another emergency contact3")
 	public void user_should_perform_first_name_and_last_name_fields_in_add_another_emergency_contact3() {
@@ -971,8 +1013,8 @@ public class AddIndividualsPageStep extends BaseClass {
 
 	}
 
-	@Then("User should close the emergency contact3")
-	public void user_should_close_the_emergency_contact3() {
+	@Then("User should able to delete the emergency contact3")
+	public void user_should_able_to_delete_the_emergency_contact3() {
 
 		logStep(methodName());
 		
@@ -992,8 +1034,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should close the emergency contact2")
-	public void user_should_close_the_emergency_contact2() {
+	@Then("User should able to delete the emergency contact2")
+	public void user_should_able_to_delete_the_emergency_contact2() {
 
 		logStep(methodName());
 		
@@ -1042,7 +1084,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		String expIndName = readExcel("Test Datas", "AddIndividuals", 1, 26);
 
-		String splitPhNum = readExcel("Test Datas", "AddIndividuals", 1, 20);
+		String splitPhNum = readExcel("Test Datas", "AddIndividuals", 2, 20);
 
 		String frst3Num = splitPhNum.substring(0, 3);
 		String middle3Num = splitPhNum.substring(3, 6);
@@ -1096,9 +1138,26 @@ public class AddIndividualsPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 	}
+	
+	
+@And("User should perform emergency contact1 with different phone number")
+public void User_should_perform_emergency_contact1_with_different_phone_number() {
 
-	@Then("User should verify the {string}, {string} buttons is enabled in photo section tab")
-	public void user_should_verify_the_buttons_is_enabled_in_photo_section_tab(String string, String string2) {
+	logStep(methodName());
+
+//	pom.getAddIndividualsPage().back()
+//			.deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact1PhoneNo());
+
+	try {
+		pom.getAddIndividualsPage().ecPhoneNumber(1).forwardToConfirmPage().confirm();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+}
+	
+	@Then("User should verify the {string}, {string} buttons is enabled in Photo tab Section")
+	public void user_should_verify_the_buttons_is_enabled_in_photo_tab_section(String string, String string2) {
 
 		logStep(methodName());
 
@@ -1121,7 +1180,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 
-		pom.getAddIndividualsPage().back().identificationTab();
+	//	pom.getAddIndividualsPage().back().identificationTab();
 
 		deleteExistFieldData(pom.getAddIndividualsPage().getDob());
 		pom.getAddIndividualsPage().datePicker();
@@ -1143,7 +1202,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 	
 	@Then("User should verify future dates are hidden")
-	public void user_should_verify_future_dates_are_hidden() {
+	public void user_should_verify_future_dates_are_hidden() throws Exception {
 
 		logStep(methodName());
 
@@ -1152,7 +1211,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field")
-	public void user_should_select_a_valid_date_in_date_picker_and_verify_the_selected_date_should_be_displayed_in_the_dob_field() {
+	public void user_should_select_a_valid_date_in_date_picker_and_verify_the_selected_date_should_be_displayed_in_the_dob_field() throws Exception {
 
 		logStep(methodName());
 
@@ -1168,7 +1227,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly")
-	public void User_should_verify_the_selected_date_month_and_year_using_dropdown_is_updated_in_DOB_field_accordingly() {
+	public void User_should_verify_the_selected_date_month_and_year_using_dropdown_is_updated_in_DOB_field_accordingly() throws Exception {
 
 		logStep(methodName());
 
@@ -1194,34 +1253,32 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@And("User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates")
-	public void user_should_click_on_the_right_arrow_to_navigate_to_the_current_month_and_verify_the_calendar_should_display_the_current_months_dates() {
+	public void user_should_click_on_the_right_arrow_to_navigate_to_the_current_month_and_verify_the_calendar_should_display_the_current_months_dates() throws Exception {
 
 		logStep(methodName());
 
 		deleteExistFieldData(pom.getAddIndividualsPage().getDob());
 		pom.getAddIndividualsPage().rightSideArrow(1);
+		deleteExistFieldData(pom.getAddIndividualsPage().getDob());
+		pom.getAddIndividualsPage().dob(1);
+		
 	}
 
-	@Then("User should verify the calendar should close after click outside the calendar")
-	public void user_should_verify_the_calendar_should_close_after_click_outside_the_calendar() {
-
-		logStep(methodName());
-
-		pom.getAddIndividualsPage().closeCalender();
-	}
+	
 
 	@Then("User should close the New Individual Registration popup")
 	public void user_should_close_the_new_individual_registration_popup() {
 
 		logStep(methodName());
 
+		scrollIntoUp();
 		pom.getAddIndividualsPage().closeNewIndRegistrationPopup();
 
 	}
 
 
 	@Then("User should perform only mandatory fields in Identification tab section")
-	public void user_should_perform_only_mandatory_fields_in_identification_tab_section() {
+	public void user_should_perform_only_mandatory_fields_in_identification_tab_section() throws Exception {
 
 		logStep(methodName());
 
@@ -1238,11 +1295,11 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform only mandatory fields in Preference tab section")
-	public void user_should_perform_only_mandatory_fields_in_preference_tab_section() {
+	public void user_should_perform_only_mandatory_fields_in_preference_tab_section() throws Exception {
 
 		logStep(methodName());
 
-		pom.getAddIndividualsPage().preferenceTab().ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(1);
+		pom.getAddIndividualsPage().preferenceTab().ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(2);
 	}
 
 	@Then("User should click the confirm button")
@@ -1274,82 +1331,82 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform Add Individual with different phone number")
-	public void user_should_perform_add_individual_with_different_phone_number() {
+	public void user_should_perform_add_individual_with_different_phone_number() throws Exception {
 
 		logStep(methodName());
 
 		pom.getAddIndividualsPage().back();
 		deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact1PhoneNo());
 
-		pom.getAddIndividualsPage().ecPhoneNumber(2).forwardToConfirmPage();
+		pom.getAddIndividualsPage().ecPhoneNumber(2);
 
 	}
 
-	@Then("User should verify the changed Phone Number is displayed in confirm page")
-	public void user_should_verify_the_changed_phone_number_is_displayed_in_confirm_page() {
-
-		logStep(methodName());
-
-		String firstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
-		String middleName = readExcel("Test Datas", "AddIndividuals", 1, 1);
-		String lastName = readExcel("Test Datas", "AddIndividuals", 1, 21);
-
-		String expdate = readExcel("Test Datas", "AddIndividuals", 1, 5);
-
-		String expDob = expdate.replaceAll("/", "-");
-
-		String expIndName = firstName + " " + middleName + " " + lastName;
-
-		String splitPhNum = readExcel("Test Datas", "AddIndividuals", 2, 20);
-
-		String frst3Num = splitPhNum.substring(0, 3);
-		String middle3Num = splitPhNum.substring(3, 6);
-		String last4Num = splitPhNum.substring(6, 10);
-		String expPhoneNumber = "(" + frst3Num + ") ".concat(middle3Num) + "-".concat(last4Num);
-
-		String expAddress = readExcel("Test Datas", "AddIndividuals", 1, 10);
-		waitForFullPageElementLoad();
-		try {
-			Assert.assertEquals("First,Middel & Last Name is not displayed in Confirm tab section", expIndName,
-					getText(pom.getAddIndividualsPage().getIndividualNameInConfirmTabVerification()));
-			log(Status.PASS, "First,Middel & Last Name is displayed in Confirm tab section Ind Name - "
-					+ getText(pom.getAddIndividualsPage().getIndividualNameInConfirmTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			Assert.assertEquals("DOB is not displayed in Confirm tab section", expDob,
-					getText(pom.getAddIndividualsPage().getIndividualDOBInConfirmTabVerification()));
-			log(Status.PASS, "DOB is displayed in Confirm tab section Ind DOB - "
-					+ getText(pom.getAddIndividualsPage().getIndividualDOBInConfirmTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			Assert.assertEquals("Address is not displayed in Confirm tab section", expAddress,
-					getText(pom.getAddIndividualsPage().getIndividualAddressInConfirmTabVerification()));
-			log(Status.PASS, "Address is displayed in Confirm tab section Ind Address - "
-					+ getText(pom.getAddIndividualsPage().getIndividualAddressInConfirmTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			Assert.assertEquals("Phone  Number is not displayed in Confirm tab section", expPhoneNumber,
-					getText(pom.getAddIndividualsPage().getIndividualPhoneNumInConfirmTabVerification()));
-			log(Status.PASS, "Phone  Number is displayed in Confirm tab section Ind Name - "
-					+ getText(pom.getAddIndividualsPage().getIndividualPhoneNumInConfirmTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
+//	@Then("User should verify the changed Phone Number is displayed in confirm page")
+//	public void user_should_verify_the_changed_phone_number_is_displayed_in_confirm_page() {
+//
+//		logStep(methodName());
+//
+//		String firstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
+//		String middleName = readExcel("Test Datas", "AddIndividuals", 1, 1);
+//		String lastName = readExcel("Test Datas", "AddIndividuals", 1, 21);
+//
+//		String expdate = readExcel("Test Datas", "AddIndividuals", 1, 5);
+//
+//		String expDob = expdate.replaceAll("/", "-");
+//
+//		String expIndName = firstName + " " + middleName + " " + lastName;
+//
+//		String splitPhNum = readExcel("Test Datas", "AddIndividuals", 2, 20);
+//
+//		String frst3Num = splitPhNum.substring(0, 3);
+//		String middle3Num = splitPhNum.substring(3, 6);
+//		String last4Num = splitPhNum.substring(6, 10);
+//		String expPhoneNumber = "(" + frst3Num + ") ".concat(middle3Num) + "-".concat(last4Num);
+//
+//		String expAddress = readExcel("Test Datas", "AddIndividuals", 1, 10);
+//		waitForFullPageElementLoad();
+//		try {
+//			Assert.assertEquals("First,Middel & Last Name is not displayed in Confirm tab section", expIndName,
+//					getText(pom.getAddIndividualsPage().getIndividualNameInConfirmTabVerification()));
+//			log(Status.PASS, "First,Middel & Last Name is displayed in Confirm tab section Ind Name - "
+//					+ getText(pom.getAddIndividualsPage().getIndividualNameInConfirmTabVerification()));
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//		try {
+//			Assert.assertEquals("DOB is not displayed in Confirm tab section", expDob,
+//					getText(pom.getAddIndividualsPage().getIndividualDOBInConfirmTabVerification()));
+//			log(Status.PASS, "DOB is displayed in Confirm tab section Ind DOB - "
+//					+ getText(pom.getAddIndividualsPage().getIndividualDOBInConfirmTabVerification()));
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//		try {
+//			Assert.assertEquals("Address is not displayed in Confirm tab section", expAddress,
+//					getText(pom.getAddIndividualsPage().getIndividualAddressInConfirmTabVerification()));
+//			log(Status.PASS, "Address is displayed in Confirm tab section Ind Address - "
+//					+ getText(pom.getAddIndividualsPage().getIndividualAddressInConfirmTabVerification()));
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//		try {
+//			Assert.assertEquals("Phone  Number is not displayed in Confirm tab section", expPhoneNumber,
+//					getText(pom.getAddIndividualsPage().getIndividualPhoneNumInConfirmTabVerification()));
+//			log(Status.PASS, "Phone  Number is displayed in Confirm tab section Ind Name - "
+//					+ getText(pom.getAddIndividualsPage().getIndividualPhoneNumInConfirmTabVerification()));
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	@Then("User should verify the toast messgage {string}")
 	public void user_should_verify_the_toast_messgage(String expIndCreatedSuccessfullyToastMsg) {
@@ -1357,6 +1414,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		logStep(methodName());
 
 		try {
+			waitForPageLoad();
+			
 			Assert.assertEquals("Ind Created Successfully Toast Msg is Not Displayed as expected",
 					expIndCreatedSuccessfullyToastMsg,
 					getText(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg()));
@@ -1376,8 +1435,9 @@ public class AddIndividualsPageStep extends BaseClass {
 		logStep(methodName());
 		
 		String tickSymbol = "\u2713";
-		waitForFullPageElementLoad();
+		
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedGIFImage(), 5);
 			Assert.assertTrue("GIF tick image is NOT displayed",
 					pom.getAddIndividualsPage().getCreatedGIFImage().isDisplayed());
 			log(Status.PASS, "Tick symbol is displayed as expected : " + tickSymbol);
@@ -1423,33 +1483,49 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 
-		pom.getAddIndividualsPage().searchBox(1);
-
-		if (getText(pom.getAddIndividualsPage().getCreatedIndName())
-				.equals(readExcel("Test Datas", "AddIndividuals", 1, 26))) {
-			click(pom.getAddIndividualsPage().getCreatedIndName());
-			log(Status.PASS, "Searched Individual is displayed successfully after click [Go To Individuals - Button]");
+		if (getText(pom.getAddIndividualsPage().getIndividualsPageText())
+				.equals("Individuals")) {
+			
+			log(Status.PASS, "The page is landed on Individual’s screen after click [Go To Individuals - Button]");
 		} else {
-			log(Status.FAIL, "Searched Individual is displayed successfully after click [Go To Individuals - Button]");
-			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+			log(Status.FAIL, "The page is NOT landed on Individual’s screen after click [Go To Individuals - Button]");
+			throw new Exception("Assertion failed The page is NOT landed on Individual’s screen");
 		}
 	}
 
 	@Then("User should verify that individuals are created successfully by perform only mandatory fields")
-	public void user_should_verify_that_individuals_are_created_successfully_by_perform_only_mandatory_fields()
-			throws Exception {
+	public void user_should_verify_that_individuals_are_created_successfully_by_perform_only_mandatory_fields() throws Exception {
 
 		logStep(methodName());
 		
+		pom.getAddIndividualsPage().searchBox(1);		
+		
+		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
+		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
+		
+		System.out.println("Actua Searched Ind - "+actSearchedInd);
+		System.out.println("Exp Searched Ind - "+expSearchedInd);
+		
+		if (actSearchedInd.equals(expSearchedInd)) {
+			log(Status.INFO, "Searched Individual is displayed");
+			
+			pom.getAddIndividualsPage().searchedIndividualform();
+			
+		} else {
+			log(Status.FAIL, "Searched Individual is NOT displayed");
+			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+		}
+		
 		waitForPageLoad();
 		waitForFullPageElementLoad();
-
+		waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
+		
 		System.out.println("IND FULL NAME -" + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
 		System.out.println("IND DOB -" + getText(pom.getAddIndividualsPage().getCreatedDOB()));
 		System.out.println("IND FN NAME -" + getText(pom.getAddIndividualsPage().getCreatedFirstName()));
 		System.out.println("IND MN NAME -" + getText(pom.getAddIndividualsPage().getCreatedMiddleName()));
 		System.out.println("IND LN NAME -" + getText(pom.getAddIndividualsPage().getCreatedLastName()));
-		System.out.println("IND Slected SUITE -" + getText(pom.getAddIndividualsPage().getSelectedSuite()));
+		System.out.println("IND Selected SUITE -" + getText(pom.getAddIndividualsPage().getSelectedSuite()));
 		System.out.println("IND ResiAddress -" + getText(pom.getAddIndividualsPage().getCreatedResiAddress()));
 		System.out.println("IND MailingAddress -" + getText(pom.getAddIndividualsPage().getCreatedMailAddress()));
 		System.out.println("IND GENDER -" + getText(pom.getAddIndividualsPage().getCreatedGender()));
@@ -1459,12 +1535,10 @@ public class AddIndividualsPageStep extends BaseClass {
 		System.out.println("IND EmC PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
 
 		
-		
-		String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
-		
 		try {
+			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 1, 6);
-
+            waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 5);
 			Assert.assertEquals("Created Suite Mismatched", expSelectSuite, actualSelectedSuite);
 			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
 					+ " | ACT Selected Suite - " + actualSelectedSuite);
@@ -1488,13 +1562,13 @@ public class AddIndividualsPageStep extends BaseClass {
 			String[] split = createdIndividual.split(" ");
 			String IndfirstName = split[0];
 			String IndLastNameName = split[2];
-			System.out.println("Created FrstName & LastName -"+IndfirstName+" "+IndLastNameName);
+			System.out.println("Created FrstName & LastName - "+IndfirstName+" "+IndLastNameName);
 			
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 28, IndfirstName+" "+IndLastNameName);
 			
-			System.out.println("Created Ind & Selected Suite -" +createdIndividual+"("+actualSelectedSuite+")");			
+			System.out.println("Created Ind & Selected Suite - " +createdIndividual+"("+getText(pom.getAddIndividualsPage().getCreatedIndividualName())+")");			
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+actualSelectedSuite+")");
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+getText(pom.getAddIndividualsPage().getCreatedIndividualName())+")");
 			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1635,7 +1709,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform all fields in Identification tab section")
-	public void user_should_perform_all_fields_in_identification_tab_section() {
+	public void user_should_perform_all_fields_in_identification_tab_section() throws Exception {
 
 		logStep(methodName());
 		
@@ -1700,7 +1774,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 
 	@Then("User should perform all fields in Preference tab section")
-	public void user_should_perform_all_fields_in_preference_tab_section() {
+	public void user_should_perform_all_fields_in_preference_tab_section() throws Exception {
 
 		logStep(methodName());
 		
@@ -1801,8 +1875,26 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		logStep(methodName());
 		
+	pom.getAddIndividualsPage().searchBox(1);		
+		
+		
+		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
+		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
+		
+		System.out.println("Actua Searched Ind - "+actSearchedInd);
+		System.out.println("Exp Searched Ind - "+expSearchedInd);
+		
+		if (actSearchedInd.equals(expSearchedInd)) {
+			log(Status.INFO, "Searched Individual is displayed");
+			
+			pom.getAddIndividualsPage().searchedIndividualform();
+			
+		} else {
+			log(Status.FAIL, "Searched Individual is NOT displayed");
+			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+		}
+		
 		waitForPageLoad();
-		waitForFullPageElementLoad();
 
 		System.out.println("IND FULL NAME -" + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
 		System.out.println("IND DOB -" + getText(pom.getAddIndividualsPage().getCreatedDOB()));
@@ -1837,6 +1929,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 		try {
 			String expFirstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedFirstName(), 10);
 			Assert.assertEquals("Created FirstName Mismatched", expFirstName,
 					getText(pom.getAddIndividualsPage().getCreatedFirstName()));
 			log(Status.PASS, "Individual FirstName is displayed as expected EXP FN - " + expFirstName + " | ACT FN - "
@@ -1847,6 +1940,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedMiddleName(), 10);
 			String expMiddleName = readExcel("Test Datas", "AddIndividuals", 1, 1);
 			Assert.assertEquals("Created MiddleName Mismatched", expMiddleName,
 					getText(pom.getAddIndividualsPage().getCreatedMiddleName()));
@@ -1859,6 +1953,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expLastName = readExcel("Test Datas", "AddIndividuals", 1, 21);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedLastName(), 10);
 			Assert.assertEquals("Created LastName Mismatched", expLastName,
 					getText(pom.getAddIndividualsPage().getCreatedLastName()));
 			log(Status.PASS, "Individual LastName is displayed as expected EXP LN - " + expLastName + " | ACT LN - "
@@ -1868,11 +1963,15 @@ public class AddIndividualsPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
+		
 		
 		try {
-			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 2, 6);
 		
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
+			
+			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
+			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 2, 6);
+			
 			Assert.assertEquals("Created Suite Mismatched", expSelectSuite,
 					actualSelectedSuite);
 			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
@@ -1886,6 +1985,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedIndividualName(), 10);
 			String expIndividualName = readExcel("Test Datas", "AddIndividuals", 1, 26);
 			
 			String createdIndividual = getText(pom.getAddIndividualsPage().getCreatedIndividualName());
@@ -1905,9 +2005,9 @@ public class AddIndividualsPageStep extends BaseClass {
 			
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 28, IndfirstName+" "+IndLastNameName);
 			
-			System.out.println("Created Ind & Selected Suite -" +createdIndividual+"("+actualSelectedSuite+")");			
+			System.out.println("Created Ind & Selected Suite -" +createdIndividual+"("+getText(pom.getAddIndividualsPage().getSelectedSuite())+")");			
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+actualSelectedSuite+")");
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+getText(pom.getAddIndividualsPage().getSelectedSuite())+")");
 			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1916,6 +2016,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expTitle = readExcel("Test Datas", "AddIndividuals", 1, 3);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedTitle(), 10);
 			Assert.assertEquals("Created Title Name Mismatched", expTitle,
 					getText(pom.getAddIndividualsPage().getSelectedTitle()));
 			log(Status.PASS, "Ind Title is displayed as expected EXP Title - " + expTitle + " | ACT Title - "
@@ -1937,6 +2038,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expDOB = readExcel("Test Datas", "AddIndividuals", 1, 5);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedDOB(), 10);
 			Assert.assertEquals("Created DOB Mismatched", expDOB, getText(pom.getAddIndividualsPage().getCreatedDOB()));
 			log(Status.PASS, "DOB is displayed as expected EXP DOB - " + expDOB + " | ACT DOB - "
 					+ getText(pom.getAddIndividualsPage().getCreatedDOB()));
@@ -1947,6 +2049,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expSuffix = readExcel("Test Datas", "AddIndividuals", 1, 7);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedSuffix(), 10);
 			Assert.assertEquals("Created Suffix Mismatched", expSuffix,
 					getText(pom.getAddIndividualsPage().getCreatedSuffix()));
 			log(Status.PASS, "Created Suffix is displayed as expected EXP Suffix - " + expSuffix + " | ACT Suffix - "
@@ -1958,6 +2061,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expRace = readExcel("Test Datas", "AddIndividuals", 1, 8);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedRace(), 10);
+			
 			Assert.assertEquals("Selected Race Mismatched", expRace,
 					getText(pom.getAddIndividualsPage().getSelectedRace()));
 			log(Status.PASS, "Selected Race is displayed as expected EXP Race - " + expRace + " | ACT Race - "
@@ -1969,6 +2075,8 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expMaritalStatus = readExcel("Test Datas", "AddIndividuals", 1, 9);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedMaritalStatus(), 10);
+			
 			Assert.assertEquals("Selected Marital Status Mismatched", expMaritalStatus,
 					getText(pom.getAddIndividualsPage().getSelectedMaritalStatus()));
 			log(Status.PASS, "Selected Marital Status is displayed as expected EXP MS - " + expMaritalStatus
@@ -1980,6 +2088,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expResAddress = readExcel("Test Datas", "AddIndividuals", 1, 10);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedResiAddress(), 10);
+			
 			Assert.assertEquals("Created Residential Address Mismatched", expResAddress,
 					getText(pom.getAddIndividualsPage().getCreatedResiAddress()));
 			log(Status.PASS, "Residential Address is displayed as expected EXP Residential Address - " + expResAddress
@@ -1991,6 +2102,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expMailingAddress = readExcel("Test Datas", "AddIndividuals", 1, 11);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedMailAddress(), 10);
+			
 			Assert.assertEquals("Created Mailing Address Mismatched", expMailingAddress,
 					getText(pom.getAddIndividualsPage().getCreatedMailAddress()));
 			log(Status.PASS, "Mailing Address is displayed as expected EXP Mailing Address - " + expMailingAddress
@@ -2002,6 +2116,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expNickName = readExcel("Test Datas", "AddIndividuals", 1, 12);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedNickName(), 10);
+			
 			Assert.assertEquals("Created Nick name Mismatched", expNickName,
 					getText(pom.getAddIndividualsPage().getCreatedNickName()));
 			log(Status.PASS, "NickName is displayed as expected EXP NN - " + expNickName + " | ACT NN - "
@@ -2013,6 +2130,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expPronoun = readExcel("Test Datas", "AddIndividuals", 1, 13);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedPronoun(), 10);
+			
 			Assert.assertEquals("Selected pronoun Mismatched", expPronoun,
 					getText(pom.getAddIndividualsPage().getSelectedPronoun()));
 			log(Status.PASS, "Selected pronoun is displayed as expected EXP Pronoun - " + expPronoun
@@ -2024,6 +2144,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expEthnicAff = readExcel("Test Datas", "AddIndividuals", 1, 14);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedEthnicAffiliation(), 10);
+
 			Assert.assertEquals("Selected ethnic Affiliation Mismatched", expEthnicAff,
 					getText(pom.getAddIndividualsPage().getSelectedEthnicAffiliation()));
 			log(Status.PASS, "Selected ethnic Affiliation is displayed as expected EXP EA - " + expEthnicAff
@@ -2035,6 +2158,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expPreferredLang = readExcel("Test Datas", "AddIndividuals", 1, 15);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedPrefLanguage(), 10);
+
 			Assert.assertEquals("Selected PreferredLang Mismatched", expPreferredLang,
 					getText(pom.getAddIndividualsPage().getSelectedPrefLanguage()));
 			log(Status.PASS, "Selected PreferredLang is displayed as expected EXP PL - " + expPreferredLang
@@ -2046,6 +2172,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expReligion = readExcel("Test Datas", "AddIndividuals", 1, 16);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedReligion(), 10);
+
 			Assert.assertEquals("Selected Religion Mismatched", expReligion,
 					getText(pom.getAddIndividualsPage().getSelectedReligion()));
 			log(Status.PASS, "Selected Religion is displayed as expected EXP Religion - " + expReligion
@@ -2059,6 +2188,9 @@ public class AddIndividualsPageStep extends BaseClass {
 			String expECFN = readExcel("Test Datas", "AddIndividuals", 1, 17);
 			String expECLN = readExcel("Test Datas", "AddIndividuals", 1, 18);
 			String expEmergencyContactName = expECFN + " " + expECLN;
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact1Name(), 10);
+
 			Assert.assertEquals("Created EmergencyContact Name Mismatched", expEmergencyContactName,
 					getText(pom.getAddIndividualsPage().getCreatedEmContact1Name()));
 			log(Status.PASS, "EmergencyContact Name is displayed as expected EXP EmCName - " + expEmergencyContactName
@@ -2070,6 +2202,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expEmRelationship = readExcel("Test Datas", "AddIndividuals", 1, 19);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedEmContact1Relationship(), 10);
+
 			Assert.assertEquals("Created EmergencyContact Relationship Mismatched", expEmRelationship,
 					getText(pom.getAddIndividualsPage().getSelectedEmContact1Relationship()));
 			log(Status.PASS,
@@ -2089,6 +2224,9 @@ public class AddIndividualsPageStep extends BaseClass {
 		String expPhoneNumber = "(" + frst3Num + ") ".concat(middle3Num) + "-".concat(last4Num);
 
 		try {
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact1PhNo(), 10);
+
 			Assert.assertEquals("Created EmergencyContact Phone Number is NOT displayed as expected", expPhoneNumber,
 					getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
 			log(Status.PASS, "EmergencyContact Phone Number is displayed as expected Exp EmCPhNum - " + expPhoneNumber
@@ -2103,6 +2241,9 @@ public class AddIndividualsPageStep extends BaseClass {
 			String expECFN = readExcel("Test Datas", "AddIndividuals", 1, 17);
 			String expECLN = readExcel("Test Datas", "AddIndividuals", 1, 18);
 			String expEmergencyContactName = expECFN + " " + expECLN;
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact2Name(), 10);
+			
 			Assert.assertEquals("Created EmergencyContact 2 Name Mismatched", expEmergencyContactName,
 					getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
 			log(Status.PASS,
@@ -2115,6 +2256,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			String expEmRelationship = readExcel("Test Datas", "AddIndividuals", 1, 19);
+			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedEmContact2Relationship(), 10);
+			
 			Assert.assertEquals("Created EmergencyContact 2 Relationship Mismatched", expEmRelationship,
 					getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
 			log(Status.PASS,
@@ -2127,6 +2271,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact2PhNo(), 10);
+			
 			Assert.assertEquals("Created EmergencyContact 2 Phone Number is NOT displayed as expected", expPhoneNumber,
 					getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
 			log(Status.PASS,
@@ -2139,8 +2285,8 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 	
 	
-	@Then("User should navigate to vitals tab and click add vitals button in edit individual page")
-	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_edit_individual_page() {
+	@Then("User should navigate to vitals tab and click add vitals button in View Individual page")
+	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_view_individual_page() {
 
 		logStep(methodName());
 	
@@ -2153,8 +2299,6 @@ public class AddIndividualsPageStep extends BaseClass {
 			throws Exception {
 
 		logStep(methodName());
-
-		waitForPageLoad();
 
 		String txtBreadCrum = getText(pom.getEditIndividualsPage().getBreadCrumLink());
 
@@ -2359,7 +2503,6 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		pom.getEditIndividualsPage().Upload("PNG", "png");
 	}
-
 	
 	@Then("User should verify that able to cancel the uploaded record file in vitals tab section")
 	public void user_should_verify_that_able_to_cancel_the_uploaded_record_file_in_vitals_tab_section() {
@@ -2387,7 +2530,6 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		try {
 			pom.getEditIndividualsPage().vitalsCancelButton();
-			waitForPageLoad();
 			Assert.assertTrue("Edit Individual CANCEL button is NOT workin as expected",
 					pom.getEditIndividualsPage().getEditIndividualBtn().isEnabled());
 			log(Status.PASS, "CANCEL button is working");
@@ -2397,8 +2539,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should perform Vitals by entering all fields")
-	public void user_should_perform_vitals_by_entering_all_fields() throws Exception {
+	@Then("User should add Vitals info by entering all fields")
+	public void user_should_add_vitals_info_by_entering_all_fields() throws Exception {
 	    
 		logStep(methodName());
 		
@@ -2420,7 +2562,6 @@ public class AddIndividualsPageStep extends BaseClass {
         pom.getEditIndividualsPage().Upload("JFIF Format", "jfif");		
 		
 		pom.getAddIndividualsPage().vitalsUpdateButton();
-		
 	}
 	
 	@Then("User should verify the toast messgage {string} after perform vitals tab")

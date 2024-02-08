@@ -7,7 +7,7 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-
+@Suites-AllScenarios
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 
@@ -19,11 +19,11 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify the Add Suite button is working
     Then User should verify the Add Suite pop up screen is displayed
     
-@Suites-AllScenarios
+
   Scenario: To verify the buttons functionality and error validation and info messages in Add Suite Page
     Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters"
     Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name"
-    And User should create a suite and verify duplicate validation for Suite name '"Suite Name already exists."'
+    And User should create a suite and verify duplicate validation for Suite name "Suite Name already exists."
     And User should perform only non-mandatory fields
     Then User should verify the error message contains for Mandatory fields "Please Enter Suite Name"
     Then User should perform Add Suite without enter any fields
@@ -40,7 +40,7 @@ Feature: Verify Xealei Suites > Add Suites Page
   #Then User should verify the field 'Breadth' for limit with decimal point
   #Then User should verify the field 'Height' for limit with decimal point
   
-  
+ 
   Scenario: To verify user able to Add/Create Suites by entering all fields also verify the 'Bread Crums' link
     And User should perform all fields and verify the toast message after perform all fields "Saved Successfully!!"
     Then User should verify all fields are created successsfully

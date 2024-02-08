@@ -23,7 +23,7 @@ Feature: Verify Xealei Suites > Edit Suites Page
   Scenario: To verify the buttons functionality and error validation and info messages in Edit Suite Page
     Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters" in edit suite page
     Then User should verify the Edit Suite form for mandatory "Please Enter Suite Name"
-    Then User should verify duplicate validation for Suite name '"Suite Name already exists."' in edit suite page
+    Then User should verify duplicate validation for Suite name "Suite Name already exists." in edit suite page
     Then User should verify the x icon in edit suite screen is working
     Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen
 
@@ -36,6 +36,7 @@ Feature: Verify Xealei Suites > Edit Suites Page
   #Then User should verify the field 'Breadth' for limit with decimal point in edit suite page
   #Then User should verify the field 'Height' for limit with decimal point in edit suite page
   
+
   Scenario: To verify user able to Edit/Update Suites by entering all fields also verify the 'Bread Crums' link in Edit Suite Page
     And User should update all fields and verify the toast message after update all fields "Saved Successfully!!" in edit Suite Page
     Then User should verify all fields are created successsfully in edit Suite Page

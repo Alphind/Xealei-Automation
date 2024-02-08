@@ -505,30 +505,36 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
+//	public void searchBox(int rowNum){
+//
+//		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
+//		String[] split = crIndividualLastName.split(" ");
+//		
+//		sendKeys(individualSearchBox, crIndividualLastName);
+//			waitForAjexPageLoad();
+//			String crIndividualLastName = " "+readExcel("Test Datas", "AddIndividuals", 1, 21);
+//			for (int i = 0; i < crIndividualLastName.length(); i++) {
+//				char letter = crIndividualLastName.charAt(i);
+//				String letterAsString = String.valueOf(letter);
+//				sendKeys(individualSearchBox, letterAsString);
+//				waitForAjexPageLoad();
+//			}
+//			waitForPageLoad();
+//			waitForFullPageElementLoad();
+//	}
 	
 	
-	
-	public void searchBox(){
+//	public void searchBox(){
+//
+//		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
+//		for (int i = 0; i < crIndividualLastName.length(); i++) {
+//			char letter = crIndividualLastName.charAt(i);
+//			String letterAsString = String.valueOf(letter);
+//			sendKeys(individualSearchBox, letterAsString);
+//		}
+//		}
 
-		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
-		for (int i = 0; i < crIndividualLastName.length(); i++) {
-			char letter = crIndividualLastName.charAt(i);
-			String letterAsString = String.valueOf(letter);
-			sendKeys(individualSearchBox, letterAsString);
-		}
 
-		backSpace(individualSearchBox);
-		waitForPageLoad();
-		int length = crIndividualLastName.length();
-		char lastLetter = crIndividualLastName.charAt(length - 1);
-		String enterLastLetter = String.valueOf(lastLetter);
-		sendKeys(individualSearchBox, enterLastLetter);
-
-		waitForPageLoad();
-		waitForFullPageElementLoad();
-	}
-	
-	
 	public void downloadMRUploadedFile() {
 		
 		waitForPageLoad();
@@ -984,7 +990,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		return this;
 	}
 
-	public EditIndividualsPage updateLastName(int rowNum) {
+	public EditIndividualsPage updateLastName(int rowNum) throws Exception {
 		
 			String updatedLastName = readExcel("Test Datas", "EditIndividuals", rowNum, 2) + secondsCount();
 			sendKeys(editLNField, updatedLastName);
@@ -1116,7 +1122,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		return this;
 	}
 
-	public EditIndividualsPage updateEC1PhoneNumber(int rowNum) {
+	public EditIndividualsPage updateEC1PhoneNumber(int rowNum) throws Exception {
 
 		String randomMobileNumber = randomMobileNumber();
 		writeExcelToOverwrite("Test Datas", "EditIndividuals", 2, 20, randomMobileNumber);

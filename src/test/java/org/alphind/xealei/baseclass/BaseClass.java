@@ -31,7 +31,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Random;
 
@@ -43,6 +42,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -92,15 +92,15 @@ public class BaseClass {
 
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver(getChromeOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver(getEdgeOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
 			 driver = new FirefoxDriver(getFirefoxOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 		} else {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
@@ -113,15 +113,15 @@ public class BaseClass {
 		
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
 			newDriver = new ChromeDriver(getChromeOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
 			newDriver = new EdgeDriver(getEdgeOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
 			 newDriver = new FirefoxDriver(getFirefoxOptions());
-			//log(Status.INFO, "Browser launched in Chrome");
+			log(Status.INFO, "Browser launched in Chrome");
 		} else {
 			log(Status.FAIL, "Browser Value is not valid in config.properties file.");
 			throw new Exception("Browser Value is not valid in config.properties file.");
@@ -188,7 +188,7 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.sendKeys(datasToSend);
-			//log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
+			log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -200,7 +200,7 @@ public class BaseClass {
 	public void backSpace(WebElement element) {
 
 		element.sendKeys(Keys.BACK_SPACE);
-		//log(Status.INFO, "Delete the last keyword");
+		log(Status.INFO, "Delete the last keyword");
 	}
 
 	// 9. To get the text/data's
@@ -267,40 +267,59 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.click();
-			////log(Status.INFO, "Click the " + methodName);
+			log(Status.INFO, "Click the " + methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	public void clickEnter(WebElement element) {
 		try {
 			element.sendKeys(Keys.ENTER);
-			////log(Status.INFO, "Click ENTER key");
+			log(Status.INFO, "Click ENTER key");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	public void deleteExistFieldData(WebElement element) {
+		
+		try {
 		element.sendKeys(Keys.CONTROL + "a");
 		element.sendKeys(Keys.BACK_SPACE);
-		////log(Status.INFO, "Delete the existing field data");
+		log(Status.INFO, "Delete the existing field data");
+	   } catch (NoSuchElementException e) {
+		   log(Status.FAIL, e.getMessage());
+		   e.printStackTrace();
+	} catch (ElementNotInteractableException e) {
+		   log(Status.FAIL, e.getMessage());
+		   e.printStackTrace();
 	}
-
+	}
+	
 	public void deleteExistPhoneData(WebElement element) {
+		try {
 		for (int i = 0; i < 15; i++)
 			element.sendKeys(Keys.BACK_SPACE);
-		////log(Status.INFO, "Delete the existing phone data");
+		log(Status.INFO, "Delete the existing phone data");
+		
+		 } catch (NoSuchElementException e) {
+			   log(Status.FAIL, e.getMessage());
+			   e.printStackTrace();
+		} catch (ElementNotInteractableException e) {
+			   log(Status.FAIL, e.getMessage());
+			   e.printStackTrace();
+		}
 	}
 
 	// 16. Close
 
 	public void close() {
 		// dr.get().close();
-		//log(Status.INFO, "Close the browser");
+		log(Status.INFO, "Close the browser");
 		driver.close();
-
 	}
 
 	// 17. Quit Driver
@@ -308,7 +327,7 @@ public class BaseClass {
 
 	public void quit() {
 		// dr.get().quit();
-		//log(Status.INFO, "Quit the browser");
+		log(Status.INFO, "Quit the browser");
 		driver.quit();
 	}
 
@@ -352,6 +371,7 @@ public class BaseClass {
 			workbook.close();
 
 		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 		return res;
@@ -392,7 +412,8 @@ public class BaseClass {
 			}
 			workbook.close();
 
-		} catch (Exception e) {
+		}  catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 		return res;
@@ -408,6 +429,7 @@ public class BaseClass {
 			properties.load(stream);
 			return properties.get(key).toString();
 		} catch (IOException e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 			return "";
 		}
@@ -423,7 +445,7 @@ public class BaseClass {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
-			//log(Status.INFO, "Wait for elementToBeClickable");
+			log(Status.INFO, "Wait for elementToBeClickable");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -437,7 +459,7 @@ public class BaseClass {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.textToBePresentInElement(element, text));
-			//log(Status.INFO, "Wait for textToBePresentInElement");
+			log(Status.INFO, "Wait for textToBePresentInElement");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -448,9 +470,13 @@ public class BaseClass {
 	public void visibilityOfElement(WebElement element, long seconds) {
 		// WebDriverWait wait = new WebDriverWait(dr.get(),
 		// Duration.ofSeconds(seconds));
+		try {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
-		//log(Status.INFO, "Wait for Page Loading...");
+		log(Status.INFO, "Wait for Page Loading...");
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+	}
 	}
 
 	// 30. findElement --- > ByTagName
@@ -487,7 +513,7 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			//log(Status.INFO, "Select the "+ methodName);
+			log(Status.INFO, "Select the "+ methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -499,18 +525,24 @@ public class BaseClass {
 		try {
 
 			click(driver.findElement(By.xpath(elementxpath)));
-			//log(Status.INFO, "Select the" + methodName);
+			log(Status.INFO, "Select the" + methodName);
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
 	}
 	
 	// 33. Current Date and Time Generator
-	public String dateAndTime() {
+	public String dateAndTime() throws Exception {
+		try {
+			
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		String a = "-" + Dtf.format(now);
 		return a;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			throw new Exception("Facing exception in dateAndTime() Method");
+		}
 	}
 
 	// 34. Write Data to Excel
@@ -530,6 +562,7 @@ public class BaseClass {
 			workbook.write(stream1);
 			workbook.close();
 		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 		return newdatacell;
@@ -550,6 +583,7 @@ public class BaseClass {
 			workbook.write(stream1);
 			workbook.close();
 		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 		return newdatacell;
@@ -571,6 +605,7 @@ public class BaseClass {
 			workbook.write(stream1);
 			workbook.close();
 		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -581,8 +616,14 @@ public class BaseClass {
 
 	public String getText(WebElement updatedSuiteName) {
 
+		try {
 		String text = updatedSuiteName.getText();
 		return text;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	// 36. Robot key ---> KeyPress
@@ -617,9 +658,10 @@ public class BaseClass {
 		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 		try {
 			element.sendKeys(data, Keys.ENTER);
-			//log(Status.INFO, "Click the " + methodName + "using sendKeyWithEnter");
+			log(Status.INFO, "Click the " + methodName + "using sendKeyWithEnter");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -633,6 +675,7 @@ public class BaseClass {
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -659,6 +702,18 @@ public class BaseClass {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void waitForAjexPageLoad() {
+
+		try {
+		WebElement loading = driver.findElement(By.xpath("//progress[@class='ajaxProgress']"));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+		wait.until(ExpectedConditions.invisibilityOf(loading));
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -683,7 +738,7 @@ public class BaseClass {
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException e) {
-
+			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -735,15 +790,25 @@ public class BaseClass {
 	public void waitForInVisiblityOfElement(WebElement element, long seconds) {
 		// WebDriverWait wait = new WebDriverWait(dr.get(),
 		// Duration.ofSeconds(seconds));
+		try {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+		e.printStackTrace();
+	}
 	}
 	
 	public void waitForInVisiblityOfElement(WebDriver currentdriver,WebElement element, long seconds) {
 		// WebDriverWait wait = new WebDriverWait(dr.get(),
 		// Duration.ofSeconds(seconds));
-		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofSeconds(seconds));
+		try {
+			WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+		e.printStackTrace();
+	}
 	}
 
 //     //  41. Clear Text
@@ -762,17 +827,17 @@ public class BaseClass {
 
 		case "QA": {
 			driver.get(readExcel("Test Datas", "Environments", 1, 1));
-			//log(Status.INFO, "Choosed environment - QA");
+			log(Status.INFO, "Choosed environment - QA");
 			break;
 		}
 		case "PREPROD": {
 			driver.get(readExcel("Test Datas", "Environments", 2, 1));
-			//log(Status.INFO, "Choosed environment - PREPROD");
+			log(Status.INFO, "Choosed environment - PREPROD");
 			break;
 		}
 		case "PROD": {
 			driver.get(readExcel("Test Datas", "Environments", 3, 1));
-			//log(Status.INFO, "Choosed environment - PROD");
+			log(Status.INFO, "Choosed environment - PROD");
 			break;
 		}
 		default: {
@@ -785,18 +850,30 @@ public class BaseClass {
 
 //	     //  44. get Current URL
 
-	public String getCurrentUrl() {
+	public String getCurrentUrl() throws Exception {
 
+		try {
 		// String currentUrl = dr.get().getCurrentUrl();
 		String currentUrl = driver.getCurrentUrl();
 		return currentUrl;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getCurrentUrl() Method");
+		}
 	}
 	
-	public String getCurrentUrl(WebDriver driver) {
+	public String getCurrentUrl(WebDriver driver) throws Exception {
 
 		// String currentUrl = dr.get().getCurrentUrl();
+		try {
 		String currentUrl = driver.getCurrentUrl();
 		return currentUrl;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getCurrentUrl(driver) Method");
+		}
 	}
 
 //		// 45. Scroll Down - (JavaScript Executor)
@@ -804,19 +881,28 @@ public class BaseClass {
 	public void scrollIntoView(WebElement element) {
 
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
+		try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("argument[0].scrollIntoView()", element);
-		//log(Status.INFO, "Scroll into an view");
+		log(Status.INFO, "Scroll into an view");
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 //		// 46. Scroll Bottom of the page - (JavaScript Executor)
 
 	public void scrollDownToBottomOfThePage() {
-
+try {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		//log(Status.INFO, "Scroll down to  bottom of the page");
+		log(Status.INFO, "Scroll down to  bottom of the page");
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+		e.printStackTrace();
+	}
 	}
 
 //      //49. Full Page Load - getPageLoad
@@ -875,57 +961,108 @@ public class BaseClass {
 
 		String passed = getConfigureProperty("PassedScreenshots");
 		String failed = getConfigureProperty("FailedScreenshots");
+		
+		if(getConfigureProperty("IgnoreInfo").equalsIgnoreCase("No")) {
+			
+				if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
+						&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
 
-		if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
-				&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
+				} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
+						&& status.toString().equalsIgnoreCase("PASS")) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
 
-		} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
-				&& status.toString().equalsIgnoreCase("PASS")) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
+				} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
+						&& status.toString().equalsIgnoreCase("FAIL")) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
+				} else {
+					test.log(status, message);
+				}
+			
+		}else if(getConfigureProperty("IgnoreInfo").equalsIgnoreCase("Yes")) {
+			if(!status.toString().equalsIgnoreCase("INFO")) {
+				if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
+						&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
 
-		} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
-				&& status.toString().equalsIgnoreCase("FAIL")) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
-		} else {
-			test.log(status, message);
+				} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
+						&& status.toString().equalsIgnoreCase("PASS")) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
+
+				} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
+						&& status.toString().equalsIgnoreCase("FAIL")) {
+					test.log(status, message,
+							MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot()).build());
+				} else {
+					test.log(status, message);
+				}
+			}
 		}
-	}
+}
+		
 	
 	public void log(Status status, String message, WebDriver currentDriver) {
 
 		String passed = getConfigureProperty("PassedScreenshots");
 		String failed = getConfigureProperty("FailedScreenshots");
+		if(getConfigureProperty("IgnoreInfo").equalsIgnoreCase("No")) {
 
-		if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
-				&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+			if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
+					&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
 
-		} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
-				&& status.toString().equalsIgnoreCase("PASS")) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+			} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
+					&& status.toString().equalsIgnoreCase("PASS")) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
 
-		} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
-				&& status.toString().equalsIgnoreCase("FAIL")) {
-			test.log(status, message,
-					MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
-		} else {
-			test.log(status, message);
+			} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
+					&& status.toString().equalsIgnoreCase("FAIL")) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+			} else {
+				test.log(status, message);
+			}
+		}else if(getConfigureProperty("IgnoreInfo").equalsIgnoreCase("Yes")) {
+		
+		if(!status.toString().equalsIgnoreCase("INFO")) {
+			if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("Yes")
+					&& (status.toString().equalsIgnoreCase("PASS") || status.toString().equalsIgnoreCase("FAIL"))) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+
+			} else if (passed.equalsIgnoreCase("Yes") && failed.equalsIgnoreCase("No")
+					&& status.toString().equalsIgnoreCase("PASS")) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+			} else if (passed.equalsIgnoreCase("No") && failed.equalsIgnoreCase("Yes")
+					&& status.toString().equalsIgnoreCase("FAIL")) {
+				test.log(status, message,
+						MediaEntityBuilder.createScreenCaptureFromBase64String(takesScreenshot(currentDriver)).build());
+			} else {
+				test.log(status, message);
+			}
 		}
+}
 	}
 
 //   // 53. Page Backward
 
 	public void pageBackward() {
 
+		try {
 		driver.navigate().back();
 		log(Status.PASS, "Navigate to backward (Back to Login page)");
-
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	public void logStep(String name) {
@@ -940,27 +1077,44 @@ public class BaseClass {
 
 	public void pageRefresh() {
 
+		try {
 		driver.navigate().refresh();
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
-	public String secondsCount() {
+	public String secondsCount() throws Exception {
 
+		try {
 		DateTimeFormatter Dtf = DateTimeFormatter.ofPattern("mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		String a = "-" + Dtf.format(now);
 		return a;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in secondsCount() Method");
+		}
 	}
 
 	public void scrollIntoUp() {
 
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
+		try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("window.scrollBy(0,-250)");
-		//log(Status.INFO, "Scroll into an view");
+		log(Status.INFO, "Scroll into an view");
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
-	public String futureDate(int num) {
-
+	public String futureDate(int num) throws Exception {
+		
+		try {
 		LocalDate date = LocalDate.now();
 		int dayOfMonth = date.getDayOfMonth();
 
@@ -978,11 +1132,18 @@ public class BaseClass {
 		System.out.println("Current Date + 1 - " + nxtDate);
 
 		return nxtDate;
+		
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in futureDate() Method");
+		}
 
 	}
 	
-	public String nextToCurrentDate() {
+	public String nextToCurrentDate() throws Exception {
 
+		try {
 		LocalDate date = LocalDate.now();
 //		int dayOfMonth = date.getDayOfMonth();
 //
@@ -1000,46 +1161,80 @@ public class BaseClass {
 		System.out.println("Current Date + 1 - " + nxtDate);
 
 		return nxtDate;
+		
+		
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in nextToCurrentDate() Method");
+		}
 
 	}
 
-	public String getCurrentDtYearMonth(String EnterPattern) {
+	public String getCurrentDtYearMonth(String EnterPattern) throws Exception {
 
+		try {
 		LocalDateTime currentDateYearMonth = LocalDateTime.now();
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
+		
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getCurrentDtYearMonth() Method");
+		}
 	}
 	
-	public String getFutureTime(String EnterPattern) {
+	public String getFutureTime(String EnterPattern) throws Exception {
 
+		try {
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
 		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(2);
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getFutureTime() Method");
+		}
+		
 	}
 	
-	public String getPastTime(String EnterPattern) {
+	public String getPastTime(String EnterPattern) throws Exception {
 
+		try {
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Europe/London"));
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = currentDateYearMonth.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getPastTime() Method");
+		}
 	}
 
-	public String getCurrentDate() {
+	public String getCurrentDate() throws Exception {
 
+		try {
 		LocalDate date = LocalDate.now();
 		int day = date.getDayOfMonth();
 		String format = (day <= 9) ? "d" : "dd";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 		String formattedDate = date.format(formatter);
 		return formattedDate;
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception("Facing exception in getCurrentDate() Method");
+		}
 	}
 	
-	public String randomMobileNumber() {
+	public String randomMobileNumber() throws Exception {
 
+		try {
 		Random random = new Random();
 		StringBuilder mobileNumber = new StringBuilder("9");
 
@@ -1047,10 +1242,17 @@ public class BaseClass {
 			mobileNumber.append(random.nextInt(10));
 		}
 		return mobileNumber.toString();
+		
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 
-	public String previousMonth(String pattern) {
+	public String previousMonth(String pattern) throws Exception {
 
+		try {
 		LocalDate currentDate = LocalDate.now();
 
 		LocalDate previousMonthDate = currentDate.minusMonths(1);
@@ -1059,10 +1261,17 @@ public class BaseClass {
 		String formattedDate = previousMonthDate.format(formatter);
 
 		return formattedDate.toUpperCase();
+		
+		} catch (Exception e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 
-	public String getMonth() {
+	public String getMonth() throws Exception {
 
+		try {
 		LocalDate currentDate = LocalDate.now();
 		int day = currentDate.getMonthValue();
 		
@@ -1072,6 +1281,12 @@ public class BaseClass {
 		String formattedDate = previousMonthDate.format(formatter);
 
 		return formattedDate.toUpperCase();
+		
+	} catch (Exception e) {
+		log(Status.FAIL, e.getMessage());
+		e.printStackTrace();
+		throw new Exception("Facing exception in getMonth() Method");
+}
 	}
 
 	public String getYear() {
@@ -1097,15 +1312,21 @@ public class BaseClass {
 	
 	
 	
-	public String getCurrentMonth() {
+	public String getCurrentMonth() throws Exception {
 
+try {
 	LocalDate currentDate = LocalDate.now();
 	int day = currentDate.getMonthValue();
 	String format = (day <= 9) ? "M" : "MM";
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 	String formattedDate = currentDate.format(formatter);
 	return formattedDate.toUpperCase();
-	}
+} catch (Exception e) {
+	log(Status.FAIL, e.getMessage());
+	e.printStackTrace();
+	throw new Exception("Facing exception in getCurrentMonth() Method");
+}
+}
 	
 	
 	public String dateConversionForHandleAlert(String Date, String Time) throws ParseException {
@@ -1122,6 +1343,7 @@ public class BaseClass {
 				// Format the date to the desired output format
 				String outputDateString = outputFormat.format(date);
 				return outputDateString;
+				
 }
 	
 	

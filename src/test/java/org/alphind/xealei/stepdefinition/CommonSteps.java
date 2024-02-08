@@ -16,12 +16,24 @@ import org.junit.Assert;
 
 import com.aventstack.extentreports.Status;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class CommonSteps extends BaseClass {
 
 	PageObjectManager pom = new PageObjectManager(getDriver());
 
+	@Given("User is on Xealei login page")
+	public void user_is_on_xealei_login_page() {
+		
+		try {
+		Assert.assertTrue("User is NOT in Xealei login page",pom.getLoginPage().isImageIsDisplayed().isDisplayed());
+        log(Status.PASS,"User is on Xealei login page");
+		} catch (AssertionError e) {
+			log(Status.FAIL, e.getMessage());
+		}
+	}
+	
 	@Then("User should verify once the page is navigated to HOME_DASHBOARD successfully {string}")
 	public void user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String expMessage) {
 
@@ -33,7 +45,7 @@ public class CommonSteps extends BaseClass {
 		try {
 			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage, pom.getHomePage().HomeText());
 					
-			log(Status.PASS, "Navigate to Home Dashboard Page");
+			log(Status.PASS, "Successfully Navigate to Home Dashboard Page");
 		} catch (AssertionError e) {
 			log(Status.FAIL, "Unable to navigate HOME Dashboard Page");
 		}

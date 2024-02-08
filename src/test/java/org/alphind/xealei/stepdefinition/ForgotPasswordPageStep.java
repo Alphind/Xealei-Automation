@@ -37,7 +37,7 @@ public class ForgotPasswordPageStep extends BaseClass{
 	}
 	
 		@Then("User must verify the tab url address for FORGOT PASSWORD screen")
-		public void user_must_verify_the_tab_url_address_for_forgot_password_screen() {
+		public void user_must_verify_the_tab_url_address_for_forgot_password_screen() throws Exception {
 		    
 		    
 			try {

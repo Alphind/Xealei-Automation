@@ -13,28 +13,19 @@ package org.alphind.xealei.stepdefinition;
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 
 import com.aventstack.extentreports.Status;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginPageStep extends BaseClass {
 
 	PageObjectManager pom = new PageObjectManager(getDriver());
-	
-	@Given("User is on Xealei login page")
-	public void user_is_on_xealei_login_page() {
-
-		logStep(methodName());
-
-	}
 
 	@When("User should verify the client code is addressed in tab url address in login screen")
-	public void user_should_verify_the_client_code_is_addressed_in_tab_url_address_in_login_screen() {
+	public void user_should_verify_the_client_code_is_addressed_in_tab_url_address_in_login_screen() throws Exception {
 
 		logStep(methodName());
 

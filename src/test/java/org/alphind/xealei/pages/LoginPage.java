@@ -74,7 +74,16 @@ public class LoginPage extends BaseClass {
 
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
 	private WebElement toastMsgokButton;
+	
+	@FindBy(xpath = "//img[@class='logo-img']")
+	private WebElement XealeiImageInLoginPage;
 
+	
+	public WebElement isImageIsDisplayed() {
+		return XealeiImageInLoginPage;
+	}
+	
+	
 	/**
 	 * Get the "LOGIN" (text) in Login Page.
 	 * 
@@ -358,21 +367,18 @@ public class LoginPage extends BaseClass {
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(userName, email);
-			log(Status.INFO, "Enter QA environment Email/userName");
 			clickEnter(password);
 			break;
 		}
 		case "PREPROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(userName, email);
-			log(Status.INFO, "Enter PREPROD environment email/userName");
 			clickEnter(password);
 			break;
 		}
 		case "PROD": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(userName, email);
-			log(Status.INFO, "Enter PROD environment email/userName");
 			clickEnter(password);
 			break;
 		}
@@ -402,19 +408,16 @@ public class LoginPage extends BaseClass {
 		case "QA": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(password, passWord);
-			log(Status.INFO, "Enter QA environment Password");
 			break;
 		}
 		case "PREPROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(password, passWord);
-			log(Status.INFO, "Enter PREPROD environment Password");
 			break;
 		}
 		case "PROD": {
 			passWord = readExcel("Test Datas", "Login", rowNum, 2);
 			sendKeys(password, passWord);
-			log(Status.INFO, "Enter PROD environment Password");
 			break;
 		}
 		default: {
