@@ -7,7 +7,7 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-
+@Login-AllScenarios
 Feature: Verify Xealei Login Page
 
   Background: 
@@ -31,7 +31,7 @@ Feature: Verify Xealei Login Page
     When User should perform login with valid email and password by click the Enter key
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
 
-@Login-AllScenarios
+
   Scenario: To verify Xealei Login page with valid credentials
     When User should perform login with valid email and password
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"

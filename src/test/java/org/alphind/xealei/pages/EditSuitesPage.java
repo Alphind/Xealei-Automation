@@ -311,8 +311,7 @@ public class EditSuitesPage extends BaseClass {
 	
 	public void editButton() {
 		
-		waitForPageLoad();
-		sleep(3000);
+		sleep(2000);
 		click(btnEditSuite);
 	}
 	
@@ -325,7 +324,7 @@ public class EditSuitesPage extends BaseClass {
 
 		if (btnAddSuites.isDisplayed()) {
 			click(btnAddSuites);
-			waitForPageLoad();
+			//waitForPageLoad();
 		} else {
 			log(Status.FAIL, "Unable to click Add Suite button");
 		}
@@ -339,9 +338,9 @@ public class EditSuitesPage extends BaseClass {
 	public void updateButton() {
 	
 		click(btnUpdateSuite);
-		waitForPageLoad();
+		//waitForPageLoad();
 	}
-	public void updateSuiteName(int rowNum) {
+	public void updateSuiteName(int rowNum) throws Exception {
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "EditSuites", rowNum, 0) + dateAndTime());
 		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
@@ -356,7 +355,7 @@ public class EditSuitesPage extends BaseClass {
 	}
 
 	
-	public void UpdatecreatedSuiteName(int rowNum) {
+	public void UpdatecreatedSuiteName(int rowNum) throws Exception {
 
 		String updateNewSN = (readExcel("Test Datas", "EditSuites", rowNum, 0) + dateAndTime());
 		log(Status.INFO, "Getting suite name data from excel -" + updateNewSN);
@@ -430,27 +429,26 @@ public class EditSuitesPage extends BaseClass {
 			String valueOf = String.valueOf(letter);
 			sendKeys(suitesSearchBox, valueOf);
 		}
-		waitForPageLoad();
 		
+		waitForFullPageElementLoad();
 		backSpace(suitesSearchBox);
-		waitForPageLoad();
+	
 		int length = createdSuite.length();
         char lastLetter = createdSuite.charAt(length-1);
         String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
-		waitForPageLoad();
+
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(createdSuite)) {
 			click(view);
-			log(Status.PASS, "Updated suite is displayed successfully exp updated suite "+createdSuite +" | Act updated suite "+getText(createdSN));
+			waitForPageLoad();
+			waitForVisiblityOfElement(createdSN, 5);
+			log(Status.PASS, "Searched suite is displayed successfully exp suite "+createdSuite +" | Act suite "+getText(createdSN));
 		} else {
-			log(Status.FAIL, "Updated suite is NOT displayed as expected exp updated suite "+createdSuite +" | Act updated suite "+getText(createdSN));
+			log(Status.FAIL, "Searched suite is NOT displayed as expected exp suite "+createdSuite +" | Act suite "+getText(createdSN));
 			throw new Exception("Assertion failed searched suite is not displayed as expected");
 		}
-		
-		waitForPageLoad();
-		
 		}
 	
 	public void createdSuiteLabelName(int rowNum) throws Exception {
@@ -470,7 +468,7 @@ public class EditSuitesPage extends BaseClass {
 
 	public String breadCrumSuiteNameText() {
 
-		waitForPageLoad();
+		//waitForPageLoad();
 		createdSuite = readExcel("Test Datas", "EditSuites", 2, 6);
 		BC = BC.replaceAll("createdSN", createdSuite);
 		String textString = getTextString(BC);
@@ -485,7 +483,7 @@ public class EditSuitesPage extends BaseClass {
 	public void getExistSuiteName() {
 		
 		click(existSN);
-		waitForPageLoad();
+		//waitForPageLoad();
 		waitForFullPageElementLoad();
 		String SN = getText(suiteName);
 		writeExcelLastRow("Test Datas", "UpdatedSuites", 0, SN);

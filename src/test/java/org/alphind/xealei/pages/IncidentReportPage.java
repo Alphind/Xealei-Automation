@@ -1021,11 +1021,12 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala. Enter the data from excel sheet to 'Injury Description'
 	 *         text area box.
+	 * @throws Exception 
 	 *
 	 * 
 	 * @created on 22-12-2023
 	 */
-	public String enterInjuryDescriptionData() {
+	public String enterInjuryDescriptionData() throws Exception {
 		String injuryDescription = readExcel("Test Datas", "Incident Reports", 1, 3);
 		String newDescription = injuryDescription + secondsCount();
 		sendKeys(injuryDescriptionDescriptionTxtBox, newDescription);
@@ -1637,10 +1638,11 @@ public class IncidentReportPage extends BaseClass {
 
 	/**
 	 * @author Nandhalala. Select the Notification Method.
+	 * @throws Exception 
 	 * 
 	 * @created on 22-12-2023.
 	 */
-	public void enterNotificationDate() {
+	public void enterNotificationDate() throws Exception {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 
@@ -1662,10 +1664,11 @@ public class IncidentReportPage extends BaseClass {
 	
 	/**
 	 * @author Nandhalala. Select the Notification Time.
+	 * @throws Exception 
 	 * 
 	 * @created on 22-12-2023.
 	 */
-	public void enterNotificationTime() {
+	public void enterNotificationTime() throws Exception {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 
@@ -2018,9 +2021,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Automatically.
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 * 
 	 */
-	public void eventDateAndTime() {
+	public void eventDateAndTime() throws Exception {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 		case "YES", "": {
@@ -2041,9 +2045,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter the data from excel sheet to 'Event Date & Time' text area box.
 	 *
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 * 
 	 */
-	public void eventDateAndFutureTime() {
+	public void eventDateAndFutureTime() throws Exception {
 		
 		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
 			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
@@ -2555,9 +2560,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Select the DD/MM/YYY in "Notification Date" field using date picker.
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 *
 	 */
-	public void selectDateInDatePickerAndVerify() {
+	public void selectDateInDatePickerAndVerify() throws Exception {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());
 		chooseDate = chooseDate.replaceAll("selectDate", getCurrentDate());
@@ -2648,9 +2654,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Date" field.
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 *
 	 */
-	public void verifyFutureDateIsDisable() {
+	public void verifyFutureDateIsDisable() throws Exception {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
 		System.out.println("value - " + attribute);
@@ -2744,9 +2751,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Select Date-Month-Year in "Notification Date" field using date picker.
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 *
 	 */
-	public void selectNotificateDateUsingDD() {
+	public void selectNotificateDateUsingDD() throws Exception {
 
 		String attribute = getAttribute(eventDateAndTimeCalenderIconButton, "value");
 		System.out.println("value - " + attribute);
@@ -3963,9 +3971,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter past time in "Time" field
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 * 
 	 */
-	public void pastTimeInNotificationTime() {
+	public void pastTimeInNotificationTime() throws Exception {
 
 		sendKeys(timeTxtbox, getPastTime("HH:MMa"));
 		click(notifedByTxtBox);
@@ -3975,9 +3984,10 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter future time in "Time" field
 	 * 
 	 * @author Alphi-MohamedRazul
+	 * @throws Exception 
 	 * 
 	 */
-	public void futureTimeInNotificationTime() {
+	public void futureTimeInNotificationTime() throws Exception {
 
 		sendKeys(timeTxtbox, getFutureTime("HH:MMa"));
 		click(notifedByTxtBox);

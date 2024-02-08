@@ -19,7 +19,6 @@ public class EditIndividualsStep extends BaseClass {
 		logStep(methodName());
 
 		pom.getEditIndividualsPage().searchBox();
-
 	}
 
 	@Then("User should verify the name dob id guardian contact details is displayed")
@@ -28,7 +27,6 @@ public class EditIndividualsStep extends BaseClass {
 		logStep(methodName());
 
 		waitForPageLoad();
-		waitForFullPageElementLoad();
 		
 		String IndName = getAttribute(pom.getEditIndividualsPage().getIndividualSearchBox(),"value");
 		
@@ -198,8 +196,8 @@ public class EditIndividualsStep extends BaseClass {
 		}
 	}
 
-	@And("User should click the Edit button")
-	public void user_should_click_the_Edit_button() {
+	@And("User should click the Edit button in Personal Information")
+	public void user_should_click_the_Edit_button_in_Personal_Information() {
 
 		logStep(methodName());
 
@@ -690,8 +688,8 @@ public class EditIndividualsStep extends BaseClass {
 
 	}
 
-	@Then("User should verify the that able to close the emergency contact2 and emergency contact3 in edit individual page")
-	public void user_should_verify_the_that_able_to_close_the_emergency_contact2_and_emergency_contact3_in_edit_individual_page() {
+	@Then("User should verify the that able to delete the emergency contact2 and emergency contact3 in edit individual page")
+	public void user_should_verify_the_that_able_to_delete_the_emergency_contact2_and_emergency_contact3_in_edit_individual_page() {
 
 		logStep(methodName());
 
@@ -699,8 +697,8 @@ public class EditIndividualsStep extends BaseClass {
 
 	}
 
-	@And("User should click on the calendar icon in edit individual page")
-	public void user_should_click_on_the_calendar_icon_in_edit_individual_page() {
+	@And("User should click on the dob calendar icon in edit individual page")
+	public void user_should_click_on_the_dob_calendar_icon_in_edit_individual_page() {
 
 		logStep(methodName());
 
@@ -752,6 +750,18 @@ public class EditIndividualsStep extends BaseClass {
 		waitForPageLoad();
 	}
 	
+	
+	
+	@Then("User should navigate to vitals tab and click edit vitals button")
+	public void user_should_navigate_to_vitals_tab_and_click_edit_vitals_button() {
+	   
+		logStep(methodName());
+		
+	pom.getEditIndividualsPage().vitalsTab().EditButton();
+	waitForPageLoad();
+	
+	}
+
 	@And("User should perform update with empty fields in vitals tab")
 	public void user_should_perform_update_with_empty_fields_in_vitals_tab() {
 
@@ -799,7 +809,7 @@ public class EditIndividualsStep extends BaseClass {
 	 
 	
 		 @Then("User should update all fields and verify the toast message after perform all fields {string} in edit individual Page")
-		 public void user_should_update_all_fields_and_verify_the_toast_message_after_perform_all_fields_in_edit_individual_page(String expIndUpdatedToastMsg) {
+		 public void user_should_update_all_fields_and_verify_the_toast_message_after_perform_all_fields_in_edit_individual_page(String expIndUpdatedToastMsg) throws Exception {
 		     
 			 logStep(methodName());
 			 
