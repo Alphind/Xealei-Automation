@@ -56,7 +56,7 @@ public class IncidentReportPageStep extends BaseClass {
 		staffpom.getLoginPage().validEmail(2);
 		staffpom.getLoginPage().validPassword(2);
 		
-	waitForPageLoad(staffDriver);
+	//waitForPageLoad(staffDriver);
 	waitForFullPageElementLoad(staffDriver);
 	sleep(2000);
 	staffpom.getLoginPage().loginButton();
@@ -1916,7 +1916,7 @@ public class IncidentReportPageStep extends BaseClass {
 		}
 		
 		String time = temp[0]+","+temp[1]+","+" "+temp[2];
-		
+		System.out.println(time);
 		try {
 			staffpom.getHomePage().fallAlertNotification(time);
 		} catch (Exception e) {
@@ -1959,11 +1959,31 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select fall radio button and enter description.")
 	public void Select_fall_radio_button_and_enter_description() {
+
 		
 		logStep(methodName());
 		
+
 		staffpom.getHomePage().alertNotificationFallRadioButton();
 		staffpom.getHomePage().alertNotificationDescription();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Select nofall radio button.")
+	public void Select_nofall_radio_button() {
+		staffpom.getHomePage().alertNotificationNoFallRadioButton();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Select nofall reason and enter no fall description.")
+	public void Select_nofall_reason_and_enter_no_fall_description() {
+		
+		staffpom.getHomePage().alertNotificationSelectNoFallReason();
+		staffpom.getHomePage().alertNotificationNoFallDescription();
 	}
 	
 	/**
@@ -1975,6 +1995,14 @@ public class IncidentReportPageStep extends BaseClass {
 		logStep(methodName());
 	
 		staffpom.getHomePage().saveandproccedtoTR();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 */
+	@Then("Click confirm button.")
+	public void Click_confirm_button() {
+		staffpom.getHomePage().alertConfirmButton();
 	}
 	
 	/**
@@ -2257,5 +2285,11 @@ public class IncidentReportPageStep extends BaseClass {
 		
 	}
 	
+	@Then("Verify Nofall text in grid.")
+	public void Verify_Nofall_text_in_grid() {
+		String actual = staffpom.getHomePage().firstEventTextInGrid();
+		Assert.assertEquals("The text from grid is : "+actual+" but the expected is : No Fall", 
+				actual, "No Fall");
+	}
 	
 }

@@ -18,7 +18,7 @@ public class EditIndividualsStep extends BaseClass {
 
 		logStep(methodName());
 
-		//pom.getEditIndividualsPage().searchBox();
+		pom.getEditIndividualsPage().searchBox();
 	}
 
 	@Then("User should verify the name dob id guardian contact details is displayed")

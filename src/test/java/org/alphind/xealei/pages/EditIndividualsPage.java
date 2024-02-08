@@ -505,23 +505,31 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
-//	public void searchBox(int rowNum){
-//
-//		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
-//		String[] split = crIndividualLastName.split(" ");
-//		
-//		sendKeys(individualSearchBox, crIndividualLastName);
-//			waitForAjexPageLoad();
-//			String crIndividualLastName = " "+readExcel("Test Datas", "AddIndividuals", 1, 21);
-//			for (int i = 0; i < crIndividualLastName.length(); i++) {
-//				char letter = crIndividualLastName.charAt(i);
-//				String letterAsString = String.valueOf(letter);
-//				sendKeys(individualSearchBox, letterAsString);
-//				waitForAjexPageLoad();
-//			}
-//			waitForPageLoad();
-//			waitForFullPageElementLoad();
-//	}
+	public void searchBox(){
+
+		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
+		String[] split = crIndividualLastName.split(" ");
+		String firstName = split[0];
+		String MiddleName = split[1];
+		String LastName = " "+split[2];
+		
+		System.out.println("FN - "+firstName);
+
+		System.out.println("MN - "+MiddleName);
+		System.out.println("LN - "+LastName);
+		
+		sendKeys(individualSearchBox, firstName+MiddleName);
+			waitForAjexPageLoad();
+			
+			for (int i = 0; i < LastName.length(); i++) {
+				char letter = crIndividualLastName.charAt(i);
+				String letterAsString = String.valueOf(letter);
+				sendKeys(individualSearchBox, letterAsString);
+				waitForAjexPageLoad();
+			}
+			waitForPageLoad();
+			waitForFullPageElementLoad();
+	}
 	
 	
 //	public void searchBox(){

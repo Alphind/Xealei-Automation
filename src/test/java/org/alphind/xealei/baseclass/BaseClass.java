@@ -697,6 +697,21 @@ public class BaseClass {
 
 	public void waitForPageLoad() {
 
+		
+//		try {
+////			WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+////			WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+//			WebElement loading = driver
+//					.findElement(By.xpath("//span[contains(@class,'cloader')]"));
+////			WebElement loading = driver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+//			wait.until(ExpectedConditions.invisibilityOf(loading));
+//		}catch (NoSuchElementException e) {
+//			
+//		}
+
+
+
 		try {
 		WebElement loading = driver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
@@ -715,19 +730,36 @@ public class BaseClass {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
+
 	}
 	
 	//Added new method for handling multiple drivers
-	//creTED BY NANDHALALA
+	//CREATED BY NANDHALALA
 	public void waitForPageLoad(WebDriver currentdriver) {
 
-//		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
-//		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
-		//span[contains(@class,'cloader')] --> new load element
-//		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
-		WebElement loading = currentdriver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
-		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
-		wait.until(ExpectedConditions.invisibilityOf(loading));
+
+		try {
+//			WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//			WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+			//span[contains(@class,'cloader')] --> new load element
+			WebElement loading = currentdriver
+					.findElement(By.xpath("//span[contains(@class,'cloader')]"));
+//			WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),"
+//					+ "'Loading')]"));
+			WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
+			wait.until(ExpectedConditions.invisibilityOf(loading));
+		}catch (NoSuchElementException e) {
+			
+		}
+
+////		WebElement loading = dr.get().findElement(By.xpath("//div[contains(text(),'Loading')]"));
+////		WebDriverWait wait = new WebDriverWait(dr.get(), Duration.ofMinutes(3));
+//		//span[contains(@class,'cloader')] --> new load element
+////		WebElement loading = currentdriver.findElement(By.xpath("//div[contains(text(),'Loading')]"));
+//		WebElement loading = currentdriver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
+//		WebDriverWait wait = new WebDriverWait(currentdriver, Duration.ofMinutes(3));
+//		wait.until(ExpectedConditions.invisibilityOf(loading));
+
 
 	}
 

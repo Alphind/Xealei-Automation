@@ -466,6 +466,11 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
 	private WebElement userName;
+	
+	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
+	private WebElement firstFallAlert;
+	
+
 
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
@@ -474,7 +479,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @created on 19/01/2024
 	 * 
-	 * @return Bread crum 'Incident Report' (text).
+	 * @return Breadcrum 'Incident Report' (text).
 	 */
 	public String getIncidentReportModuleText() {
 		return getText(incidentReportModuleText);
