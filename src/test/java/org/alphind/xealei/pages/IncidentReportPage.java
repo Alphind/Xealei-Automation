@@ -37,7 +37,7 @@ public class IncidentReportPage extends BaseClass {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-
+ 
 	}
 
 	private String dropdownOption = "//span[contains(text(),'XX') and @class = 'mat-option-text']";
@@ -387,7 +387,10 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//textarea[@formcontrolname = 'comments']")
 	private WebElement reviewerComments;
 
-	@FindBy(xpath = "//mat-error[contains(text(),'Notified time should be')]")
+//	@FindBy(xpath = "//mat-error[contains(text(),'Notified time should be')]")
+//	private WebElement lesserThanNotifiedTimeInfoMsg;
+	
+	@FindBy(xpath = "//mat-error[@class='mat-error ng-star-inserted']")
 	private WebElement lesserThanNotifiedTimeInfoMsg;
 
 	@FindBy(xpath = "//div[@x-lbllocval]")
@@ -470,6 +473,12 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
 	
+	
+	
+	public WebElement getLocationElement() {
+		return locationValue;
+
+	}
 
 
 	/**
@@ -988,7 +997,9 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void selectIndividualDetails() {
-		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0);
+		
+		sleep(2000);
+		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0).trim();
 //		String[] fullname = individualDetail.split(" ");
 //
 //		if (fullname.length > 2) {
@@ -1001,6 +1012,7 @@ public class IncidentReportPage extends BaseClass {
 //		}
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
+		System.out.println(individualName);
 		select(driver, individualName);
 	}
 
@@ -1728,10 +1740,13 @@ public class IncidentReportPage extends BaseClass {
 
 	public String getRowNumber() {
 
+		sleep(5000);
 		waitForPageLoad(this.driver);
 		System.out.println(readExcel("Test Datas", "Incident Reports", 1, 18));
 		int i = 1;
+		waitForVisiblityOfElement(injurySummaries.get(0), 3);
 		for (WebElement element : injurySummaries) {
+			waitForVisiblityOfElement(element, 3);
 			if (getText(element).equals(readExcel("Test Datas", "Incident Reports", 1, 18))) {
 				return Integer.toString(i);
 			}
@@ -1939,7 +1954,6 @@ public class IncidentReportPage extends BaseClass {
 
 		if (addNewIncidentReportButton.isDisplayed()) {
 			click(addNewIncidentReportButton);
-			waitForPageLoad();
 		} else {
 			log(Status.FAIL, "Unable to click Add New Incident Report Button");
 		}
@@ -1980,7 +1994,6 @@ public class IncidentReportPage extends BaseClass {
 		String wasIndividualInjured = readExcel("Test Datas", "Incident Reports", 1, 4);
 		wasPatientInjured = wasPatientInjured.replaceAll("isInjured", wasIndividualInjured);
 		select(wasPatientInjured);
-		waitForPageLoad();
 	}
 
 	/**
@@ -2028,7 +2041,8 @@ public class IncidentReportPage extends BaseClass {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 		case "YES", "": {
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, getCurrentDtYearMonth("MM/dd/yyyyhh:mma"));
+			String currentDtYearMonth = getCurrentDtYearMonth("MM/dd/yyyyhh:mma");
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth );
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			break;
@@ -2052,6 +2066,7 @@ public class IncidentReportPage extends BaseClass {
 		
 		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
 			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
+sleep(2000);
 		}
 
 	/**
@@ -3977,6 +3992,7 @@ public class IncidentReportPage extends BaseClass {
 	public void pastTimeInNotificationTime() throws Exception {
 
 		sendKeys(timeTxtbox, getPastTime("HH:MMa"));
+		System.out.println("Past time - "+getPastTime("HH:MMa"));
 		click(notifedByTxtBox);
 	}
 
@@ -3989,7 +4005,8 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void futureTimeInNotificationTime() throws Exception {
 
-		sendKeys(timeTxtbox, getFutureTime("HH:MMa"));
+		String futureTime = getFutureTime("hh:mma");		
+		sendKeys(timeTxtbox,futureTime );
 		click(notifedByTxtBox);
 	}
 
@@ -4204,7 +4221,6 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public String breadCrumIndividualNameText() {
 
-		waitForPageLoad();
 		createdIndNameFromExcel = readExcel("Test Datas", "Incident Reports", 1, 28);
 		String[] splitFirstNameAlone = createdIndNameFromExcel.split(" ");
 		String getFirstName = splitFirstNameAlone[0];

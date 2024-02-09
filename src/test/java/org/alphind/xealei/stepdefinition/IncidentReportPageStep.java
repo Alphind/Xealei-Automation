@@ -91,6 +91,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 		logStep(methodName());
 		
+		staffpom.getHomePage().navToReportsModule();
 		staffpom.getHomePage().navToIncidentReportModule();
 
 		try {
@@ -100,8 +101,6 @@ public class IncidentReportPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-
-		waitForPageLoad();
 	}
 
 	@Then("User should verify the ADD New Incident Report button is working")
@@ -678,8 +677,9 @@ public class IncidentReportPageStep extends BaseClass {
 		logStep(methodName());
 		
 		staffpom.getIncidentReportPage().futureTimeInNotificationTime();
-
+		
 		try {
+			
 			Assert.assertEquals(
 					"Greater than event time info msg is NOT displayed as expected under Notification Time field",
 					expGreaterThanNoticationTimeToastMsg,
@@ -798,6 +798,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 		logStep(methodName());
 		
+		sleep(2000);
 		waitForPageLoad();
 
 		System.out.println("Location DATA - " + staffpom.getIncidentReportPage().getLocationValue());
@@ -1190,7 +1191,7 @@ public class IncidentReportPageStep extends BaseClass {
 			    
 			    chiefnurseDriver.get("https://xat.qa.xealei.com/login");
 			    chiefnursepom = new PageObjectManager(chiefnurseDriver);
-			    waitForPageLoad(chiefnurseDriver);
+//			    waitForPageLoad(chiefnurseDriver);
 			    chiefnurseDriver.manage().window().maximize();
 			}
 
@@ -1657,7 +1658,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		chiefnurseDriver.get("https://xat.qa.xealei.com/login");
 		chiefnursepom = new PageObjectManager(chiefnurseDriver);
-		waitForPageLoad(chiefnurseDriver);
+//		waitForPageLoad(chiefnurseDriver);
 		chiefnurseDriver.manage().window().maximize();
 	}
 
@@ -1672,10 +1673,11 @@ public class IncidentReportPageStep extends BaseClass {
 //		sendKeys(chiefnursepom.getLoginPage().getUserName(), ChiefNurseUserName);
 //		sendKeys(chiefnursepom.getLoginPage().getPassword(), ChiefNursePassWord);
 		
+		
 		chiefnursepom.getLoginPage().validEmail(3);
 		chiefnursepom.getLoginPage().validPassword(3);
 		
-		waitForPageLoad(chiefnurseDriver);
+		//waitForPageLoad(chiefnurseDriver);
 		waitForFullPageElementLoad(chiefnurseDriver);
 		sleep(2000);
 		chiefnursepom.getLoginPage().loginButton();

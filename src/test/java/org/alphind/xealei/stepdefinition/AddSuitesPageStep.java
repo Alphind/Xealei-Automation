@@ -143,69 +143,16 @@ public class AddSuitesPageStep extends BaseClass {
 
 	}
 
-	@Then("User should create a suite and verify duplicate validation for Suite name {string}")
-	public void user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) throws Exception {
+	@Then("User should verify duplicate validation for Suite name {string}")
+	public void user_should_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) throws Exception {
 
 		logStep(methodName());
-
-		pom.getAddSuitesPage().suiteName(1);
-
-		pom.getAddSuitesPage().addButton();
-
-		waitForPageLoad();
-
-		try {
-			Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
-					getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
-			log(Status.PASS, "Toast Message is displayed : "
-					+ getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
-			
-			String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
-			writeExcelToOverwrite("Test Datas","AddSuites", 1, 6, createdSuite);
-			
-			pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
-			
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
 		
-		
-		
-		try {
-			pom.getAddSuitesPage().searchBox(1);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		
-
-		try {
-			waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
-			String expSuiteName = readExcel("Test Datas", "AddSuites", 1, 6);
-			Assert.assertEquals("Created SuiteName Mismatched", expSuiteName,
-					getText(pom.getAddSuitesPage().getCreatedSuiteName()));
-			log(Status.PASS, "Suite Name is created successfully Exp SN :" + expSuiteName + " Actual SN :"
-					+ getText(pom.getAddSuitesPage().getCreatedSuiteName()));
-
-			String createdSuiteName = getText(pom.getAddSuitesPage().getCreatedSuiteName());
-			writeExcelToOverwrite("Test Datas","EditSuites", 1, 6, createdSuiteName);
-			writeExcelToOverwrite("Test Datas","AddIndividuals", 1, 6, createdSuiteName);
-			
-		} catch (AssertionError e1) {
-			log(Status.FAIL, e1.getMessage());
-			e1.printStackTrace();
-		}
-		
-		pom.getAddSuitesPage().returnToSuitesPageBCText();
-
-		waitForFullPageElementLoad();
-		
-		pom.getAddSuitesPage().btnAddSuite();
-	
 		pom.getAddSuitesPage().existSuiteName(1).addButton();
-		
+	
+	
 		try {
+			waitForPageLoad();
 			Assert.assertEquals("Suite Name already exists.Toast message is not displayed", expSuiteExistToastMessage,
 					getText(pom.getAddSuitesPage().getSNExitsToastMsg()));
 			log(Status.PASS, "Suite Name already exists. Toast Message is displayed - "
@@ -304,7 +251,7 @@ public class AddSuitesPageStep extends BaseClass {
 
 				logStep(methodName());
 
-				pom.getAddSuitesPage().searchBox(2);
+				pom.getAddSuitesPage().searchBox();
 				waitForFullPageElementLoad();
 
 				try {

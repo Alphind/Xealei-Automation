@@ -672,6 +672,7 @@ public class BaseClass {
 		// Duration.ofSeconds(seconds));
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			//wait.until(ExpectedConditions.elementToBeClickable(element));
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -1223,7 +1224,7 @@ try {
 
 		try {
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(2);
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(3);
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
@@ -1397,7 +1398,7 @@ try {
          Date date = inputFormat.parse(DMY+" "+time);
 
          // Format the day using single 'd' if the day is before 10, 'dd' otherwise
-         String dayFormat = (date.getDate() < 9) ? "d" : "dd";
+         String dayFormat = (date.getDate() <=9) ? "d" : "dd";
          outputFormat.applyPattern("EEEE, MMMM " + dayFormat + " yyyy, hh:mm a");
 
          // Format the parsed date using the output format

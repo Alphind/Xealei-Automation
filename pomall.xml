@@ -42,6 +42,7 @@ license agreement
 					<include>org.alphind.xealei.runner.TC4EditSuitesTestRunner</include>
 					<include>org.alphind.xealei.runner.TC5AddIndividualsTestRunner</include>	
 					<include>org.alphind.xealei.runner.TC6EditIndividualsTestRunner</include>
+					<include>org.alphind.xealei.runner.TCIncidentReportsTestRunner</include>
 					</includes>
 					
 				</configuration>
