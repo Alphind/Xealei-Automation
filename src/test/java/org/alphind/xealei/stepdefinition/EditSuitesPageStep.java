@@ -41,8 +41,7 @@ public class EditSuitesPageStep extends BaseClass {
 		public void user_should_verify_the_edit_suite_pop_up_screen_is_displayed() throws Exception {
 		    
 			logStep(methodName());
-			
-			waitForPageLoad();
+		
 			String popupText = getText(pom.getEditSuitesPage().getEditSuitePopup());
 
 			if (popupText.contains("Edit Suite")) {
@@ -92,8 +91,7 @@ public class EditSuitesPageStep extends BaseClass {
 		public void user_should_verify_the_edit_suite_form_for_mandatory_and(String expSNMandatoryTxt) {
 		    
 			logStep(methodName());
-
-			waitForPageLoad();
+			
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
 			deleteExistFieldData(pom.getAddSuitesPage().getLength());
 			deleteExistFieldData(pom.getAddSuitesPage().getWidth());
@@ -135,7 +133,7 @@ public class EditSuitesPageStep extends BaseClass {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-			waitForPageLoad();
+
 			pom.getEditSuitesPage().snAlreadyExistToastMsgOkButton();
 		}
 		
@@ -160,7 +158,6 @@ public class EditSuitesPageStep extends BaseClass {
 			logStep(methodName());
     
            pom.getEditSuitesPage().editButton();
-		    waitForPageLoad();
 		    
 		    try {
 				Assert.assertEquals("The default Availability status is mismatched", readExcel("Test Datas", "EditSuites", 1, 5), getText(pom.getEditSuitesPage().getActive()));
@@ -184,7 +181,6 @@ public class EditSuitesPageStep extends BaseClass {
 			}
 			pom.getEditSuitesPage().savedSuccessfulToastMsgOkButton();
 			
-			waitForPageLoad();
 			
 			 try {
 					Assert.assertEquals("The drop down field Availability status is mismatched", readExcel("Test Datas", "EditSuites", 2, 5), getText(pom.getEditSuitesPage().getInActive()));
@@ -200,8 +196,6 @@ public class EditSuitesPageStep extends BaseClass {
 				public void user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name_in_edit_suite_page() throws Exception {
 				    
 					logStep(methodName());
-					
-					waitForPageLoad();
 
 					String txtBreadCrum = getText(pom.getEditSuitesPage().getBreadCrumLink());
 					System.out.println("Breadcrums Suite text - " + txtBreadCrum);
@@ -226,6 +220,8 @@ public class EditSuitesPageStep extends BaseClass {
 					
 					pom.getEditSuitesPage().returnToSuitesPageBCText();
 
+					deleteExistFieldData(pom.getEditSuitesPage().getSuitesSearchBox());
+					
 					waitForPageLoad();
 
 					if (pom.getEditSuitesPage().getView().isDisplayed()) {
@@ -239,7 +235,7 @@ public class EditSuitesPageStep extends BaseClass {
 				}
 
 					@Then("User should update all fields and verify the toast message after update all fields {string} in edit Suite Page")
-					public void user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(String string) {
+					public void user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(String string) throws Exception {
 					    
 						logStep(methodName());
 						
@@ -282,17 +278,11 @@ public class EditSuitesPageStep extends BaseClass {
 					    
 						logStep(methodName());
 						
-						deleteExistFieldData(pom.getEditSuitesPage().getSuitesSearchBox());
-						waitForPageLoad();
+						//deleteExistFieldData(pom.getEditSuitesPage().getSuitesSearchBox());
+						//pom.getEditSuitesPage().searchBox(1);
 						
-						pom.getEditSuitesPage().returnToSuitesPageBCText();
 						waitForPageLoad();
-
-						pom.getEditSuitesPage().searchBox(1);
-						waitForPageLoad();
-						waitForFullPageElementLoad();
-						sleep(2000);
-
+				
 						try {
 							waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
 							String expSuiteName = readExcel("Test Datas", "EditSuites", 2, 6);

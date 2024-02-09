@@ -23,7 +23,7 @@ public class AddSuitesPageStep extends BaseClass {
 	PageObjectManager pom = new PageObjectManager(getDriver());
 	
 	@Then("User should verify suite page tab url address for suites page")
-	public void user_should_verify_suite_page_tab_url_address_for_suites_page() {
+	public void user_should_verify_suite_page_tab_url_address_for_suites_page() throws Exception {
 
 		logStep(methodName());
 		
@@ -64,7 +64,7 @@ public class AddSuitesPageStep extends BaseClass {
 	public void user_should_verify_the_suite_module_is_working() {
 
 		logStep(methodName());
-		waitForPageLoad();
+		
 		pom.getHomePage().navToSuitesModule();
 		waitForPageLoad();
 		try {
@@ -82,7 +82,7 @@ public class AddSuitesPageStep extends BaseClass {
 	public void user_should_verify_the_add_suite_button_is_working() {
 
 		logStep(methodName());
-		waitForPageLoad();
+		
 		pom.getAddSuitesPage().btnAddSuite();
 
 	}
@@ -110,8 +110,8 @@ public class AddSuitesPageStep extends BaseClass {
 
 		pom.getAddSuitesPage().suiteLimit().addButton();
 		
-		waitForFullPageElementLoad();
 		try {
+			waitForVisiblityOfElement(pom.getAddSuitesPage().getSuiteNameLimit(), 10);
 			Assert.assertEquals("limit error info message for Suite Name* field is NOT displayed", expLimitValidationMsgForSN,
 					getText(pom.getAddSuitesPage().getSuiteNameLimit()));
 			log(Status.PASS, "limit error info message for Suite Name* field is displayed - "
@@ -144,7 +144,7 @@ public class AddSuitesPageStep extends BaseClass {
 	}
 
 	@Then("User should create a suite and verify duplicate validation for Suite name {string}")
-	public void user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) {
+	public void user_should_create_a_suite_and_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) throws Exception {
 
 		logStep(methodName());
 
@@ -159,7 +159,7 @@ public class AddSuitesPageStep extends BaseClass {
 					getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
 			log(Status.PASS, "Toast Message is displayed : "
 					+ getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
-
+			
 			String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
 			writeExcelToOverwrite("Test Datas","AddSuites", 1, 6, createdSuite);
 			
@@ -170,7 +170,7 @@ public class AddSuitesPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-
+		
 		
 		try {
 			pom.getAddSuitesPage().searchBox(1);
@@ -181,9 +181,6 @@ public class AddSuitesPageStep extends BaseClass {
 		
 
 		try {
-			waitForPageLoad();
-			waitForFullPageElementLoad();
-			sleep(2000);
 			waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
 			String expSuiteName = readExcel("Test Datas", "AddSuites", 1, 6);
 			Assert.assertEquals("Created SuiteName Mismatched", expSuiteName,
@@ -201,14 +198,13 @@ public class AddSuitesPageStep extends BaseClass {
 		}
 		
 		pom.getAddSuitesPage().returnToSuitesPageBCText();
-		
-		waitForPageLoad();
 
-		pom.getAddSuitesPage().btnAddSuite();
+		waitForFullPageElementLoad();
 		
-     	waitForPageLoad();
+		pom.getAddSuitesPage().btnAddSuite();
+	
 		pom.getAddSuitesPage().existSuiteName(1).addButton();
-		waitForPageLoad();
+		
 		try {
 			Assert.assertEquals("Suite Name already exists.Toast message is not displayed", expSuiteExistToastMessage,
 					getText(pom.getAddSuitesPage().getSNExitsToastMsg()));
@@ -220,9 +216,7 @@ public class AddSuitesPageStep extends BaseClass {
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
-		}
-		waitForPageLoad();
-		
+		}		
 	}
 
 	@Then("User should perform only non-mandatory fields")
@@ -261,6 +255,7 @@ public class AddSuitesPageStep extends BaseClass {
 			pom.getAddSuitesPage().enterLengthWidthHeight(1).addButton();
 		}
 
+		
 			@Then("User should verify the x icon in add suites screen is working")
 			public void user_should_verify_the_icon_in_add_suites_screen_is_working() throws Exception {
 
@@ -295,26 +290,25 @@ public class AddSuitesPageStep extends BaseClass {
 					String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
 					writeExcelToOverwrite("Test Datas","AddSuites", 2, 6, createdSuite);
 					
+					pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+					
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
 				}
-				pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+				
 	}
 
 			@Then("User should verify all fields are created successsfully")
 			public void user_should_verify_all_fields_are_created_successsfully() throws Exception {
 
 				logStep(methodName());
-				
-				waitForPageLoad();
 
 				pom.getAddSuitesPage().searchBox(2);
-				waitForPageLoad();
 				waitForFullPageElementLoad();
-				sleep(2000);
 
 				try {
+					waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
 					String expSuiteName = readExcel("Test Datas", "AddSuites", 2, 6);
 					Assert.assertEquals("Created SuiteName Mismatched", expSuiteName,
 							getText(pom.getAddSuitesPage().getCreatedSuiteName()));
@@ -398,8 +392,6 @@ public class AddSuitesPageStep extends BaseClass {
 			throws Exception {
 
 		logStep(methodName());
-		
-		waitForPageLoad();
 
 		String txtBreadCrum = getText(pom.getAddSuitesPage().getBreadCrumLink());
 		System.out.println("Breadcrums Suite text - " + txtBreadCrum);
@@ -424,7 +416,7 @@ public class AddSuitesPageStep extends BaseClass {
 		
 		pom.getAddSuitesPage().returnToSuitesPageBCText();
 
-		waitForPageLoad();
+		waitForFullPageElementLoad();
 
 		if (pom.getAddSuitesPage().getView().isDisplayed()) {
 			log(Status.PASS, "Return to Suite searched page successfully after click the [Suites >] breadcrum link");

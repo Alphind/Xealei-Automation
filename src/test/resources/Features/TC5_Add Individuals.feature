@@ -21,7 +21,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     
 
   Scenario: To verify the validation messages for limit and mandatory fields in Add Individuals page
-    Then User should verify the "Upload", "Capture" buttons is enabled in photo section tab
+    Then User should verify the "Upload", "Capture" buttons is enabled in Photo tab Section
     Then User should verify the respective tab text are displayed "Photo", "Identification", "Address", "Preference"
     Then User should verify that able to upload different file formats except jpg, jpeg, png
     Then User should verify that able to upload more than 1MB Image file
@@ -33,13 +33,20 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the limit validation error message for Middle Name* field in identification tab section "Middle name cannot be longer than 30 characters"
     Then User should verify the limit validation error message for Last Name* field in identification tab section "Last name cannot be longer than 30 characters"
     And User should perform only mandatory fields in identification tab
+    And User should click on the calendar icon
+    Then User should verify the date picker should appeared
+    Then User should verify future dates are hidden
+    And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
+    And User should select a specific year and month in dropdown and select the date in date picker
+    Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
+    And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates    
     Then User should click the address tab
     And User should perform Address in Residential Address * field
     And User should tick the Same as Residential address checkbox
     Then User should verify the Residential Address * and Mailing Address * fields values are same
     And User should uncheck the Same as Residential address checkbox
-    And User should enter address in Mailing Address * field
-    And User should tick the Same as Residential address checkbox
+    And User should enter address in Mailing Address * field    
+    And User should tick the same as Residential address after entering different address in Mailing address
     Then User should verify the Residential Address * and Mailing Address * fields values are same
     And User should uncheck the Same as Residential address checkbox
     Then User should verify the validation error message for Mailing Address * field "Please enter mailing address"
@@ -61,19 +68,15 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should perform firstName* and lastName* fields in Add another emergency contact3
     Then User should verify the limit validation error message in Emergency Contact3 First Name* field "First name cannot be longer than 30 characters"
     Then User should verify the mandatory field validation error message in Emergency Contact3 "Please enter emergency contact first name", "Please enter emergency contact last name", "Please select emergency contact relationship", "Please enter valid emergency contact number"
-    Then User should close the emergency contact3
-    Then User should close the emergency contact2
+    Then User should able to delete the emergency contact3
+    Then User should able to delete the emergency contact2
     Then User should verify the tabticks in Identification, Address and Preference tab sections
+    And User should perform emergency contact1 with different phone number
+    Then User should verify the error message for duplicate Mobile Number "Individual already exist with same phone number"
+    And User should perform Add Individual with different phone number
     Then User should verify the First, middle and last name, DOB, mailing address and Phone Number are displayed in confirm form screen
-    And User should click on the calendar icon
-    Then User should verify the date picker should appeared
-    Then User should verify future dates are hidden
-    And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
-    And User should select a specific year and month in dropdown and select the date in date picker
-    Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
-    And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
-    Then User should verify the calendar should close after click outside the calendar
     And User should close the New Individual Registration popup
+
 
  @AddIndividuals-AllScenarios
   Scenario: To verify the user able to Add/Create Individual by entering only mandatory fields
@@ -85,11 +88,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the first, middle, last name, dob and mailing address are displayed in Preference tab section
     Then User should verify the tabticks in Identification, Address and Preference tab sections
     Then User should verify the First, middle and last name, DOB, mailing address and Phone Number are displayed in confirm form screen
-    And User should click the confirm button
-    Then User should verify the error message for duplicate Mobile Number '"Individual already exist with same phone number"'
-    And User should perform Add Individual with different phone number
-    Then User should verify the changed Phone Number is displayed in confirm page
-    And User should click the confirm button
+    And User should click the confirm button    
     Then User should verify the toast messgage "Individual Saved Successfully"
     Then User should verify the Individual ID and Created successfull Image are displayed
     And User should click Go to Individuals button
@@ -109,7 +108,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     Then User should verify the tabticks in Identification, Address and Preference tab sections
     Then User should verify the First, middle and last name, dob, residential & mailing address and Phone Number are displayed in confirm form
     And User should click the confirm button
-    Then User should verify the error message for duplicate Mobile Number '"Individual already exist with same phone number"'
+    Then User should verify the error message for duplicate Mobile Number "Individual already exist with same phone number"
     And User should perform emergency contact2 with different phone number
     And User should click the confirm button
     Then User should verify the toast messgage "Individual Saved Successfully"
@@ -117,7 +116,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should click Go to Individuals button
     Then User should verify the page is landed on Individual’s screen
     Then User should verify that individuals are created successfully by perform all fields
-    And User should navigate to vitals tab and click add vitals button in edit individual page
+    And User should navigate to vitals tab and click add vitals button in View Individual page
     Then User should verify the breadcrums link should be display with module individual name > Edit individual
     And User should perform update without enter any fields in vitals tab
     Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
@@ -127,7 +126,7 @@ Feature: Verify Xealei Individuals > Add Individual Page
     And User should upload medical record in vitals tab section 
     Then User should verify that able to cancel the uploaded record file in vitals tab section
     Then User should verify the cancel button is working in vitals tab
-    And User should perform Vitals by entering all fields
+    And User should add Vitals info by entering all fields
     Then User should verify the toast messgage "Vitals updated successfully" after perform vitals tab
     Then User should verify that vitals are created successfully by perform all fields
     

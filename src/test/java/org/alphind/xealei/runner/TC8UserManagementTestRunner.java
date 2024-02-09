@@ -7,16 +7,13 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
+@CucumberOptions(features = "src//test//resources//Features//TC8_User Management.feature", 
 
-tags = "@NotificationAlertNoFall",
+tags = "@All",
 
 glue = "org.alphind.xealei.stepdefinition", 
-dryRun = true, monochrome = true)
+dryRun = !true, monochrome = true)
 
+public class TC8UserManagementTestRunner {
 
-public class TC7IncidentReportsTestRunner {
-
-	
-	
 }

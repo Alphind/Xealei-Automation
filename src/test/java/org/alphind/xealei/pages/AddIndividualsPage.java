@@ -342,7 +342,7 @@ public class AddIndividualsPage extends BaseClass{
 	@FindBy(xpath = "//mat-datepicker-toggle[@class='mat-datepicker-toggle']")
 	private WebElement datePickerButton;
 
-	@FindBy(xpath = "//span[@class='popup-close']/parent::button")
+	@FindBy(xpath = "(//span[@class='popup-close']/parent::button)[2]")
 	private WebElement newIndRegCloseBtn;
 
 	@FindBy(xpath = "//button[@x-ind-capture-cont]")
@@ -539,9 +539,10 @@ public class AddIndividualsPage extends BaseClass{
 	@FindBy(xpath = "//a[@x-et-v-ovc01][@data-toggle='tab']")
 	private WebElement vitalsTab;
 
-	
-	
-	
+	public String getIndividualSearchBox() {
+		return getAttribute(individualSearchBox, "value");
+	}
+
 	public WebElement getCreatedIndividualName() {
 		return createdIndividualName;
 	}
@@ -992,7 +993,7 @@ public class AddIndividualsPage extends BaseClass{
 	
 	
 	
-	public void selectCurrentDateInDatePicker() {
+	public void selectCurrentDateInDatePicker() throws Exception {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());
 		chooseDate = chooseDate.replaceAll("selectDate", getCurrentDate());
@@ -1014,7 +1015,7 @@ public class AddIndividualsPage extends BaseClass{
 	}
 
 
-	public void futureDatesAreHidden() {
+	public void futureDatesAreHidden() throws Exception {
 
 		String currentMonth = getCurrentDtYearMonth("MM");
 		String currentDate = getCurrentDtYearMonth("dd");
@@ -1207,7 +1208,7 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
-	public void rightSideArrow(int rowNum) {
+	public void rightSideArrow(int rowNum) throws Exception {
 
 		String chooseDateFromExcel = readExcel("Test Datas", "AddIndividuals", rowNum, 22);
 		sendKeys(getDob(), getMonth() + "/" + chooseDateFromExcel + "/" + getYear());
@@ -1236,7 +1237,7 @@ public class AddIndividualsPage extends BaseClass{
 
 	public void closeCalender() {
 
-		click(suffix);
+		click(addressTab);
 	}
 
 	public AddIndividualsPage photoTab() {
@@ -1254,7 +1255,7 @@ public class AddIndividualsPage extends BaseClass{
 
 		click(skipbtn);
 	}
-
+	
 	public AddIndividualsPage forwardToConfirmPage() {
 
 		if (getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")
@@ -1281,7 +1282,6 @@ public class AddIndividualsPage extends BaseClass{
 
 	public void addIndividualButton() {
 
-		waitForPageLoad();
 		click(addIndividual);
 	}
 
@@ -1479,7 +1479,7 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
-	public AddIndividualsPage lastName(int rowNum) {
+	public AddIndividualsPage lastName(int rowNum) throws Exception {
 
 		String crLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 2) + secondsCount();
 		sendKeys(lastName, crLastName);
@@ -1618,7 +1618,7 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
-	public AddIndividualsPage ecPhoneNumber(int rowNum) {
+	public AddIndividualsPage ecPhoneNumber(int rowNum) throws Exception {
 
 		String randomMobileNumber = randomMobileNumber();
 		writeExcelToOverwrite("Test Datas", "AddIndividuals", 2, 20, randomMobileNumber);
@@ -1854,24 +1854,40 @@ public class AddIndividualsPage extends BaseClass{
 		waitForPageLoad();
 	}
 
+//	public void searchBox(int rowNum){
+//
+//		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+//		for (int i = 0; i < crIndividualLastName.length(); i++) {
+//			char letter = crIndividualLastName.charAt(i);
+//			String letterAsString = String.valueOf(letter);
+//			sendKeys(individualSearchBox, letterAsString);
+//		}
+//
+//		backSpace(individualSearchBox);
+//		waitForFullPageElementLoad();
+//		sleep(1000);
+//		int length = crIndividualLastName.length();
+//		char lastLetter = crIndividualLastName.charAt(length - 1);
+//		String enterLastLetter = String.valueOf(lastLetter);
+//		sendKeys(individualSearchBox, enterLastLetter);
+//		waitForFullPageElementLoad();
+//	}
+	
 	public void searchBox(int rowNum){
 
-		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
-		for (int i = 0; i < crIndividualLastName.length(); i++) {
-			char letter = crIndividualLastName.charAt(i);
-			String letterAsString = String.valueOf(letter);
-			sendKeys(individualSearchBox, letterAsString);
-		}
+		String crIndividualFirstAndMiddleName = readExcel("Test Datas", "AddIndividuals", 1, 0)+" "+readExcel("Test Datas", "AddIndividuals", 1, 1);
 
-		backSpace(individualSearchBox);
-		waitForPageLoad();
-		int length = crIndividualLastName.length();
-		char lastLetter = crIndividualLastName.charAt(length - 1);
-		String enterLastLetter = String.valueOf(lastLetter);
-		sendKeys(individualSearchBox, enterLastLetter);
-
-		waitForPageLoad();
-		waitForFullPageElementLoad();
+			sendKeys(individualSearchBox, crIndividualFirstAndMiddleName);
+			waitForAjexPageLoad();
+			String crIndividualLastName = " "+readExcel("Test Datas", "AddIndividuals", 1, 21);
+			for (int i = 0; i < crIndividualLastName.length(); i++) {
+				char letter = crIndividualLastName.charAt(i);
+				String letterAsString = String.valueOf(letter);
+				sendKeys(individualSearchBox, letterAsString);
+				waitForAjexPageLoad();
+			}
+			waitForPageLoad();
+			waitForFullPageElementLoad();
 	}
 
 public AddIndividualsPage vitalsTab() {
@@ -1938,6 +1954,10 @@ public AddIndividualsPage addVitalsButton() {
 	return this;
 }
 	
+public void searchedIndividualform() {
+	
+click(createdIndName);
+}
 
 
 }
