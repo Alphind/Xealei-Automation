@@ -10,6 +10,7 @@
 
 package org.alphind.xealei.pages;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -126,7 +127,16 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "//button[@mat-raised-button]")
 	private WebElement EditSuite;
 
+	@FindBy(xpath = "(//span[@class='btn-txt'])[1]")
+	private WebElement createdSuites;
+	
+	
+	public String getExistSuite() {
+	
+		return getText(createdSuites);
 
+	}
+	
 
 	public WebElement getBtnAddSuites() {
 		return btnAddSuites;
@@ -250,12 +260,7 @@ public class AddSuitesPage extends BaseClass {
 
 	public void btnAddSuite() {
 
-		if (btnAddSuites.isDisplayed()) {
 			click(btnAddSuites);
-			waitForPageLoad();
-		} else {
-			log(Status.FAIL, "Unable to click Add Suite button");
-		}
 	}
 
 	public AddSuitesPage suiteLimit() {
@@ -283,7 +288,9 @@ public class AddSuitesPage extends BaseClass {
 	}
 
 	public AddSuitesPage existSuiteName(int rowNum) {
-
+		
+		String existSuite = getExistSuite();
+		writeExcelToOverwrite("Test Datas", "AddSuites", 1, 6, existSuite);
 		String duplicateSuiteName = readExcel("Test Datas", "AddSuites", rowNum, 6);
 		sendKeys(suiteName, duplicateSuiteName);
 		log(Status.INFO, "Getting suite name data from excel -" + duplicateSuiteName);
@@ -347,7 +354,7 @@ public class AddSuitesPage extends BaseClass {
 
 	String createdSuite;
 
-	public void searchBox(int rowNum) throws Exception {
+	public void searchBox() throws Exception {
 
 		String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
 		
@@ -356,12 +363,14 @@ public class AddSuitesPage extends BaseClass {
 			String letterAsString = String.valueOf(letter);
 			sendKeys(suitesSearchBox, letterAsString);
 		}
-		
+		waitForPageLoad();
+		sleep(1000);
 		backSpace(suitesSearchBox);
 		int length = createdSuite.length();
         char lastLetter = createdSuite.charAt(length-1);
         String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
+		waitForPageLoad();
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {

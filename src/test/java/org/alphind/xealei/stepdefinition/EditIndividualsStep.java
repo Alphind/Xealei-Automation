@@ -25,15 +25,13 @@ public class EditIndividualsStep extends BaseClass {
 	public void user_should_verify_the_name_dob_id_guardian_contact_details_is_displayed() {
 
 		logStep(methodName());
-
-		waitForPageLoad();
 		
-		String IndName = getAttribute(pom.getEditIndividualsPage().getIndividualSearchBox(),"value");
+		waitForFullPageElementLoad();
 		
-				System.out.println("Actual Searched Ind Name - "+IndName);
-				System.out.println("Expected Searched Ind Name - "+readExcel("Test Datas", "AddIndividuals", 1, 26));
-				
-		if(IndName.equals(readExcel("Test Datas", "AddIndividuals", 1, 26))){
+		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
+		String expSearchedInd = readExcel("Test Datas", "AddIndividuals", 1, 26);
+		String expSearchedIndInExcelFromLastRow = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);		
+		if(actSearchedInd.equals(expSearchedInd)){
 			
 		try {
 			
@@ -102,7 +100,7 @@ public class EditIndividualsStep extends BaseClass {
 		}
 		
 		}	
-	     else if(IndName.equals(readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1))){
+	     else if(actSearchedInd.equals(expSearchedIndInExcelFromLastRow)){
 			
 			try {
 				String expIndividualName = readExcel("Test Datas", "EditIndividuals", 1, 26);
@@ -174,10 +172,9 @@ public class EditIndividualsStep extends BaseClass {
 		}
 
 	}
-
+	
 	@Then("User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page")
-	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_individual_name_selected_individual_name_in_edit_individual_page()
-			throws Exception {
+	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_individual_name_selected_individual_name_in_edit_individual_page() throws Exception {
 
 		logStep(methodName());
 
@@ -185,9 +182,9 @@ public class EditIndividualsStep extends BaseClass {
 		waitForPageLoad();
 		
 		String txtBreadCrum = getText(pom.getEditIndividualsPage().getBreadCrumLink());
-
+		String expBCText = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		if (txtBreadCrum.contains("Individuals") && pom.getEditIndividualsPage().createdIndNameText()
-				.contains(readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1))) {
+				.contains(expBCText)) {
 			log(Status.PASS, "Breadcrums link name is displayed as expected :"
 					+ pom.getEditIndividualsPage().createdIndNameText());
 		} else {
@@ -209,8 +206,6 @@ public class EditIndividualsStep extends BaseClass {
 	public void user_should_verify_the_tab_section_name(String expPersonalTab, String expVitalsTab) {
 
 		logStep(methodName());
-
-		waitForPageLoad();
 
 		try {
 			Assert.assertEquals("Personal Tab is NOT displayed as expected", expPersonalTab,

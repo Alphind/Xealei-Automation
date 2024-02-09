@@ -361,7 +361,9 @@ public class LoginPage extends BaseClass {
 	public void validEmail(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
-
+		
+		waitForVisiblityOfElement(userName, 3);
+		
 		switch (environment) {
 
 		case "QA": {

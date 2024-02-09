@@ -518,19 +518,23 @@ public class EditIndividualsPage extends BaseClass{
 		System.out.println("MN - "+MiddleName);
 		System.out.println("LN - "+LastName);
 		
-		sendKeys(individualSearchBox, firstName+MiddleName);
+		sendKeys(individualSearchBox, firstName+" "+MiddleName);
 			waitForAjexPageLoad();
 			
 			for (int i = 0; i < LastName.length(); i++) {
-				char letter = crIndividualLastName.charAt(i);
+				char letter = LastName.charAt(i);
 				String letterAsString = String.valueOf(letter);
 				sendKeys(individualSearchBox, letterAsString);
-				waitForAjexPageLoad();
+				waitForPageLoad();
 			}
+			backSpace(individualSearchBox);
 			waitForPageLoad();
-			waitForFullPageElementLoad();
+			int length = LastName.length();
+			char lastLetter = LastName.charAt(length - 1);
+			String enterLastLetter = String.valueOf(lastLetter);
+			sendKeys(individualSearchBox, enterLastLetter);
+			waitForPageLoad();
 	}
-	
 	
 //	public void searchBox(){
 //
@@ -545,7 +549,6 @@ public class EditIndividualsPage extends BaseClass{
 
 	public void downloadMRUploadedFile() {
 		
-		waitForPageLoad();
 		waitForFullPageElementLoad();
 		
 		click(downloadMRFile);
@@ -593,7 +596,6 @@ public  void vitalsCancelButton() {
 
 	public String createdIndNameText() {
 
-		waitForPageLoad();
 		String createdInd = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		BC = BC.replaceAll("createdSN", createdInd);
 		String textString = getTextString(BC);
@@ -827,7 +829,6 @@ public void Upload(String fileName, String formatType){
 		try {
 
 			Assert.assertFalse("File NOT Uploaded", fileUpload.isEmpty());
-			waitForPageLoad();
 			log(Status.PASS, "File uploaded in Medical Record successfully");
 
 		} catch (AssertionError e) {
@@ -923,7 +924,6 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		try {
 
 			Assert.assertFalse("File NOT Uploaded", fileUpload.isEmpty());
-			waitForPageLoad();
 			log(Status.PASS, "File uploaded in Medical Record successfully");
 
 		} catch (AssertionError e) {

@@ -1875,13 +1875,16 @@ public class AddIndividualsPage extends BaseClass{
 	
 	public void searchBox(int rowNum){
 
-		String crIndividualFirstAndMiddleName = readExcel("Test Datas", "AddIndividuals", 1, 0)+" "+readExcel("Test Datas", "AddIndividuals", 1, 1);
-
-			sendKeys(individualSearchBox, crIndividualFirstAndMiddleName);
+		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+		String[] split = crIndividualLastName.split(" ");
+		String firstName = split[0];
+		String MiddleName = split[1];
+		String LastName = " "+split[2];
+		
+			sendKeys(individualSearchBox, firstName+" "+MiddleName);
 			waitForAjexPageLoad();
-			String crIndividualLastName = " "+readExcel("Test Datas", "AddIndividuals", 1, 21);
-			for (int i = 0; i < crIndividualLastName.length(); i++) {
-				char letter = crIndividualLastName.charAt(i);
+			for (int i = 0; i < LastName.length(); i++) {
+				char letter = LastName.charAt(i);
 				String letterAsString = String.valueOf(letter);
 				sendKeys(individualSearchBox, letterAsString);
 				waitForAjexPageLoad();

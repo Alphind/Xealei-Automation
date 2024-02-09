@@ -381,12 +381,14 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.PASS, "*Required field toastbar msg is displayed as expected - "
 					+ getText(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg()));
 
+			pom.getAddIndividualsPage().toastMsgOKButton();
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 
-		pom.getAddIndividualsPage().toastMsgOKButton();
+		
 	}
 
 	@Then("User should verify the limit validation error message for First Name* field in identification tab section {string}")
@@ -1534,11 +1536,12 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 				"IND RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact1Relationship()));
 		System.out.println("IND EmC PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
 
-		
+
 		try {
 			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 1, 6);
-            waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 5);
+            waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
+            sleep(1000);
 			Assert.assertEquals("Created Suite Mismatched", expSelectSuite, actualSelectedSuite);
 			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
 					+ " | ACT Selected Suite - " + actualSelectedSuite);
