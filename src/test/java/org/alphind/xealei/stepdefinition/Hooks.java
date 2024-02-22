@@ -30,19 +30,17 @@ public class Hooks extends BaseClass {
 		browserType();
 		env();
 		implicitWaitBySeconds(15);
-
 	}
 
 	@After
 	public void tearDown() throws SocketException {
 
 		reportFlush();
-//		if (getDriver() != null) {
-//			quit();
-//		}
+		if (getDriver() != null) {
+			quit();
 		}
+	}
 }
-
 //	@After(order = 2)
 //	public void cleaningProcess() {
 //		

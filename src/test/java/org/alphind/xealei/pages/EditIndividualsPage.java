@@ -505,7 +505,7 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
-	public void searchBox(){
+	public void searchBox() throws Exception{
 
 		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		String[] split = crIndividualLastName.split(" ");
@@ -529,11 +529,28 @@ public class EditIndividualsPage extends BaseClass{
 			}
 			backSpace(individualSearchBox);
 			waitForPageLoad();
+			waitForFullPageElementLoad();
+			sleep(5000);
 			int length = LastName.length();
 			char lastLetter = LastName.charAt(length - 1);
 			String enterLastLetter = String.valueOf(lastLetter);
 			sendKeys(individualSearchBox, enterLastLetter);
 			waitForPageLoad();
+			waitForFullPageElementLoad();
+			
+			String actSearchedInd = getText(getCreatedIndName());
+			
+			System.out.println("Actua Searched Ind - "+actSearchedInd);
+			System.out.println("Exp Searched Ind - "+crIndividualLastName);
+			
+			if (actSearchedInd.equals(crIndividualLastName)) {
+				log(Status.PASS, "Searched Individual is displayed");
+				
+			} else {
+				log(Status.FAIL, "Searched Individual is NOT displayed");
+				throw new Exception("Assertion failed searched Individual is not displayed as expected");
+			}
+			
 	}
 	
 //	public void searchBox(){
@@ -557,6 +574,7 @@ public class EditIndividualsPage extends BaseClass{
 	
 	public void arrowRight() {
 		
+		waitForFullPageElementLoad();
 		click(arrowRight);
 	}
 

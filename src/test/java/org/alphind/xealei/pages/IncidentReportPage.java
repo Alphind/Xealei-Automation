@@ -321,8 +321,8 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'File(1) size should be less than 1 MB')]")
 	private WebElement imgSizeToastMsg;
 
-	@FindBy(xpath = "//span[contains(text(),'JFIF format is not supported')]")
-	private WebElement JFIFFileFormatNotSupportedToastMsg;
+	@FindBy(xpath = "//span[contains(text(),'Only jpg,jpeg,png type format')]")
+	private WebElement unSupportedFileUploadToastMessageText;
 
 	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
 	private WebElement eventNotifiedDefaultValue;
@@ -473,6 +473,10 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
 	
+	
+	public 	WebElement getNoteInfoMsgElement() {
+		return noteInfoMsg;
+	}
 	
 	
 	public WebElement getLocationElement() {
@@ -851,6 +855,7 @@ public class IncidentReportPage extends BaseClass {
 
 		deleteExistFieldData(eventDateAndTimeCalenderIconButton);
 	}
+	
 
 	/**
 	 * Delete the "Injury Description" field exist data
@@ -1688,11 +1693,19 @@ public class IncidentReportPage extends BaseClass {
 					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
 					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 					sendKeys(timeTxtbox, notificationDate);
+					String getNotificationTime = getAttribute(timeTxtbox, "value");
+					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+//					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
+//					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
 					break;
 				}
 				case "NO" :{
 					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
 					sendKeys(timeTxtbox, notificationDate);
+					String getNotificationTime = getAttribute(timeTxtbox, "value");
+					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+//					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
+//					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
 					break;
 				}
 			}
@@ -1913,7 +1926,6 @@ public class IncidentReportPage extends BaseClass {
 		try {
 			String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
 			select(this.driver, excatColumn);
-			waitForPageLoad();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -2045,11 +2057,19 @@ public class IncidentReportPage extends BaseClass {
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth );
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
+			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+//			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
+//			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
 		}
 		case "NO": {
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
+			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+//			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
+//			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
 		}
 		}
@@ -2154,7 +2174,7 @@ sleep(2000);
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(5000);
+			sleep(3000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -2176,17 +2196,20 @@ sleep(2000);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 
 				try {
-					waitForVisiblityOfElement(JFIFFileFormatNotSupportedToastMsg, 5);
-					Assert.assertEquals("Unable to restrict the JFIF File format", "JFIF format is not supported",
-							getText(JFIFFileFormatNotSupportedToastMsg));
+					waitForVisiblityOfElement(unSupportedFileUploadToastMessageText, 5);
+					Assert.assertEquals("Unable to restrict the JFIF File format", "Only jpg,jpeg,png type format is supported",
+							getText(unSupportedFileUploadToastMessageText));
 
-					log(Status.PASS, "Toast Message is displayed - " + getText(JFIFFileFormatNotSupportedToastMsg));
+					log(Status.PASS, "Toast Message is displayed - " + getText(unSupportedFileUploadToastMessageText));
+					
+					ToastMsgOKButton();
+					
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
 				}
 
-				ToastMsgOKButton();
+				
 
 			} catch (AWTException e) {
 				e.printStackTrace();

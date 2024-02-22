@@ -10,7 +10,6 @@
 
 package org.alphind.xealei.pages;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -34,6 +33,7 @@ public class AddSuitesPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 	
+
 	
 	@FindBy(xpath = "//h5[contains(text(),'Suites')]")
 	private WebElement suitesPage;
@@ -43,7 +43,13 @@ public class AddSuitesPage extends BaseClass {
 
 	@FindBy(xpath = "//h2[contains(text(),'Add Suite')]")
 	private WebElement addSuitePopupText;
-
+	
+	@FindBy(xpath = "//p[@class='msg-txt']")
+	private WebElement closePopupContentText;
+	
+	@FindBy(xpath = "//h1[contains(text(),' Suite')]")
+	private WebElement closePopupSuite;
+	
 	@FindBy(xpath = "//input[@placeholder='Enter Suite Name']")
 	private WebElement suiteName;
 
@@ -130,6 +136,11 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "(//span[@class='btn-txt'])[1]")
 	private WebElement createdSuites;
 	
+	@FindBy(xpath = "//span[contains(text(),'Yes')]/parent::button")
+	private WebElement closepopupButtonIsEnabled;
+	
+	
+	
 	
 	public String getExistSuite() {
 	
@@ -137,9 +148,18 @@ public class AddSuitesPage extends BaseClass {
 
 	}
 	
-
+	public String getclosePopupContentText() {
+		
+		return getText(closePopupContentText);
+	}
+	
+	
 	public WebElement getBtnAddSuites() {
 		return btnAddSuites;
+	}
+	
+	public WebElement getClosePopupSuiteName() {
+		return closePopupSuite;
 	}
 
 	public WebElement getBtnAdd() {
@@ -258,15 +278,21 @@ public class AddSuitesPage extends BaseClass {
 	 */
 
 
-	public void btnAddSuite() {
+	public AddSuitesPage btnAddSuite() {
 
 			click(btnAddSuites);
+			return this;
 	}
 
 	public AddSuitesPage suiteLimit() {
 		
 		sendKeys(suiteName, "AB");
 		return this;
+	}
+	
+	public void yesButton() {
+		
+		click(closepopupButtonIsEnabled);
 	}
 	
 	public AddSuitesPage enterSuiteName(int rowNum) throws Exception{
@@ -326,6 +352,17 @@ public class AddSuitesPage extends BaseClass {
 		return this;
 	}
 
+	public AddSuitesPage nonMandatoryFieldIsNotEmpty() {
+	
+		if(getAttribute(length,"value").isEmpty() && getAttribute(width,"value").isEmpty() && getAttribute(height,"value").isEmpty()) {
+			log(Status.FAIL, "Data is NOT entered in Non-Mandatory fields");
+		} else {
+			log(Status.PASS, "Data is entered in Non-Mandatory fields");
+		}
+		return this;
+
+	}
+	
 	public AddSuitesPage addButton() {
 
 		click(btnAdd);
@@ -357,20 +394,22 @@ public class AddSuitesPage extends BaseClass {
 	public void searchBox() throws Exception {
 
 		String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
-		
-		for (int i = 0; i < createdSuite.length(); i++) {
-			char letter = createdSuite.charAt(i);
+		String[] split = createdSuite.split("-");
+		String suiteName = split[0];
+		String timeStamp = split[1];
+		sendKeys(suitesSearchBox, suiteName+"-");
+		for (int i = 0; i < timeStamp.length(); i++) {
+			char letter = timeStamp.charAt(i);
 			String letterAsString = String.valueOf(letter);
 			sendKeys(suitesSearchBox, letterAsString);
 		}
 		waitForPageLoad();
-		sleep(1000);
+		sleep(5000);
 		backSpace(suitesSearchBox);
 		int length = createdSuite.length();
         char lastLetter = createdSuite.charAt(length-1);
         String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
-		waitForPageLoad();
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {
@@ -400,7 +439,6 @@ public class AddSuitesPage extends BaseClass {
 
 	public String breadCrumSuiteNameText() {
 
-		waitForPageLoad();
 		createdSuite = readExcel("Test Datas", "AddSuites", 2, 6);
 		BC = BC.replaceAll("createdSN", createdSuite);
 		String textString = getTextString(BC);

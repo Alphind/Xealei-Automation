@@ -26,9 +26,11 @@ public class CommonSteps extends BaseClass {
 	@Given("User is on Xealei login page")
 	public void user_is_on_xealei_login_page() {
 		
+		stepName(methodName());
+		
 		try {
 		Assert.assertTrue("User is NOT in Xealei login page",pom.getLoginPage().isImageIsDisplayed().isDisplayed());
-        log(Status.PASS,"User is on Xealei login page");
+        log(Status.PASS,"Successfully landed on Xealei Login Page");
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 		}
@@ -37,7 +39,7 @@ public class CommonSteps extends BaseClass {
 	@Then("User should verify once the page is navigated to HOME_DASHBOARD successfully {string}")
 	public void user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String expMessage) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		System.out.println("exp Text :" + expMessage);
 		System.out.println("Actual Text :" + pom.getHomePage().HomeText());

@@ -12,6 +12,7 @@ C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\HomePage.jav
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\EditSuitesPageStep.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC5AddIndividualsTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC7IncidentReportsTestRunner.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC002RegressionTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\LoginPageStep.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\CommonSteps.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\stepdefinition\AddIndividualsPageStep.java
@@ -19,6 +20,7 @@ C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\LoginPage.ja
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC6EditIndividualsTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\AddSuitesPage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\IncidentReportPage.java
+C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC001SanityTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC2ForgotPasswordTestRunner.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\pages\ForgotPasswordPage.java
 C:\Automation Testing\Xealei\src\test\java\org\alphind\xealei\runner\TC4EditSuitesTestRunner.java

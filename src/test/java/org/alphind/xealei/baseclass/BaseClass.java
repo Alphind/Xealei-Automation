@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -41,6 +42,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.velocity.runtime.directive.Foreach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -235,6 +237,13 @@ public class BaseClass {
 		// Duration.ofSeconds(seconds));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public void waitForElementToBeStale(WebDriver driver ,WebElement element, long seconds) {
+		// WebDriverWait wait = new WebDriverWait(dr.get(),
+		// Duration.ofSeconds(seconds));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+		wait.until(ExpectedConditions.stalenessOf(element));
 	}
 
 	// 13. Screenshot
@@ -433,6 +442,20 @@ public class BaseClass {
 			e.printStackTrace();
 			return "";
 		}
+	}
+	
+		public String getSparkConfig(String key) {
+			
+			try {
+				FileInputStream stream = new FileInputStream(".extent.properties");
+				Properties properties = new Properties();
+				properties.load(stream);
+				return properties.get(key).toString();
+			} catch (IOException e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+				return "";
+			}
 
 	}
 
@@ -479,6 +502,11 @@ public class BaseClass {
 	}
 	}
 
+	
+	
+	
+	
+
 	// 30. findElement --- > ByTagName
 
 	public WebElement findElementByTagName(String tagName) {
@@ -493,6 +521,13 @@ public class BaseClass {
 
 		// WebElement elements = dr.get().findElement(By.xpath(xpath));
 		WebElement elements = driver.findElement(By.xpath(xpath));
+		return elements;
+	}
+	
+	public WebElement findElementByXpath(WebDriver currentDriver,String xpath) {
+
+		// WebElement elements = dr.get().findElement(By.xpath(xpath));
+		WebElement elements =currentDriver.findElement(By.xpath(xpath));
 		return elements;
 	}
 
@@ -946,6 +981,7 @@ try {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
+	
 	public void waitForFullPageElementLoad(WebDriver currentdriver) {
 
 		currentdriver.manage().timeouts().getPageLoadTimeout();
@@ -1099,7 +1135,7 @@ try {
 		}
 	}
 
-	public void logStep(String name) {
+	public void stepName(String name) {
 		test.log(Status.INFO, MarkupHelper.createLabel(name, ExtentColor.AMBER));
 	}
 
@@ -1412,7 +1448,5 @@ try {
      
     	 return outputDateString;
 	}
-	
-
 	
 }

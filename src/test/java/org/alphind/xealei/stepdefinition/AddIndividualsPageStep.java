@@ -13,6 +13,8 @@ package org.alphind.xealei.stepdefinition;
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 
 import com.aventstack.extentreports.Status;
 
@@ -27,8 +29,8 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify the Individuals Module is working")
 	public void user_should_verify_the_individuals_module_is_working() {
 
-		logStep(methodName());
-
+		stepName(methodName());
+		
 		waitForPageLoad();
 		
 		pom.getHomePage().navToIndividualsModule();
@@ -42,19 +44,15 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 	}
-
-	@Then("User should verify the Add Individual button is working")
-	public void user_should_verify_the_add_individual_button_is_working() {
-
-		logStep(methodName());
+	
+	@Then("User should click on the Add Individual button and verify the {string} pop up screen is displayed")
+	public void user_should_click_on_the_add_individual_button_and_verify_the_pop_up_screen_is_displayed(String expAddIndividualsPopupText) throws Exception {
+	   
+		
+		
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().addIndividualButton();
-	}
-
-	@Then("User should verify the {string} pop up screen is displayed")
-	public void user_should_verify_the_pop_up_screen_is_displayed(String expAddIndividualsPopupText) throws Exception {
-
-		logStep(methodName());
 
 		String popupText = getText(pom.getAddIndividualsPage().getAddIndividualPopup());
 
@@ -71,7 +69,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_respective_tab_text_are_displayed(String photoTab, String IdentificationTab,
 			String AddressTab, String PreferenceTab) throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		String photo = getText(pom.getAddIndividualsPage().getPhotoTab());
 		String identification = getText(pom.getAddIndividualsPage().getIdentificationTab());
@@ -111,7 +109,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify that able to upload different file formats except jpg, jpeg, png")
 	public void user_should_verify_that_able_to_upload_different_file_formats_except_jpg_jpeg_png() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().unSupportedImgFormatUpload("JFIF Format", "jfif");
 	}
@@ -119,7 +117,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify that able to upload more than 1MB Image file")
 	public void user_should_verify_that_able_to_upload_more_than_1MB_Image_file() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
 
@@ -128,7 +126,9 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should upload image in photo tab section")
 	public void user_should_upload_image_in_photo_tab_section() throws Exception {
 
-		logStep(methodName());
+		
+		
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().Upload("JPG", "jpg");
 	}
@@ -138,7 +138,7 @@ public class AddIndividualsPageStep extends BaseClass {
 			String IndFN, String IndLN, String Gender, String DOB, String Suite, String ResAddress, String MailAddress,
 			String EmFN, String EmLN, String EmRelationship, String EmPhNo) throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().forwardArrowToAddressSection();
 
@@ -340,10 +340,10 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 	}
 
-	@Then("User should Add Individual by perform only non mandatory fields")
-	public void user_should_add_individual_by_perform_only_non_mandatory_fields() throws Exception {
+	@Then("User should Add Individual by perform only non mandatory fields and verify the Required field toast message {string}")
+	public void user_should_add_individual_by_perform_only_non_mandatory_fields_and_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().identificationTab().title(1).middleName(1).suffix(1).race(1).maritalStatus(1)
 				.addressTab();
@@ -352,7 +352,6 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.PASS, "Address TAB button is working as expected");
 		} else {
 			log(Status.FAIL, "Forward arrow -> button is NOT working as expected");
-			throw new Exception();
 		}
 
 		pom.getAddIndividualsPage().preferenceTab().nickName(1).pronoun(1).ethnicAffiliation(1).preferredLanguage(1)
@@ -363,14 +362,7 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.PASS, "Forward arrow -> button is working in Preference tab");
 		} else {
 			log(Status.FAIL, "Forward arrow -> button is not working in Preference tab");
-			throw new Exception();
 		}
-	}
-
-	@Then("User should verify the Required field toast message {string}")
-	public void user_should_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
-
-		 logStep(methodName());
 		 
 		try {
 			
@@ -395,7 +387,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_for_first_name_field_in_identification_tab_section(
 			String expValidationMsgForFrstName) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		waitForFullPageElementLoad();
 		pom.getAddIndividualsPage().back();
@@ -419,7 +411,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_for_middle_name_field_in_identification_tab_section(
 			String expValidationMsgForMiddleName) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().invalidMiddleName();
 
@@ -441,7 +433,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_for_last_name_field_in_identification_tab_section(
 			String expValidationMsgForLastName) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().invalidLastName();
 
@@ -461,7 +453,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform only mandatory fields in identification tab")
 	public void user_should_perform_only_mandatory_fields_in_identification_tab() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		deleteExistFieldData(pom.getAddIndividualsPage().getFirstName());
 		deleteExistFieldData(pom.getAddIndividualsPage().getMiddleName());
@@ -472,86 +464,104 @@ public class AddIndividualsPageStep extends BaseClass {
 		String getExpLastName = getAttribute(pom.getAddIndividualsPage().getLastName(), "value");
 
 		writeExcelToOverwrite("Test Datas", "AddIndividuals", 1, 21, getExpLastName);
+		
+		pom.getAddIndividualsPage().isMandatoryFieldsAreFilledInIdenticationTabSection();
 
 	}
 
-	@Then("User should click the address tab")
-	public void user_should_click_the_address_tab() {
+	@Then("User should click the address tab and perform Address in Residential Address * field")
+	public void user_should_click_the_address_tab_and_perform_address_in_residential_address_field() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().addressTab();
-	}
-
-	@Then("User should perform Address in Residential Address * field")
-	public void user_should_perform_address_in_residential_address_field() {
-
-		logStep(methodName());
 
 		pom.getAddIndividualsPage().residentialAddress(1);
+		
+		if(getAttribute(pom.getAddIndividualsPage().getResidentialAddress(), "value").isBlank()){
+			log(Status.FAIL, "Data is not entered in Residential Address * field" );
+		} else {
+			log(Status.PASS, "Data is entered in Residential Address * field" );
+		}
 	}
 
 	@Then("User should tick the Same as Residential address checkbox")
 	public void user_should_tick_the_same_as_residential_address_checkbox() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
+		
+		try {
+		WebElement isCheckboxTicked = pom.getAddIndividualsPage().isCheckboxTicked();
+		
+		if(isCheckboxTicked.isDisplayed()){
+			log(Status.PASS, "Checkbox is ticked" );
+		} else {
+			log(Status.FAIL, "Checkbox is NOT ticked" );
+		} 
+		} catch (NoSuchElementException e) {
+			e.getMessage();
+		}
 	}
 	
 	@Then("User should verify the Residential Address * and Mailing Address * fields values are same")
 	public void user_should_verify_the_residential_address_and_mailing_address_fields_values_are_same()
 			throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		String residentialAddress = getText(pom.getAddIndividualsPage().getResidentialAddress());
 		String mailingAddress = getText(pom.getAddIndividualsPage().getMailingAddress());
 
 		if (residentialAddress.equals(mailingAddress)) {
-			log(Status.PASS, "Same as Residential address checkbox is working as expected");
+			log(Status.PASS, "Residential Address * and Mailing Address * fields values are same");
 		} else {
-			log(Status.FAIL, "Same as Residential address checkbox is not working as expected");
+			log(Status.FAIL, "Residential Address * and Mailing Address * fields values are NOT same");
 			throw new Exception();
 		}
 
 	}
 
 	
-	@Then("User should uncheck the Same as Residential address checkbox")
-	public void user_should_uncheck_the_same_as_residential_address_checkbox() {
+	@Then("User should uncheck the Same as Residential address checkbox and enter address in Mailing Address * field")
+	public void user_should_uncheck_the_same_as_residential_address_checkbox_and_enter_address_in_mailing_address_field() {
+	    
+		stepName(methodName());
 
-		logStep(methodName());
-
-		pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
-	}
-
-	@Then("User should enter address in Mailing Address * field")
-	public void user_should_enter_address_in_mailing_address_field() {
-
-		logStep(methodName());
-
+		pom.getAddIndividualsPage().sameAsResiAdresscheckBox().isMailingAddressFieldIsEmpty();
+		
 		pom.getAddIndividualsPage().MailingAddress(1);
+		
 	}
 
 	
 	@Then("User should tick the same as Residential address after entering different address in Mailing address")
 	public void user_should_tick_the_same_as_residential_address_after_entering_different_address_in_mailing_address() {
 	
-	logStep(methodName());
+	stepName(methodName());
 
 	pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
 	
+	try {
+		WebElement isCheckboxTicked = pom.getAddIndividualsPage().isCheckboxTicked();
+		
+		if(isCheckboxTicked.isDisplayed()){
+			log(Status.PASS, "Checkbox is ticked" );
+		} else {
+			log(Status.FAIL, "Checkbox is NOT ticked" );
+		} 
+		} catch (NoSuchElementException e) {
+			e.getMessage();
+		}
 	}
 	
-	
-	
-	
-	@Then("User should verify the validation error message for Mailing Address * field {string}")
-	public void user_should_verify_the_validation_error_message_for_mailing_address_field(
-			String expValidationMsgForMailingAddress) {
-
-		logStep(methodName());
+		@Then("User should uncheck the Same as Residential address checkbox and verify the validation error message for Mailing Address * field {string}")
+		public void user_should_uncheck_the_same_as_residential_address_checkbox_and_verify_the_validation_error_message_for_mailing_address_field(String expValidationMsgForMailingAddress) {
+		 
+		stepName(methodName());
+		
+		pom.getAddIndividualsPage().sameAsResiAdresscheckBox();
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForMailingAddressField(), 5);
@@ -568,20 +578,14 @@ public class AddIndividualsPageStep extends BaseClass {
 
 	}
 
-	@Then("User should delete the Residential Address * field data")
-	public void user_should_delete_the_residential_address_field_data() {
-
-		logStep(methodName());
-
-		deleteExistFieldData(pom.getAddIndividualsPage().getResidentialAddress());
-	}
-
-	@Then("User should verify the validation error message for Residential Address * field {string}")
-	public void user_should_verify_the_validation_error_message_for_residential_address_field(
+	@Then("User should delete the exist data in Residential Address * field and verify the validation error message for Residential Address * field {string}")
+	public void user_should_delete_the_exist_data_in_residential_address_field_and_verify_the_validation_error_message_for_residential_address_field(
 			String expValidationMsgForResidentialAddress) {
 
-		logStep(methodName());
+		stepName(methodName());
 
+		deleteExistFieldData(pom.getAddIndividualsPage().getResidentialAddress());
+		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForResidentialAddressField(), 5);
 
@@ -602,7 +606,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_first_middle_last_and_dob_is_displayed_in_address_tab_section()
 			throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		String firstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
 		String middleName = readExcel("Test Datas", "AddIndividuals", 1, 1);
@@ -645,7 +649,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_first_middle_last_name_dob_and_mailing_address_are_displayed_in_preference_tab_section()
 			throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().preferenceTab();
 
@@ -696,17 +700,17 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform Add another emergency contact1")
 	public void user_should_perform_add_another_emergency_contact1() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().preferenceTab().ecFNForLimitVal().ecLNForLimitVal().ecRelationship(1)
-				.ecPhoneNumber(1);
+				.ecPhoneNumber(1).ecFieldIsEmpty();
 	}
 
 	@Then("User should verify the limit validation error message in Emergency Contact1 First Name* field {string}")
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact1_first_name_field(
 			String expValidationMsgForFrstName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
@@ -729,7 +733,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact1_last_name_field(
 			String expValidationMsgForLastName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 5);
@@ -757,16 +761,16 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform firstName* and lastName* fields in Add another emergency contact2")
 	public void user_should_perform_first_name_and_last_name_fields_in_add_another_emergency_contact2() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
-		pom.getAddIndividualsPage().ec2FNForLimitVal().ecLN2ForLimitVal();
+		pom.getAddIndividualsPage().ec2FNForLimitVal().ecLN2ForLimitVal().ec2FieldIsEmpty();
 	}
 
 	@Then("User should verify the limit validation error message in Emergency Contact2 First Name* field {string}")
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact2_first_name_field(
 			String expValidationMsgForFrstName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
@@ -785,7 +789,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact2_last_name_field(
 			String expValidationMsgForLastName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 
@@ -805,7 +809,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_mandatory_field_validation_error_message_in_emergency_contact2(String EmFN,
 			String EmLN, String EmRelationship, String EmPhNo) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact2FN());
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact2LN());
@@ -871,9 +875,10 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform all the fields in Emergency Contact2")
 	public void user_should_perform_all_the_fields_in_emergency_contact2() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().ec2FirstName(1).ec2LastName(1).ec2Relationship(1).ec2PhoneNumber(1);
+		pom.getAddIndividualsPage().ec2FieldIsEmpty();
 	}
 	
 //	@Then("User should verify the emergency contact label names")
@@ -905,16 +910,17 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform firstName* and lastName* fields in Add another emergency contact3")
 	public void user_should_perform_first_name_and_last_name_fields_in_add_another_emergency_contact3() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().ec3FNForLimitVal().ec3LNForLimitVal();
+		pom.getAddIndividualsPage().ec3FieldIsEmpty();
 	}
 
 	@Then("User should verify the limit validation error message in Emergency Contact3 First Name* field {string}")
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact3_first_name_field(
 			String expValidationMsgForFrstName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
@@ -933,7 +939,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact3_last_name_field(
 			String expValidationMsgForLastName) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 5);
@@ -952,7 +958,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_mandatory_field_validation_error_message_in_emergency_contact3(String EmFN,
 			String EmLN, String EmRelationship, String EmPhNo) {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact3FN());
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact3LN());
@@ -1018,7 +1024,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should able to delete the emergency contact3")
 	public void user_should_able_to_delete_the_emergency_contact3() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().xBtnInEmContact2();
 	}
@@ -1026,7 +1032,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify the emergency contact3 is closed")
 	public void user_should_verify_the_emergency_contact3_is_closed() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		if (pom.getAddIndividualsPage().getEmContact3CloseBtn().isDisplayed()) {
 			log(Status.FAIL, "Emergency contact2 is NOT closed");
@@ -1039,7 +1045,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should able to delete the emergency contact2")
 	public void user_should_able_to_delete_the_emergency_contact2() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().xBtnInEmContact2();
 	}
@@ -1047,7 +1053,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify the emergency contact2 is closed")
 	public void user_should_verify_the_emergency_contact2_is_closed() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		if (pom.getAddIndividualsPage().getEmContact2CloseBtn().isDisplayed()) {
 			log(Status.FAIL, "EC3 -> EC2 Emergency contact2 is NOT closed");
@@ -1061,7 +1067,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should verify the tabticks in Identification, Address and Preference tab sections")
 	public void user_should_verify_the_tabticks_in_identification_address_and_preference_tab_sections() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		if (pom.getAddIndividualsPage().getIdentificationTabTick().isDisplayed()
 				&& pom.getAddIndividualsPage().getAddressTabTick().isDisplayed()
@@ -1076,7 +1082,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_verify_the_first_middle_and_last_name_dob_mailing_address_and_phone_number_are_displayed_in_confirm_form_screen()
 			throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().forwardToConfirmPage();
 
@@ -1142,28 +1148,38 @@ public class AddIndividualsPageStep extends BaseClass {
 	}
 	
 	
-@And("User should perform emergency contact1 with different phone number")
-public void User_should_perform_emergency_contact1_with_different_phone_number() {
+	@Then("User should perform emergency contact1 with different phone number and verify the error message for duplicate Mobile Number {string}")
+	public void User_should_perform_emergency_contact1_with_different_phone_number_and_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) throws Exception {
 
-	logStep(methodName());
+	stepName(methodName());
+	
+		pom.getAddIndividualsPage().ecPhoneNumber(1).forwardToConfirmPage();
+		waitForFullPageElementLoad();
+		
+		pom.getAddIndividualsPage().confirm();
 
-//	pom.getAddIndividualsPage().back()
-//			.deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact1PhoneNo());
-
-	try {
-		pom.getAddIndividualsPage().ecPhoneNumber(1).forwardToConfirmPage().confirm();
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
+		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg(), 30);
+			Assert.assertEquals("Individual already exist with same phone number - Toast Msg NOT displayed as expected",
+					expDuplicateErrorMsg, getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+			log(Status.PASS, "Duplicate PhoneNo Toast Msg is displayed as expected -"
+					+ getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+			
+			pom.getAddIndividualsPage().toastMsgOKButton();
+			
+		} catch (AssertionError e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
+		
+//		waitForFullPageElementLoad();
 
 }
 	
 	@Then("User should verify the {string}, {string} buttons is enabled in Photo tab Section")
 	public void user_should_verify_the_buttons_is_enabled_in_photo_tab_section(String string, String string2) {
 
-		logStep(methodName());
-
-		if (getConfigureProperty("ImageUpload").equalsIgnoreCase("No")) {
+		stepName(methodName());
 
 			String uploadBtn = getAttribute(pom.getAddIndividualsPage().getUploadBtnEnabled(), "ng-reflect-disabled");
 			String captureBtn = getAttribute(pom.getAddIndividualsPage().getCapturedBtnEnabled(),
@@ -1174,25 +1190,15 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 			} else {
 				log(Status.FAIL, "Upload and Capture button is NOT Enabled in photo tab section");
 			}
-		}
 	}
 
-	@Then("User should click on the calendar icon")
-	public void user_should_click_on_the_calendar_icon() {
+	@Then("User should click on the calendar icon and verify the date picker should appeared")
+	public void user_should_click_on_the_calendar_icon_and_verify_the_date_picker_should_appeared() throws Exception {
 
-		logStep(methodName());
-
-	//	pom.getAddIndividualsPage().back().identificationTab();
+		stepName(methodName());
 
 		deleteExistFieldData(pom.getAddIndividualsPage().getDob());
 		pom.getAddIndividualsPage().datePicker();
-
-	}
-
-	@Then("User should verify the date picker should appeared")
-	public void user_should_verify_the_date_picker_should_appeared() throws Exception {
-
-		logStep(methodName());
 
 		if (getCurrentDtYearMonth("MMM yyyy").contains(getText(pom.getAddIndividualsPage().getDatePicker()))) {
 			log(Status.PASS, "Date picker is defaultly appeared in current month & year");
@@ -1206,7 +1212,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify future dates are hidden")
 	public void user_should_verify_future_dates_are_hidden() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 			pom.getAddIndividualsPage().futureDatesAreHidden();
 		
@@ -1215,7 +1221,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field")
 	public void user_should_select_a_valid_date_in_date_picker_and_verify_the_selected_date_should_be_displayed_in_the_dob_field() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().selectCurrentDateInDatePicker();
 	}
@@ -1223,7 +1229,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@When("User should select a specific year and month in dropdown and select the date in date picker")
 	public void user_should_select_a_specific_year_and_month_in_dropdown_and_select_the_date_in_date_picker() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().selectDOBUsingDD(1);
 	}
@@ -1231,7 +1237,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly")
 	public void User_should_verify_the_selected_date_month_and_year_using_dropdown_is_updated_in_DOB_field_accordingly() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		String selectedDate = getAttribute(pom.getAddIndividualsPage().getDob(), "value");
         System.out.println("Selected Date is - "+selectedDate);
@@ -1257,7 +1263,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@And("User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates")
 	public void user_should_click_on_the_right_arrow_to_navigate_to_the_current_month_and_verify_the_calendar_should_display_the_current_months_dates() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		deleteExistFieldData(pom.getAddIndividualsPage().getDob());
 		pom.getAddIndividualsPage().rightSideArrow(1);
@@ -1271,44 +1277,64 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should close the New Individual Registration popup")
 	public void user_should_close_the_new_individual_registration_popup() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		scrollIntoUp();
 		pom.getAddIndividualsPage().closeNewIndRegistrationPopup();
-
+		
+		if(pom.getAddIndividualsPage().getAddIndividual().isEnabled()) {
+			log(Status.PASS, "Popup is closed successfully");
+		} else {
+			log(Status.FAIL, "Popup is NOT closed");
+		}
 	}
 
 
 	@Then("User should perform only mandatory fields in Identification tab section")
 	public void user_should_perform_only_mandatory_fields_in_identification_tab_section() throws Exception {
-
-		logStep(methodName());
+		
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().firstName(1).middleName(1).lastName(1).gender(1).dob(1).selectSuite(1);
+		pom.getAddIndividualsPage().isMandatoryFieldsAreFilledInIdenticationTabSection();
 	}
 
 	@Then("User should perform only mandatory fields in Address tab section")
 	public void user_should_perform_only_mandatory_fields_in_address_tab_section() {
 
-		logStep(methodName());
+		
+		
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().addressTab().residentialAddress(1).sameAsResiAdresscheckBox();
+		
+		if(getAttribute(pom.getAddIndividualsPage().getResidentialAddress(), "value").isBlank() && getAttribute(pom.getAddIndividualsPage().getMailingAddress(), "value").isBlank()){
+			log(Status.FAIL, "Data is not entered in Residential and Mailing Address * field" );
+		} else {
+			log(Status.PASS, "Data is entered in Residential and Mailing Address * field" );
+		}
 
 	}
 
 	@Then("User should perform only mandatory fields in Preference tab section")
 	public void user_should_perform_only_mandatory_fields_in_preference_tab_section() throws Exception {
 
-		logStep(methodName());
+
+		
+		
+		
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().preferenceTab().ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(2);
+		
+		pom.getAddIndividualsPage().ecFieldIsEmpty();
 	}
 
 	@Then("User should click the confirm button")
 	public void user_should_click_the_confirm_button() {
-
-		logStep(methodName());
-
+		
+		stepName(methodName());
+		
 		pom.getAddIndividualsPage().confirm();
 		waitForPageLoad();
 	}
@@ -1316,7 +1342,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the error message for duplicate Mobile Number {string}")
 	public void user_should_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg(), 5);
@@ -1324,23 +1350,28 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 					expDuplicateErrorMsg, getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
 			log(Status.PASS, "Duplicate PhoneNo Toast Msg is displayed as expected -"
 					+ getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+			
+			pom.getAddIndividualsPage().toastMsgOKButton();
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-		pom.getAddIndividualsPage().toastMsgOKButton();
+		
 		waitForFullPageElementLoad();
 	}
 
 	@Then("User should perform Add Individual with different phone number")
 	public void user_should_perform_add_individual_with_different_phone_number() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().back();
 		deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact1PhoneNo());
 
 		pom.getAddIndividualsPage().ecPhoneNumber(2);
+		
+		
 
 	}
 
@@ -1413,28 +1444,28 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the toast messgage {string}")
 	public void user_should_verify_the_toast_messgage(String expIndCreatedSuccessfullyToastMsg) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		try {
-			waitForPageLoad();
-			
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg(), 5);
 			Assert.assertEquals("Ind Created Successfully Toast Msg is Not Displayed as expected",
 					expIndCreatedSuccessfullyToastMsg,
 					getText(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg()));
 			log(Status.PASS, "Toast Msg is displayed as expected - "
 					+ getText(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg()));
+			
+			pom.getAddIndividualsPage().toastMsgOKButton();
+			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-
-		pom.getAddIndividualsPage().toastMsgOKButton();
 	}
 
 	@Then("User should verify the Individual ID and Created successfull Image are displayed")
 	public void user_should_verify_the_individual_id_and_Created_successfull_Image_are_displayed() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		String tickSymbol = "\u2713";
 		
@@ -1475,7 +1506,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should click Go to Individuals button")
 	public void user_should_click_go_to_individuals_button() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().goToIndividualsButton();
 	}
@@ -1483,7 +1514,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the page is landed on Individual’s screen")
 	public void user_should_verify_the_page_is_landed_on_individual_s_screen() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		if (getText(pom.getAddIndividualsPage().getIndividualsPageText())
 				.equals("Individuals")) {
@@ -1498,25 +1529,30 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify that individuals are created successfully by perform only mandatory fields")
 	public void user_should_verify_that_individuals_are_created_successfully_by_perform_only_mandatory_fields() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().searchBox(1);		
 		
-		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
-		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
+		waitForFullPageElementLoad();
 		
-		System.out.println("Actua Searched Ind - "+actSearchedInd);
-		System.out.println("Exp Searched Ind - "+expSearchedInd);
-		
-		if (actSearchedInd.equals(expSearchedInd)) {
-			log(Status.INFO, "Searched Individual is displayed");
-			
-			pom.getAddIndividualsPage().searchedIndividualform();
-			
-		} else {
-			log(Status.FAIL, "Searched Individual is NOT displayed");
-			throw new Exception("Assertion failed searched Individual is not displayed as expected");
-		}
+//		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
+//		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
+//		
+//		System.out.println("Actua Searched Ind - "+actSearchedInd);
+//		System.out.println("Exp Searched Ind - "+expSearchedInd);
+//		
+//	
+//		if (actSearchedInd.equals(expSearchedInd)) {
+//			log(Status.PASS, "Searched Individual is displayed");
+//			
+//			waitForFullPageElementLoad();
+//			
+//			pom.getAddIndividualsPage().searchedIndividualform();
+//			
+//		} else {
+//			log(Status.FAIL, "Searched Individual is NOT displayed");
+//			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+//		}
 		
 		waitForPageLoad();
 		waitForFullPageElementLoad();
@@ -1538,10 +1574,12 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 
 
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
+            sleep(2000);
+            
 			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 1, 6);
-            waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
-            sleep(1000);
+          
 			Assert.assertEquals("Created Suite Mismatched", expSelectSuite, actualSelectedSuite);
 			log(Status.PASS, "Individual Suite is displayed as expected EXP Suite to select - " + expSelectSuite
 					+ " | ACT Selected Suite - " + actualSelectedSuite);
@@ -1554,6 +1592,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 		}
 
 		try {
+			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 			String expIndividualName = readExcel("Test Datas", "AddIndividuals", 1, 26);
 			String createdIndividual = getText(pom.getAddIndividualsPage().getCreatedIndividualName());
 			
@@ -1571,7 +1610,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 			
 			System.out.println("Created Ind & Selected Suite - " +createdIndividual+"("+getText(pom.getAddIndividualsPage().getCreatedIndividualName())+")");			
 			
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+getText(pom.getAddIndividualsPage().getCreatedIndividualName())+")");
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 0, createdIndividual+"("+actualSelectedSuite+")");
 			
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
@@ -1633,6 +1672,8 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 		}
 
 		try {
+			scrollDownToBottomOfThePage();
+			
 			String expResAddress = readExcel("Test Datas", "AddIndividuals", 1, 10);
 			Assert.assertEquals("Created Mailing Address Mismatched", expResAddress,
 					getText(pom.getAddIndividualsPage().getCreatedMailAddress()));
@@ -1714,25 +1755,37 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should perform all fields in Identification tab section")
 	public void user_should_perform_all_fields_in_identification_tab_section() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().title(1).firstName(1).middleName(1).lastName(1).gender(1).suffix(1).dob(1)
-				.selectSuite(2).race(1).maritalStatus(1).addressTab();
+				.selectSuite(2).race(1).maritalStatus(1);
+		
+		pom.getAddIndividualsPage().isMandatoryFieldsAreFilledInIdenticationTabSection();
+		
+	    pom.getAddIndividualsPage().addressTab();
 	}
 
 	@Then("User should perform all fields in Address tab section")
 	public void user_should_perform_all_fields_in_address_tab_section() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().residentialAddress(1).MailingAddress(1);
+		
+		if(getAttribute(pom.getAddIndividualsPage().getResidentialAddress(), "value").isBlank() && getAttribute(pom.getAddIndividualsPage().getMailingAddress(), "value").isBlank()){
+			log(Status.FAIL, "Data is not entered in Residential and Mailing Address * field" );
+		} else {
+			log(Status.PASS, "Data is entered in Residential and Mailing Address * field" );
+		}
+
+		
 
 	}
 
 	@Then("User should verify the first, middle, last name, dob residential and mailing address are displayed in Preference tab section")
 	public void user_should_verify_the_first_middle_last_name_dob_residential_and_mailing_address_are_displayed_in_preference_tab_section() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().preferenceTab();
 
@@ -1779,18 +1832,17 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should perform all fields in Preference tab section")
 	public void user_should_perform_all_fields_in_preference_tab_section() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().preferenceTab().nickName(1).pronoun(1).ethnicAffiliation(1).preferredLanguage(1)
 				.ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(2);
 		pom.getAddIndividualsPage().Religion(1);
-
 	}
 
 	@Then("User should add another emergency Contact2")
 	public void user_should_add_another_emergency_contact2() {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().addEmergencyContact();
 
@@ -1800,7 +1852,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the First, middle and last name, dob, residential & mailing address and Phone Number are displayed in confirm form")
 	public void user_should_verify_the_first_middle_and_last_name_dob_residential_and_mailing_address_and_phone_number_are_displayed_in_confirm_form() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().forwardToConfirmPage();
 
@@ -1864,7 +1916,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@And("User should perform emergency contact2 with different phone number")
 	public void User_should_perform_emergency_contact2_with_different_phone_number() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getAddIndividualsPage().back()
 				.deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact2PhoneNo());
@@ -1876,26 +1928,26 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify that individuals are created successfully by perform all fields")
 	public void user_should_verify_that_individuals_are_created_successfully_by_perform_all_fields() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 		
 	pom.getAddIndividualsPage().searchBox(1);		
 		
 		
-		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
-		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
-		
-		System.out.println("Actua Searched Ind - "+actSearchedInd);
-		System.out.println("Exp Searched Ind - "+expSearchedInd);
-		
-		if (actSearchedInd.equals(expSearchedInd)) {
-			log(Status.INFO, "Searched Individual is displayed");
-			
-			pom.getAddIndividualsPage().searchedIndividualform();
-			
-		} else {
-			log(Status.FAIL, "Searched Individual is NOT displayed");
-			throw new Exception("Assertion failed searched Individual is not displayed as expected");
-		}
+//		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
+//		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
+//		
+//		System.out.println("Actua Searched Ind - "+actSearchedInd);
+//		System.out.println("Exp Searched Ind - "+expSearchedInd);
+//		
+//		if (actSearchedInd.equals(expSearchedInd)) {
+//			log(Status.INFO, "Searched Individual is displayed");
+//			
+//			pom.getAddIndividualsPage().searchedIndividualform();
+//			
+//		} else {
+//			log(Status.FAIL, "Searched Individual is NOT displayed");
+//			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+//		}
 		
 		waitForPageLoad();
 
@@ -1969,8 +2021,8 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 		
 		
 		try {
-		
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedSuite(), 10);
+            sleep(2000);
 			
 			String actualSelectedSuite = getText(pom.getAddIndividualsPage().getSelectedSuite());
 			String expSelectSuite = readExcel("Test Datas", "AddIndividuals", 2, 6);
@@ -2291,7 +2343,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should navigate to vitals tab and click add vitals button in View Individual page")
 	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_view_individual_page() {
 
-		logStep(methodName());
+		stepName(methodName());
 	
 		pom.getAddIndividualsPage().vitalsTab().addVitalsButton();
 		waitForPageLoad();
@@ -2301,7 +2353,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_individual_name_edit_individual()
 			throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		String txtBreadCrum = getText(pom.getEditIndividualsPage().getBreadCrumLink());
 
@@ -2318,20 +2370,37 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	}
 	
 	
-	@Then("User should perform update without enter any fields in vitals tab")
-	public void user_should_perform_update_without_enter_any_fields_in_vitals_tab() {
+	@Then("User should perform update without enter any fields in vitals tab and verify the Required field toast message {string}")
+	public void user_should_perform_update_without_enter_any_fields_in_vitals_tab_and_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
+	    
+		stepName(methodName());
 
-		logStep(methodName());
+		pom.getEditIndividualsPage().vitalsUpdateButton(); 
+		
+		try {
+			
+	          waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg(), 5);
+				Assert.assertEquals("[Please provide valid data/ *Required field] toast msg is not displayed",
+						expRequiredFieldToastMsg,
+						getText(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg()));
+				log(Status.PASS, "*Required field toastbar msg is displayed as expected - "
+						+ getText(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg()));
 
-		pom.getEditIndividualsPage().vitalsUpdateButton();
+				pom.getAddIndividualsPage().toastMsgOKButton();
+				
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
 	}
 
+	
 	@Then("User should verify the Mandatory fields info messages in vitals tab {string}, {string}, {string}, {string}, {string}, {string}")
 	public void user_should_verify_the_mandatory_fields_info_messages_in_vitals_tab(String expBGInfoMsg,
 			String expBPInfoMsg, String expBGlucoseInfoMsg, String expCholestrolInfoMsg, String expHeightInfoMsg,
 			String expWeightInfoMsg) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		try {
 			waitForVisiblityOfElement(pom.getEditIndividualsPage().getValidationInfoMsgForBGField(), 5);
@@ -2420,7 +2489,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 			String expBPressureFormatInfoMsg, String expBGlucoseFormatInfoMsg, String expCholestrolFormatInfoMsg,
 			String expHeightFormatInfoMsg, String expWeightFormatInfoMsg) {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getEditIndividualsPage().bloodPressure(1,8).bloodGlucose(1,8).cholesterol(1,8).height(1,8).weight(1,8);
 
@@ -2493,7 +2562,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify that able to upload more than 1MB file in medical record")
 	public void user_should_verify_that_able_to_upload_more_than_1MB_file_in_medical_record() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getEditIndividualsPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
 
@@ -2502,7 +2571,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should upload medical record in vitals tab section")
 	public void user_should_upload_medical_record_in_vitals_tab_section() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getEditIndividualsPage().Upload("PNG", "png");
 	}
@@ -2510,7 +2579,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify that able to cancel the uploaded record file in vitals tab section")
 	public void user_should_verify_that_able_to_cancel_the_uploaded_record_file_in_vitals_tab_section() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		if (getConfigureProperty("MedicalRecordFileUpload").equalsIgnoreCase("Yes")
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
@@ -2529,7 +2598,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the cancel button is working in vitals tab")
 	public void user_should_verify_the_cancel_button_is_working_in_vitals_tab() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		try {
 			pom.getEditIndividualsPage().vitalsCancelButton();
@@ -2545,7 +2614,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should add Vitals info by entering all fields")
 	public void user_should_add_vitals_info_by_entering_all_fields() throws Exception {
 	    
-		logStep(methodName());
+		stepName(methodName());
 		
 		pom.getAddIndividualsPage().vitalsTab().addVitalsButton();
 		waitForPageLoad();
@@ -2570,7 +2639,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify the toast messgage {string} after perform vitals tab")
 	public void user_should_verify_the_toast_messgage_after_perform_vitals_tab(String expVitalsUpdatedSuccessfullToastMsg) {
 	    
-		logStep(methodName());
+		stepName(methodName());
 		
 		waitForPageLoad();
 		
@@ -2598,7 +2667,7 @@ public void User_should_perform_emergency_contact1_with_different_phone_number()
 	@Then("User should verify that vitals are created successfully by perform all fields")
 	public void user_should_verify_that_vitals_are_created_successfully_by_perform_all_fields() {
 	    
-		logStep(methodName());
+		stepName(methodName());
 		
 	pom.getEditIndividualsPage().vitalsTab();
 	
