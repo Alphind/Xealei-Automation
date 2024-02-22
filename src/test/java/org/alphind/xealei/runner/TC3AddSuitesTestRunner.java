@@ -19,12 +19,14 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features = "src//test//resources//Features", 
 tags = "@Suites-AllScenarios", 
 glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true, 
-plugin = {"html:target/html.html", 
-		"junit:target/junit.xml",
-		"json:target/json.json"})
+dryRun = !true, monochrome = true)
+
+//plugin = {"html:target/html.html", 
+//		"junit:target/junit.xml",
+//		"json:target/json.json"}
 
 
 public class TC3AddSuitesTestRunner {
 
+	
 }

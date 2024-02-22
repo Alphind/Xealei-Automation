@@ -22,12 +22,11 @@ Background:
   Scenario Outline: To verify IR form creation via manual
     
     Then User should also verify the performed login as "Staff"
-    Then User verify the Navigation of REPORTS module
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
     Then User should verify the save button is disabled
-    Then User should verify Next > button is working
-    Then User should verify the validation info message under all fields "Please select the individual details", "Please choose event on", "Please enter fall caused", "Please choose was injured", "Please enter fall description", "Please select injury site", "Please enter treatment received", "Please enter future treatment", "Please select the injury type", "Please select injury color", "Please choose was the injury serve", "Please enter person notify", "Please choose relationship", "Please choose notify date", "Please choose time", "Please enter notified by"
+    Then User should verify Next > button is working     
+    Then User should verify the validation info message under all fields "Please select the individual details", "Please choose event on", "Please enter fall caused", "Please choose was injured", "Please enter fall description", "Please select injury site", "Please enter treatment received", "Please enter future treatment", "Please select the injury type", "Please select injury color", "Please choose was the injury serve", "Please enter person notify", "Please choose relationship", "Please choose notify date", "Please choose time", "Please enter notified by"     
     Then User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields
     Then User should verify the toast message after click Save button in IR Page "Saved Successfully"
     Then User should verify the respective individual report status "Draft"
@@ -35,12 +34,11 @@ Background:
     Then User should verify the error message in Incident Report Page "Note: Fill out the required fields using the edit option if you would like to submit or complete the report"
     Then User should verify the complete button is disabled
     Then User should verify the edit button is working in IR submission page
-    Then User should verify the injury question section should display with selected individual name in field    
-    And User should enter the Event Date & Time greater than current time
-    Then User should validation info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"   
+    Then User should verify the injury question section should display with selected individual name in field   
+    And  User should enter the Event Date & Time greater than current time and verify the info message is thrown under Event time for selecting  greater than current time of current date "Given time exceeds the current time"    
     Then User should verify that able to spot the injury on Injury site front & Back view
     Then User should verify that able to unselect the injury on Injury site front & Back view
-    Then User should verify that able to upload upload JFIF Format in Injury photos
+    Then User should verify that able to upload JFIF Format in Injury photos
     Then User should verify that able to upload more than 1MB File format in Injury photos
     Then User should verify that able to upload files or images in Injury photos
     Then User should verify the delete icon is working on image under injury photo field
@@ -50,8 +48,7 @@ Background:
     Then User should verify that whether able to select the option value under Injury Color
     Then User should verify that whether default optional values is selected under was Event Notified?
     Then User should verify that able to enter current date and time in Event Date & Time field
-    And  User should click on the Notification Date calendar icon
-    Then User should verify the date picker should appeared
+    And  User should click on the Notification Date calendar icon and verify the date picker is appeared
     Then User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date
     And  User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly
   
@@ -264,7 +261,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 		
 		When Notification Triggered from a sensor.
-		Then Open IR received by staff from sensor in Grid.
+		Then Open Alert notification pop up on click ok I'm On it button in a grid of a record.
 		Then Select fall radio button and enter description.
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
@@ -276,7 +273,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 		
 		When Notification Triggered from a sensor.
-		Then Open IR received by staff from sensor in Grid.
+		Then Open Alert notification pop up on click ok I'm On it button in a grid of a record.
 		Then Select fall radio button and enter description.
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
@@ -314,7 +311,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 		
 		When Notification Triggered from a sensor.
-		Then Open IR received by staff from sensor in Grid.
+		Then Open Alert notification pop up on click ok I'm On it button in a grid of a record.
 		Then Select fall radio button and enter description.
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.
@@ -341,7 +338,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 		
 		When Notification Triggered from a sensor.
-		Then Open IR received by staff from sensor in Grid.
+		Then Open Alert notification pop up on click ok I'm On it button in a grid of a record.
 		Then Select fall radio button and enter description.
 		Then Click Save and Proceed to IR button.
 		Then Verify text in what casued the fall matches with Description.

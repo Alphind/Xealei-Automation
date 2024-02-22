@@ -17,17 +17,17 @@ import org.junit.Assert;
 import com.aventstack.extentreports.Status;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginPageStep extends BaseClass {
 
 	PageObjectManager pom = new PageObjectManager(getDriver());
 
-	@When("User should verify the client code is addressed in tab url address in login screen")
+	
+	@And("User should verify the client code is addressed in tab url address in login screen")
 	public void user_should_verify_the_client_code_is_addressed_in_tab_url_address_in_login_screen() throws Exception {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		try {
 			String environment = getConfigureProperty("Environment");
@@ -35,19 +35,21 @@ public class LoginPageStep extends BaseClass {
 			case "QA": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 1, 1) + "login",
 						getCurrentUrl());
+				log(Status.PASS, "Client code is displayed as expected | Act URL - "+ getCurrentUrl());
 				log(Status.INFO, "Tab URL Address verified - Login using QA - " + getCurrentUrl());
-
 				break;
 			}
 			case "PREPROD": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 2, 1) + "login",
 						getCurrentUrl());
+				log(Status.PASS, "Client code is displayed as expected | Act URL - "+ getCurrentUrl());
 				log(Status.INFO, "Tab URL Address verified - Login using PREPROD - " + getCurrentUrl());
 				break;
 			}
 			case "PROD": {
 				Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 3, 1) + "login",
 						getCurrentUrl());
+				log(Status.PASS, "Client code is displayed as expected | Act URL - "+ getCurrentUrl());
 				log(Status.INFO, "Tab URL Address verified - Login using PROD - " + getCurrentUrl());
 				break;
 			}
@@ -61,13 +63,10 @@ public class LoginPageStep extends BaseClass {
 		}
 	}
 
-
-	@Then("User should verify the field label name and placeholder text for Email and Password fields")
-	public void user_should_verify_the_field_label_name_and_placeholder_text_for_email_and_password_fields() {
-
-		logStep(methodName());
-		
-		waitForFullPageElementLoad();
+	@And("User should check that the label name and placeholder text for the Email field")
+	public void user_should_check_that_the_label_name_and_placeholder_text_for_the_email_field() {
+	    
+		stepName(methodName());
 		
 		if (pom.getLoginPage().getEmailMandatoryFieldLabelText().contains("Email *") && pom.getLoginPage().getPassMandatoryFieldLabelText().contains("Password *")) {
 
@@ -97,156 +96,131 @@ public class LoginPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 	}
-
-	@And("User should enter password in password field")
-	public void user_should_enter_password_in_password_field() {
-
-		logStep(methodName());
-		pom.getLoginPage().password();
-	}
-
-	@Then("User should verify that entered password is **hide")
-	public void user_should_verify_that_entered_password_is_hide() {
-
-		logStep(methodName());
-		
-		boolean passwordField = "password".equalsIgnoreCase(pom.getLoginPage().getPasswordFieldAttributeValue("type"));
-
-		if (passwordField) {
-
-			log(Status.PASS, "Password is **hide");
-			System.out.println("Password is hide");
-		} else {
-			log(Status.FAIL, "Entered Password is still not visible after click the eye icon");
-			System.err.println("[ERROR] >>>> Entered Password is still not visible after click the eye icon");
-		}
-
-	}
-
-	@Then("User should verify that entered password is Unhide after click the eye icon")
-	public void user_should_verify_that_entered_password_is_unhide_after_click_the_eye_icon() {
-
-		logStep(methodName());
-
-		if (pom.getLoginPage().isEyeIconInPasswordFieldIsDisplayed()) {
-			pom.getLoginPage().eyeIcon();
+	
+	
+		@And("User should check if the eye icon in the Password field is working")
+		public void user_should_check_if_the_eye_icon_in_the_password_field_is_working() {
+		    
+			stepName(methodName());
 			
-		} else {
-			log(Status.FAIL, "Unable to click eye iconin password field ");
-			System.err.println("[ERROR] >>>> Unable to click eye icon in password field");
-		}
-
-		boolean passwordField = "text".equalsIgnoreCase(pom.getLoginPage().getPasswordFieldAttributeValue("type"));
-
-		if (passwordField) {
-
-			log(Status.PASS, "Password is visible");
-			System.out.println("Password is visible");
-		} else {
-			log(Status.FAIL, "Entered Password is still **hide after click the eye icon");
-			System.err.println("[ERROR] >>>> Entered Password is still **hide after click the eye icon");
-		}
-	}
-
-
-	@Then("User should verify that email and password fields are mandatory {string}, {string}")
-	public void user_should_verify_that_email_and_password_fields_are_mandatory(String expErrMsgForEmailField, String expErrMsgForPasswordField) {
-	   
-		logStep(methodName());
-
-		try {
-			Assert.assertEquals("Validation Msg under Email* field is not displayed as expected", expErrMsgForEmailField, pom.getLoginPage().getEmailMFInfoMessageText());
-
-			log(Status.PASS, "Validation Msg under Email* field is displayed - " + pom.getLoginPage().getEmailMFInfoMessageText());
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		pom.getLoginPage().deleteExistingPasswordFieldData();
-		
-		try {
-			Assert.assertEquals("Validation Msg under Password* field is not displayed as expected",
-					expErrMsgForPasswordField, pom.getLoginPage().getPasswordMFInfoMessageText());
-			log(Status.PASS, "Validation Msg for Password* field is displayed as " +pom.getLoginPage().getPasswordMFInfoMessageText());
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
-
-	@When("User should perform login with invalid data")
-	public void user_should_perform_login_with_invalid_data() {
-
-		logStep(methodName());
-		
-		pom.getLoginPage().email();
-		pom.getLoginPage().password();
-	}
-
-	@Then("User should verify the error message after performed login with invalid data {string}")
-	public void user_should_verify_the_error_message_after_performed_login_with_invalid_data(
-			String expUNFErrorMessage) {
-
-		logStep(methodName());
-
-		waitForPageLoad();
-		
-		try {
+			pom.getLoginPage().password();
 			
-			Assert.assertEquals("User Not Found-Toastbar msg is not displayed as expected", expUNFErrorMessage,	pom.getLoginPage().getUserNotFoundErrorMessageText());
-			log(Status.PASS, "User Not Found-Toastbar msg text is displayed - "	+ pom.getLoginPage().getUserNotFoundErrorMessageText());
+			boolean passwordFieldHide = "password".equalsIgnoreCase(pom.getLoginPage().getPasswordFieldAttributeValue("type"));
+
+			if (passwordFieldHide) {
+
+				log(Status.PASS, "Password is **hide");
+				System.out.println("Password is hide");
+			} else {
+				log(Status.FAIL, "Entered Password is still not visible after click the eye icon");
+				System.err.println("[ERROR] >>>> Entered Password is still not visible after click the eye icon");
+			}
+
 			
-			pom.getLoginPage().ToastMsgOkButton();
+			if (pom.getLoginPage().isEyeIconInPasswordFieldIsDisplayed()) {
+				pom.getLoginPage().eyeIcon();
+				
+			} else {
+				log(Status.FAIL, "Unable to click eye iconin password field ");
+				System.err.println("[ERROR] >>>> Unable to click eye icon in password field");
+			}
+
+			boolean passwordFieldUnHide = "text".equalsIgnoreCase(pom.getLoginPage().getPasswordFieldAttributeValue("type"));
+
+			if (passwordFieldUnHide) {
+
+				log(Status.PASS, "Password is visible");
+				System.out.println("Password is visible");
+			} else {
+				log(Status.FAIL, "Entered Password is still **hide after click the eye icon");
+				System.err.println("[ERROR] >>>> Entered Password is still **hide after click the eye icon");
+			}
+		}
+		
+		@And("User should verify that the fields for email and password are mandatory {string}, {string}")
+		public void user_should_verify_that_the_fields_for_email_and_password_are_mandatory(String expErrMsgForEmailField, String expErrMsgForPasswordField) {
+		    
+			stepName(methodName());
+
+		pom.getLoginPage().deleteExistingEmailFieldData().deleteExistingPasswordFieldData();
+					
+			try {
+				Assert.assertEquals("Validation Msg under Email* field is not displayed as expected", expErrMsgForEmailField, pom.getLoginPage().getEmailMFInfoMessageText());
+
+				log(Status.PASS, "Validation Msg under Email* field is displayed - " + pom.getLoginPage().getEmailMFInfoMessageText());
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+						
+			try {
+				Assert.assertEquals("Validation Msg under Password* field is not displayed as expected",
+						expErrMsgForPasswordField, pom.getLoginPage().getPasswordMFInfoMessageText());
+				log(Status.PASS, "Validation Msg for Password* field is displayed as " +pom.getLoginPage().getPasswordMFInfoMessageText());
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
 			
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
+		}
+
+		
+		@And("User enter invalid password and verify the toast message is displayed {string}")
+		public void user_enter_invalid_password_and_verify_the_toast_message_is_displayed(String expIncorrectPassToastMsg) {
+		    
+			stepName(methodName());
+		    
+//			pom.getLoginPage().validEmail(1);
+//			pom.getLoginPage().deleteExistingPasswordFieldData();
+//			pom.getLoginPage().password();
+			
+			pom.getLoginPage().validEmail(1);
+			pom.getLoginPage().loginButton();
+			
+			try {
+				Assert.assertEquals("Incorrect Password-validation is Missing", expIncorrectPassToastMsg, pom.getLoginPage().getIncorrectPasswordErrorMessageText());
+
+				log(Status.PASS, "Incorrect Password toast Message text is displayed - " + pom.getLoginPage().getIncorrectPasswordErrorMessageText());
+
+				pom.getLoginPage().ToastMsgOkButton();
+
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
 		}
 	
-	}
-
-	@When("User should perform login with valid email and invalid password")
-	public void user_should_perform_login_with_valid_email_and_invalid_password() {
-
-		logStep(methodName());
-
-		pom.getLoginPage().deleteExistingEmailFieldData();
-		pom.getLoginPage().validEmail(1);
-
-	}
-
-	@Then("User should verify the Toastbar message after performed login with valid email and invalid password {string}")
-	public void user_should_verify_the_toastbar_message_after_performed_login_with_valid_email_and_invalid_password(
-			String expIncorrectPassToastMsg) {
-
-		logStep(methodName());
-
-		waitForPageLoad();
-		
-		try {
-
-			Assert.assertEquals("Incorrect Password-validation is Missing", expIncorrectPassToastMsg, pom.getLoginPage().getIncorrectPasswordErrorMessageText());
-
-			log(Status.PASS, "Incorrect Password toast Message text is displayed - " + pom.getLoginPage().getIncorrectPasswordErrorMessageText());
-
-			pom.getLoginPage().ToastMsgokButton();
-
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
+		@And("User should perform login with invalid data and verify the toast message is displayed {string}")
+		public void user_should_perform_login_with_invalid_data_and_verify_the_toast_message_is_displayed(String expUNFErrorMessage) {
+		   
+	          stepName(methodName());
+			
+	        pom.getLoginPage().deleteExistingEmailFieldData().email();
+			
+			try {
+				Assert.assertEquals("User Not Found-Toastbar msg is not displayed as expected", expUNFErrorMessage,	pom.getLoginPage().getUserNotFoundErrorMessageText());
+				log(Status.PASS, "User Not Found-Toastbar msg text is displayed - "	+ pom.getLoginPage().getUserNotFoundErrorMessageText());
+				
+				pom.getLoginPage().ToastMsgOkButton();
+				
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
 		}
-
-	}
-
+		
+		
 	@When("User should perform login with valid email and password by click the Enter key")
 	public void user_should_perform_login_with_valid_email_and_password_by_click_the_enter_key() {
 
-		logStep(methodName());
+		stepName(methodName());
 
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
+		
+		pom.getLoginPage().isEmailAndPasswordFieldIsEmpty();
+		
 		pom.getLoginPage().pressEnterKeyInPasswordField();
 		
 	}
@@ -254,10 +228,11 @@ public class LoginPageStep extends BaseClass {
 	@When("User should perform login with valid email and password")
 	public void user_should_perform_login_with_valid_email_and_password() {
 
-		logStep(methodName());
-
+		stepName(methodName());
+		
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
+		pom.getLoginPage().isEmailAndPasswordFieldIsEmpty();
 		pom.getLoginPage().loginButton();
 
 	}

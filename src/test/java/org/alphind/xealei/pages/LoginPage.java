@@ -79,9 +79,16 @@ public class LoginPage extends BaseClass {
 	private WebElement XealeiImageInLoginPage;
 
 	
+	
+	
 	public WebElement isImageIsDisplayed() {
 		return XealeiImageInLoginPage;
 	}
+	
+	public WebElement waitForloginTextVerification() {
+		return loginTextVerification;
+	}
+	
 	
 	
 	/**
@@ -120,6 +127,7 @@ public class LoginPage extends BaseClass {
 	 * @return Email* field label (text).
 	 */
 	public String getEmailMandatoryFieldLabelText() {
+		waitForVisiblityOfElement(emailMandatoryFieldLabelText, 10);
 		return getText(emailMandatoryFieldLabelText);
 	}
 
@@ -237,8 +245,7 @@ public class LoginPage extends BaseClass {
 	 * 
 	 */
 	public void password() {
-
-		waitForPageLoad();
+		
 		sendKeys(password, "xe23Dal%q3");
 		pressEnterKeyInPasswordField();
 	}
@@ -292,7 +299,6 @@ public class LoginPage extends BaseClass {
 	 */
 	public void ToastMsgOkButton() {
 
-		waitForPageLoad();
 		click(toastMsgOKButton);
 	}
 
@@ -318,9 +324,10 @@ public class LoginPage extends BaseClass {
 	 * @created on 19/01/2024
 	 * 
 	 */
-	public void deleteExistingEmailFieldData() {
+	public LoginPage deleteExistingEmailFieldData() {
 
 		deleteExistFieldData(userName);
+		return this;
 	}
 
 	/**
@@ -349,6 +356,23 @@ public class LoginPage extends BaseClass {
 		clickEnter(password);
 	}
 
+	/**
+	 * Check whether the email and password field is empty or not
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 05/02/2024
+	 */
+	public void isEmailAndPasswordFieldIsEmpty() {
+		
+		if(getAttribute(userName,"value").isEmpty() || getAttribute(password,"value").isEmpty()) {
+			log(Status.FAIL, "Data is NOT entered/displayed in email or password field");
+		} else {
+			log(Status.PASS, "Data is entered/displayed in email and password field");
+	}
+	}
+	
+
 	String email;
 
 	/**
@@ -369,6 +393,7 @@ public class LoginPage extends BaseClass {
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
 			sendKeys(userName, email);
+			waitForAjexPageLoad();
 			clickEnter(password);
 			break;
 		}
@@ -392,6 +417,7 @@ public class LoginPage extends BaseClass {
 
 	}
 
+	
 	String passWord;
 
 	/**
@@ -481,6 +507,92 @@ public class LoginPage extends BaseClass {
 		}
 		return false;
 	}
+
+	
+	String newEmail;
+
+	/**
+	 * Enter the valid data from excel sheet to 'Email*' field.
+	 * 
+	 * @author Alphi-MohamedRazul.
+	 *
+	 * @created on 20-02-2023.
+	 */
+	public void email(int rowNum) {
+
+		String environment = getConfigureProperty("Environment");
+		
+		waitForVisiblityOfElement(userName, 3);
+		
+		switch (environment) {
+
+		case "QA": {
+			newEmail = readExcel("Test Datas", "Forgot Password", rowNum, 2);
+			sendKeys(userName, newEmail);
+			clickEnter(password);
+			break;
+		}
+		case "PREPROD": {
+			newEmail = readExcel("Test Datas", "Forgot Password", rowNum, 2);
+			sendKeys(userName, newEmail);
+			clickEnter(password);
+			break;
+		}
+		case "PROD": {
+			newEmail = readExcel("Test Datas", "Forgot Password", rowNum, 2);
+			sendKeys(userName, newEmail);
+			clickEnter(password);
+			break;
+		}
+		default: {
+			log(Status.FAIL, "Unable to get the EMAIL data from excel");
+			break;
+		}
+		}
+
+	}
+
+
+	String pass;
+
+	/**
+	 * Enter the valid data from excel sheet to 'Password*' field.
+	 * 
+	 * @author Alphi-MohamedRazul.
+	 *
+	 * @created on 20-02-2023.
+	 */
+	public void newPassword(int rowNum) {
+
+		String environment = getConfigureProperty("Environment");
+
+		switch (environment) {
+
+		case "QA": {
+			pass = readExcel("Test Datas", "Forgot Password", rowNum, 5);
+			sendKeys(password, pass);
+			break;
+		}
+		case "PREPROD": {
+			pass = readExcel("Test Datas", "Forgot Password", rowNum, 5);
+			sendKeys(password, pass);
+			break;
+		}
+		case "PROD": {
+			pass = readExcel("Test Datas", "Forgot Password", rowNum, 5);
+			sendKeys(password, pass);
+			break;
+		}
+		default: {
+			log(Status.FAIL, "Unable to get the Password data from excel");
+			break;
+		}
+
+		}
+	}
+	
+	
+	
 	
 
 	
