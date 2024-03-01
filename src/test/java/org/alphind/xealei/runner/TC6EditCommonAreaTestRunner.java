@@ -18,16 +18,12 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features", 
-tags = "@EditSuites-AllScenarios",
+tags = "@EditCommonArea-AllScenarios",
 glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true) 
-
-//plugin = {
-//		"html:target/html.html",
-//		"junit:target/junit.xml", 
-//		"json:target/json.json"})
+dryRun = !true, monochrome = true)
 
 
-public class TC4EditSuitesTestRunner {
+public class TC6EditCommonAreaTestRunner {
 
+	
 }

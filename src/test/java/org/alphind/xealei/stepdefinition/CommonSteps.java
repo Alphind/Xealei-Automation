@@ -16,37 +16,38 @@ import org.junit.Assert;
 
 import com.aventstack.extentreports.Status;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class CommonSteps extends BaseClass {
 
-	PageObjectManager pom = new PageObjectManager();
+	PageObjectManager pom = new PageObjectManager(getDriver());
 
+	@Given("User is on Xealei login page")
+	public void user_is_on_xealei_login_page() {
+		
+		stepName(methodName());
+		
+		try {
+		Assert.assertTrue("User is NOT in Xealei login page",pom.getLoginPage().isImageIsDisplayed().isDisplayed());
+        log(Status.PASS,"Successfully landed on Xealei Login Page");
+		} catch (AssertionError e) {
+			log(Status.FAIL, e.getMessage());
+		}
+	}
+	
 	@Then("User should verify once the page is navigated to HOME_DASHBOARD successfully {string}")
 	public void user_should_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String expMessage) {
 
-		logStep(methodName());
-		
-		waitForPageLoad();
-//		try {
-//			Assert.assertFalse("Assert Fail", pom.getLoginPage().getUnknownErrorToastMsg().isDisplayed());
-//			log(Status.PASS, "Unknown Toast Msg is NOT diplayed");
-//			
-//		} catch (AssertionError e) {
-//			log(Status.FAIL, "Unknown error Toast msg is displayed | Error :" +e);
-//			e.getMessage();
-//			System.err.println("[ERROR] - Unknown Toast Msg is Diplayed [Toast Message] >>>  Unknown Error.Please contact administrator for more information.");
-//		} catch (NoSuchElementException e1) {
-//			AddIndividualsPage.javalog(Status.INFO, "No Unknown error Toast msg is displayed");
-//			e1.getMessage();
-//		}
+		stepName(methodName());
 
 		System.out.println("exp Text :" + expMessage);
-		System.out.println("Actual Text :" + getText(pom.getLoginPage().getNavToHomePageSuccessfully()));
+		System.out.println("Actual Text :" + pom.getHomePage().HomeText());
+		
 		try {
-			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage,
-					getText(pom.getLoginPage().getNavToHomePageSuccessfully()));
-			log(Status.PASS, "Navigate to Home Dashboard Page");
+			Assert.assertEquals("Unable to navigate HOME Dashboard", expMessage, pom.getHomePage().HomeText());
+					
+			log(Status.PASS, "Successfully Navigate to Home Dashboard Page");
 		} catch (AssertionError e) {
 			log(Status.FAIL, "Unable to navigate HOME Dashboard Page");
 		}

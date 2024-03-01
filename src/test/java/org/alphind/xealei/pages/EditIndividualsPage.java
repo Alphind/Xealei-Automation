@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,9 +17,13 @@ import com.aventstack.extentreports.Status;
 
 public class EditIndividualsPage extends BaseClass{
 
-	public EditIndividualsPage() {
+	private WebDriver driver;
+	
+	public EditIndividualsPage(WebDriver driver) {
 		
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
+
 	}
 	
 	@FindBy(xpath = "//img[@class='arrow-right']")
@@ -500,33 +505,67 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
-	
-	
-	
-	public void searchBox(int rowNum){
+	public void searchBox() throws Exception{
 
 		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
-		for (int i = 0; i < crIndividualLastName.length(); i++) {
-			char letter = crIndividualLastName.charAt(i);
-			String letterAsString = String.valueOf(letter);
-			sendKeys(individualSearchBox, letterAsString);
-		}
+		String[] split = crIndividualLastName.split(" ");
+		String firstName = split[0];
+		String MiddleName = split[1];
+		String LastName = " "+split[2];
+		
+		System.out.println("FN - "+firstName);
 
-		backSpace(individualSearchBox);
-		waitForPageLoad();
-		int length = crIndividualLastName.length();
-		char lastLetter = crIndividualLastName.charAt(length - 1);
-		String enterLastLetter = String.valueOf(lastLetter);
-		sendKeys(individualSearchBox, enterLastLetter);
-
-		waitForPageLoad();
-		waitForFullPageElementLoad();
+		System.out.println("MN - "+MiddleName);
+		System.out.println("LN - "+LastName);
+		
+		sendKeys(individualSearchBox, firstName+" "+MiddleName);
+			waitForAjexPageLoad();
+			
+			for (int i = 0; i < LastName.length(); i++) {
+				char letter = LastName.charAt(i);
+				String letterAsString = String.valueOf(letter);
+				sendKeys(individualSearchBox, letterAsString);
+				waitForPageLoad();
+			}
+			backSpace(individualSearchBox);
+			waitForPageLoad();
+			waitForFullPageElementLoad();
+			sleep(5000);
+			int length = LastName.length();
+			char lastLetter = LastName.charAt(length - 1);
+			String enterLastLetter = String.valueOf(lastLetter);
+			sendKeys(individualSearchBox, enterLastLetter);
+			waitForPageLoad();
+			waitForFullPageElementLoad();
+			
+			String actSearchedInd = getText(getCreatedIndName());
+			
+			System.out.println("Actua Searched Ind - "+actSearchedInd);
+			System.out.println("Exp Searched Ind - "+crIndividualLastName);
+			
+			if (actSearchedInd.equals(crIndividualLastName)) {
+				log(Status.PASS, "Searched Individual is displayed");
+				
+			} else {
+				log(Status.FAIL, "Searched Individual is NOT displayed");
+				throw new Exception("Assertion failed searched Individual is not displayed as expected");
+			}
+			
 	}
 	
-	
+//	public void searchBox(){
+//
+//		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
+//		for (int i = 0; i < crIndividualLastName.length(); i++) {
+//			char letter = crIndividualLastName.charAt(i);
+//			String letterAsString = String.valueOf(letter);
+//			sendKeys(individualSearchBox, letterAsString);
+//		}
+//		}
+
+
 	public void downloadMRUploadedFile() {
 		
-		waitForPageLoad();
 		waitForFullPageElementLoad();
 		
 		click(downloadMRFile);
@@ -535,6 +574,7 @@ public class EditIndividualsPage extends BaseClass{
 	
 	public void arrowRight() {
 		
+		waitForFullPageElementLoad();
 		click(arrowRight);
 	}
 
@@ -574,7 +614,6 @@ public  void vitalsCancelButton() {
 
 	public String createdIndNameText() {
 
-		waitForPageLoad();
 		String createdInd = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		BC = BC.replaceAll("createdSN", createdInd);
 		String textString = getTextString(BC);
@@ -724,7 +763,7 @@ public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
 			&& getConfigureProperty("MedicalRecordFileUpload").equalsIgnoreCase("Yes")) {
 		
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 		
 		String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {
@@ -775,7 +814,7 @@ public void Upload(String fileName, String formatType){
 			&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 
 		String MRFilePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {
@@ -808,7 +847,6 @@ public void Upload(String fileName, String formatType){
 		try {
 
 			Assert.assertFalse("File NOT Uploaded", fileUpload.isEmpty());
-			waitForPageLoad();
 			log(Status.PASS, "File uploaded in Medical Record successfully");
 
 		} catch (AssertionError e) {
@@ -871,7 +909,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 			&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 		click(btnBrowser);
-		sleep(2000);
+		sleep(3000);
 
 		String MRFilePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 		try {
@@ -904,7 +942,6 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		try {
 
 			Assert.assertFalse("File NOT Uploaded", fileUpload.isEmpty());
-			waitForPageLoad();
 			log(Status.PASS, "File uploaded in Medical Record successfully");
 
 		} catch (AssertionError e) {
@@ -946,9 +983,6 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
          deleteExistFieldData(editEC1FNField);
 		 deleteExistFieldData(editEC1LNField);
          deleteExistPhoneData(editEC1PhNumField);
-         deleteExistFieldData(editEC2FNField);
-		 deleteExistFieldData(editEC2LNField);
-         deleteExistPhoneData(editEC2PhNumField);
 	}
 	
 	public EditIndividualsPage duplicatePhoneNumber(int rowNum) {
@@ -979,9 +1013,9 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		return this;
 	}
 
-	public EditIndividualsPage updateLastName(int rowNum) {
+	public EditIndividualsPage updateLastName(int rowNum) throws Exception {
 		
-			String updatedLastName = readExcel("Test Datas", "EditIndividuals", rowNum, 2) + randomName();
+			String updatedLastName = readExcel("Test Datas", "EditIndividuals", rowNum, 2) + secondsCount();
 			sendKeys(editLNField, updatedLastName);
 			writeExcelToOverwrite("Test Datas", "EditIndividuals", 1, 21, updatedLastName);
 			return this;
@@ -1111,7 +1145,7 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
 		return this;
 	}
 
-	public EditIndividualsPage updateEC1PhoneNumber(int rowNum) {
+	public EditIndividualsPage updateEC1PhoneNumber(int rowNum) throws Exception {
 
 		String randomMobileNumber = randomMobileNumber();
 		writeExcelToOverwrite("Test Datas", "EditIndividuals", 2, 20, randomMobileNumber);

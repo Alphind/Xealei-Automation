@@ -17,17 +17,15 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "src//test//resources//Features", 
-tags = "@EditSuites-AllScenarios",
-glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true) 
+@CucumberOptions(features = "src//test//resources//Features", publish = true,
+tags = "@SanityTesting", glue = "org.alphind.xealei.stepdefinition", 
+dryRun = !true, monochrome = true)
 
 //plugin = {
-//		"html:target/html.html",
+//		"html:target/html.html", 
 //		"junit:target/junit.xml", 
-//		"json:target/json.json"})
+//		"json:target/json.json"}
 
-
-public class TC4EditSuitesTestRunner {
+public class TC001SanityTestRunner {
 
 }

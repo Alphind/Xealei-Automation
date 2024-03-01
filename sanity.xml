@@ -34,7 +34,7 @@ license agreement
 				<configuration>
 					<!-- Specify your test runner classes here -->
 					<includes>
-						<include>org.alphind.xealei.runner.TC1LoginTestRunner</include>
+						<include>org.alphind.xealei.runner.TC001SanityTestRunner</include>
 					</includes>
 				</configuration>
 				<dependencies>
@@ -218,7 +218,6 @@ license agreement
     <artifactId>webdrivermanager</artifactId>
     <version>5.7.0</version>
 </dependency>
-
 
 <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured-all -->
 <dependency>
