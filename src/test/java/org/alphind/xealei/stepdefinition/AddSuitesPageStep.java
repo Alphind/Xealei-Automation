@@ -73,7 +73,6 @@ public class AddSuitesPageStep extends BaseClass {
 
 		stepName(methodName());
 		
-		//waitForFullPageElementLoad();
 		pom.getHomePage().navToSuitesModule();
 		
 		try {
@@ -197,7 +196,7 @@ public class AddSuitesPageStep extends BaseClass {
 				
 				String expContent = "Changes you made may not be saved. Are you sure you want to Cancel?";
 				
-				if(pom.getAddSuitesPage().getClosePopupSuiteName().isDisplayed()) {
+				if(pom.getAddSuitesPage().getClosePopupSuiteName().equals("Suite")) {
 					log(Status.PASS, "Close popup is displayed");
 				} else {
 					log(Status.FAIL, "Close popup is NOT displayed");

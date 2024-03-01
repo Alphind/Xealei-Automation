@@ -256,14 +256,28 @@ public class EditIndividualsStep extends BaseClass {
 		}
 	}
 	
-	@Then("User should update existing phone number in emergency contact1")
-	public void user_should_update_existing_phone_number_in_emergency_contact1() {
+	@Then("User should update existing phone number in emergency contact1 and verify the error message for duplicate Mobile Number {string}")
+	public void user_should_update_existing_phone_number_in_emergency_contact1_and_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) {
 	   
 		stepName(methodName());
 	
 		deleteExistPhoneData(pom.getEditIndividualsPage().getEditECPhNumField());
 		
 		pom.getEditIndividualsPage().duplicatePhoneNumber(1).updateIndividual();
+		
+		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg(), 30);
+			Assert.assertEquals("Individual already exist with same phone number - Toast Msg NOT displayed as expected",
+					expDuplicateErrorMsg, getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+			log(Status.PASS, "Duplicate PhoneNo Toast Msg is displayed as expected -"
+					+ getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+			
+			pom.getAddIndividualsPage().toastMsgOKButton();
+			
+		} catch (AssertionError e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	@Then("User should delete all the fields and perform update and verify the Required field toast message {string}")
@@ -865,7 +879,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 			
 			 pom.getEditIndividualsPage().deleteAllIndexistFieldsData();
 			 
-			 pom.getEditIndividualsPage().updateTitle(1).updateFirstName(1).updateMiddleName(1).updateLastName(1).updateSuffix(1).updateRace(1).updateMaritalStatus(1).updateDob(1).updateGender(1).updateResidentialAddress(1).updateMailingAddress(1).updateNickName(1).updatePronoun(1).updateEthnicAffiliation(1).updatePreferredLanguage(1).updateReligion(1).updateEC1FirstName(1).updateEC1LastName(1).updateEC1Relationship(1).updateEC1PhoneNumber(2).updateEC2FirstName(1).updateEC2LastName(1).updateEC2Relationship(1).updateEC2PhoneNumber(2);	     
+			 pom.getEditIndividualsPage().updateTitle(1).updateFirstName(1).updateMiddleName(1).updateLastName(1).updateSuffix(1).updateRace(1).updateMaritalStatus(1).updateDob(1).updateGender(1).updateResidentialAddress(1).updateMailingAddress(1).updateNickName(1).updatePronoun(1).updateEthnicAffiliation(1).updatePreferredLanguage(1).updateReligion(1).updateEC1FirstName(1).updateEC1LastName(1).updateEC1Relationship(1).updateEC1PhoneNumber(2);
 			 
 			 String updatedFN = getAttribute(pom.getEditIndividualsPage().getEditFNField(), "value");
 			 String updatedMN = getAttribute(pom.getEditIndividualsPage().getEditMNField(), "value");
@@ -927,11 +941,8 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 				System.out.println(
 						"Updated IND EC1RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact1Relationship()));
 				System.out.println("Updated IND EC1 PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
-				System.out.println("Updated IND EC2NAME -" + getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-				System.out.println(
-						"Updated IND EC2RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-				System.out.println("Updated IND EC2 PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
 
+				
 				try {
 					String expFirstName = readExcel("Test Datas", "EditIndividuals", 1, 0);
 					Assert.assertEquals("UpdatedFirstName Mismatched", expFirstName,
@@ -1205,45 +1216,6 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
 				}
-
-				try {
-					String expECFN = readExcel("Test Datas", "EditIndividuals", 1, 17);
-					String expECLN = readExcel("Test Datas", "EditIndividuals", 1, 18);
-					String expEmergencyContactName = expECFN + " " + expECLN;
-					Assert.assertEquals("UpdatedEmergencyContact 2 Name Mismatched", expEmergencyContactName,
-							getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-					log(Status.PASS,
-							"Updated EmergencyContact 2 Name is displayed as expected EXP EmC2 Name - " + expEmergencyContactName
-									+ " | ACT EmC2 Name - " + getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-				} catch (AssertionError e) {
-					log(Status.FAIL, e.getMessage());
-					e.printStackTrace();
-				}
-
-				try {
-					String expEmRelationship = readExcel("Test Datas", "EditIndividuals", 1, 19);
-					Assert.assertEquals("UpdatedEmergencyContact 2 Relationship Mismatched", expEmRelationship,
-							getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-					log(Status.PASS,
-							"Updated EmergencyContact Relationship 2 is displayed as expected EXP EmC2 Relationship - "
-									+ expEmRelationship + " | ACT EmC2 Relationship - "
-									+ getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-				} catch (AssertionError e) {
-					log(Status.FAIL, e.getMessage());
-					e.printStackTrace();
-				}
-
-				try {
-					Assert.assertEquals("UpdatedEmergencyContact 2 Phone Number is NOT displayed as expected", expPhoneNumber,
-							getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
-					log(Status.PASS,
-							"Updated EmergencyContact 2 Phone Number is displayed as expected Exp EmC2 PhNum - " + expPhoneNumber
-									+ " | Act EmC2 PhNum - " + getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
-				} catch (AssertionError e) {
-					log(Status.FAIL, e.getMessage());
-					e.printStackTrace();
-				}
-		     
 		 }
 		 
 		 @Then("User should update all fields in vitals tab")

@@ -134,7 +134,7 @@ public class AddSuitesPage extends BaseClass {
 	private WebElement EditSuite;
 
 	@FindBy(xpath = "(//span[@class='btn-txt'])[1]")
-	private WebElement createdSuites;
+	private WebElement exitSuites;
 	
 	@FindBy(xpath = "//span[contains(text(),'Yes')]/parent::button")
 	private WebElement closepopupButtonIsEnabled;
@@ -144,7 +144,7 @@ public class AddSuitesPage extends BaseClass {
 	
 	public String getExistSuite() {
 	
-		return getText(createdSuites);
+		return getText(exitSuites);
 
 	}
 	
@@ -158,8 +158,8 @@ public class AddSuitesPage extends BaseClass {
 		return btnAddSuites;
 	}
 	
-	public WebElement getClosePopupSuiteName() {
-		return closePopupSuite;
+	public String getClosePopupSuiteName() {
+		return getText(closePopupSuite);
 	}
 
 	public WebElement getBtnAdd() {
@@ -308,7 +308,8 @@ public class AddSuitesPage extends BaseClass {
 		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
 		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
 		sendKeys(suiteName, suiteNameFromExcel);
-		String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, suiteNameFromExcel);
+		String enteredSN = getAttribute(suiteName, "value");
+		String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, enteredSN);
 		log(Status.INFO, "Write the created suite in excel -" + writeExcel);
 		return this;
 	}
@@ -389,7 +390,7 @@ public class AddSuitesPage extends BaseClass {
 		click(view);
 	}
 
-	String createdSuite;
+	
 
 	public void searchBox() throws Exception {
 
@@ -439,7 +440,7 @@ public class AddSuitesPage extends BaseClass {
 
 	public String breadCrumSuiteNameText() {
 
-		createdSuite = readExcel("Test Datas", "AddSuites", 2, 6);
+		String createdSuite = readExcel("Test Datas", "AddSuites", 2, 6);
 		BC = BC.replaceAll("createdSN", createdSuite);
 		String textString = getTextString(BC);
 		return textString;

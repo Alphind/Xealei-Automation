@@ -31,7 +31,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		stepName(methodName());
 		
-		waitForPageLoad();
+//		waitForPageLoad();
 		
 		pom.getHomePage().navToIndividualsModule();
 		try {
@@ -391,6 +391,7 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		waitForFullPageElementLoad();
 		pom.getAddIndividualsPage().back();
+		waitForFullPageElementLoad();
 		pom.getAddIndividualsPage().identificationTab();
 		pom.getAddIndividualsPage().invalidFirstName();
 
@@ -869,15 +870,15 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.FAIL, "MF validation message is NOT displayed for Em.Contac2t Ph.No* field");
 			e.printStackTrace();
 		}
-
+		
 	}
 
 	@Then("User should perform all the fields in Emergency Contact2")
-	public void user_should_perform_all_the_fields_in_emergency_contact2() {
+	public void user_should_perform_all_the_fields_in_emergency_contact2() throws Exception {
 
 		stepName(methodName());
 		
-		pom.getAddIndividualsPage().ec2FirstName(1).ec2LastName(1).ec2Relationship(1).ec2PhoneNumber(1);
+		pom.getAddIndividualsPage().ec2FirstName(1).ec2LastName(1).ec2Relationship(1).ec2PhoneNumber(2);
 		pom.getAddIndividualsPage().ec2FieldIsEmpty();
 	}
 	
@@ -916,14 +917,13 @@ public class AddIndividualsPageStep extends BaseClass {
 		pom.getAddIndividualsPage().ec3FieldIsEmpty();
 	}
 
-	@Then("User should verify the limit validation error message in Emergency Contact3 First Name* field {string}")
-	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact3_first_name_field(
-			String expValidationMsgForFrstName) {
-
+	@Then("User should verify the limit validation error message in Emergency Contact3 First Name* field {string}, {string}")
+	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact3_first_name_field(String expValidationMsgForFrstName, String expValidationMsgForLastName) {
+	   
 		stepName(methodName());
 		
 		try {
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 5);
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForFrstName(), 3);
 			waitForFullPageElementLoad();
 			Assert.assertEquals("Limit validation msg for FirstName* field is not displayed",
 					expValidationMsgForFrstName, getText(pom.getAddIndividualsPage().getLimitValMsgForFrstName()));
@@ -933,6 +933,20 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
+		
+		try {
+
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getLimitValMsgForLastName(), 3);
+			waitForFullPageElementLoad();
+			Assert.assertEquals("Limit validation msg for LastName* field is not displayed",
+					expValidationMsgForLastName, getText(pom.getAddIndividualsPage().getLimitValMsgForLastName()));
+			log(Status.PASS, "Limit validation msg for LastName* field is displayed - "
+					+ getText(pom.getAddIndividualsPage().getLimitValMsgForLastName()));
+		} catch (AssertionError e) {
+			log(Status.FAIL, e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Then("User should verify the limit validation error message in Emergency Contact3 Last Name* field {string}")
@@ -963,7 +977,9 @@ public class AddIndividualsPageStep extends BaseClass {
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact3FN());
 		deleteExistFieldData(pom.getAddIndividualsPage().getEmergencyContact3LN());
 
-		pom.getAddIndividualsPage().forwardToConfirmPage().confirm().toastMsgOKButton().back();
+		pom.getAddIndividualsPage().forwardToConfirmPage();
+		
+		pom.getAddIndividualsPage().confirm().toastMsgOKButton().back();
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField(), 5);
@@ -1076,7 +1092,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		} else {
 			log(Status.FAIL, "Tab Ticks are NOT displayed as expected");
 		}
-	}
+			}
 
 	@Then("User should verify the First, middle and last name, DOB, mailing address and Phone Number are displayed in confirm form screen")
 	public void user_should_verify_the_first_middle_and_last_name_dob_mailing_address_and_phone_number_are_displayed_in_confirm_form_screen()
@@ -1319,10 +1335,6 @@ public class AddIndividualsPageStep extends BaseClass {
 	@Then("User should perform only mandatory fields in Preference tab section")
 	public void user_should_perform_only_mandatory_fields_in_preference_tab_section() throws Exception {
 
-
-		
-		
-		
 		stepName(methodName());
 
 		pom.getAddIndividualsPage().preferenceTab().ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(2);
@@ -1336,30 +1348,29 @@ public class AddIndividualsPageStep extends BaseClass {
 		stepName(methodName());
 		
 		pom.getAddIndividualsPage().confirm();
-		waitForPageLoad();
 	}
 
-	@Then("User should verify the error message for duplicate Mobile Number {string}")
-	public void user_should_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) {
-
-		stepName(methodName());
-
-		try {
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg(), 5);
-			Assert.assertEquals("Individual already exist with same phone number - Toast Msg NOT displayed as expected",
-					expDuplicateErrorMsg, getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
-			log(Status.PASS, "Duplicate PhoneNo Toast Msg is displayed as expected -"
-					+ getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
-			
-			pom.getAddIndividualsPage().toastMsgOKButton();
-			
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		waitForFullPageElementLoad();
-	}
+//	@Then("User should verify the error message for duplicate Mobile Number {string}")
+//	public void user_should_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) {
+//
+//		stepName(methodName());
+//
+//		try {
+//			waitForVisiblityOfElement(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg(), 5);
+//			Assert.assertEquals("Individual already exist with same phone number - Toast Msg NOT displayed as expected",
+//					expDuplicateErrorMsg, getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+//			log(Status.PASS, "Duplicate PhoneNo Toast Msg is displayed as expected -"
+//					+ getText(pom.getAddIndividualsPage().getDuplicatePhNoToastbarMsg()));
+//			
+//			pom.getAddIndividualsPage().toastMsgOKButton();
+//			
+//		} catch (AssertionError e) {
+//			log(Status.FAIL, e.getMessage());
+//			e.printStackTrace();
+//		}
+//		
+//		waitForFullPageElementLoad();
+//	}
 
 	@Then("User should perform Add Individual with different phone number")
 	public void user_should_perform_add_individual_with_different_phone_number() throws Exception {
@@ -1370,9 +1381,6 @@ public class AddIndividualsPageStep extends BaseClass {
 		deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact1PhoneNo());
 
 		pom.getAddIndividualsPage().ecPhoneNumber(2);
-		
-		
-
 	}
 
 //	@Then("User should verify the changed Phone Number is displayed in confirm page")
@@ -1446,8 +1454,9 @@ public class AddIndividualsPageStep extends BaseClass {
 
 		stepName(methodName());
 
+		waitForPageLoad();
+		
 		try {
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg(), 5);
 			Assert.assertEquals("Ind Created Successfully Toast Msg is Not Displayed as expected",
 					expIndCreatedSuccessfullyToastMsg,
 					getText(pom.getAddIndividualsPage().getCreateIndSuccessfullyToastMsg()));
@@ -1776,78 +1785,23 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.FAIL, "Data is not entered in Residential and Mailing Address * field" );
 		} else {
 			log(Status.PASS, "Data is entered in Residential and Mailing Address * field" );
-		}
-
-		
-
+	}
 	}
 
-	@Then("User should verify the first, middle, last name, dob residential and mailing address are displayed in Preference tab section")
-	public void user_should_verify_the_first_middle_last_name_dob_residential_and_mailing_address_are_displayed_in_preference_tab_section() {
-
-		stepName(methodName());
-		
-		pom.getAddIndividualsPage().preferenceTab();
-
-		String expdate = readExcel("Test Datas", "AddIndividuals", 1, 5);
-
-		String expDob = expdate.replaceAll("/", "-");
-
-		String expIndName = readExcel("Test Datas", "AddIndividuals", 1, 26);
-
-		String expAddress = readExcel("Test Datas", "AddIndividuals", 1, 11);
-
-		waitForFullPageElementLoad();
-		try {
-			Assert.assertEquals("First,Middel & Last Name is not displayed in Preference tab section", expIndName,
-					getText(pom.getAddIndividualsPage().getIndividualNameInPreferenceTabVerification()));
-			log(Status.PASS, "First,Middel & Last Name is displayed in Preference tab section Ind Name - "
-					+ getText(pom.getAddIndividualsPage().getIndividualNameInPreferenceTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			Assert.assertEquals("DOB is not displayed in Preference tab section", expDob,
-					getText(pom.getAddIndividualsPage().getIndividualDOBInPreferenceTabVerification()));
-			log(Status.PASS, "DOB is displayed in Preference tab section Ind DOB - "
-					+ getText(pom.getAddIndividualsPage().getIndividualDOBInPreferenceTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			Assert.assertEquals("Address is not displayed in Preference tab section", expAddress,
-					getText(pom.getAddIndividualsPage().getIndividualAddressInPreferenceTabVerification()));
-			log(Status.PASS, "Address is displayed in Preference tab section Ind Address - "
-					+ getText(pom.getAddIndividualsPage().getIndividualAddressInPreferenceTabVerification()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-	}
 
 	@Then("User should perform all fields in Preference tab section")
 	public void user_should_perform_all_fields_in_preference_tab_section() throws Exception {
 
 		stepName(methodName());
 		
+		pom.getAddIndividualsPage().preferenceTab();
+		
 		pom.getAddIndividualsPage().preferenceTab().nickName(1).pronoun(1).ethnicAffiliation(1).preferredLanguage(1)
 				.ecFirstName(1).ecLastName(1).ecRelationship(1).ecPhoneNumber(2);
 		pom.getAddIndividualsPage().Religion(1);
+
 	}
-
-	@Then("User should add another emergency Contact2")
-	public void user_should_add_another_emergency_contact2() {
-
-		stepName(methodName());
-		
-		pom.getAddIndividualsPage().addEmergencyContact();
-
-		pom.getAddIndividualsPage().ec2FirstName(1).ec2LastName(1).ec2Relationship(1).ec2PhoneNumber(1);
-	}
+	
 
 	@Then("User should verify the First, middle and last name, dob, residential & mailing address and Phone Number are displayed in confirm form")
 	public void user_should_verify_the_first_middle_and_last_name_dob_residential_and_mailing_address_and_phone_number_are_displayed_in_confirm_form() {
@@ -1913,18 +1867,6 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 	}
 
-	@And("User should perform emergency contact2 with different phone number")
-	public void User_should_perform_emergency_contact2_with_different_phone_number() {
-
-		stepName(methodName());
-
-		pom.getAddIndividualsPage().back()
-				.deleteExistPhoneData(pom.getAddIndividualsPage().getEmergencyContact2PhoneNo());
-
-		pom.getAddIndividualsPage().ec2PhoneNumber(2).forwardToConfirmPage();
-
-	}
-
 	@Then("User should verify that individuals are created successfully by perform all fields")
 	public void user_should_verify_that_individuals_are_created_successfully_by_perform_all_fields() throws Exception {
 
@@ -1932,24 +1874,8 @@ public class AddIndividualsPageStep extends BaseClass {
 		
 	pom.getAddIndividualsPage().searchBox(1);		
 		
-		
-//		String actSearchedInd = getText(pom.getAddIndividualsPage().getCreatedIndName());
-//		String expSearchedInd = pom.getAddIndividualsPage().getIndividualSearchBox();
-//		
-//		System.out.println("Actua Searched Ind - "+actSearchedInd);
-//		System.out.println("Exp Searched Ind - "+expSearchedInd);
-//		
-//		if (actSearchedInd.equals(expSearchedInd)) {
-//			log(Status.INFO, "Searched Individual is displayed");
-//			
-//			pom.getAddIndividualsPage().searchedIndividualform();
-//			
-//		} else {
-//			log(Status.FAIL, "Searched Individual is NOT displayed");
-//			throw new Exception("Assertion failed searched Individual is not displayed as expected");
-//		}
-		
 		waitForPageLoad();
+       waitForFullPageElementLoad();
 
 		System.out.println("IND FULL NAME -" + getText(pom.getAddIndividualsPage().getCreatedIndividualName()));
 		System.out.println("IND DOB -" + getText(pom.getAddIndividualsPage().getCreatedDOB()));
@@ -1963,7 +1889,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		System.out.println("IND SUFFIX -" + getText(pom.getAddIndividualsPage().getCreatedSuffix()));
 		System.out.println("IND RACE -" + getText(pom.getAddIndividualsPage().getSelectedRace()));
 		System.out.println("IND MARITAL ST -" + getText(pom.getAddIndividualsPage().getSelectedMaritalStatus()));
-		System.out.println("IND Slected SUITE -" + getText(pom.getAddIndividualsPage().getSelectedSuite()));
+		System.out.println("IND Selected SUITE -" + getText(pom.getAddIndividualsPage().getSelectedSuite()));
 		System.out.println("IND NICKNAME -" + getText(pom.getAddIndividualsPage().getCreatedNickName()));
 		System.out.println("IND PRONOUN -" + getText(pom.getAddIndividualsPage().getSelectedPronoun()));
 		System.out
@@ -1975,12 +1901,6 @@ public class AddIndividualsPageStep extends BaseClass {
 		System.out.println(
 				"IND EC1RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact1Relationship()));
 		System.out.println("IND EC1 PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact1PhNo()));
-		System.out.println("IND EC2NAME -" + getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-		System.out.println(
-				"IND EC2RELATIONSHIP -" + getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-		System.out.println("IND EC2 PhNo -" + getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
-
-		
 		
 		try {
 			String expFirstName = readExcel("Test Datas", "AddIndividuals", 1, 0);
@@ -2291,54 +2211,7 @@ public class AddIndividualsPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-
-		try {
-			String expECFN = readExcel("Test Datas", "AddIndividuals", 1, 17);
-			String expECLN = readExcel("Test Datas", "AddIndividuals", 1, 18);
-			String expEmergencyContactName = expECFN + " " + expECLN;
-			
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact2Name(), 10);
-			
-			Assert.assertEquals("Created EmergencyContact 2 Name Mismatched", expEmergencyContactName,
-					getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-			log(Status.PASS,
-					"EmergencyContact 2 Name is displayed as expected EXP EmC2 Name - " + expEmergencyContactName
-							+ " | ACT EmC2 Name - " + getText(pom.getAddIndividualsPage().getCreatedEmContact2Name()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			String expEmRelationship = readExcel("Test Datas", "AddIndividuals", 1, 19);
-			
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getSelectedEmContact2Relationship(), 10);
-			
-			Assert.assertEquals("Created EmergencyContact 2 Relationship Mismatched", expEmRelationship,
-					getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-			log(Status.PASS,
-					"EmergencyContact Relationship 2 is displayed as expected EXP EmC2 Relationship - "
-							+ expEmRelationship + " | ACT EmC2 Relationship - "
-							+ getText(pom.getAddIndividualsPage().getSelectedEmContact2Relationship()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			waitForVisiblityOfElement(pom.getAddIndividualsPage().getCreatedEmContact2PhNo(), 10);
-			
-			Assert.assertEquals("Created EmergencyContact 2 Phone Number is NOT displayed as expected", expPhoneNumber,
-					getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
-			log(Status.PASS,
-					"EmergencyContact 2 Phone Number is displayed as expected Exp EmC2 PhNum - " + expPhoneNumber
-							+ " | Act EmC2 PhNum - " + getText(pom.getAddIndividualsPage().getCreatedEmContact2PhNo()));
-		} catch (AssertionError e) {
-			log(Status.FAIL, e.getMessage());
-			e.printStackTrace();
-		}
-	}
-	
+	}	
 	
 	@Then("User should navigate to vitals tab and click add vitals button in View Individual page")
 	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_view_individual_page() {

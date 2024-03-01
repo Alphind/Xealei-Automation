@@ -983,9 +983,6 @@ public void uploadForEditVitalsTab(String fileName, String formatType) {
          deleteExistFieldData(editEC1FNField);
 		 deleteExistFieldData(editEC1LNField);
          deleteExistPhoneData(editEC1PhNumField);
-         deleteExistFieldData(editEC2FNField);
-		 deleteExistFieldData(editEC2LNField);
-         deleteExistPhoneData(editEC2PhNumField);
 	}
 	
 	public EditIndividualsPage duplicatePhoneNumber(int rowNum) {

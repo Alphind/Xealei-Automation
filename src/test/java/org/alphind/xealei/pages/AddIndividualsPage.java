@@ -630,17 +630,17 @@ public class AddIndividualsPage extends BaseClass{
 		return createdEmContact1PhNo;
 	}
 
-	public WebElement getCreatedEmContact2Name() {
-		return createdEmContact2Name;
-	}
-
-	public WebElement getSelectedEmContact2Relationship() {
-		return selectedEmContact2Relationship;
-	}
-
-	public WebElement getCreatedEmContact2PhNo() {
-		return createdEmContact2PhNo;
-	}
+//	public WebElement getCreatedEmContact2Name() {
+//		return createdEmContact2Name;
+//	}
+//
+//	public WebElement getSelectedEmContact2Relationship() {
+//		return selectedEmContact2Relationship;
+//	}
+//
+//	public WebElement getCreatedEmContact2PhNo() {
+//		return createdEmContact2PhNo;
+//	}
 
 	public WebElement getScrollDownInPrefTab() {
 		return scrollDownInPrefTab;
@@ -1453,7 +1453,7 @@ public class AddIndividualsPage extends BaseClass{
 				&& getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")) {
 
 			click(uploadPhotobtn);
-			sleep(2000);
+			sleep(3000);
 			
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 			try {
@@ -1978,8 +1978,10 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
-	public AddIndividualsPage ec2PhoneNumber(int rowNum) {
+	public AddIndividualsPage ec2PhoneNumber(int rowNum) throws Exception {
 
+		String randomMobileNumber = randomMobileNumber();
+		writeExcelToOverwrite("Test Datas", "AddIndividuals", 2, 20, randomMobileNumber);
 		sendKeys(emergencyContact2PhoneNo, readExcel("Test Datas", "AddIndividuals", rowNum, 20));
 		return this;
 	}
