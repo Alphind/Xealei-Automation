@@ -75,6 +75,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
 import io.cucumber.java.Scenario;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class BaseClass {
@@ -93,14 +94,17 @@ public class BaseClass {
 	public void browserType() throws Exception {
 
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(getChromeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			WebDriverManager.chromedriver().setup();
 			driver = new EdgeDriver(getEdgeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			WebDriverManager.chromedriver().setup();
 			 driver = new FirefoxDriver(getFirefoxOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 		} else {
@@ -114,14 +118,17 @@ public class BaseClass {
 		WebDriver newDriver;
 		
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
 			newDriver = new ChromeDriver(getChromeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			WebDriverManager.chromedriver().setup();
 			newDriver = new EdgeDriver(getEdgeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			WebDriverManager.chromedriver().setup();
 			 newDriver = new FirefoxDriver(getFirefoxOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 		} else {
