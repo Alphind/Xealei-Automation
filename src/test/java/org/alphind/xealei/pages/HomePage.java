@@ -39,6 +39,9 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'Suites')]/parent::a")
 	private WebElement suitesModule;
 
+	@FindBy(xpath = "//span[contains(text(),'Common Area')]/parent::a")
+	private WebElement commonAreaModule;
+	
 	@FindBy(xpath = "//span[contains(text(),'Individuals')]")
 	private WebElement individualsModule;
 
@@ -186,6 +189,22 @@ public class HomePage extends BaseClass {
 			waitForPageLoad();
 		} else {
 			log(Status.FAIL, "Unable to click the Suites Module");
+		}
+	}
+	
+	/**
+	 * Check whether the 'Common Area' page is displayed
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
+	public void navToCommonAreaModule() {
+
+		if (commonAreaModule.isDisplayed()) {
+			click(commonAreaModule);
+			waitForPageLoad();
+		} else {
+			log(Status.FAIL, "Unable to Navigate the the Common Area Module");
 		}
 	}
 

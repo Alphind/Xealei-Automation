@@ -330,7 +330,7 @@ public class EditSuitesPage extends BaseClass {
 		}
 	}
 
-	public void dataForSuiteLimit() {
+	public void enterDataToCheckTheLimitInSuiteTextbox() {
 		
 		sendKeys(suiteName, "AB");
 	}
@@ -338,8 +338,8 @@ public class EditSuitesPage extends BaseClass {
 	public void updateButton() {
 	
 		click(btnUpdateSuite);
-		//waitForPageLoad();
 	}
+	
 	public void updateSuiteName(int rowNum) throws Exception {
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "EditSuites", rowNum, 0) + dateAndTime());

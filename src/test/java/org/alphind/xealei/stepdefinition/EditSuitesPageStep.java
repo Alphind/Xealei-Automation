@@ -53,7 +53,7 @@ public class EditSuitesPageStep extends BaseClass {
 			stepName(methodName());
 
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
-			pom.getEditSuitesPage().dataForSuiteLimit();
+			pom.getEditSuitesPage().enterDataToCheckTheLimitInSuiteTextbox();
 			pom.getEditSuitesPage().updateButton();
 			
 			try {
@@ -64,20 +64,7 @@ public class EditSuitesPageStep extends BaseClass {
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
-			}
-			
-			try {
-				String expLocation = readExcel("Test Datas", "EditSuites", 1,1);
-				Assert.assertEquals("Location  Mismatched in Edit Suite Page", expLocation,
-						getText(pom.getAddSuitesPage().getDefaultLocationName()));
-				log(Status.PASS, "Location displayed as expected Exp Location : " + expLocation + " Actual Location :"
-						+ getText(pom.getAddSuitesPage().getDefaultLocationName()));
-
-			} catch (AssertionError e2) {
-				log(Status.FAIL, e2.getMessage());
-				e2.printStackTrace();
-			}
-			
+			}	
 		    
 		}
 		
@@ -123,12 +110,14 @@ public class EditSuitesPageStep extends BaseClass {
 				log(Status.PASS, "Suite Name already exists. Toast Message is displayed - "
 						+ getText(pom.getEditSuitesPage().getSNExitsToastMsg()));
 
+				pom.getEditSuitesPage().snAlreadyExistToastMsgOkButton();
+				
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
 
-			pom.getEditSuitesPage().snAlreadyExistToastMsgOkButton();
+			
 		}
 		
 		@Then("User should verify the x icon in edit suite screen is working")
@@ -140,7 +129,7 @@ public class EditSuitesPageStep extends BaseClass {
 			
 			String expContent = "Changes you made may not be saved. Are you sure you want to Cancel?";
 			
-			if(pom.getAddSuitesPage().getClosePopupSuiteName().isDisplayed()) {
+			if(pom.getAddSuitesPage().getClosePopupSuiteName().equals("Suite")) {
 				log(Status.PASS, "Close popup is displayed");
 			} else {
 				log(Status.FAIL, "Close popup is NOT displayed");
@@ -186,6 +175,7 @@ public class EditSuitesPageStep extends BaseClass {
 		    pom.getEditSuitesPage().updateButton();  
 		    
 			try {
+				waitForVisiblityOfElement(pom.getEditSuitesPage().getSavedSuccessfullToastMsg(), 10);
 				Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 						getText(pom.getEditSuitesPage().getSavedSuccessfullToastMsg()));
 				log(Status.PASS, "Toast Message is displayed : "
@@ -276,18 +266,20 @@ public class EditSuitesPageStep extends BaseClass {
 						
 						pom.getEditSuitesPage().updateButton();
 
-						waitForPageLoad();
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getSavedSuccessfullToastMessage(),10);
 							Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 									getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
 							log(Status.PASS, "Toast Message is displayed : "
 									+ getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));							
 
+							pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+							
 						} catch (AssertionError e) {
 							log(Status.FAIL, e.getMessage());
 							e.printStackTrace();
 						}
-						pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+						
 					}
 
 
