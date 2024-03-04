@@ -1015,6 +1015,7 @@ public class IncidentReportPage extends BaseClass {
 //		} else {
 //			individualDetail = fullname[0] + "  " + fullname[1];
 //		}
+		waitForElementToBeClickable(individualDetailsDropDown, 10);
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
 		System.out.println(individualName);
@@ -1058,14 +1059,17 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-10-2023.
 	 * 
 	 */
-	public void selectWasTheIndividiualInjured() {
-		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
-		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
-		waitForFullPageElementLoad(driver);
-		select(wasPatientInjured);
-		waitForPageLoad(driver);
-
-	}
+//	public void selectWasTheIndividiualInjured() {
+//		
+//		waitForFullPageElementLoad(this.driver);
+//		sleep(3000);
+//		
+//		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
+//		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
+//		waitForFullPageElementLoad(driver);
+//		select(wasPatientInjured);
+//		waitForPageLoad(driver);
+//	}
 
 	/**
 	 * @author Nandhalala. Get tooltip for Front View Fore Head.
@@ -1718,6 +1722,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectNotificationMethod() {
 
+		waitForElementToBeClickable(notificationMethodDropdownBox, 10);
 		click(notificationMethodDropdownBox);
 		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 17);
 		notificationMethod = notificationMethod.replace("method", notifiedMethod);
@@ -1733,6 +1738,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void clickCompleteButton() {
 		sleep(1000);
+		waitForElementToBeClickable(completeButton, 10);
 		click(completeButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1747,6 +1753,7 @@ public class IncidentReportPage extends BaseClass {
 	public void resubmitButton() {
 		waitForFullPageElementLoad(this.driver);
 		sleep(1000);
+		waitForElementToBeClickable(resubmitButton, 10);
 		click(resubmitButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1908,6 +1915,7 @@ public class IncidentReportPage extends BaseClass {
 	public void navigateHome() {
 		waitForFullPageElementLoad(this.driver);
 		sleep(1000);
+		waitForElementToBeClickable(home, 10);
 		click(home);
 	}
 
@@ -1950,6 +1958,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @author Alphi-MohamedRazul .
 	 */
 	public void EditButton() {
+		waitForElementToBeClickable(IRFormEditButton, 10);
 		click(IRFormEditButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1965,6 +1974,7 @@ public class IncidentReportPage extends BaseClass {
 		waitForPageLoad(this.driver);
 
 		if (addNewIncidentReportButton.isDisplayed()) {
+			waitForElementToBeClickable(addNewIncidentReportButton, 10);
 			click(addNewIncidentReportButton);
 		} else {
 			log(Status.FAIL, "Unable to click Add New Incident Report Button");
@@ -1979,6 +1989,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void nextButton() {
 
+		waitForElementToBeClickable(nextButton, 10);
 		click(nextButton);
 	}
 
@@ -1989,6 +2000,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectIndividualDetailsDropdown() {
 
+		waitForElementToBeClickable(individualDetailsDropDown, 10);
 		click(individualDetailsDropDown);
 
 		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails",
@@ -2001,7 +2013,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul .
 	 */
-	public void wasIndividualInjuredRadioButton() {
+	public void selectWasIndividualInjured() {
 
 		String wasIndividualInjured = readExcel("Test Datas", "Incident Reports", 1, 4);
 		wasPatientInjured = wasPatientInjured.replaceAll("isInjured", wasIndividualInjured);
@@ -2015,6 +2027,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void saveButton() {
 
+		waitForElementToBeClickable(saveButton, 10);
 		click(saveButton);
 		waitForPageLoad();
 	}
@@ -2026,6 +2039,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void savedSuccessfulToastMsgokButton() {
 
+		waitForElementToBeClickable(btnToastMsgSuccessok, 10);
 		click(btnToastMsgSuccessok);
 	}
 
@@ -2036,6 +2050,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void ToastMsgOKButton() {
 
+		waitForElementToBeClickable(OKBtnToastMsg, 0);
 		click(OKBtnToastMsg);
 	}
 
@@ -2086,7 +2101,7 @@ public class IncidentReportPage extends BaseClass {
 		
 		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
 			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
-sleep(2000);
+          click(whatCausedTheFallDescriptionTxtBox);
 		}
 
 	/**
@@ -2114,6 +2129,7 @@ sleep(2000);
 
 			waitForFullPageElementLoad();
 			
+			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -2239,6 +2255,7 @@ sleep(2000);
 
 			waitForFullPageElementLoad();
 			
+			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -4289,6 +4306,7 @@ sleep(2000);
 			throw new IllegalArgumentException("Unexpected value: " + userType);
 		};
 		sendKeys(chatMessageArea, chatMessage);
+		waitForElementToBeClickable(chatSendButton, 10);
 		click(chatSendButton);
 
 	}

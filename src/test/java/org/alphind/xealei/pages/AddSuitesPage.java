@@ -62,7 +62,7 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "//input[@placeholder='Enter Height']")
 	private WebElement height;
 
-	@FindBy(xpath = "//button[@x-as-save-btn]")
+	@FindBy(xpath = "//span[contains(text(), 'Add')]/parent::button")
 	private WebElement btnAdd; 
 
 	@FindBy(xpath = "//span[contains(text(),'Please Enter Suite Name')]")
@@ -314,6 +314,7 @@ public class AddSuitesPage extends BaseClass {
 		return this;
 	}
 
+	
 	public AddSuitesPage existSuiteName(int rowNum) {
 		
 		String existSuite = getExistSuite();
@@ -363,6 +364,19 @@ public class AddSuitesPage extends BaseClass {
 		return this;
 
 	}
+	
+	public AddSuitesPage suiteNameIsNotEmpty() {
+		
+		if(getAttribute(suiteName,"value").isEmpty()) {
+			log(Status.FAIL, "Data is NOT entered in Suite Name* field");
+		} else {
+			log(Status.PASS, "Data is entered in Suite Name* field");
+		}
+		return this;
+
+	}
+	
+	
 	
 	public AddSuitesPage addButton() {
 
@@ -414,12 +428,14 @@ public class AddSuitesPage extends BaseClass {
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {
+			waitForFullPageElementLoad();
+			sleep(2000);
 			click(searchCreatedSN);
 			waitForPageLoad();
 			log(Status.PASS, "Searched suite is displayed successfully by clicking suite label name");
 		} else {
-			log(Status.FAIL, "Searched suite is not displayed as expected");
-			throw new Exception("Assertion failed searched suite is not displayed as expected");
+			log(Status.FAIL, "Searched suite is NOT displayed as expected");
+			throw new Exception("Assertion failed searched suite is NOT displayed as expected");
 		}
 	}
 

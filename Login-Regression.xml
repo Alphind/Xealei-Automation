@@ -34,7 +34,7 @@ license agreement
 				<configuration>
 					<!-- Specify your test runner classes here -->
 					<includes>
-						<include>org.alphind.xealei.runner.TC10IRManualFlowTestRunner</include>
+						<include>org.alphind.xealei.runner.TC001LoginRegressionTestRunner</include>
 					</includes>
 				</configuration>
 				<dependencies>
@@ -210,6 +210,13 @@ license agreement
     <groupId>io.rest-assured</groupId>
     <artifactId>rest-assured-common</artifactId>
     <version>5.2.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.7.0</version>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured-all -->

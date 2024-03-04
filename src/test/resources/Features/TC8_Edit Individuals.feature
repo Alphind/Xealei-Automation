@@ -8,8 +8,8 @@
 #
 #*/
 
-@EditIndividuals-AllScenarios
-@RegressionTesting
+@Individuals-Regression
+@AddIndividuals-AllScenarios
 Feature: Verify Xealei Individuals > Edit Individual Page
 
  Background: 
@@ -60,7 +60,7 @@ Feature: Verify Xealei Individuals > Edit Individual Page
   Then User should verify that able to cancel the uploaded record file in edit vitals tab section
   Then User should verify the cancel button is working in vitals tab
 
-
+@EditIndividuals-AllScenarios
 @SanityTesting
    Scenario: To verify user able to Edit/Update Individuals and Vitals by entering all fields
    

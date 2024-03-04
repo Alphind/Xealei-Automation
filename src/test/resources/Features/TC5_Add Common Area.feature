@@ -9,7 +9,7 @@
 #*/
 
 @AddCommonArea-AllScenarios
-@RegressionTesting
+@OccupancyZone-Regression
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 

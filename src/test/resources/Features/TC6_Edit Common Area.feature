@@ -7,9 +7,9 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-@AddCommonArea-AllScenarios
+
 @EditCommonArea-AllScenarios
-@RegressionTesting
+@OccupancyZone-Regression
 Feature: Verify Xealei Suites > Edit Suites Page
 
   Background: 

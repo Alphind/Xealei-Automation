@@ -34,7 +34,9 @@ public class EditCommonAreaPageStep extends BaseClass {
 			throws Exception {
 
 		stepName(methodName());
-
+		
+		waitForPageLoad();
+		
 		pom.getEditCommonAreaPage().editButton();
 
 		String popupText = pom.getEditCommonAreaPage().getEditCommonAreaPopupName();

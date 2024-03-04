@@ -185,7 +185,7 @@ public class IncidentReportPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 
-		staffpom.getIncidentReportPage().wasIndividualInjuredRadioButton();
+		staffpom.getIncidentReportPage().selectWasIndividualInjured();
 		staffpom.getIncidentReportPage().eventDateAndTime();
 
 		try {
@@ -448,6 +448,7 @@ public class IncidentReportPageStep extends BaseClass {
 		stepName(methodName());
 
 		staffpom.getIncidentReportPage().deleteEventDtAndTimeFieldExistingData();
+		waitForPageLoad(this.staffDriver);
 		staffpom.getIncidentReportPage().eventDateAndFutureTime();
 		
 		try {
@@ -771,7 +772,7 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		staffpom.getIncidentReportPage().eventDateAndTime();
 		staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
-		staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
+		staffpom.getIncidentReportPage().selectWasIndividualInjured();
 		staffpom.getIncidentReportPage().selectFrontViewInjurySite();
 		staffpom.getIncidentReportPage().selectBackViewInjurySite();
 		staffpom.getIncidentReportPage().enterTreatmentReceivedData();
@@ -1611,9 +1612,18 @@ public class IncidentReportPageStep extends BaseClass {
 		
 		waitForFullPageElementLoad(staffDriver);
 		sleep(2000);
+		
+		try {
 		staffpom.getIncidentReportPage().eventDateAndTime();
+		} catch (NoSuchElementException e) {
+		}
+		
 		staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
-		staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
+		
+		//staffpom.getIncidentReportPage().selectWasTheIndividiualInjured();
+		
+		staffpom.getIncidentReportPage().selectWasIndividualInjured();
+		
 		staffpom.getIncidentReportPage().selectFrontViewInjurySite();
 		staffpom.getIncidentReportPage().selectBackViewInjurySite();
 		staffpom.getIncidentReportPage().enterTreatmentReceivedData();
@@ -1855,7 +1865,7 @@ public class IncidentReportPageStep extends BaseClass {
 		Response response = request.body(jsonFile).with().contentType(ContentType.JSON)
 							.baseUri("https://api.qa.xealei.com/createEventAlertCaretakers")
 							.post();
-		
+		System.out.println(response.asString());
 		if(response.getStatusCode() == 200) {
 			String date = getCurrentMonth()+"/"+getCurrentDate()+"/"+getCurrentDtYearMonth("yyyy");
 			
@@ -2294,5 +2304,6 @@ public class IncidentReportPageStep extends BaseClass {
 		Assert.assertEquals("The text from grid is : "+actual+" but the expected is : No Fall", 
 				actual, "No Fall");
 	}
-	
+
+
 }

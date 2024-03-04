@@ -367,10 +367,11 @@ public class ForgotPasswordPageStep extends BaseClass {
 
 		stepName(methodName());
 
-		sleep(2000);
+		sleep(3000);
+		waitForFullPageElementLoad(mailinatorDriver);
 		mailinatorpom.getForgotPasswordPage().naviToMailContent();
 		waitForFullPageElementLoad(mailinatorDriver);
-		sleep(2000);
+		sleep(3000);
 
 		WebElement iframe = findElementByXpath(mailinatorDriver, "(//iframe[@title='HTML Email Message Body'])[1]");
 		mailinatorDriver.switchTo().frame(iframe);

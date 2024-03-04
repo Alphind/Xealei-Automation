@@ -8,7 +8,7 @@
 #
 #*/
 
-@RegressionTesting
+@Individuals-Regression
 @AddIndividuals-AllScenarios
 Feature: Verify Xealei Individuals > Add Individual Page
 

@@ -9,13 +9,13 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(features = "src//test//resources//Features", 
 
-tags ="{@NegativeScenario,@ChatScenario,@NotificationAlertNoFall}",
+tags ="@AllApproveScenario or @RejectAndReapprovebyChiefNurseScenario or @RejectAndReapprovebyResidentialManagerScenario",
 
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 
 
-public class TC9IRNegativeScenarioTestRunner {
+public class TC005IRManualFlowTestRunner {
 
 	
 	

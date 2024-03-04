@@ -215,8 +215,8 @@ public class AddCommonAreaPageStep extends BaseClass {
 
 		pom.getAddCommonAreaPage().commonAreaName(1).addButtonInCommenAreaPopup();
 
-//		waitForPageLoad();
 		try {
+			waitForVisiblityOfElement(pom.getAddCommonAreaPage().getSavedSuccessfullToastMessage(), 10);
 			Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 					getText(pom.getAddCommonAreaPage().getSavedSuccessfullToastMessage()));
 			log(Status.PASS, "Toast Message is displayed : "

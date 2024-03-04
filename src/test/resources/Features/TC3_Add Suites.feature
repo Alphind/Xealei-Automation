@@ -9,7 +9,7 @@
 #*/
 
 @Suites-AllScenarios
-@RegressionTesting
+@OccupancyZone-Regression
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 
@@ -42,6 +42,7 @@ Feature: Verify Xealei Suites > Add Suites Page
  
     Scenario: To verify user able to Add/Create Suites by perform only mandatory field
     And User should perform suite by entering only Mandatory field
+  
   
 @SanityTesting
   Scenario: To verify user able to Add/Create Suites by entering all fields also verify the 'Bread Crums' link

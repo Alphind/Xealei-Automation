@@ -229,10 +229,15 @@ public class AddSuitesPageStep extends BaseClass {
 			  
 				stepName(methodName());
 				
-				pom.getAddSuitesPage().suiteName(1).addButton();
+				pom.getAddSuitesPage().suiteName(1);
+				waitForFullPageElementLoad();
+				
+				pom.getAddSuitesPage().suiteNameIsNotEmpty();
+				pom.getAddSuitesPage().addButton();
 
 				waitForPageLoad();
 				try {
+					waitForVisiblityOfElement(pom.getAddSuitesPage().getSavedSuccessfullToastMessage(), 10);
 					Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 							getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
 					log(Status.PASS, "Toast Message is displayed : "
@@ -258,7 +263,13 @@ public class AddSuitesPageStep extends BaseClass {
 				stepName(methodName());
 				
 				pom.getAddSuitesPage().suiteName(1);
-				pom.getAddSuitesPage().enterLengthWidthHeight(1).addButton();
+				
+				waitForFullPageElementLoad();
+				pom.getAddSuitesPage().suiteNameIsNotEmpty();
+				
+				pom.getAddSuitesPage().enterLengthWidthHeight(1);
+				pom.getAddSuitesPage().nonMandatoryFieldIsNotEmpty();
+				pom.getAddSuitesPage().addButton();
 
 				waitForPageLoad();
 				try {
