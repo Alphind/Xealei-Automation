@@ -76,6 +76,8 @@ public class AddCommonAreaPageStep extends BaseClass {
 
 		stepName(methodName());
 
+		waitForPageLoad();
+		
 		pom.getAddCommonAreaPage().addCommonAreaButton();
 
 		waitForFullPageElementLoad();
@@ -178,6 +180,23 @@ public class AddCommonAreaPageStep extends BaseClass {
 		}
 	}
 
+	@Then("User should verify the field Common Area Name* for limit")
+	public void user_should_verify_the_field_common_area_name_for_limit() {
+		
+		stepName(methodName());
+		
+		pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+		
+		String checkSuiteNameFieldMaxLimit = pom.getAddCommonAreaPage().checkCommonAreaNameFieldMaxLimit();
+		int length = checkSuiteNameFieldMaxLimit.length();
+		if(length==14) {
+			
+		log(Status.PASS, "Common Area Name* field not allows to enter more than 14 characters");
+		} else {
+			log(Status.FAIL, "Common Area Name* field allows to enter More Than 14 characters");
+		}
+	}
+	
 		@Then("User should verify whether able to close the popup by clicking x icon")
 		public void user_should_verify_whether_able_to_close_the_popup_by_clicking_x_icon() throws Exception {
 		  

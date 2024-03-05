@@ -8,8 +8,8 @@
 #
 #*/
 
-@Suites-AllScenarios
 @OccupancyZone-Regression
+@Suites-AllScenarios
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 
@@ -27,19 +27,16 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify the field Suite Name * is mandatory "Please Enter Suite Name"
     And User should verify duplicate validation for Suite name "Suite Name already exists."
     And User should perform only non-mandatory fields and verify the info message contains for Mandatory fields "Please Enter Suite Name"
+    Then User should verify the field Suite Name* for limit
+    Then User should verify the field Length* for limit
+    Then User should verify the field Width* for limit
+    Then User should verify the field Height* for limit
+    Then User should verify the field Length* for limit with decimal point
+    Then User should verify the field Width* for limit with decimal point
+    Then User should verify the field Height* for limit with decimal point
     Then User should verify the x icon in add suites screen is working
 
 
-  #Scenario: To verify the data formats and field limits in Suite > Add Suite Page
-  #Then User should verify the field 'Suite Name' for limit
-  #Then User should verify the field 'Length' for limit
-  #Then User should verify the field 'Breadth' for limit
-  #Then User should verify the field 'Height' for limit
-  #Then User should verify the field 'Length' for limit with decimal point
-  #Then User should verify the field 'Breadth' for limit with decimal point
-  #Then User should verify the field 'Height' for limit with decimal point
-  
- 
     Scenario: To verify user able to Add/Create Suites by perform only mandatory field
     And User should perform suite by entering only Mandatory field
   

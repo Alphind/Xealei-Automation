@@ -176,6 +176,7 @@ public class AddCommonAreaPage extends BaseClass {
 	
 	public AddCommonAreaPage addCommonAreaButton() {
 
+		waitForElementToBeClickable(btnAddCommonArea, 10);
 		click(btnAddCommonArea);
 		return this;
 }
@@ -342,8 +343,14 @@ public AddCommonAreaPage commonAreaName(int rowNum) throws Exception {
 			return true;
 		} 
 		return false;
-
 	}
 
+	public String checkCommonAreaNameFieldMaxLimit() {
+
+		String inputMoreThan14Char = readExcel("Test Datas", "AddSuites", 1, 7);
+		sendKeys(commonAreaNameTxtbox, inputMoreThan14Char);
+		CharSequence subSequence = inputMoreThan14Char.subSequence(0,inputMoreThan14Char.length()-1);		
+	    return subSequence.toString();
+	}
 	
 }

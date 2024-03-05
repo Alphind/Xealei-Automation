@@ -21,25 +21,22 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify common area page tab url address
     And User should clicks on the Add Common Area button and verifies that the Add Common Area popup screen is displayed
 
+
   Scenario: To verify the buttons functionality and error validation and info messages in Add Common Area popup.
     Then User should verify the limit error info message for Common Area Name * field "Common area name must be minimum 3 characters"
     Then User should verify the field Common Area Name * is mandatory "Please enter common area name"
     And User should verify duplicate validation for Common Area name "Common Area Name already exists"
     And User should perform only non-mandatory fields in common area band verify the info message contains for Mandatory fields "Please enter common area name"
+    Then User should verify the field Common Area Name* for limit
+    Then User should verify the field Length* for limit
+    Then User should verify the field Width* for limit
+    Then User should verify the field Height* for limit
+    Then User should verify the field Length* for limit with decimal point
+    Then User should verify the field Width* for limit with decimal point
+    Then User should verify the field Height* for limit with decimal point
     Then User should verify whether able to close the popup by clicking x icon
 
-
-  #Scenario: To verify the data formats and field limits in Common Area > Add Common Area popup Page
-  #Then User should verify the field 'Suite Name' for limit
-  #Then User should verify the field 'Length' for limit
-  #Then User should verify the field 'Breadth' for limit
-  #Then User should verify the field 'Height' for limit
-  #Then User should verify the field 'Length' for limit with decimal point
-  #Then User should verify the field 'Breadth' for limit with decimal point
-  #Then User should verify the field 'Height' for limit with decimal point
   
- 
-
     Scenario: To verify user able to Add/Create Common Area by perform only mandatory field
     And User should perform Common Area by entering only Mandatory field
   
