@@ -170,6 +170,7 @@ public class AddIndividualsPageStep extends BaseClass {
 		}
 
 		try {
+			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg(), 10);
 			Assert.assertEquals("[Please provide valid data/ *Required field] toast msg is not displayed",
 					"Please provide valid data / Enter all required fields",
 					getText(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg()));
@@ -177,7 +178,7 @@ public class AddIndividualsPageStep extends BaseClass {
 					+ getText(pom.getAddIndividualsPage().getValidDataAndEnterAllReqFieldsToastMsg()));
 
 		} catch (AssertionError e) {
-			log(Status.FAIL, "*Required field toastbar msg is displayed as expected");
+			log(Status.FAIL, "*Required field toastbar msg is NOT displayed as expected");
 		}
 
 		pom.getAddIndividualsPage().toastMsgOKButton().back();
@@ -2214,7 +2215,7 @@ public class AddIndividualsPageStep extends BaseClass {
 	}	
 	
 	@Then("User should navigate to vitals tab and click add vitals button in View Individual page")
-	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_view_individual_page() {
+	public void user_should_navigate_to_vitals_tab_and_click_add_vitals_button_in_view_individual_page() throws Exception {
 
 		stepName(methodName());
 	
@@ -2488,6 +2489,9 @@ public class AddIndividualsPageStep extends BaseClass {
 	public void user_should_add_vitals_info_by_entering_all_fields() throws Exception {
 	    
 		stepName(methodName());
+		
+		waitForPageLoad();
+		waitForFullPageElementLoad();
 		
 		pom.getAddIndividualsPage().vitalsTab().addVitalsButton();
 		waitForPageLoad();

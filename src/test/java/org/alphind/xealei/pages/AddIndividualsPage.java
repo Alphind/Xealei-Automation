@@ -2161,14 +2161,19 @@ public class AddIndividualsPage extends BaseClass{
 			
 	}
 
-public AddIndividualsPage vitalsTab() {
+public AddIndividualsPage vitalsTab() throws Exception {
 		
+	try {
+	waitForElementToBeClickable(vitalsTab, 5);
 		click(vitalsTab);
 		return this;
+	} catch (Exception e) {
+		throw new Exception("Unable to navigate Vitals Tab Section");
+	}
 	}
 
 	public AddIndividualsPage selectBloodGroup(int rowNum) {
-
+		
 		click(bloodGroup);
 		String BG = readExcel("Test Datas", "AddVitals", rowNum, 0);
 		selectBG = selectBG.replaceAll("selectBGroup", BG);
@@ -2215,6 +2220,7 @@ public AddIndividualsPage healthSummary(int rowNum) {
 
 public void vitalsUpdateButton() {
 	
+	waitForElementToBeClickable(btnVitalsUpdate, 10);
 	click(btnVitalsUpdate);
 
 }

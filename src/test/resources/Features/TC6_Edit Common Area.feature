@@ -7,9 +7,9 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
-@AddCommonArea-AllScenarios
+
 @EditCommonArea-AllScenarios
-@RegressionTesting
+@OccupancyZone-Regression
 Feature: Verify Xealei Suites > Edit Suites Page
 
   Background: 
@@ -27,6 +27,14 @@ Feature: Verify Xealei Suites > Edit Suites Page
   Then User should verify the limit error info message for Common Area Name * field "Common area name must be minimum 3 characters" in edit common area popup page
     And User should verify duplicate validation for Common Area Name "Common Area Name already exists" in edit common area popup page
     And User should perform only non-mandatory fields in Edit Common Area popup and verify the info message contains for Mandatory fields "Please enter common area name"
+    
+    Then User should verify the field Common Area Name* for limit
+    Then User should verify the field Length* for limit
+    Then User should verify the field Width* for limit
+    Then User should verify the field Height* for limit
+    Then User should verify the field Length* for limit with decimal point
+    Then User should verify the field Width* for limit with decimal point
+    Then User should verify the field Height* for limit with decimal point
     Then User should verify whether able to close the popup by clicking x icon
     Then User should verify the breadcrums link should be display with module Common Area Name > Created Common Area name in edit Common Area page
     Then User should verify after click the breadcrums link it should be return to Common Area searched page

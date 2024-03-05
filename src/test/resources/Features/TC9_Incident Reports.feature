@@ -67,6 +67,7 @@ Background:
         
    
 @AllApproveScenario
+@SanityTesting
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
     Then User should verify the Incident report module is working
@@ -152,7 +153,7 @@ Scenario Outline: To verify whether residential manager can able to reject and r
 		Then Close all the browsers.
     
 
-@Don'tRun	
+@Don'tRunnow
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from notification.
 		
 		When Notification is Triggered from a sensor.
@@ -163,6 +164,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 
 @NotificationAlertAllApproveScenario
+@SanityTesting
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
 		
 		When Notification is Triggered from a sensor.

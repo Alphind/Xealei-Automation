@@ -881,12 +881,24 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 			 
 			 pom.getEditIndividualsPage().updateTitle(1).updateFirstName(1).updateMiddleName(1).updateLastName(1).updateSuffix(1).updateRace(1).updateMaritalStatus(1).updateDob(1).updateGender(1).updateResidentialAddress(1).updateMailingAddress(1).updateNickName(1).updatePronoun(1).updateEthnicAffiliation(1).updatePreferredLanguage(1).updateReligion(1).updateEC1FirstName(1).updateEC1LastName(1).updateEC1Relationship(1).updateEC1PhoneNumber(2);
 			 
+			 waitForFullPageElementLoad();
+			 
 			 String updatedFN = getAttribute(pom.getEditIndividualsPage().getEditFNField(), "value");
 			 String updatedMN = getAttribute(pom.getEditIndividualsPage().getEditMNField(), "value");
 			 String updatedLN = getAttribute(pom.getEditIndividualsPage().getEditLNField(), "value");
 			 
 			 String UpdatedINDName = updatedFN +" "+ updatedMN +" "+ updatedLN;
+			 System.out.println("Updated Individula Name is - "+UpdatedINDName);
+			 
 			 writeExcelToOverwrite("Test Datas","EditIndividuals", 1, 26, UpdatedINDName);
+			 
+			 String expUpdatedIndName = readExcel("Test Datas","EditIndividuals", 1, 26);
+			 
+			 if(expUpdatedIndName.equals(UpdatedINDName)) {
+				 log(Status.PASS, "Updated Individual Name is recorded in Excel sheet");
+			 } else {
+				log(Status.FAIL, "Updated Individual Name is NOT recorded in Excel sheet");
+			 }
 			 
 			 pom.getEditIndividualsPage().updateIndividual();	
 			 waitForPageLoad();
@@ -1219,7 +1231,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 		 }
 		 
 		 @Then("User should update all fields in vitals tab")
-		 public void user_should_update_all_fields_in_vitals_tab() {
+		 public void user_should_update_all_fields_in_vitals_tab() throws Exception {
 		     
 			 stepName(methodName());
 			 

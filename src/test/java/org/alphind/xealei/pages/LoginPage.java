@@ -232,7 +232,6 @@ public class LoginPage extends BaseClass {
 	 */
 	public void email() {
 
-		waitForPageLoad();
 		sendKeys(userName, "Doc@Medi.com");
 	}
 
@@ -261,6 +260,8 @@ public class LoginPage extends BaseClass {
 	public void loginButton() {
 
 		sleep(2000);
+		waitForElementToBeClickable(loginButton, 10);
+		waitForFullPageElementLoad();
 		click(loginButton);
 	}
 
@@ -286,6 +287,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void forgotPasswordHyperLink() {
 
+		waitForElementToBeClickable(forgotPasswordHyperLink, 10);
 		click(forgotPasswordHyperLink);
 	}
 
@@ -299,6 +301,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void ToastMsgOkButton() {
 
+		waitForElementToBeClickable(toastMsgOKButton,10);
 		click(toastMsgOKButton);
 	}
 
@@ -313,6 +316,7 @@ public class LoginPage extends BaseClass {
 	public void ToastMsgokButton() {
 
 		waitForPageLoad();
+		waitForElementToBeClickable(toastMsgokButton,10);
 		click(toastMsgokButton);
 	}
 
@@ -353,6 +357,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void pressEnterKeyInPasswordField() {
 
+		waitForElementToBeClickable(password, 10);
 		clickEnter(password);
 	}
 
@@ -392,8 +397,7 @@ public class LoginPage extends BaseClass {
 
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			sendKeys(userName, email);
-			waitForAjexPageLoad();
+			sendKeys(userName, email);			
 			clickEnter(password);
 			break;
 		}

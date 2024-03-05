@@ -753,14 +753,11 @@ public class BaseClass {
 //			
 //		}
 
-
-
 		try {
 		WebElement loading = driver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 		} catch (NoSuchElementException e) {
-			e.printStackTrace();
 		}
 
 	}

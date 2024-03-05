@@ -7,15 +7,16 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(features = "src//test//resources//Features//TC7_Incident Reports.feature", 
+@CucumberOptions(features = "src//test//resources//Features", 
 
-tags ="{@AllApproveScenario,@RejectAndReapprovebyChiefNurseScenario,@RejectAndReapprovebyResidentialManagerScenario}",
+tags ="@NegativeScenario or @ChatScenario or @NotificationAlertNoFall",
+
 
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 
 
-public class TC10IRManualFlowTestRunner {
+public class TC004IRNegativeScenarioTestRunner {
 
 	
 	
