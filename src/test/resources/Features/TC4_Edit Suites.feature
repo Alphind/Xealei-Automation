@@ -7,8 +7,9 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
+
+@OccupancyZone-Regression
 @EditSuites-AllScenarios
-@RegressionTesting
 Feature: Verify Xealei Suites > Edit Suites Page
 
   Background: 
@@ -21,10 +22,20 @@ Feature: Verify Xealei Suites > Edit Suites Page
     And User should search the created suite
     And User should clicks on the Edit Suite button and verifies that the Edit Suite screen is displayed
 
+
   Scenario: To verify the buttons functionality and error validation and info messages in Edit Suite Page
     Then User should verify the limit error info message for Suite Name* field "Suite Name must be minimum 3 characters" in edit suite page
     Then User should verify the Edit Suite form for mandatory "Please Enter Suite Name"
     Then User should verify duplicate validation for Suite name "Suite Name already exists." in edit suite page
+   
+    Then User should verify the field Suite Name* for limit
+    Then User should verify the field Length* for limit
+    Then User should verify the field Width* for limit
+    Then User should verify the field Height* for limit
+    Then User should verify the field Length* for limit with decimal point
+    Then User should verify the field Width* for limit with decimal point
+    Then User should verify the field Height* for limit with decimal point
+    
     Then User should verify the x icon in edit suite screen is working
     Then User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen
 

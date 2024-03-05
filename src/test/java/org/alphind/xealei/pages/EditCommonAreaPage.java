@@ -149,6 +149,7 @@ public class EditCommonAreaPage extends BaseClass{
 	public void editButton() {
 		
 		sleep(2000);
+		waitForElementToBeClickable(commonAreaEditButton, 10);
 		click(commonAreaEditButton);
 	}
 	

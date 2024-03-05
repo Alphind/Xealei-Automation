@@ -26,6 +26,6 @@ dryRun = !true, monochrome = true)
 //		"junit:target/junit.xml", 
 //		"json:target/json.json"}
 
-public class TC001SanityTestRunner {
+public class TC007SanityTestRunner {
 
 }

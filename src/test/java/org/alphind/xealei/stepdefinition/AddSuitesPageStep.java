@@ -117,7 +117,7 @@ public class AddSuitesPageStep extends BaseClass {
 					getText(pom.getAddSuitesPage().getSuiteNameLimit()));
 			log(Status.PASS, "limit error info message for Suite Name* field is displayed - "
 					+ getText(pom.getAddSuitesPage().getSuiteNameLimit()));
-			deleteExistFieldData(pom.getAddSuitesPage().getSuiteName());
+			pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
@@ -129,7 +129,7 @@ public class AddSuitesPageStep extends BaseClass {
 
 		stepName(methodName());
 
-		deleteExistFieldData(pom.getAddSuitesPage().getSuiteName());
+		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
 		pom.getAddSuitesPage().addButton();
 
 		try {
@@ -171,7 +171,7 @@ public class AddSuitesPageStep extends BaseClass {
 
 		stepName(methodName());
 		
-		deleteExistFieldData(pom.getAddSuitesPage().getSuiteName());
+		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
 		
 		pom.getAddSuitesPage().enterLengthWidthHeight(1);
 		pom.getAddSuitesPage().nonMandatoryFieldIsNotEmpty().addButton();
@@ -187,6 +187,197 @@ public class AddSuitesPageStep extends BaseClass {
 			}
 		}
 		
+		@Then("User should verify the field Suite Name* for limit")
+		public void user_should_verify_the_field_suite_name_for_limit() {
+			
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+			String checkSuiteNameFieldMaxLimit = pom.getAddSuitesPage().checkSuiteNameFieldMaxLimit();
+			int length = checkSuiteNameFieldMaxLimit.length();
+			if(length==14) {
+				
+			log(Status.PASS, "Suite Name* field not allows to enter more than 14 characters");
+			} else {
+				log(Status.FAIL, "Suite Name* field allows to enter More Than 14 characters");
+			}
+		}
+
+		@Then("User should verify the field Length* for limit")
+		public void user_should_verify_the_field_length_for_limit() {
+
+			stepName(methodName());
+			
+			String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(2);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit")
+		public void user_should_verify_the_field_width_for_limit() {
+
+			stepName(methodName());
+			
+			
+             String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(2);
+			
+			int length = checkWidthFieldMaxLimit.length();
+			if(length==11) {
+				
+				log(Status.PASS, "Width* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Width* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Height* for limit")
+		public void user_should_verify_the_field_height_for_limit() {
+
+			stepName(methodName());
+			
+           String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(2);
+			
+			int length = checkHeigthFieldMaxLimit.length();
+			
+			if(length==11) {
+				log(Status.PASS, "Height* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Height* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Length* for limit with decimal point")
+		public void user_should_verify_the_field_length_for_limit_with_decimal_point() {
+
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+	        String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(3);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 decimal characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 decimal characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit with decimal point")
+		public void user_should_verify_the_field_width_for_limit_with_decimal_point() {
+
+			stepName(methodName());
+			
+			 String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(3);
+				
+				int length = checkWidthFieldMaxLimit.length();
+				if(length==11) {
+					
+					log(Status.PASS, "Width* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Width* field allows to enter More Than 11 decimal characters");
+				}
+		}
+		
+		@Then("User should verify the field Height* for limit with decimal point")
+		public void user_should_verify_the_field_height_for_limit_with_decimal_point() {
+
+			stepName(methodName());
+			
+			  String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(3);
+				
+				int length = checkHeigthFieldMaxLimit.length();
+				
+				if(length==11) {
+					log(Status.PASS, "Height* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Height* field allows to enter More Than 11 decimal characters");
+				}
+			    
+		}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			@Then("User should verify the x icon in add suites screen is working")
 			public void user_should_verify_the_icon_in_add_suites_screen_is_working() throws Exception {
 
@@ -224,15 +415,85 @@ public class AddSuitesPageStep extends BaseClass {
 				}
 			}
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			@Then("User should perform suite by entering only Mandatory field")
 			public void user_should_perform_suite_by_entering_only_mandatory_field() throws Exception {
 			  
 				stepName(methodName());
 				
-				pom.getAddSuitesPage().suiteName(1).addButton();
+				pom.getAddSuitesPage().suiteName(1);
+				waitForFullPageElementLoad();
+				
+				pom.getAddSuitesPage().suiteNameIsNotEmpty();
+				pom.getAddSuitesPage().addButton();
 
 				waitForPageLoad();
 				try {
+					waitForVisiblityOfElement(pom.getAddSuitesPage().getSavedSuccessfullToastMessage(), 10);
 					Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 							getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
 					log(Status.PASS, "Toast Message is displayed : "
@@ -258,7 +519,13 @@ public class AddSuitesPageStep extends BaseClass {
 				stepName(methodName());
 				
 				pom.getAddSuitesPage().suiteName(1);
-				pom.getAddSuitesPage().enterLengthWidthHeight(1).addButton();
+				
+				waitForFullPageElementLoad();
+				pom.getAddSuitesPage().suiteNameIsNotEmpty();
+				
+				pom.getAddSuitesPage().enterLengthWidthHeight(1);
+				pom.getAddSuitesPage().nonMandatoryFieldIsNotEmpty();
+				pom.getAddSuitesPage().addButton();
 
 				waitForPageLoad();
 				try {

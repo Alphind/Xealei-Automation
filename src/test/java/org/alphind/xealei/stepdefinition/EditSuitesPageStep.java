@@ -116,10 +116,134 @@ public class EditSuitesPageStep extends BaseClass {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-
 			
+			// Next Step Request
+			
+		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
+		
 		}
 		
+		@Then("User should verify the field Suite Name* for limit in edit suite popup")
+		public void user_should_verify_the_field_suite_name_for_limit_in_edit_suite_popup() {
+			
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+			String checkSuiteNameFieldMaxLimit = pom.getAddSuitesPage().checkSuiteNameFieldMaxLimit();
+			int length = checkSuiteNameFieldMaxLimit.length();
+			if(length==14) {
+				
+			log(Status.PASS, "Suite Name* field not allows to enter more than 14 characters");
+			} else {
+				log(Status.FAIL, "Suite Name* field allows to enter More Than 14 characters");
+			}
+		}
+
+		@Then("User should verify the field Length* for limit in edit suite popup")
+		public void user_should_verify_the_field_length_for_limit_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(2);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit in edit suite popup")
+		public void user_should_verify_the_field_width_for_limit_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+             String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(2);
+			
+			int length = checkWidthFieldMaxLimit.length();
+			
+			if(length==11) {
+				
+				log(Status.PASS, "Width* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Width* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Height* for limit in edit suite popup")
+		public void user_should_verify_the_field_height_for_limit() {
+
+			stepName(methodName());
+			
+           String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(2);
+			
+			int length = checkHeigthFieldMaxLimit.length();
+			
+			if(length==11) {
+				log(Status.PASS, "Height* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Height* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Length* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_length_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+	        String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(3);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 decimal characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 decimal characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_width_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			 String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(3);
+				
+				int length = checkWidthFieldMaxLimit.length();
+				if(length==11) {
+					
+					log(Status.PASS, "Width* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Width* field allows to enter More Than 11 decimal characters");
+				}
+		}
+		
+		
+		@Then("User should verify the field Height* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_height_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			  String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(3);
+				
+				int length = checkHeigthFieldMaxLimit.length();
+				
+				if(length==11) {
+					log(Status.PASS, "Height* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Height* field allows to enter More Than 11 decimal characters");
+				}
+		}
+				
 		@Then("User should verify the x icon in edit suite screen is working")
 		public void user_should_verify_the_x_icon_in_edit_suite_screen_is_working() throws Exception {
 		    

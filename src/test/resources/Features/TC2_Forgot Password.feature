@@ -7,8 +7,9 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization   * is prohibited without prior and proper license agreement
 #
 #*/
+
 @ForgotPassword-AllScenario
-@RegressionTesting
+@Login-Regression
 Feature: Verify Xealei Forgot Page
 
 
@@ -31,7 +32,6 @@ Feature: Verify Xealei Forgot Page
     Then User must verify the email sent successfully content
     Then User must verify the Try Again text link is working
     Then User must verify the login button in forgot password screen
-    
     And User should open the mailinator site for to verify whether the mail is received or not    
     And User should search the existing mail inbox
     And User should verify the content and body of the Forgot mail
