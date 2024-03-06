@@ -26,7 +26,9 @@ public class EditSuitesPageStep extends BaseClass {
 		   
 			stepName(methodName());
 			
-		pom.getEditSuitesPage().searchBox(1);	
+			waitForFullPageElementLoad();
+			
+		pom.getAddSuitesPage().searchBox();	
 		}
 
 		@Then("User should clicks on the Edit Suite button and verifies that the Edit Suite screen is displayed")

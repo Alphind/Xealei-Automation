@@ -4045,6 +4045,8 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void futureTimeInNotificationTime() throws Exception {
 
+		//deleteExistFieldData(timeTxtbox);
+		
 		String futureTime = getFutureTime("hh:mma");		
 		sendKeys(timeTxtbox,futureTime );
 		click(notifedByTxtBox);
