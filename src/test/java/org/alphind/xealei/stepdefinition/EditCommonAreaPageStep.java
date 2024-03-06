@@ -26,6 +26,8 @@ public class EditCommonAreaPageStep extends BaseClass {
 
 		stepName(methodName());
 
+		waitForFullPageElementLoad();
+		
 		pom.getEditCommonAreaPage().searchBox(1);
 	}
 
@@ -86,6 +88,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 		pom.getEditCommonAreaPage().updateButton();
 
 		try {
+			waitForVisiblityOfElement(pom.getAddCommonAreaPage().getCANExitsToastMsg(), 10);
 			Assert.assertEquals("Common Area Name already exists.Toast message is not displayed", expExistToastMessage,
 					getText(pom.getAddCommonAreaPage().getCANExitsToastMsg()));
 			log(Status.PASS, "Common Area Name already exists. Toast Message is displayed - "
