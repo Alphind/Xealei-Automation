@@ -52,8 +52,11 @@ Background:
     Then User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date
     And  User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly
   
+  
    #NOT IMPLEMENTED
    #Then User should verify the validation info message is thrown after selecting Notification Time field value is lesser than Event Date & Time field value "Notified time should be after than event time"
+    
+    
     
     Then User should verify the validation info message is thrown after selecting greater than current time in Notification Time field "Notified time should be after than event time"
     Then User should verify that able to enter time in Notification Time field

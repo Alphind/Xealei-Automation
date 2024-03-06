@@ -677,6 +677,7 @@ public class IncidentReportPageStep extends BaseClass {
 
 		stepName(methodName());
 		
+		
 		staffpom.getIncidentReportPage().futureTimeInNotificationTime();
 		
 		try {
@@ -1972,7 +1973,6 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select fall radio button and enter description.")
 	public void Select_fall_radio_button_and_enter_description() {
-
 		
 		stepName(methodName());
 		
@@ -1986,6 +1986,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select nofall radio button.")
 	public void Select_nofall_radio_button() {
+		
+		stepName(methodName());
+		
 		staffpom.getHomePage().alertNotificationNoFallRadioButton();
 	}
 	
@@ -1994,6 +1997,8 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Select nofall reason and enter no fall description.")
 	public void Select_nofall_reason_and_enter_no_fall_description() {
+		
+		stepName(methodName());
 		
 		staffpom.getHomePage().alertNotificationSelectNoFallReason();
 		staffpom.getHomePage().alertNotificationNoFallDescription();
@@ -2015,6 +2020,9 @@ public class IncidentReportPageStep extends BaseClass {
 	 */
 	@Then("Click confirm button.")
 	public void Click_confirm_button() {
+		
+		stepName(methodName());
+		
 		staffpom.getHomePage().alertConfirmButton();
 	}
 	
@@ -2300,6 +2308,9 @@ public class IncidentReportPageStep extends BaseClass {
 	
 	@Then("Verify Nofall text in grid.")
 	public void Verify_Nofall_text_in_grid() {
+		
+		stepName(methodName());
+		
 		String actual = staffpom.getHomePage().firstEventTextInGrid();
 		Assert.assertEquals("The text from grid is : "+actual+" but the expected is : No Fall", 
 				actual, "No Fall");

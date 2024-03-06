@@ -467,7 +467,7 @@ public class AddSuitesPage extends BaseClass {
 		String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
 		waitForFullPageElementLoad();
-
+		sleep(3000);
 		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites", 0))) {
 			waitForFullPageElementLoad();
 			sleep(2000);
