@@ -2057,9 +2057,9 @@ public class IncidentReportPageStep extends BaseClass {
 	private String clinicalCoordinatorName;
 	@SuppressWarnings("unused")
 	private String socialWorkerName;
-	private String staffMessage = "Staff test Message";
-	private String chiefNurseMessage = "Chief nurse Message";
-	private String managerMessage = "Manager Message";
+	private String staffMessage = readExcel("Test Datas", "Incident Reports", 1, 30).trim();
+	private String chiefNurseMessage = readExcel("Test Datas", "Incident Reports", 1, 31).trim();
+	private String managerMessage = readExcel("Test Datas", "Incident Reports", 1, 32).trim();
 	
 	/**
 	 * Created by Nandhalala.
@@ -2281,6 +2281,7 @@ public class IncidentReportPageStep extends BaseClass {
 		stepName(methodName());
 		
 		sleep(5000);
+		waitForFullPageElementLoad(chiefnurseDriver);
 		boolean flag = false;
 		Map<String, String> messages = chiefnursepom.getIncidentReportPage()
 				.getChatMessagesFromUser("Manager");

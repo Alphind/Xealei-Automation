@@ -196,6 +196,8 @@ public class LoginPageStep extends BaseClass {
 		   
 	          stepName(methodName());
 			
+	          waitForFullPageElementLoad();
+	          
 	        pom.getLoginPage().deleteExistingEmailFieldData().email();
 			
 			try {

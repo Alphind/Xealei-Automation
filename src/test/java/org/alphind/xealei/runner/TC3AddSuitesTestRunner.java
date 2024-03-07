@@ -17,7 +17,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src//test//resources//Features", 
-tags = "@Suites-AllScenarios", 
+tags = "@Jenkins-Suite", 
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 
