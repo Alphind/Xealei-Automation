@@ -18,6 +18,8 @@ import org.alphind.xealei.pages.ForgotPasswordPage;
 import org.alphind.xealei.pages.HomePage;
 import org.alphind.xealei.pages.IncidentReportPage;
 import org.alphind.xealei.pages.LoginPage;
+import org.alphind.xealei.pages.MailinatorPage;
+import org.alphind.xealei.pages.UserManagementPage;
 import org.alphind.xealei.stepdefinition.ForgotPasswordPageStep;
 import org.openqa.selenium.WebDriver;
 
@@ -37,6 +39,8 @@ public class PageObjectManager {
 	private IncidentReportPage incidentReportPage;
 	private HomePage homePage;
 	private ForgotPasswordPage forgotPasswordPage;
+	private UserManagementPage userManagementPage;
+	private MailinatorPage mailinatorPage;
 	
 	
 	public PageObjectManager(WebDriver driver) {
@@ -79,6 +83,36 @@ public class PageObjectManager {
 	
 	public ForgotPasswordPage getForgotPasswordPage() {
 		return (forgotPasswordPage == null) ? forgotPasswordPage = new ForgotPasswordPage(driver) : forgotPasswordPage;
+	}
+	
+	/**
+	 * 
+	 * Created by Nandhalala
+	 * 
+	 * Created on 12-FEB-204
+	 * 
+	 * If usermanagemant page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of usermanagementpage
+	 */
+	public UserManagementPage getUserManagementPage() {
+		return (userManagementPage == null) ? userManagementPage = new UserManagementPage(driver) : userManagementPage;
+	}
+	
+	/**
+	 * 
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-204.
+	 * 
+	 * If Mailinator page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of mailinatorPage
+	 */
+	public MailinatorPage getMailinatorPage() {
+		return (mailinatorPage == null) ? mailinatorPage = new MailinatorPage(driver) : mailinatorPage;
 	}
 	
 	

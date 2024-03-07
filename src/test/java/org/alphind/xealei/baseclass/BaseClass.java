@@ -42,6 +42,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -72,6 +73,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 import io.cucumber.java.Scenario;
 
 
@@ -283,6 +285,25 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 	}
+	
+	// 15. Click
+		public void forceClick(WebElement element) {
+			String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+			while(true) {
+				try {
+					element.click();
+					log(Status.INFO, "Click the " + methodName);
+					break;
+				} catch (ElementClickInterceptedException e) {
+					continue;
+				}catch(Exception e) {
+					log(Status.FAIL, e.getMessage());
+					e.printStackTrace();
+					break;
+				}
+			}
+			
+		}
 
 	public void deleteExistFieldData(WebElement element) {
 		
@@ -672,6 +693,7 @@ public class BaseClass {
 		// Duration.ofSeconds(seconds));
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			//wait.until(ExpectedConditions.elementToBeClickable(element));
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -916,7 +938,8 @@ public class BaseClass {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("argument[0].scrollIntoView()", element);
+		//.scrollIntoView(true);
+		executor.executeScript("argument[0].scrollIntoView(true);", element);
 		log(Status.INFO, "Scroll into an view");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -1223,7 +1246,7 @@ try {
 
 		try {
 		LocalDateTime currentDateYearMonth = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(2);
+		LocalDateTime plusMinutes = currentDateYearMonth.plusMinutes(3);
 		DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern(EnterPattern);
 		String DateAsPerGiven = plusMinutes.format(ofPattern).toUpperCase();
 		return DateAsPerGiven;
@@ -1397,7 +1420,7 @@ try {
          Date date = inputFormat.parse(DMY+" "+time);
 
          // Format the day using single 'd' if the day is before 10, 'dd' otherwise
-         String dayFormat = (date.getDate() < 9) ? "d" : "dd";
+         String dayFormat = (date.getDate() <=9) ? "d" : "dd";
          outputFormat.applyPattern("EEEE, MMMM " + dayFormat + " yyyy, hh:mm a");
 
          // Format the parsed date using the output format

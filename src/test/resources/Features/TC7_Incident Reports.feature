@@ -13,12 +13,15 @@
 @IR-AllScenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
+Background:
+    Given User is on Xealei login page
+		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
+		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
 @NegativeScenario
   Scenario Outline: To verify IR form creation via manual
-    Given User is on Xealei login page
-    When User should perform login as facility admin "<userName>" and "<password>"
-    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
-    Then User should also verify the performed login as "<adminName>"
+    
+    Then User should also verify the performed login as "Staff"
     Then User verify the Navigation of REPORTS module
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
@@ -46,7 +49,6 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
     Then User should verify that whether able to select the option value under How severe was injury? field
     Then User should verify that whether able to select the option value under Injury Color
     Then User should verify that whether default optional values is selected under was Event Notified?
-    
     Then User should verify that able to enter current date and time in Event Date & Time field
     And  User should click on the Notification Date calendar icon
     Then User should verify the date picker should appeared
@@ -70,9 +72,6 @@ Feature: Verify Incident Report Form creation via manually & via fall alert noti
 @AllApproveScenario
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
-		Given User is on Xealei login page
-    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
@@ -106,9 +105,6 @@ Scenario Outline: To verify an Incident report can be approved by all levels of 
 @RejectAndReapprovebyChiefNurseScenario	
 Scenario Outline: To verify whether Chief nurse can able to reject and reapprove the incident Report.
 
-    Given User is on Xealei login page
-    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
@@ -130,9 +126,7 @@ Scenario Outline: To verify whether Chief nurse can able to reject and reapprove
 		
 @RejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether residential manager can able to reject and reapprove the incident Report. 
-		Given User is on Xealei login page
-    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
@@ -163,9 +157,7 @@ Scenario Outline: To verify whether residential manager can able to reject and r
 
 @Don'tRun	
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from notification.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
 		Then Select fall radio button and enter description.
@@ -175,9 +167,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
 
 @NotificationAlertAllApproveScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
 		Then Select fall radio button and enter description.
@@ -212,9 +202,6 @@ Scenario Outline: To verify whether an Incident report can be created through no
 @NotificationAlertRejectAndReapprovebyChiefNurseScenario	
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and Chief nurse can able to reject and reapprove the incident Report from notification.
 		
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
 		Then Select fall radio button and enter description.
@@ -238,9 +225,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 @NotificationAlertRejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and residential manager can able to reject and reapprove the incident Report from notification.		
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+		
+		
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
 		Then Select fall radio button and enter description.
@@ -273,9 +260,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		
 @Don'tRun		
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+		
+		
 		When Notification Triggered from a sensor.
 		Then Open IR received by staff from sensor in Grid.
 		Then Select fall radio button and enter description.
@@ -285,9 +272,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 	
 @NotificationAlertThroughGridAllApproveScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and approved by all level of users.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+		
+		
 		When Notification Triggered from a sensor.
 		Then Open IR received by staff from sensor in Grid.
 		Then Select fall radio button and enter description.
@@ -323,9 +310,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 
 @NotificationAlertThroughGridRejectAndReapprovebyChiefNurseScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and Chief nurse can able to reject and reapprove the incident Report.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+		
+		
 		When Notification Triggered from a sensor.
 		Then Open IR received by staff from sensor in Grid.
 		Then Select fall radio button and enter description.
@@ -350,9 +337,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 
 @NotificationAlertThroughGridRejectAndReapprovebyResidentialManagerScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors from grid and residential manager can able to reject and reapprove the incident Report from notification.
-		Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+		
+		
 		When Notification Triggered from a sensor.
 		Then Open IR received by staff from sensor in Grid.
 		Then Select fall radio button and enter description.
@@ -385,9 +372,9 @@ Scenario Outline: To verify whether an Incident report can be created through no
 
 @ChatScenario
 Scenario Outline: To verify chat option in IR.		
-		Given User is on Xealei login page
-    When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+		
+    
+    
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
 		And Select the individual for whom the incident report has to be created.
@@ -417,9 +404,9 @@ Scenario Outline: To verify chat option in IR.
 
 @NotificationAlertNoFall
 Scenario: Verify user is able to select nofall from notification
-	Given User is on Xealei login page
-		When User should perform login as staff "<StaffUserName>" and "<StaffPassWord>"
-		Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+	  
+		
+		
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
 		Then Select nofall radio button.

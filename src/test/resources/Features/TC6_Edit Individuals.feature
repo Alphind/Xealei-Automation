@@ -8,7 +8,7 @@
 #
 #*/
 
-
+ @EditIndividuals-AllScenarios
 Feature: Verify Xealei Individuals > Edit Individual Page
 
  Background: 
@@ -19,7 +19,7 @@ Feature: Verify Xealei Individuals > Edit Individual Page
     Then User should search the created Individual
     Then User should verify the name dob id guardian contact details is displayed
     
-  @EditIndividuals-AllScenarios 
+  
   Scenario: To verify the validation messages for limit and mandatory fields in Edit Individuals page
   
   Then User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page
@@ -44,24 +44,21 @@ Feature: Verify Xealei Individuals > Edit Individual Page
   And User should perform firstName* and lastName* fields in Add another emergency contact3 in edit individual page
   Then User should verify the limit validation error message in Emergency Contact3 First, Last Name* fields "First name cannot be longer than 30 characters" and "Last name cannot be longer than 30 characters"
   Then User should verify the that able to delete the emergency contact2 and emergency contact3 in edit individual page  
-  
   And User should click on the dob calendar icon in edit individual page
   Then User should verify the date picker should appeared
   Then User should verify future dates are hidden
    And User should select a valid date in date picker and verify the selected date should be displayed in the DOB * field
-    
     And User should select a specific year and month in dropdown and select the date in date picker
-    Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
-    And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
-#Then User should verify the calendar should close after click outside the calendar
-  
-
+   Then User should verify the selected date, month and year using dropdown is updated in DOB* field accordingly
+  And User should click on the right arrow to navigate to the current month and verify the calendar should display the current months dates
+  #Then User should verify the calendar should close after click outside the calendar
   Then User should verify the cancel button is working in edit individual page
   Then User should verify after click the breadcrums link module name should be return to searched Individual page
   And User should navigate to created individual
   And User should navigate to vitals tab and click edit vitals button
   Then User should verify the breadcrums link should be display with module individual name > Edit individual
-  And User should perform update with empty fields in vitals tab
+  And User should perform update with empty fields in vitals tab	
+  Then User should verify the Required field toast message "Please provide valid data / Enter all required fields"
   Then User should verify the Mandatory fields info messages in vitals tab "Please select Blood Group", "Please enter blood pressure", "Please enter blood glucose", "Please enter cholesterol", "Please enter height", "Please enter weight"
   Then User should verify the valid format Mandatory fields info messages in vitals tab "Blood pressure format should be (120/80)", "Please enter valid blood glucose", "Please enter valid cholesterol", "Please enter valid height", "Please enter valid weight"
   Then User should verify that able to upload more than 1MB file in medical record

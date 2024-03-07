@@ -144,7 +144,8 @@ public class HomePage extends BaseClass {
 	 * 
 	 */
 	public boolean isHomePageDisplayed() {
-		waitForPageLoad();
+		sleep(2000);
+		waitForPageLoad(this.driver);
 		if (homePageText.isDisplayed()) {
 			return true;
 		}
@@ -358,6 +359,8 @@ public class HomePage extends BaseClass {
 		waitForPageLoad(this.driver);
 		String noFallReason = readExcel("Test Datas", "Incident Reports", 1, 33).trim();
 		String noFallReasonXpath = dropdownOption.replaceAll("XX", noFallReason);
+		waitForInVisiblityOfElement(this.driver, 
+				this.driver.findElement(By.xpath(noFallReasonXpath)), 3);
 		click(this.driver.findElement(By.xpath(noFallReasonXpath)));
 	}
 	
