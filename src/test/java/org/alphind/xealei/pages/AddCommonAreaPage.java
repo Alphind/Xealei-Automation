@@ -189,8 +189,7 @@ public AddCommonAreaPage checkLimitIncommonAreaTextbox() {
 	}
 
 	public AddCommonAreaPage addButtonInCommenAreaPopup() {
-
-		waitForElementToBeClickable(btnAdd, 10);
+		
 			click(btnAdd);
 			return this;
 	}

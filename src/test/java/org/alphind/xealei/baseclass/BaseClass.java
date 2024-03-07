@@ -201,6 +201,16 @@ public class BaseClass {
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
+	}
+	
+	public void sendKeyswithException(WebElement element, String datasToSend) {
+		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+		try {
+			element.sendKeys(datasToSend);
+			log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
+		} catch (Exception e) {
+			
+		}
 
 	}
 
