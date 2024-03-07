@@ -373,9 +373,7 @@ Scenario Outline: To verify whether an Incident report can be created through no
     
 
 @ChatScenario
-Scenario Outline: To verify chat option in IR.		
-		
-    
+Scenario Outline: To verify chat option in IR.
     
     Then User should verify the Incident report module is working
     Then User should verify the ADD New Incident Report button is working
@@ -406,8 +404,6 @@ Scenario Outline: To verify chat option in IR.
 
 @NotificationAlertNoFall
 Scenario: Verify user is able to select nofall from notification
-	  
-		
 		
 		When Notification is Triggered from a sensor.
 		Then Open notification received by staff from sensor.
@@ -415,5 +411,3 @@ Scenario: Verify user is able to select nofall from notification
 		And Select nofall reason and enter no fall description.
 		Then Click confirm button.
 		Then Verify Nofall text in grid.
-
-

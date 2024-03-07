@@ -244,6 +244,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 			String createdCommonArea = readExcelFromLastRow("Test Datas", "CreatedCommonArea", 0);
 			writeExcelToOverwrite("Test Datas", "AddCommonArea", 1, 6, createdCommonArea);
 			writeExcelToOverwrite("Test Datas", "EditCommonArea", 1, 6, createdCommonArea);
+			
 			// writeExcelToOverwrite("Test Datas","AddIndividuals", 1, 6,
 			// createdCommonArea);
 
@@ -261,7 +262,9 @@ public class AddCommonAreaPageStep extends BaseClass {
 
 		stepName(methodName());
 
-		pom.getAddCommonAreaPage().commonAreaName(1).enterLengthWidthHeight(1).addButtonInCommenAreaPopup();
+		pom.getAddCommonAreaPage().commonAreaName(1).enterLengthWidthHeight(1);
+		waitForFullPageElementLoad();
+		pom.getAddCommonAreaPage().addButtonInCommenAreaPopup();
 
 		waitForPageLoad();
 

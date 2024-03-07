@@ -36,7 +36,7 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify the field Height* for limit with decimal point
     Then User should verify the x icon in add suites screen is working
 
-
+@Jenkins-Suite
     Scenario: To verify user able to Add/Create Suites by perform only mandatory field
     And User should perform suite by entering only Mandatory field
   

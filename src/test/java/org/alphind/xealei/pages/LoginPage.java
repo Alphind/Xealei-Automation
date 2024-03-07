@@ -206,6 +206,7 @@ public class LoginPage extends BaseClass {
 	 * @return "User Not Found" ToastMsg (text).
 	 */
 	public String getUserNotFoundErrorMessageText() {
+		waitForVisiblityOfElement(userNotFoundErrorMessage, 5);
 		return getText(userNotFoundErrorMessage);
 	}
 

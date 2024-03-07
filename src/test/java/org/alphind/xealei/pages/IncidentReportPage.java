@@ -2071,7 +2071,7 @@ public class IncidentReportPage extends BaseClass {
 			String currentDtYearMonth = getCurrentDtYearMonth("MM/dd/yyyyhh:mma");
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth );
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
 			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
 //			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
@@ -2080,7 +2080,7 @@ public class IncidentReportPage extends BaseClass {
 		}
 		case "NO": {
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
 			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
 //			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
@@ -4296,17 +4296,18 @@ public class IncidentReportPage extends BaseClass {
 
 		String chatMessage  = switch (userType.toUpperCase()) {
 		case "STAFF" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 30);
+			yield readExcel("Test Datas", "Incident Reports", 1, 30).trim();
 		}
 		case "NURSE", "CHIEF NURSE" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 31);
+			yield readExcel("Test Datas", "Incident Reports", 1, 31).trim();
 		}
 		case "MANAGER","RESIDENT MANAGER","RESIDENTAL MANAGER" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 32);
+			yield readExcel("Test Datas", "Incident Reports", 1, 32).trim();
 		}
 		default ->
 			throw new IllegalArgumentException("Unexpected value: " + userType);
 		};
+		waitForVisiblityOfElement(chatMessageArea, 10);
 		sendKeys(chatMessageArea, chatMessage);
 		waitForElementToBeClickable(chatSendButton, 10);
 		click(chatSendButton);
