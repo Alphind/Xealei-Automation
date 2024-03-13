@@ -8,10 +8,11 @@
 #  *
 # */
 
+
 @All
 Feature: User Management
-	
-	@Validations
+
+  @Validations
   Scenario: To verify field validations in User Management screen while creating a New User.
     Given User is on Xealei login page
     When User is login as facility admin.
@@ -33,68 +34,80 @@ Feature: User Management
     Then Click back button in contact details and verify whether basic details page is displayed.
     Then Click Contact Details Next button.
     And Enter Invalid data in date fields of Qualification page.
+    Then Verify future date validations for Graduation and Master Graduation calender fields.
     Then Enter valid data in all the fields of Qualification page.
     And Click back button in qualification page and verify whether contact details page is displayed.
-    
-    @CreateNewUserWithoutEmail
-    @CreateNewUserFromBasicDetailsPage
-    Scenario: To verify able to create an User without Email.
-    	Given User is on Xealei login page
-    	When User is login as facility admin.
-    	Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
-    	And Verify User Management module is available.
-    	Then Navigate to User Management Page.
-    	And Click on Create New user button.
-    	Then Enter valid mandatory data in all fields of basic details.
-    	And Click basic details create button.
-    	Then Verify the status of the created user is in pending status.
-    	Then Verify the menu contains show QR Code option.
-    
-    
-    @CreateNewUserWithEmail
-    Scenario: To verify able to create an User with Email.
-    	Given User is on Xealei login page
-    	When User is login as facility admin.
-    	Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
-    	And Verify User Management module is available.
-    	Then Navigate to User Management Page.
-    	And Click on Create New user button.
-    	Then Enter valid data in all the fields of basic details.
-    	Then Open Mailinator aplication.
-    	And Click basic details create button.
-    	Then Verify the status of the created user is in pending status.
-    	Then Verify the menu contains show QR Code and Resend invite options.
-    	And Click xealei url from mail and login into application as new user.
-    	Then Verify the status of the created user is in active status.
-    	Then Verify the menu options for created user.
-    	Then Verify whether all the fields are editable in edit mode.
-    	Then Edit any field and click cancel button.
-    	And Verify able to save the edited data.
-    	Then Search the created user and verify view info.
-    
-    @CreateNewUserFromContactDetailsPage
-    Scenario: To verify able to create in contact details page.
-    	Given User is on Xealei login page
-    	When User is login as facility admin.
-    	Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
-    	And Verify User Management module is available.
-    	Then Navigate to User Management Page.
-    	And Click on Create New user button.
-    	Then Enter valid mandatory data in all fields of basic details.
-    	Then Click Basic details page next button.
-    	Then Click Create and send invite from contact details page.
-    	
-    	@CreateNewUserFromQualificationDetailsPage
-    Scenario: To verify able to create in contact details page.
-    	Given User is on Xealei login page
-    	When User is login as facility admin.
-    	Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
-    	And Verify User Management module is available.
-    	Then Navigate to User Management Page.
-    	And Click on Create New user button.
-    	Then Enter valid mandatory data in all fields of basic details.
-    	Then Click Basic details page next button.
-    	Then Click Contact Details Next button.
-    	Then Click Create and send invite from qualification page.
-    	
-    
+
+  @CreateNewUserWithoutEmail @CreateNewUserFromBasicDetailsPage
+  Scenario: To verify able to create an User without Email.
+    Given User is on Xealei login page
+    When User is login as facility admin.
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    And Verify User Management module is available.
+    Then Navigate to User Management Page.
+    And Click on Create New user button.
+    Then Enter valid mandatory data in all fields of basic details.
+    And Click basic details create button.
+    Then Verify the status of the created user is in pending status.
+    Then Verify the menu contains show QR Code option.
+
+  @CreateNewUserWithEmail
+  Scenario: To verify able to create an User with Email.
+    Given User is on Xealei login page
+    When User is login as facility admin.
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    And Verify User Management module is available.
+    Then Navigate to User Management Page.
+    And Click on Create New user button.
+    Then Enter valid data in all the fields of basic details.
+    Then Open Mailinator aplication.
+    And Click basic details create button.
+    Then Verify the status of the created user is in pending status.
+    Then Verify the menu contains show QR Code and Resend invite options.
+    And Click xealei url from mail and login into application as new user.
+    Then Verify the status of the created user is in active status.
+    Then Verify the menu options for created user.
+    Then Verify whether all the fields are editable in edit mode.
+    Then Edit any field and click cancel button.
+    And Verify able to save the edited data.
+    Then Search the created user and verify view info.
+    And Verify the data of the created user.
+    Then Navigate back to User management page.
+    And Verify whether able to "Pause" the user.
+    And Verify whether user is in "InActive" Status.
+    Then Verify wheter edit button is diabled.
+    Then Navigate back to User management page.
+    And Verify whether able to "Resume" the user.
+    And Verify whether user is in "Active" Status.
+    Then Verify wheter edit button is enabled.
+    Then Navigate back to User management page.
+    And Verify whether able to "Block" the user.
+    And Verify whether user is in "Blocked" Status.
+    Then Verify wheter edit button is diabled.
+    Then Navigate back to User management page.
+    Then Verify whether validations are showing while creating a new user with same Email ID and Phone Number.
+
+  @CreateNewUserFromContactDetailsPage
+  Scenario: To verify able to create in contact details page.
+    Given User is on Xealei login page
+    When User is login as facility admin.
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    And Verify User Management module is available.
+    Then Navigate to User Management Page.
+    And Click on Create New user button.
+    Then Enter valid mandatory data in all fields of basic details.
+    Then Click Basic details page next button.
+    Then Click Create and send invite from contact details page.
+
+  @CreateNewUserFromQualificationDetailsPage
+  Scenario: To verify able to create in contact details page.
+    Given User is on Xealei login page
+    When User is login as facility admin.
+    Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    And Verify User Management module is available.
+    Then Navigate to User Management Page.
+    And Click on Create New user button.
+    Then Enter valid mandatory data in all fields of basic details.
+    Then Click Basic details page next button.
+    Then Click Contact Details Next button.
+    Then Click Create and send invite from qualification page.

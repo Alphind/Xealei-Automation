@@ -15,8 +15,6 @@ import java.util.regex.Pattern;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
-import org.apache.http.protocol.RequestTargetHost;
-
 import com.aventstack.extentreports.Status;
 
 import org.junit.Assert;
@@ -188,19 +186,61 @@ public class UserManagementStep extends BaseClass {
 		
 	}
 	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 */
 	@Then("Verify user is unable to upload image of size higher than 1MB.")
 	public void Verify_user_is_unable_to_upload_image_of_size_higher_than_1MB(){
+		pom.getUserManagementPage().uploadImageMoreThan1MB();
+		String tostrText = pom.getUserManagementPage().getTostrText().trim();
+		pom.getUserManagementPage().clickTostrOkButton();
+		try {
+			Assert.assertEquals("The expected tostr message is 'File size should be less than 1 MB'"
+					+ " but found : "+tostrText, "File size should be less than 1 MB", tostrText);
+		log(Status.PASS,"Validation for image upload with more than 1MB is : \n"+tostrText);
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"Validation for image upload with more than 1MB is : \n"+tostrText);
+		}
 		
 	}
 	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 */
 	@Then("Verify user is unable to upload unsupported formats.")
 	public void Verify_user_is_unable_to_upload_unsupported_formats() {
-		
+		pom.getUserManagementPage().uploadUnsupportedFormatImage();
+		String tostrText = pom.getUserManagementPage().getTostrText().trim();
+		pom.getUserManagementPage().clickTostrOkButton();
+		try {
+			Assert.assertEquals("The expected tostr message is 'Only jpg,jpeg,png type format is supported'"
+					+ " but found : "+tostrText, "Only jpg,jpeg,png type format is supported", tostrText);
+		log(Status.PASS,"Validation for unsupported format image upload is : \n"+tostrText);
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"Validation for unsupported format image upload is : \n"+tostrText);
+		}
 	}
 	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 */
 	@Then("Verify user able to upload supported format.")
 	public void Verify_user_able_to_upload_supported_format() {
-		
+		pom.getUserManagementPage().uploadSupportedFormatImage();
+		if(pom.getUserManagementPage().isProfilePictureDisplayed()) {
+			log(Status.PASS, "Profile picture is uploaded.");
+		}else {
+			log(Status.FAIL,"Profile picture is not uploaded.");
+		}
 	}
 	
 	/**
@@ -817,6 +857,256 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Search the created user and verify view info.")
 	public void Search_the_created_user_and_verify_view_info() {
+		pom.getUserManagementPage().searchUserwithFirstName();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@And("Verify the data of the created user.")
+	public void Verify_the_data_of_the_created_user() {
+		String rownumber = pom.getUserManagementPage().getRowNumber();
+		try {
+			pom.getUserManagementPage().viewButton(rownumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String expectedFullName = readExcel("Test Datas", "User Management", 1,24).trim()+" "+
+									readExcel("Test Datas", "User Management", 1,26).trim()+" "+
+									readExcel("Test Datas", "User Management", 1,25).trim();
+		String expectedRole = readExcel("Test Datas", "User Management", 1,30).trim();
+		String expectedEmailID = readExcel("Test Datas", "User Management", 1,27).trim();
+		String expectedPhoneNumber = readExcel("Test Datas", "User Management", 1,7).trim();
+		String expectedPhonenumber = "("+expectedPhoneNumber.charAt(0)+expectedPhoneNumber.charAt(1)
+								+expectedPhoneNumber.charAt(2)+") "+expectedPhoneNumber.charAt(3)
+								+expectedPhoneNumber.charAt(4)+expectedPhoneNumber.charAt(5)+"-"
+								+expectedPhoneNumber.charAt(6)+expectedPhoneNumber.charAt(7)
+								+expectedPhoneNumber.charAt(8)+expectedPhoneNumber.charAt(9);
+		
+		String actualFullName = pom.getUserManagementPage().getFullNameFromViewPage();
+		String actualRole = pom.getUserManagementPage().getRoleFromViewPage();
+		String actualEmailID = pom.getUserManagementPage().getEmailIDFromViewPage();
+		String actualPhoneNumber = pom.getUserManagementPage().getPhoneNumberFromViewPage();
+		
+		try {
+			Assert.assertEquals("The expected Full name of the user is : "+expectedFullName
+					+" but found : "+actualFullName, expectedFullName, actualFullName);
+			log(Status.PASS, "The full name of the created user is same as entered in "
+					+ "created user.");
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL, "The full name of the created user is not same as entered in "
+					+ "created user.");
+			log(Status.FAIL,e.getMessage());
+		}
+		
+		try {
+			Assert.assertEquals("The expected Role of the user is : "+expectedRole
+					+" but found : "+actualRole, expectedRole, actualRole);
+			log(Status.PASS, "The role of the created user is same as entered in "
+					+ "created user.");
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL, "The role of the created user is not same as entered in "
+					+ "created user.");
+			log(Status.FAIL,e.getMessage());
+		}
+		
+		try {
+			Assert.assertEquals("The expected Email ID of the user is : "+expectedEmailID
+					+" but found : "+actualEmailID, expectedEmailID, actualEmailID);
+			log(Status.PASS, "The Email ID of the created user is same as entered in "
+					+ "created user.");
+		}catch(AssertionFailedError e) {
+			log(Status.PASS, "The Email ID of the created user is not same as entered in "
+					+ "created user.");
+			log(Status.FAIL,e.getMessage());
+		}
+		
+		try {
+			Assert.assertEquals("The expected Phone Number of the user is : "+expectedPhonenumber
+					+" but found : "+actualPhoneNumber, expectedPhonenumber, actualPhoneNumber);
+			log(Status.PASS, "The Phone Number of the created user is same as entered in "
+					+ "created user.");
+		}catch(AssertionFailedError e) {
+			log(Status.PASS, "The Phone Number of the created user is not same as entered in "
+					+ "created user.");
+			log(Status.FAIL,e.getMessage());
+		}
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Navigate back to User management page.")
+	public void Navigate_back_to_User_management_page() {
+		pom.getUserManagementPage().navigateBacktoUserManagementFromViewEditPage();
+		pom.getUserManagementPage().isUserManagementPageDisplayed();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Verify whether able to {string} the user.")
+	public void verify_whether_able_to_the_user(String string) {
+		String rownumber = pom.getUserManagementPage().getRowNumber();
+		try {
+			pom.getUserManagementPage().menuAction(rownumber, string);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Verify whether user is in {string} Status.")
+	public void verify_whether_user_is_in_status(String string) {
+		String rowNumber = pom.getUserManagementPage().getRowNumber();
+//		System.out.println(rowNumber);
+		String status = null;
+		try {
+			status = pom.getUserManagementPage().getStatus(rowNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Assert.assertEquals("The expected status is : "+ string +" but found : "+status
+					,string,status);
+			log(Status.PASS,"The status of user is "+status);
+		}catch (AssertionFailedError e) {
+			log(Status.FAIL,"The status of user is "+status);
+		}
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Verify whether validations are showing while creating a new user with same Email ID and Phone Number.")
+	public void verify_whether_validations_are_showing_while_creating_a_new_user_with_same_email_id_and_phone_number() {
+	    pom.getUserManagementPage().clickCreateNewUserButton();
+	    pom.getUserManagementPage().enterValidFirstName();
+		pom.getUserManagementPage().enterValidMiddleName();
+		pom.getUserManagementPage().enterValidLastName();
+		pom.getUserManagementPage().selectRole();
+		try {
+			pom.getUserManagementPage().enterValidDuplicatePhoneNumber();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		pom.getUserManagementPage().clickNewUserCreateAndSendInviteButton();
+		String tostrText = pom.getUserManagementPage().getTostrText();
+		pom.getUserManagementPage().clickTostrOkButton();
+		String expectedPhoneNumber = "Mobile number ("+
+				readExcel("Test Datas", "User Management", 1, 7).trim()+") already exists!";
+		try {
+			Assert.assertEquals("The expected text is '"+expectedPhoneNumber+"' but found : "
+					+tostrText, expectedPhoneNumber, tostrText);
+			log(Status.PASS,"Error validation message for creating a user with duplicate "
+					+ "phone number is : /n"+tostrText);
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"Error validation message for creating a user with duplicate "
+					+ "phone number is : /n"+tostrText);
+		}
+		
+		try {
+			pom.getUserManagementPage().enterValidDuplicateEmailID();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		pom.getUserManagementPage().clickNewUserCreateAndSendInviteButton();
+		tostrText = pom.getUserManagementPage().getTostrText();
+		pom.getUserManagementPage().clickTostrOkButton();
+		String expectedEmail = "Email Id ("+readExcel("Test Datas", "User Management", 1, 27)
+									.trim()+") already exists";
+		try {
+			Assert.assertEquals("The expected text is '"+expectedEmail+"' but found : "
+					+tostrText, expectedEmail, tostrText);
+			log(Status.PASS,"Error validation message for creating a user with duplicate "
+					+ "email is : \n"+tostrText);
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"Error validation message for creating a user with duplicate "
+					+ "email is : \n"+tostrText);
+		}
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Verify wheter edit button is diabled.")
+	public void verify_wheter_edit_button_is_diabled() {
+		String rowNumber = pom.getUserManagementPage().getRowNumber();
+		try {
+			pom.getUserManagementPage().viewButton(rowNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String editButtonStatus = pom.getUserManagementPage().getEditbuttonDisabledStatus();
+		try {
+			Assert.assertEquals("The edit button is not disabled", "true", editButtonStatus);
+			log(Status.PASS,"The Edit button is disabled for Inactive user.");
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"The Edit button is not disabled for Inactive user.");
+		}
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 */
+	@Then("Verify wheter edit button is enabled.")
+	public void verify_wheter_edit_button_is_enabled() {
+		String rowNumber = pom.getUserManagementPage().getRowNumber();
+		try {
+			pom.getUserManagementPage().viewButton(rowNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String editButtonStatus = pom.getUserManagementPage().getEditbuttonDisabledStatus();
+		try {
+			Assert.assertEquals("The edit button is not enabled", "false", editButtonStatus);
+			log(Status.PASS,"The Edit button is enabled for Active user.");
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"The Edit button is not enabled for Active user.");
+		}
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 */
+	@Then("Verify future date validations for Graduation and Master Graduation calender fields.")
+	public void Verify_future_date_validations_for_Graduation_and_Master_Graduation_calender_fields() {
+		pom.getUserManagementPage().clickGraduationCalendarIcon();
+		try {
+			pom.getUserManagementPage().futureDatesAreHidden();
+			pom.getUserManagementPage().selectCurrentDateInDatePicker();
+		}catch(Exception e) {
+			
+		}
+		
+		pom.getUserManagementPage().clickMasterGraduationCalendarIcon();
+		try {
+			pom.getUserManagementPage().futureDatesAreHidden();
+			pom.getUserManagementPage().selectCurrentDateInDatePicker();
+		}catch(Exception e) {
+			
+		}
 		
 	}
 	

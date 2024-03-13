@@ -75,6 +75,12 @@ public class UserManagementPage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'Browse')]")
 	private WebElement createNewUserBasicDetailsImageUploadBrowse;
 	
+	@FindBy(xpath = "//span[contains(text(),'Browse')]/../following-sibling::input")
+	private WebElement createNewUserBasicDetailsImageUploadInput;
+	
+	@FindBy(xpath = "//span[contains(text(),'Browse')]/../preceding-sibling::img")
+	private WebElement profileImage;
+	
 	@FindBy(xpath = "(//span[contains(text(),'Next')]/parent::button)[1]")
 	private WebElement createNewUserBasicDetailsNextButton;
 	
@@ -280,6 +286,64 @@ public class UserManagementPage extends BaseClass {
 	
 	@FindBy(xpath = "//mat-icon[contains(text(),'search')]")
 	private WebElement searchIcon;
+	
+	@FindBy(xpath = "//div[@class = 'profile-image']/../../div[2]/div")
+	private WebElement viewFullNameText;
+	
+	@FindBy(xpath = "//mat-label[contains(text(),'Role')]/following-sibling::span")
+	private WebElement viewRoleText;
+	
+	@FindBy(xpath = "//mat-label[contains(text(),'Email ID')]/following-sibling::span")
+	private WebElement viewEmaiIDText;
+	
+	@FindBy(xpath = "//mat-label[contains(text(),'Phone Number')]/following-sibling::span")
+	private WebElement viewPhoneNumberText;
+	
+	@FindBy(xpath = "//a[contains(text(),'User Management')]")
+	private WebElement ViewPageUserManagementLink;
+	
+	@FindBy(xpath = "//h5[contains(text(),'Block User')]")
+	private WebElement blockUserPopupHeading;
+	
+	@FindBy(xpath = "//h5[contains(text(),'Pause User')]")
+	private WebElement pauseUserPopupHeading;
+	
+	@FindBy(xpath = "//h5[contains(text(),'Resume User')]")
+	private WebElement resumeUserPopupHeading;
+	
+	@FindBy(xpath = "//span[contains(text(),'Edit')]/parent::button")
+	private WebElement viewEditButton;
+	
+	@FindBy(xpath = "//button[contains(text(),'Confirm')]")
+	private WebElement confirmationPopupConfirmButton;
+	
+	@FindBy(xpath = "//button[contains(text(),'Cancel')]")
+	private WebElement confirmationPopupCancelButton;
+	
+	@FindBy(xpath = "//button[contains(@aria-label,'Close')]")
+	private WebElement confirmationPopupCloseButton;
+	
+	
+	
+	
+	//Calendar xpaths.
+	String selectNextToTheCurrentDate = "//div[text()='nextDate']/parent::td";
+	
+	@FindBy(xpath = "//button[@aria-label='Next month']")
+	private WebElement datePickerRightArrow;
+	
+	@FindBy(xpath = "//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base']")
+	private WebElement leftArrowBtn;
+	
+	@FindBy(xpath = "//button[@class='mat-calendar-next-button mat-icon-button mat-button-base']")
+	private WebElement rightArrowBtn;
+	
+	String currentDate = "//table[@class='mat-calendar-table']/tbody/tr/td/div[text()='Date']";
+
+	String chooseDate = "//table[@class='mat-calendar-table']/tbody/tr/td/div[text()='selectDate']";
+	String chooseMonth = "//table[@class='mat-calendar-table']/tbody/tr/td/div[text()='selectMonth']";
+	String chooseYear = "//table[@class='mat-calendar-table']/tbody/tr/td/div[text()='selectYear']";
+	
 	
 	
 	public UserManagementPage(WebDriver driver) {
@@ -636,6 +700,42 @@ public class UserManagementPage extends BaseClass {
 	/**
 	 * Created by Nandhalala.
 	 * 
+	 * created on 13-MAR-2024.
+	 * 
+	 * To enter valid duplicate Email Id in Email Id field of Create New User Basic Details page.
+	 *  
+	 * @throws Exception If the Email ID is not valid.
+	 * 
+	 */
+	public void enterValidDuplicateEmailID() throws Exception {
+		
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                "[a-zA-Z0-9_+&*-]+)*@" + 
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                "A-Z]{2,7}$";
+		
+		//String validEmailID = readExcel("Test Datas", "User Management", 1, 5).trim();
+//		String email = readExcel("Test Datas", "User Management", 1, 2).trim().toLowerCase()+
+//				readExcel("Test Datas", "User Management", 1, 0).trim().toLowerCase()
+//				+randomNumber
+//				+"@"+"mailinator.com";
+//		
+//		writeExcelToOverwrite("Test Datas", "User Management", 1, 27, email);
+		String email = readExcel("Test Datas", "User Management", 1, 27).trim();
+		Pattern pattern = Pattern.compile(emailRegex);
+		if(pattern.matcher(email).matches()){
+			createNewUserBasicDetailsMailTextBox.clear();
+			sendKeys(createNewUserBasicDetailsMailTextBox, email);
+		}else {
+			throw new Exception("Enter a Invalid Email address.");
+		}
+		
+	}
+	
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
 	 * created on 13-FEB-2024.
 	 * 
 	 * To enter valid Phone Number in Phone Number field of Create New User Basic Details page.
@@ -657,6 +757,82 @@ public class UserManagementPage extends BaseClass {
 //			throw new Exception("Enter a Valid Phone Number.");
 //		}
 		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * created on 13-MAR-2024.
+	 * 
+	 * To enter valid duplicate Phone Number in Phone Number field of Create New User Basic Details page.
+	 *  
+	 * @throws Exception If the phone number is not valid.
+	 * 
+	 */
+	public void enterValidDuplicatePhoneNumber() throws Exception {
+		
+		//Pattern pattern = Pattern.compile("^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$");
+		
+//		String validPhoneNumber = readExcel("Test Datas", "User Management", 1, 7).trim();
+//		String phonenumber = randomMobileNumber();
+		String phonenumber = readExcel("Test Datas", "User Management", 1, 7).trim();
+//		if(pattern.matcher(validPhoneNumber).matches()){
+			createNewUserBasicDetailsPhonenumberTextBox.clear();
+			sendKeys(createNewUserBasicDetailsPhonenumberTextBox, phonenumber);
+//		}else {
+//			throw new Exception("Enter a Valid Phone Number.");
+//		}
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * Upload image of size more then 1MB in create new user page.
+	 */
+	public void uploadImageMoreThan1MB() {
+		createNewUserBasicDetailsImageUploadInput.sendKeys(System.getProperty("user.dir")+
+				"//User Management Images//MoreThan1MB.jpg");
+		sleep(1000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * Upload image of unsupported format in create new user page.
+	 */
+	public void uploadUnsupportedFormatImage() {
+		createNewUserBasicDetailsImageUploadInput.sendKeys(System.getProperty("user.dir")+
+				"//User Management Images//JFIF Format.jfif");
+		sleep(1000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * Upload image of supported format in create new user page.
+	 */
+	public void uploadSupportedFormatImage() {
+		createNewUserBasicDetailsImageUploadInput.sendKeys(System.getProperty("user.dir")+
+				"//User Management Images//JPG.jpg");
+		sleep(1000);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * @return True if profile picture is displayed else false.
+	 */
+	public boolean isProfilePictureDisplayed() {
+		return profileImage.isDisplayed();
 	}
 	
 	/**
@@ -1311,10 +1487,8 @@ public class UserManagementPage extends BaseClass {
 		String year = readExcel("Test Datas", "User Management", 1, 18).trim();
 		String graduationYear = getGraduationYear();
 		if(Objects.nonNull(graduationYear)) {
-			createNewUserQualificationGraduationYear1TextBox.sendKeys(Keys.BACK_SPACE);
 			for(int i = 0; i<graduationYear.length();i++)
 				createNewUserQualificationGraduationYear1TextBox.sendKeys(Keys.BACK_SPACE);
-				createNewUserQualificationGraduationYear1TextBox.clear();
 		}
 		
 		sendKeys(createNewUserQualificationGraduationYear1TextBox, year);
@@ -1410,7 +1584,6 @@ public class UserManagementPage extends BaseClass {
 		if(Objects.nonNull(graduationYear)) {
 			for(int i = 0; i<graduationYear.length();i++)
 				createNewUserQualificationGraduationYear2TextBox.sendKeys(Keys.BACK_SPACE);
-			createNewUserQualificationGraduationYear2TextBox.clear();
 		}
 		sendKeys(createNewUserQualificationGraduationYear2TextBox, year);
 	}
@@ -1455,6 +1628,45 @@ public class UserManagementPage extends BaseClass {
 	 */
 	public String getMasterGraduationUniversity() {
 		return createNewUserQualificationUniversity2TextArea.getAttribute("value").trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * Click the graduation calendar icon. 
+	 * 
+	 */
+	public void clickGraduationCalendarIcon() {
+		
+		String graduationYear = getGraduationYear();
+		if(Objects.nonNull(graduationYear)) {
+			for(int i = 0; i<graduationYear.length();i++)
+				createNewUserQualificationGraduationYear1TextBox.sendKeys(Keys.BACK_SPACE);
+		}
+		
+		createNewUserQualificationGraduationCalendar.click();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * Click the graduation calendar icon. 
+	 * 
+	 */
+	public void clickMasterGraduationCalendarIcon() {
+		
+		String graduationYear = getMasterGraduationYear();
+		System.out.println(graduationYear);
+		if(Objects.nonNull(graduationYear)) {
+			for(int i = 0; i<graduationYear.length();i++)
+				createNewUserQualificationGraduationYear2TextBox.sendKeys(Keys.BACK_SPACE);
+		}
+		
+		createNewUserQualificationGraduationCalendar.click();
 	}
 	
 	/**
@@ -1662,6 +1874,7 @@ public class UserManagementPage extends BaseClass {
 	 */
 	public void editButton() {
 		waitForVisiblityOfElement(editButton, 10);
+		sleep(3000);
 		click(editButton);
 	}
 	
@@ -1765,7 +1978,289 @@ public class UserManagementPage extends BaseClass {
 	 * Search using firstname.
 	 */
 	public void searchUserwithFirstName() {
+		userSearch.sendKeys(readExcel("Test Datas", "User Management", 1,24).trim());
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * @return The full name of the user from the view page.
+	 */
+	public String getFullNameFromViewPage() {
+		return viewFullNameText.getText().trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * @return The Role of the user from the view page.
+	 */
+	public String getRoleFromViewPage() {
+		return viewRoleText.getText().trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * @return The Email ID of the user from the view page.
+	 */
+	public String getEmailIDFromViewPage() {
+		return viewEmaiIDText.getText().trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * @return The Email ID of the user from the view page.
+	 */
+	public String getPhoneNumberFromViewPage() {
+		return viewPhoneNumberText.getText().trim();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * Navigate to user management from view page.
+	 * 
+	 */
+	public void navigateBacktoUserManagementFromViewEditPage() {
+		ViewPageUserManagementLink.click();
+		waitForPageLoad(this.driver);
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 12-MAR-2024.
+	 * 
+	 * @param rowNumber of the user for whom the menu options needed.
+	 * @param action need to be performed.
+	 * @throws Exception if the row number is not between 1 and 5.
+	 */
+	public String menuAction(String rowNumber, String action) throws Exception {
+		if(rowNumber.toCharArray().length > 1 && !(rowNumber.charAt(0) >= '1' && 
+				rowNumber.charAt(0) <= '5')) {
+			throw new Exception("The row number should be 1 or 2 or 3 or 4 or 5.");
+		}
+		
+		String menuxpath = actionButtonXpath.replaceAll("XX", rowNumber);
+		this.driver.findElement(By.xpath(menuxpath)).click();
+		String menus = menuXpath.replaceAll("XX", rowNumber);
+		List<WebElement> menuOptions = this.driver.findElements(By.xpath(menus));
+		for(WebElement menuOption : menuOptions) {
+			if(menuOption.getText().equals(action))
+				menuOption.click();
+		}
+		boolean isHeadingDisplayed = switch(action) {
+		case "Pause" :
+			yield pauseUserPopupHeading.isDisplayed();
+		case "Resume":
+			yield resumeUserPopupHeading.isDisplayed();
+		case "Block":
+			yield blockUserPopupHeading.isDisplayed();
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + action);
+		};
+		if(isHeadingDisplayed)
+			confirmationPopupConfirmButton.click();
+		else
+			throw new Exception("Block/Pause/Resume Popup is not displayed");
+		String tostrText = getTostrText();
+		clickTostrOkButton();
+		return tostrText;
 		
 	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 13-MAR-2024.
+	 * 
+	 * @return The disabled status of the edit button.
+	 */
+	public String getEditbuttonDisabledStatus() {
+		return viewEditButton.getAttribute("ng-reflect-disabled").trim();
+	}
+	
+	
+	/**
+	 * Copied from add individuals page.
+	 * 
+	 * @throws Exception
+	 */
+	public void futureDatesAreHidden() throws Exception {
+
+		String currentMonth = getCurrentDtYearMonth("MM");
+		String currentDate = getCurrentDtYearMonth("dd");
+		String currentYear = getCurrentDtYearMonth("yyyy");
+		
+		int intEventDt = Integer.parseInt(currentDate);
+		int intEventYear = Integer.parseInt(currentYear);
+
+		
+		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
+				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+			
+		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
+				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
+				|| currentMonth.equals("12")) && currentDate.equals("31")) {
+
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+			} else {
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+			}
+
+		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+				|| currentMonth.equals("11")) && intEventDt <=29) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+
+		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+				|| currentMonth.equals("11")) && currentDate.equals("30")) {
+
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+			} else {
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+			}
+
+		} else if (currentMonth.equals("02") && intEventDt <=28 && (intEventYear%4!=0)) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+
+		} else if (currentMonth.equals("02") && ((intEventDt > 28 && (intEventYear%4==0)) || (intEventDt==28 &&(intEventYear%4!=0)) )) {
+
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+			} else {
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+			}
+			
+		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
+
+			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+
+			String NextDate = getAttribute(getNextDate, "aria-disabled");
+
+			if (NextDate.equals("true")) {
+				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+			} else {
+				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+			}
+			
+			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+
+			if (rightArrow.equalsIgnoreCase("true")) {
+				log(Status.PASS, "Next Month > Right arrow is disabled");
+			} else {
+				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+			}
+	}
+	}
+
+	/**
+	 * Copied from add individuals.
+	 * 
+	 * @throws Exception
+	 */
+	public void verifyLeftAndRightArrow() {
+
+		if(getAttribute(leftArrowBtn, "disabled").equals("true") && getAttribute(rightArrowBtn, "disabled").equals("true")) {
+			log(Status.PASS, "Left and Right Arrow button in datepicker is disabled");
+		} else {
+			log(Status.FAIL, "Left and Right Arrow button is NOT disabled");
+		}
+
+	}
+	
+	/**
+	 * Copied from add individuals.
+	 * 
+	 * @throws Exception
+	 */
+	public void selectCurrentDateInDatePicker() throws Exception {
+
+		System.out.println("CURRENT DATE IS :" + getCurrentDate());
+		chooseDate = chooseDate.replaceAll("selectDate", getCurrentDate());
+		System.out.println(chooseDate);
+		waitForVisiblityOfElement(this.driver.findElement(By.xpath(chooseDate)), 10);
+		select(chooseDate);
+
+		waitForFullPageElementLoad();
+
+
+	}
+	
 	
 }

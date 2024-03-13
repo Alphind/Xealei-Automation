@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(features = "src//test//resources//Features//TC8_User Management.feature", 
 
-tags = "@CreateNewUserWithEmail",
+tags = "@Validations",
 
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
