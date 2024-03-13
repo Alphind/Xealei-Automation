@@ -321,8 +321,8 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'File(1) size should be less than 1 MB')]")
 	private WebElement imgSizeToastMsg;
 
-	@FindBy(xpath = "//span[contains(text(),'JFIF format is not supported')]")
-	private WebElement JFIFFileFormatNotSupportedToastMsg;
+	@FindBy(xpath = "//span[contains(text(),'Only jpg,jpeg,png type format')]")
+	private WebElement unSupportedFileUploadToastMessageText;
 
 	@FindBy(xpath = "//mat-radio-group[@formcontrolname='eventNotified']/mat-radio-button[1]")
 	private WebElement eventNotifiedDefaultValue;
@@ -473,6 +473,10 @@ public class IncidentReportPage extends BaseClass {
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
 	
+	
+	public 	WebElement getNoteInfoMsgElement() {
+		return noteInfoMsg;
+	}
 	
 	
 	public WebElement getLocationElement() {
@@ -851,6 +855,7 @@ public class IncidentReportPage extends BaseClass {
 
 		deleteExistFieldData(eventDateAndTimeCalenderIconButton);
 	}
+	
 
 	/**
 	 * Delete the "Injury Description" field exist data
@@ -1010,6 +1015,7 @@ public class IncidentReportPage extends BaseClass {
 //		} else {
 //			individualDetail = fullname[0] + "  " + fullname[1];
 //		}
+		waitForElementToBeClickable(individualDetailsDropDown, 10);
 		click(individualDetailsDropDown);
 		String individualName = dropdownOption.replaceAll("XX", individualDetail);
 		System.out.println(individualName);
@@ -1053,14 +1059,17 @@ public class IncidentReportPage extends BaseClass {
 	 * @created on 22-10-2023.
 	 * 
 	 */
-	public void selectWasTheIndividiualInjured() {
-		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
-		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
-		waitForFullPageElementLoad(driver);
-		select(wasPatientInjured);
-		waitForPageLoad(driver);
-
-	}
+//	public void selectWasTheIndividiualInjured() {
+//		
+//		waitForFullPageElementLoad(this.driver);
+//		sleep(3000);
+//		
+//		String WasIndividiualIInjured = readExcel("Test Datas", "Incident Reports", 1, 4).trim();
+//		wasPatientInjured = wasPatientInjured.replace("isInjured", WasIndividiualIInjured);
+//		waitForFullPageElementLoad(driver);
+//		select(wasPatientInjured);
+//		waitForPageLoad(driver);
+//	}
 
 	/**
 	 * @author Nandhalala. Get tooltip for Front View Fore Head.
@@ -1688,11 +1697,19 @@ public class IncidentReportPage extends BaseClass {
 					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
 					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
 					sendKeys(timeTxtbox, notificationDate);
+					String getNotificationTime = getAttribute(timeTxtbox, "value");
+					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+//					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
+//					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
 					break;
 				}
 				case "NO" :{
 					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
 					sendKeys(timeTxtbox, notificationDate);
+					String getNotificationTime = getAttribute(timeTxtbox, "value");
+					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+//					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
+//					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
 					break;
 				}
 			}
@@ -1705,6 +1722,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectNotificationMethod() {
 
+		waitForElementToBeClickable(notificationMethodDropdownBox, 10);
 		click(notificationMethodDropdownBox);
 		String notifiedMethod = readExcel("Test Datas", "Incident Reports", 1, 17);
 		notificationMethod = notificationMethod.replace("method", notifiedMethod);
@@ -1720,6 +1738,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void clickCompleteButton() {
 		sleep(1000);
+		waitForElementToBeClickable(completeButton, 10);
 		click(completeButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1734,6 +1753,7 @@ public class IncidentReportPage extends BaseClass {
 	public void resubmitButton() {
 		waitForFullPageElementLoad(this.driver);
 		sleep(1000);
+		waitForElementToBeClickable(resubmitButton, 10);
 		click(resubmitButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1895,6 +1915,7 @@ public class IncidentReportPage extends BaseClass {
 	public void navigateHome() {
 		waitForFullPageElementLoad(this.driver);
 		sleep(1000);
+		waitForElementToBeClickable(home, 10);
 		click(home);
 	}
 
@@ -1913,7 +1934,6 @@ public class IncidentReportPage extends BaseClass {
 		try {
 			String excatColumn = viewButton.replaceAll("rownumber", rowNumber);
 			select(this.driver, excatColumn);
-			waitForPageLoad();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1938,6 +1958,7 @@ public class IncidentReportPage extends BaseClass {
 	 * @author Alphi-MohamedRazul .
 	 */
 	public void EditButton() {
+		waitForElementToBeClickable(IRFormEditButton, 10);
 		click(IRFormEditButton);
 		waitForPageLoad(this.driver);
 	}
@@ -1953,6 +1974,7 @@ public class IncidentReportPage extends BaseClass {
 		waitForPageLoad(this.driver);
 
 		if (addNewIncidentReportButton.isDisplayed()) {
+			waitForElementToBeClickable(addNewIncidentReportButton, 10);
 			click(addNewIncidentReportButton);
 		} else {
 			log(Status.FAIL, "Unable to click Add New Incident Report Button");
@@ -1967,6 +1989,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void nextButton() {
 
+		waitForElementToBeClickable(nextButton, 10);
 		click(nextButton);
 	}
 
@@ -1977,6 +2000,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void selectIndividualDetailsDropdown() {
 
+		waitForElementToBeClickable(individualDetailsDropDown, 10);
 		click(individualDetailsDropDown);
 
 		selectIndDetails = selectIndDetails.replaceAll("chooseIndDetails",
@@ -1989,7 +2013,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul .
 	 */
-	public void wasIndividualInjuredRadioButton() {
+	public void selectWasIndividualInjured() {
 
 		String wasIndividualInjured = readExcel("Test Datas", "Incident Reports", 1, 4);
 		wasPatientInjured = wasPatientInjured.replaceAll("isInjured", wasIndividualInjured);
@@ -2003,6 +2027,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void saveButton() {
 
+		waitForElementToBeClickable(saveButton, 10);
 		click(saveButton);
 		waitForPageLoad();
 	}
@@ -2014,6 +2039,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void savedSuccessfulToastMsgokButton() {
 
+		waitForElementToBeClickable(btnToastMsgSuccessok, 10);
 		click(btnToastMsgSuccessok);
 	}
 
@@ -2024,6 +2050,7 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void ToastMsgOKButton() {
 
+		waitForElementToBeClickable(OKBtnToastMsg, 0);
 		click(OKBtnToastMsg);
 	}
 
@@ -2044,12 +2071,20 @@ public class IncidentReportPage extends BaseClass {
 			String currentDtYearMonth = getCurrentDtYearMonth("MM/dd/yyyyhh:mma");
 			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth );
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
+			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+//			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
+//			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
 		}
 		case "NO": {
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
-			sendKeys(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
+			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
+			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+//			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
+//			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
 		}
 		}
@@ -2066,7 +2101,7 @@ public class IncidentReportPage extends BaseClass {
 		
 		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
 			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
-sleep(2000);
+          click(whatCausedTheFallDescriptionTxtBox);
 		}
 
 	/**
@@ -2094,6 +2129,7 @@ sleep(2000);
 
 			waitForFullPageElementLoad();
 			
+			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -2154,7 +2190,7 @@ sleep(2000);
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			click(attachmentIconButton);
-			sleep(5000);
+			sleep(3000);
 
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
 					+ formatType;
@@ -2176,17 +2212,20 @@ sleep(2000);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 
 				try {
-					waitForVisiblityOfElement(JFIFFileFormatNotSupportedToastMsg, 5);
-					Assert.assertEquals("Unable to restrict the JFIF File format", "JFIF format is not supported",
-							getText(JFIFFileFormatNotSupportedToastMsg));
+					waitForVisiblityOfElement(unSupportedFileUploadToastMessageText, 5);
+					Assert.assertEquals("Unable to restrict the JFIF File format", "Only jpg,jpeg,png type format is supported",
+							getText(unSupportedFileUploadToastMessageText));
 
-					log(Status.PASS, "Toast Message is displayed - " + getText(JFIFFileFormatNotSupportedToastMsg));
+					log(Status.PASS, "Toast Message is displayed - " + getText(unSupportedFileUploadToastMessageText));
+					
+					ToastMsgOKButton();
+					
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
 				}
 
-				ToastMsgOKButton();
+				
 
 			} catch (AWTException e) {
 				e.printStackTrace();
@@ -2216,6 +2255,7 @@ sleep(2000);
 
 			waitForFullPageElementLoad();
 			
+			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
 
@@ -4005,6 +4045,8 @@ sleep(2000);
 	 */
 	public void futureTimeInNotificationTime() throws Exception {
 
+		//deleteExistFieldData(timeTxtbox);
+		
 		String futureTime = getFutureTime("hh:mma");		
 		sendKeys(timeTxtbox,futureTime );
 		click(notifedByTxtBox);
@@ -4254,18 +4296,20 @@ sleep(2000);
 
 		String chatMessage  = switch (userType.toUpperCase()) {
 		case "STAFF" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 30);
+			yield readExcel("Test Datas", "Incident Reports", 1, 30).trim();
 		}
 		case "NURSE", "CHIEF NURSE" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 31);
+			yield readExcel("Test Datas", "Incident Reports", 1, 31).trim();
 		}
 		case "MANAGER","RESIDENT MANAGER","RESIDENTAL MANAGER" -> {
-			yield readExcel("Test Datas", "Incident Reports", 1, 32);
+			yield readExcel("Test Datas", "Incident Reports", 1, 32).trim();
 		}
 		default ->
 			throw new IllegalArgumentException("Unexpected value: " + userType);
 		};
+		waitForVisiblityOfElement(chatMessageArea, 10);
 		sendKeys(chatMessageArea, chatMessage);
+		waitForElementToBeClickable(chatSendButton, 10);
 		click(chatSendButton);
 
 	}

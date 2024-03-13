@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -41,6 +42,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.velocity.runtime.directive.Foreach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -75,6 +77,7 @@ import com.mongodb.client.model.Filters;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 import io.cucumber.java.Scenario;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class BaseClass {
@@ -93,14 +96,17 @@ public class BaseClass {
 	public void browserType() throws Exception {
 
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(getChromeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			WebDriverManager.chromedriver().setup();
 			driver = new EdgeDriver(getEdgeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			WebDriverManager.chromedriver().setup();
 			 driver = new FirefoxDriver(getFirefoxOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 		} else {
@@ -114,14 +120,17 @@ public class BaseClass {
 		WebDriver newDriver;
 		
 		if (getConfigureProperty("Browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
 			newDriver = new ChromeDriver(getChromeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("edge")) {
+			WebDriverManager.chromedriver().setup();
 			newDriver = new EdgeDriver(getEdgeOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 
 		} else if (getConfigureProperty("Browser").equalsIgnoreCase("firefox")) {
+			WebDriverManager.chromedriver().setup();
 			 newDriver = new FirefoxDriver(getFirefoxOptions());
 			log(Status.INFO, "Browser launched in Chrome");
 		} else {
@@ -194,6 +203,16 @@ public class BaseClass {
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
+	}
+	
+	public void sendKeyswithException(WebElement element, String datasToSend) {
+		String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+		try {
+			element.sendKeys(datasToSend);
+			log(Status.INFO, "Data entered in the " + methodName + " field is - " + datasToSend);
+		} catch (Exception e) {
+			
+		}
 
 	}
 
@@ -237,6 +256,13 @@ public class BaseClass {
 		// Duration.ofSeconds(seconds));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public void waitForElementToBeStale(WebDriver driver ,WebElement element, long seconds) {
+		// WebDriverWait wait = new WebDriverWait(dr.get(),
+		// Duration.ofSeconds(seconds));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+		wait.until(ExpectedConditions.stalenessOf(element));
 	}
 
 	// 13. Screenshot
@@ -454,6 +480,20 @@ public class BaseClass {
 			e.printStackTrace();
 			return "";
 		}
+	}
+	
+		public String getSparkConfig(String key) {
+			
+			try {
+				FileInputStream stream = new FileInputStream(".extent.properties");
+				Properties properties = new Properties();
+				properties.load(stream);
+				return properties.get(key).toString();
+			} catch (IOException e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+				return "";
+			}
 
 	}
 
@@ -500,6 +540,11 @@ public class BaseClass {
 	}
 	}
 
+	
+	
+	
+	
+
 	// 30. findElement --- > ByTagName
 
 	public WebElement findElementByTagName(String tagName) {
@@ -514,6 +559,13 @@ public class BaseClass {
 
 		// WebElement elements = dr.get().findElement(By.xpath(xpath));
 		WebElement elements = driver.findElement(By.xpath(xpath));
+		return elements;
+	}
+	
+	public WebElement findElementByXpath(WebDriver currentDriver,String xpath) {
+
+		// WebElement elements = dr.get().findElement(By.xpath(xpath));
+		WebElement elements =currentDriver.findElement(By.xpath(xpath));
 		return elements;
 	}
 
@@ -732,14 +784,11 @@ public class BaseClass {
 //			
 //		}
 
-
-
 		try {
 		WebElement loading = driver.findElement(By.xpath("//span[contains(@class,'cloader')]"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
 		} catch (NoSuchElementException e) {
-			e.printStackTrace();
 		}
 
 	}
@@ -968,6 +1017,7 @@ try {
 		driver.manage().timeouts().getPageLoadTimeout();
 	}
 
+	
 	public void waitForFullPageElementLoad(WebDriver currentdriver) {
 
 		currentdriver.manage().timeouts().getPageLoadTimeout();
@@ -1121,7 +1171,7 @@ try {
 		}
 	}
 
-	public void logStep(String name) {
+	public void stepName(String name) {
 		test.log(Status.INFO, MarkupHelper.createLabel(name, ExtentColor.AMBER));
 	}
 
@@ -1434,7 +1484,5 @@ try {
      
     	 return outputDateString;
 	}
-	
-
 	
 }

@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.apache.commons.exec.LogOutputStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,10 +29,19 @@ public class HomePage extends BaseClass {
 
 	@FindBy(xpath = "//div[@class='user-category']")
 	private WebElement adminName;
+	
+	@FindBy(xpath = "//mat-icon[contains(text(),'logout')]/parent::div/parent::button")
+	private WebElement logoutButton;
 
+	@FindBy(xpath = "//span[contains(text(),'Occ')]")
+	private WebElement occupancyZone;
+	
 	@FindBy(xpath = "//span[contains(text(),'Suites')]/parent::a")
 	private WebElement suitesModule;
 
+	@FindBy(xpath = "//span[contains(text(),'Common Area')]/parent::a")
+	private WebElement commonAreaModule;
+	
 	@FindBy(xpath = "//span[contains(text(),'Individuals')]")
 	private WebElement individualsModule;
 
@@ -101,6 +111,24 @@ public class HomePage extends BaseClass {
 	public String getAdminNameText() {
 		return getText(adminName);
 	}
+	
+	public WebElement getAdminName() {
+		return adminName;
+	}
+	
+	public HomePage adminName() {
+		
+		click(adminName);
+		return this;
+	}
+	
+	
+	public void logout() {
+	
+		click(logoutButton);
+	}
+	
+	
 
 	/**
 	 * Get the Home page Module (text) in Home Page.
@@ -167,7 +195,43 @@ public class HomePage extends BaseClass {
 			log(Status.FAIL, "Unable to click the Suites Module");
 		}
 	}
+	
+	/**
+	 * Check whether the 'Common Area' page is displayed
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
+	public void navToCommonAreaModule() {
 
+		if (commonAreaModule.isDisplayed()) {
+			click(commonAreaModule);
+			waitForPageLoad();
+		} else {
+			log(Status.FAIL, "Unable to Navigate the the Common Area Module");
+		}
+	}
+
+	
+	/**
+	 * Check whether the 'Occupancy Zone' page is displayed
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 * @created on 15/02/2024
+	 * 
+	 */
+	public HomePage navToOccupancyZoneModule() {
+
+		if (occupancyZone.isDisplayed()) {
+			click(occupancyZone);
+		} else {
+			log(Status.FAIL, "Unable to click the Occupancy Zone Module");
+		}
+		return this;
+	}
+
+	
 	/**
 	 * Check whether the 'Individual' page is displayed
 	 * 

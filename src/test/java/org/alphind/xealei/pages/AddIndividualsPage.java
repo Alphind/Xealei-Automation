@@ -151,7 +151,10 @@ public class AddIndividualsPage extends BaseClass{
 
 	@FindBy(xpath = "//input[@x-ind-resi-val]")
 	private WebElement residentialAddress;
-
+	
+	@FindBy(xpath = "//mat-checkbox[contains(@class,'mat-checkbox-checked')]")
+	private WebElement addressTabCheckbox;	
+	
 	@FindBy(xpath = "//input[@x-ind-mail-addr-val]")
 	private WebElement mailingAddress;
 
@@ -627,17 +630,17 @@ public class AddIndividualsPage extends BaseClass{
 		return createdEmContact1PhNo;
 	}
 
-	public WebElement getCreatedEmContact2Name() {
-		return createdEmContact2Name;
-	}
-
-	public WebElement getSelectedEmContact2Relationship() {
-		return selectedEmContact2Relationship;
-	}
-
-	public WebElement getCreatedEmContact2PhNo() {
-		return createdEmContact2PhNo;
-	}
+//	public WebElement getCreatedEmContact2Name() {
+//		return createdEmContact2Name;
+//	}
+//
+//	public WebElement getSelectedEmContact2Relationship() {
+//		return selectedEmContact2Relationship;
+//	}
+//
+//	public WebElement getCreatedEmContact2PhNo() {
+//		return createdEmContact2PhNo;
+//	}
 
 	public WebElement getScrollDownInPrefTab() {
 		return scrollDownInPrefTab;
@@ -747,6 +750,7 @@ public class AddIndividualsPage extends BaseClass{
 		return residentialAddress;
 	}
 
+	
 	public WebElement getMailingAddress() {
 		return mailingAddress;
 	}
@@ -982,6 +986,9 @@ public class AddIndividualsPage extends BaseClass{
 	public WebElement getforwardToAddressTab() {
 		return forwardToAddressTab;
 	}
+	public WebElement isCheckboxTicked() {
+		return addressTabCheckbox;
+	}
 
 	
 	
@@ -1015,15 +1022,159 @@ public class AddIndividualsPage extends BaseClass{
 	}
 
 
+//	public void futureDatesAreHidden() throws Exception {
+//
+//		String currentMonth = getCurrentDtYearMonth("MM");
+//		String currentDate = getCurrentDtYearMonth("dd");
+//		String currentYear = getCurrentDtYearMonth("yyyy");
+//		
+//		System.out.println("Current Date - "+currentDate);
+//		System.out.println("Current Month - "+currentMonth);
+//		System.out.println("Current Year - "+currentYear);
+//		
+//		int intEventDt = Integer.parseInt(currentDate);
+//		int intEventYear = Integer.parseInt(currentYear);
+//
+//		
+//		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
+//				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
+//
+//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+//
+//			String NextDate = getAttribute(getNextDate, "aria-disabled");
+//			System.out.println("Future Dt - "+NextDate);
+//			
+//			if (NextDate.equals("true")) {
+//				log(Status.PASS, "Future date is disabled");
+//			} else {
+//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+//			}
+//			
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
+//			
+//		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
+//				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
+//				|| currentMonth.equals("12")) && currentDate.equals("31")) {
+//
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+//			}
+//
+//		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+//				|| currentMonth.equals("11")) && intEventDt <=29) {
+//
+//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+//
+//			String NextDate = getAttribute(getNextDate, "aria-disabled");
+//
+//			if (NextDate.equals("true")) {
+//				log(Status.PASS, "Future date is disabled");
+//			} else {
+//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+//			}
+//			
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
+//
+//		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
+//				|| currentMonth.equals("11")) && currentDate.equals("30")) {
+//
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+//			}
+//
+//		} else if (currentMonth.equals("02") && intEventDt <=28 && (intEventYear%4!=0)) {
+//
+//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+//
+//			String NextDate = getAttribute(getNextDate, "aria-disabled");
+//			System.out.println("Future Dt - "+NextDate);
+//			
+//			if (NextDate.equals("true")) {
+//				log(Status.PASS, "Future date is disabled");
+//			} else {
+//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+//			}
+//			
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
+//
+//		} else if (currentMonth.equals("02") && ((intEventDt > 28 && (intEventYear%4==0)) || (intEventDt==28 &&(intEventYear%4!=0)) )) {
+//
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+//			}
+//			
+//		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
+//
+//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+//
+//			String NextDate = getAttribute(getNextDate, "aria-disabled");
+//			System.out.println("Future Dt - "+NextDate);
+//			
+//			if (NextDate.equals("true")) {
+//				log(Status.PASS, "Future date is disabled");
+//			} else {
+//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+//			}
+//			
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
+//	}  else {
+//		log(Status.SKIP, "The Method is skiped kindly check manually");	
+//	}
+//		
+//	}
+
 	public void futureDatesAreHidden() throws Exception {
 
 		String currentMonth = getCurrentDtYearMonth("MM");
 		String currentDate = getCurrentDtYearMonth("dd");
 		String currentYear = getCurrentDtYearMonth("yyyy");
+				
+		System.out.println("Current Date - "+currentDate);
+		System.out.println("Current Month - "+currentMonth);
+		System.out.println("Current Year - "+currentYear);
 		
 		int intEventDt = Integer.parseInt(currentDate);
-		int intEventYear = Integer.parseInt(currentYear);
-
+		
 		
 		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
 				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
@@ -1032,20 +1183,21 @@ public class AddIndividualsPage extends BaseClass{
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
 
 			String NextDate = getAttribute(getNextDate, "aria-disabled");
-
+			System.out.println("Future Dt - "+NextDate);
+			
 			if (NextDate.equals("true")) {
-				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+				log(Status.PASS, "Future date is disabled");
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 			
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Next Month > Right arrow is disabled");
-			} else {
-				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-			}
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
 			
 		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
 				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
@@ -1068,18 +1220,18 @@ public class AddIndividualsPage extends BaseClass{
 			String NextDate = getAttribute(getNextDate, "aria-disabled");
 
 			if (NextDate.equals("true")) {
-				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+				log(Status.PASS, "Future date is disabled");
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 			
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Next Month > Right arrow is disabled");
-			} else {
-				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-			}
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
 
 		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
 				|| currentMonth.equals("11")) && currentDate.equals("30")) {
@@ -1092,28 +1244,29 @@ public class AddIndividualsPage extends BaseClass{
 				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
 			}
 
-		} else if (currentMonth.equals("02") && intEventDt <=28 && (intEventYear%4!=0)) {
+		} else if (currentMonth.equals("02") && intEventDt <=27) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
 
 			String NextDate = getAttribute(getNextDate, "aria-disabled");
-
+			System.out.println("Future Dt - "+NextDate);
+			
 			if (NextDate.equals("true")) {
-				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
+				log(Status.PASS, "Future date is disabled");
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 			
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
 
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Next Month > Right arrow is disabled");
-			} else {
-				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-			}
-
-		} else if (currentMonth.equals("02") && ((intEventDt > 28 && (intEventYear%4==0)) || (intEventDt==28 &&(intEventYear%4!=0)) )) {
+		} else if (currentMonth.equals("02") && intEventDt == 28) {
 
 			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 
@@ -1123,29 +1276,34 @@ public class AddIndividualsPage extends BaseClass{
 				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
 			}
 			
-		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
-
-			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
-			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
-
-			String NextDate = getAttribute(getNextDate, "aria-disabled");
-
-			if (NextDate.equals("true")) {
-				log(Status.PASS, "Next to the current dates are disabled in Notification Date field");
-			} else {
-				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
-			}
-			
-			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-
-			if (rightArrow.equalsIgnoreCase("true")) {
-				log(Status.PASS, "Next Month > Right arrow is disabled");
-			} else {
-				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-			}
+//		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
+//
+//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
+//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
+//
+//			String NextDate = getAttribute(getNextDate, "aria-disabled");
+//			System.out.println("Future Dt - "+NextDate);
+//			
+//			if (NextDate.equals("true")) {
+//				log(Status.PASS, "Future date is disabled");
+//			} else {
+//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
+//			}
+//			
+//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
+//
+//			if (rightArrow.equalsIgnoreCase("true")) {
+//				log(Status.PASS, "Next Month > Right arrow is disabled");
+//			} else {
+//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
+//			}
+	}  else {
+		log(Status.SKIP, "The Method is skiped kindly check manually");	
 	}
+		
 	}
 
+	
 
 	public void verifyLeftAndRightArrow() {
 
@@ -1182,6 +1340,7 @@ public class AddIndividualsPage extends BaseClass{
 				chooseYear = chooseYear.replaceAll("selectYear", chooseYearFromExcel);
 				select(chooseYear);
 				log(Status.INFO, "Select the year in date picker - YEAR " + chooseYearFromExcel);
+				log(Status.PASS, "Selected the year in date picker - YEAR " + chooseYearFromExcel);
 				break;
 			} else {
 				click(leftArrowBtn);
@@ -1192,6 +1351,7 @@ public class AddIndividualsPage extends BaseClass{
 			chooseMonth = chooseMonth.replaceAll("selectMonth", previousMonth("MMM"));
 			select(chooseMonth);
 			log(Status.INFO, "Select the month in date picker - MONTH " + previousMonth("MMM"));
+			log(Status.PASS, "Selected the month in date picker - MONTH " + previousMonth("MMM"));
 
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -1202,6 +1362,8 @@ public class AddIndividualsPage extends BaseClass{
 			currentDate = currentDate.replaceAll("Date", chooseDateFromExcel);
 			select(currentDate);
 			log(Status.INFO, "Select the date in date picker - DATE " + chooseDateFromExcel);
+			log(Status.PASS, "Select the date in date picker - DATE " + chooseDateFromExcel);
+
 
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
@@ -1291,7 +1453,7 @@ public class AddIndividualsPage extends BaseClass{
 				&& getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")) {
 
 			click(uploadPhotobtn);
-			sleep(2000);
+			sleep(3000);
 			
 			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
 			try {
@@ -1508,6 +1670,16 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	public void isMandatoryFieldsAreFilledInIdenticationTabSection() {
+		
+		if(getAttribute(firstName, "value").isBlank() || getAttribute(lastName, "value").isBlank() ||getAttribute(lastName, "value").isBlank()
+				 ||getAttribute(dob, "value").isBlank()) {
+			log(Status.FAIL, "All the mandatory fields are NOT filled");
+		} else {
+			log(Status.PASS, "All the mandatory fields are filled");
+		}
+
+	}
 	public AddIndividualsPage selectSuite(int rowNum) {
 
 		sleep(1000);
@@ -1570,6 +1742,15 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	public void isMailingAddressFieldIsEmpty() {
+
+		if(getAttribute(mailingAddress, "value").isBlank()) {
+			log(Status.PASS, "Mailing address Field is empty");
+		} else {
+			log(Status.FAIL, "Mailing address Field is NOT empty");
+		}
+	}
+	
 	public AddIndividualsPage sameAsResiAdresscheckBox() {
 
 		click(sameAsResiAddressCheckbox);
@@ -1756,6 +1937,25 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	public void ecFieldIsEmpty() {
+		
+		if(getAttribute(emergencyContact1FN,"value").isBlank() || getAttribute(emergencyContact1LN,"value").isBlank() || getAttribute(emergencyContact1PhoneNo,"value").isBlank()) {
+			log(Status.FAIL, "Data NOT entered in First and Last Name field in EC1");
+		} else {
+			log(Status.PASS, "Data is entered in First and Last Name field in EC1");
+		}
+		}
+		
+	
+	public void ec2FieldIsEmpty() {
+		
+	if(getAttribute(emergencyContact2FN,"value").isBlank() || getAttribute(emergencyContact2LN,"value").isBlank()) {
+		log(Status.FAIL, "Data NOT entered in First and Last Name field in EC2");
+	} else {
+		log(Status.PASS, "Data is entered in First and Last Name field in EC2");
+	}
+	}
+	
 	public AddIndividualsPage ec2FirstName(int rowNum) {
 
 		sendKeys(emergencyContact2FN, readExcel("Test Datas", "AddIndividuals", rowNum, 17));
@@ -1778,8 +1978,10 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
-	public AddIndividualsPage ec2PhoneNumber(int rowNum) {
+	public AddIndividualsPage ec2PhoneNumber(int rowNum) throws Exception {
 
+		String randomMobileNumber = randomMobileNumber();
+		writeExcelToOverwrite("Test Datas", "AddIndividuals", 2, 20, randomMobileNumber);
 		sendKeys(emergencyContact2PhoneNo, readExcel("Test Datas", "AddIndividuals", rowNum, 20));
 		return this;
 	}
@@ -1803,6 +2005,16 @@ public class AddIndividualsPage extends BaseClass{
 		click(emergencyContact3FN);
 	}
 
+	public void ec3FieldIsEmpty() {
+		
+		if(getAttribute(emergencyContact3FN,"value").isBlank() || getAttribute(emergencyContact3LN,"value").isBlank()) {
+			log(Status.FAIL, "Data NOT entered in First and Last Name field in EC3");
+		} else {
+			log(Status.PASS, "Data is entered in First and Last Name field in EC3");
+		}
+
+		}
+	
 	public void ec3FirstName(int rowNum) {
 
 		sendKeys(emergencyContact3FN, readExcel("Test Datas", "AddIndividuals", rowNum, 17));
@@ -1873,34 +2085,95 @@ public class AddIndividualsPage extends BaseClass{
 //		waitForFullPageElementLoad();
 //	}
 	
-	public void searchBox(int rowNum){
+	public void searchBox(int rowNum) throws Exception{
 
-		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 26);
 		String[] split = crIndividualLastName.split(" ");
 		String firstName = split[0];
 		String MiddleName = split[1];
 		String LastName = " "+split[2];
 		
-			sendKeys(individualSearchBox, firstName+" "+MiddleName);
+		System.out.println("FN - "+firstName);
+
+		System.out.println("MN - "+MiddleName);
+		System.out.println("LN - "+LastName);
+		
+		sendKeys(individualSearchBox, firstName+" "+MiddleName);
 			waitForAjexPageLoad();
+			
 			for (int i = 0; i < LastName.length(); i++) {
 				char letter = LastName.charAt(i);
 				String letterAsString = String.valueOf(letter);
 				sendKeys(individualSearchBox, letterAsString);
-				waitForAjexPageLoad();
+				waitForPageLoad();
 			}
+			backSpace(individualSearchBox);
 			waitForPageLoad();
 			waitForFullPageElementLoad();
+			sleep(5000);
+			int length = LastName.length();
+			char lastLetter = LastName.charAt(length - 1);
+			String enterLastLetter = String.valueOf(lastLetter);
+			sendKeys(individualSearchBox, enterLastLetter);
+			waitForPageLoad();
+			waitForFullPageElementLoad();
+			
+			String actSearchedInd = getText(getCreatedIndName());
+			
+			System.out.println("Actua Searched Ind - "+actSearchedInd);
+			System.out.println("Exp Searched Ind - "+crIndividualLastName);
+			
+			if (actSearchedInd.equals(crIndividualLastName)) {
+				log(Status.PASS, "Searched Individual is displayed");
+				
+				searchedIndividualform();
+				
+			} else {
+				log(Status.FAIL, "Searched Individual is NOT displayed");
+				throw new Exception("Assertion failed searched Individual is not displayed as expected");
+			}
+		
+		
+//		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+//		String[] split = crIndividualLastName.split(" ");
+//		String firstName = split[0];
+//		String MiddleName = split[1];
+//		String LastName = " "+split[2];
+//		
+//			sendKeys(individualSearchBox, firstName+" "+MiddleName);
+//			waitForAjexPageLoad();
+//			for (int i = 0; i < LastName.length(); i++) {
+//				char letter = LastName.charAt(i);
+//				String letterAsString = String.valueOf(letter);
+//				sendKeys(individualSearchBox, letterAsString);
+//			}
+//			waitForPageLoad();
+//			waitForFullPageElementLoad();
+//			backSpace(individualSearchBox);
+//			waitForPageLoad();
+//			waitForFullPageElementLoad();
+//			sleep(5000);
+//			int length = LastName.length();
+//			char lastLetter = LastName.charAt(length - 1);
+//			String enterLastLetter = String.valueOf(lastLetter);
+//			sendKeys(individualSearchBox, enterLastLetter);
+//			waitForFullPageElementLoad();
+			
 	}
 
-public AddIndividualsPage vitalsTab() {
+public AddIndividualsPage vitalsTab() throws Exception {
 		
+	try {
+	waitForElementToBeClickable(vitalsTab, 5);
 		click(vitalsTab);
 		return this;
+	} catch (Exception e) {
+		throw new Exception("Unable to navigate Vitals Tab Section");
+	}
 	}
 
 	public AddIndividualsPage selectBloodGroup(int rowNum) {
-
+		
 		click(bloodGroup);
 		String BG = readExcel("Test Datas", "AddVitals", rowNum, 0);
 		selectBG = selectBG.replaceAll("selectBGroup", BG);
@@ -1947,6 +2220,7 @@ public AddIndividualsPage healthSummary(int rowNum) {
 
 public void vitalsUpdateButton() {
 	
+	waitForElementToBeClickable(btnVitalsUpdate, 10);
 	click(btnVitalsUpdate);
 
 }
@@ -1959,6 +2233,8 @@ public AddIndividualsPage addVitalsButton() {
 	
 public void searchedIndividualform() {
 	
+	sleep(1000);
+	waitForFullPageElementLoad();
 click(createdIndName);
 }
 

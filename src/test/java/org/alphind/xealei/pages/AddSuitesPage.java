@@ -10,7 +10,6 @@
 
 package org.alphind.xealei.pages;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -28,13 +27,12 @@ public class AddSuitesPage extends BaseClass {
 	 * 
 	 */
 	private WebDriver driver;
-	
+
 	public AddSuitesPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
 	@FindBy(xpath = "//h5[contains(text(),'Suites')]")
 	private WebElement suitesPage;
 
@@ -44,6 +42,12 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "//h2[contains(text(),'Add Suite')]")
 	private WebElement addSuitePopupText;
 
+	@FindBy(xpath = "//p[@class='msg-txt']")
+	private WebElement closePopupContentText;
+
+	@FindBy(xpath = "//h1[contains(text(),' Suite')]")
+	private WebElement closePopupSuite;
+
 	@FindBy(xpath = "//input[@placeholder='Enter Suite Name']")
 	private WebElement suiteName;
 
@@ -52,12 +56,12 @@ public class AddSuitesPage extends BaseClass {
 
 	@FindBy(xpath = "//input[@placeholder='Enter Width ']")
 	private WebElement width;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Enter Height']")
 	private WebElement height;
 
-	@FindBy(xpath = "//button[@x-as-save-btn]")
-	private WebElement btnAdd; 
+	@FindBy(xpath = "//span[contains(text(), 'Add')]/parent::button")
+	private WebElement btnAdd;
 
 	@FindBy(xpath = "//span[contains(text(),'Please Enter Suite Name')]")
 	private WebElement validationMsgForSuiteName;
@@ -123,23 +127,33 @@ public class AddSuitesPage extends BaseClass {
 
 	@FindBy(xpath = "(//span[@class='d-block'])[1]")
 	private WebElement createdSN;
-	
+
 	@FindBy(xpath = "//button[@mat-raised-button]")
 	private WebElement EditSuite;
 
 	@FindBy(xpath = "(//span[@class='btn-txt'])[1]")
-	private WebElement createdSuites;
-	
-	
+	private WebElement exitSuites;
+
+	@FindBy(xpath = "//span[contains(text(),'Yes')]/parent::button")
+	private WebElement closepopupButtonIsEnabled;
+
 	public String getExistSuite() {
-	
-		return getText(createdSuites);
+
+		return getText(exitSuites);
 
 	}
-	
+
+	public String getclosePopupContentText() {
+
+		return getText(closePopupContentText);
+	}
 
 	public WebElement getBtnAddSuites() {
 		return btnAddSuites;
+	}
+
+	public String getClosePopupSuiteName() {
+		return getText(closePopupSuite);
 	}
 
 	public WebElement getBtnAdd() {
@@ -153,7 +167,7 @@ public class AddSuitesPage extends BaseClass {
 	public WebElement getLength() {
 		return length;
 	}
-	
+
 	public WebElement getWidth() {
 		return width;
 	}
@@ -161,7 +175,7 @@ public class AddSuitesPage extends BaseClass {
 	public WebElement getHeight() {
 		return height;
 	}
-	
+
 	public WebElement getActToastMsg() {
 		return savedSuccessfullToastMsg;
 	}
@@ -250,26 +264,84 @@ public class AddSuitesPage extends BaseClass {
 		return view;
 	}
 
-	
+	public String getAttributeValueOfSuiteNameField() {
+
+		return getAttribute(suiteName, "value");
+	}
+
+	public String getAttributeValueOfLengthField() {
+
+		return getAttribute(length, "value");
+	}
+
+	public String getAttributeValueOfWidthField() {
+
+		return getAttribute(width, "value");
+	}
+
+	public String getAttributeValueOfHeightField() {
+
+		return getAttribute(height, "value");
+	}
+
 	/*
 	 * Description - Below methods helps to perform the Testcase actions for Add
 	 * Suites page..
 	 * 
 	 */
 
+	public AddSuitesPage btnAddSuite() {
 
-	public void btnAddSuite() {
-
-			click(btnAddSuites);
+		click(btnAddSuites);
+		return this;
 	}
 
 	public AddSuitesPage suiteLimit() {
-		
+
 		sendKeys(suiteName, "AB");
 		return this;
 	}
+
+	public String checkSuiteNameFieldMaxLimit() {
+
+		String inputMoreThan14Char = readExcel("Test Datas", "AddSuites", 1, 7);
+		sendKeys(suiteName, inputMoreThan14Char);
+		CharSequence subSequence = inputMoreThan14Char.subSequence(0,inputMoreThan14Char.length()-1);		
+	    return subSequence.toString();
+	}
+
+	public String checkLengthFieldMaxLimit(int rowNum) {
+
+		String inputMoreThan11Digits = readExcel("Test Datas", "AddSuites", rowNum, 7);
+		sendKeys(length, inputMoreThan11Digits);
+		CharSequence subSequence = inputMoreThan11Digits.subSequence(0,inputMoreThan11Digits.length()-1);		
+	    return subSequence.toString();
+	}
+
+	public String checkWidthFieldMaxLimit(int rowNum) {
+		
+		String inputMoreThan11Digits = readExcel("Test Datas", "AddSuites", rowNum, 7);
+		sendKeys(width, inputMoreThan11Digits);
+		CharSequence subSequence = inputMoreThan11Digits.subSequence(0,inputMoreThan11Digits.length()-1);		
+	    return subSequence.toString();
+	}
+
+	public String checkHeigthFieldMaxLimit(int rowNum) {
+
+		String inputMoreThan11Digits = readExcel("Test Datas", "AddSuites", rowNum, 7);
+		sendKeys(height, inputMoreThan11Digits);
+		CharSequence subSequence = inputMoreThan11Digits.subSequence(0,inputMoreThan11Digits.length()-1);		
+	    return subSequence.toString();
+	}
 	
-	public AddSuitesPage enterSuiteName(int rowNum) throws Exception{
+	
+
+	public void yesButton() {
+
+		click(closepopupButtonIsEnabled);
+	}
+
+	public AddSuitesPage enterSuiteName(int rowNum) throws Exception {
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
 		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
@@ -282,13 +354,14 @@ public class AddSuitesPage extends BaseClass {
 		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
 		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
 		sendKeys(suiteName, suiteNameFromExcel);
-		String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, suiteNameFromExcel);
+		String enteredSN = getAttribute(suiteName, "value");
+		String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, enteredSN);
 		log(Status.INFO, "Write the created suite in excel -" + writeExcel);
 		return this;
 	}
 
 	public AddSuitesPage existSuiteName(int rowNum) {
-		
+
 		String existSuite = getExistSuite();
 		writeExcelToOverwrite("Test Datas", "AddSuites", 1, 6, existSuite);
 		String duplicateSuiteName = readExcel("Test Datas", "AddSuites", rowNum, 6);
@@ -296,7 +369,6 @@ public class AddSuitesPage extends BaseClass {
 		log(Status.INFO, "Getting suite name data from excel -" + duplicateSuiteName);
 		return this;
 	}
-
 
 	public AddSuitesPage enterLengthWidthHeight(int rownum) {
 
@@ -326,6 +398,29 @@ public class AddSuitesPage extends BaseClass {
 		return this;
 	}
 
+	public AddSuitesPage nonMandatoryFieldIsNotEmpty() {
+
+		if (getAttribute(length, "value").isEmpty() && getAttribute(width, "value").isEmpty()
+				&& getAttribute(height, "value").isEmpty()) {
+			log(Status.FAIL, "Data is NOT entered in Non-Mandatory fields");
+		} else {
+			log(Status.PASS, "Data is entered in Non-Mandatory fields");
+		}
+		return this;
+
+	}
+
+	public AddSuitesPage suiteNameIsNotEmpty() {
+
+		if (getAttribute(suiteName, "value").isEmpty()) {
+			log(Status.FAIL, "Data is NOT entered in Suite Name* field");
+		} else {
+			log(Status.PASS, "Data is entered in Suite Name* field");
+		}
+		return this;
+
+	}
+
 	public AddSuitesPage addButton() {
 
 		click(btnAdd);
@@ -352,34 +447,36 @@ public class AddSuitesPage extends BaseClass {
 		click(view);
 	}
 
-	String createdSuite;
-
 	public void searchBox() throws Exception {
 
 		String createdSuite = readExcelFromLastRow("Test Datas", "CreatedSuites", 0);
-		
-		for (int i = 0; i < createdSuite.length(); i++) {
-			char letter = createdSuite.charAt(i);
+		String[] split = createdSuite.split("-");
+		String suiteName = split[0];
+		String timeStamp = split[1];
+		sendKeys(suitesSearchBox, suiteName + "-");
+		for (int i = 0; i < timeStamp.length(); i++) {
+			char letter = timeStamp.charAt(i);
 			String letterAsString = String.valueOf(letter);
 			sendKeys(suitesSearchBox, letterAsString);
 		}
 		waitForPageLoad();
-		sleep(1000);
+		sleep(5000);
 		backSpace(suitesSearchBox);
 		int length = createdSuite.length();
-        char lastLetter = createdSuite.charAt(length-1);
-        String enterLastLetter = String.valueOf(lastLetter);
+		char lastLetter = createdSuite.charAt(length - 1);
+		String enterLastLetter = String.valueOf(lastLetter);
 		sendKeys(suitesSearchBox, enterLastLetter);
-		waitForPageLoad();
 		waitForFullPageElementLoad();
-		
-		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {
+		sleep(3000);
+		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites", 0))) {
+			waitForFullPageElementLoad();
+			sleep(2000);
 			click(searchCreatedSN);
 			waitForPageLoad();
 			log(Status.PASS, "Searched suite is displayed successfully by clicking suite label name");
 		} else {
-			log(Status.FAIL, "Searched suite is not displayed as expected");
-			throw new Exception("Assertion failed searched suite is not displayed as expected");
+			log(Status.FAIL, "Searched suite is NOT displayed as expected");
+			throw new Exception("Assertion failed searched suite is NOT displayed as expected");
 		}
 	}
 
@@ -387,9 +484,9 @@ public class AddSuitesPage extends BaseClass {
 
 		waitForFullPageElementLoad();
 		System.out.println("Actual Suite : " + getText(searchCreatedSN));
-		System.out.println("Exp Suite : " + readExcelFromLastRow("Test Datas", "CreatedSuites",0));
+		System.out.println("Exp Suite : " + readExcelFromLastRow("Test Datas", "CreatedSuites", 0));
 
-		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites",0))) {
+		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites", 0))) {
 			click(searchCreatedSN);
 			log(Status.PASS, "Searched suite is displayed successfully by clicking suite label name");
 		} else {
@@ -400,8 +497,7 @@ public class AddSuitesPage extends BaseClass {
 
 	public String breadCrumSuiteNameText() {
 
-		waitForPageLoad();
-		createdSuite = readExcel("Test Datas", "AddSuites", 2, 6);
+		String createdSuite = readExcel("Test Datas", "AddSuites", 2, 6);
 		BC = BC.replaceAll("createdSN", createdSuite);
 		String textString = getTextString(BC);
 		return textString;
@@ -413,6 +509,16 @@ public class AddSuitesPage extends BaseClass {
 	}
 
 	
+	public void deleteExistLengthWidthHeightFieldsData() {
+		
+		deleteExistFieldData(length);
+		deleteExistFieldData(width);
+		deleteExistFieldData(height);
+	}
 	
-	
+public void deleteExistSuiteNameFieldData() {
+		
+		deleteExistFieldData(suiteName);
+		
+	}
 }

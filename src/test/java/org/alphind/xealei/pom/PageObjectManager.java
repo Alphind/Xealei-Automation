@@ -10,8 +10,10 @@
 
 package org.alphind.xealei.pom;
 
+import org.alphind.xealei.pages.AddCommonAreaPage;
 import org.alphind.xealei.pages.AddIndividualsPage;
 import org.alphind.xealei.pages.AddSuitesPage;
+import org.alphind.xealei.pages.EditCommonAreaPage;
 import org.alphind.xealei.pages.EditIndividualsPage;
 import org.alphind.xealei.pages.EditSuitesPage;
 import org.alphind.xealei.pages.ForgotPasswordPage;
@@ -41,7 +43,9 @@ public class PageObjectManager {
 	private ForgotPasswordPage forgotPasswordPage;
 	private UserManagementPage userManagementPage;
 	private MailinatorPage mailinatorPage;
-	
+	private AddCommonAreaPage addCommonAreaPage;
+	private EditCommonAreaPage editCommonAreaPage;
+
 	
 	public PageObjectManager(WebDriver driver) {
 		
@@ -116,4 +120,11 @@ public class PageObjectManager {
 	}
 	
 	
+	public AddCommonAreaPage getAddCommonAreaPage() {
+		return (addCommonAreaPage == null) ? addCommonAreaPage = new AddCommonAreaPage() : addCommonAreaPage;
+	}
+	
+	public EditCommonAreaPage getEditCommonAreaPage() {
+		return (editCommonAreaPage == null) ? editCommonAreaPage = new EditCommonAreaPage() : editCommonAreaPage;
+	}
 }

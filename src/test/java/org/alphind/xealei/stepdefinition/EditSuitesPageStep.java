@@ -24,23 +24,19 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should search the created suite")
 		public void user_should_search_the_created_suite() throws Exception {
 		   
-			logStep(methodName());
+			stepName(methodName());
 			
-		pom.getEditSuitesPage().searchBox(1);	
+			waitForFullPageElementLoad();
+			
+		pom.getAddSuitesPage().searchBox();	
 		}
 
-		@Then("User should verify the Edit Suite button is working")
-		public void user_should_verify_the_edit_suite_button_is_working(){
-		    
-			logStep(methodName());
-		
-			pom.getEditSuitesPage().editButton();            
-		}
-
-		@Then("User should verify the Edit Suite pop up screen is displayed")
-		public void user_should_verify_the_edit_suite_pop_up_screen_is_displayed() throws Exception {
-		    
-			logStep(methodName());
+		@Then("User should clicks on the Edit Suite button and verifies that the Edit Suite screen is displayed")
+		public void user_should_clicks_on_the_edit_suite_button_and_verifies_that_the_edit_suite_screen_is_displayed() throws Exception {
+			
+			stepName(methodName());
+			
+			pom.getEditSuitesPage().editButton();           
 		
 			String popupText = getText(pom.getEditSuitesPage().getEditSuitePopup());
 
@@ -56,10 +52,10 @@ public class EditSuitesPageStep extends BaseClass {
 		public void user_should_verify_the_limit_error_info_message_for_suite_Name_field_in_edit_suite_page (String expLimitValidationMsgForSN) {
 			
 		    
-			logStep(methodName());
+			stepName(methodName());
 
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
-			pom.getEditSuitesPage().dataForSuiteLimit();
+			pom.getEditSuitesPage().enterDataToCheckTheLimitInSuiteTextbox();
 			pom.getEditSuitesPage().updateButton();
 			
 			try {
@@ -70,27 +66,14 @@ public class EditSuitesPageStep extends BaseClass {
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
-			}
-			
-			try {
-				String expLocation = readExcel("Test Datas", "EditSuites", 1,1);
-				Assert.assertEquals("Location  Mismatched in Edit Suite Page", expLocation,
-						getText(pom.getAddSuitesPage().getDefaultLocationName()));
-				log(Status.PASS, "Location displayed as expected Exp Location : " + expLocation + " Actual Location :"
-						+ getText(pom.getAddSuitesPage().getDefaultLocationName()));
-
-			} catch (AssertionError e2) {
-				log(Status.FAIL, e2.getMessage());
-				e2.printStackTrace();
-			}
-			
+			}	
 		    
 		}
 		
 		@Then("User should verify the Edit Suite form for mandatory {string}")
 		public void user_should_verify_the_edit_suite_form_for_mandatory_and(String expSNMandatoryTxt) {
 		    
-			logStep(methodName());
+			stepName(methodName());
 			
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
 			deleteExistFieldData(pom.getAddSuitesPage().getLength());
@@ -116,7 +99,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify duplicate validation for Suite name {string} in edit suite page")
 		public void user_should_verify_duplicate_validation_for_suite_name_in_edit_suite_page(String expSuiteExistToastMessage) throws Exception {
 		    
-			logStep(methodName());
+			stepName(methodName());
 
 			pom.getEditSuitesPage().existSuiteName(1);
 			pom.getEditSuitesPage().updateButton();
@@ -129,20 +112,168 @@ public class EditSuitesPageStep extends BaseClass {
 				log(Status.PASS, "Suite Name already exists. Toast Message is displayed - "
 						+ getText(pom.getEditSuitesPage().getSNExitsToastMsg()));
 
+				pom.getEditSuitesPage().snAlreadyExistToastMsgOkButton();
+				
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+			
+			// Next Step Request
+			
+		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
+		
+		}
+		
+		@Then("User should verify the field Suite Name* for limit in edit suite popup")
+		public void user_should_verify_the_field_suite_name_for_limit_in_edit_suite_popup() {
+			
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+			String checkSuiteNameFieldMaxLimit = pom.getAddSuitesPage().checkSuiteNameFieldMaxLimit();
+			int length = checkSuiteNameFieldMaxLimit.length();
+			if(length==14) {
+				
+			log(Status.PASS, "Suite Name* field not allows to enter more than 14 characters");
+			} else {
+				log(Status.FAIL, "Suite Name* field allows to enter More Than 14 characters");
+			}
+		}
+
+		@Then("User should verify the field Length* for limit in edit suite popup")
+		public void user_should_verify_the_field_length_for_limit_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(2);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit in edit suite popup")
+		public void user_should_verify_the_field_width_for_limit_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+             String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(2);
+			
+			int length = checkWidthFieldMaxLimit.length();
+			
+			if(length==11) {
+				
+				log(Status.PASS, "Width* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Width* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Height* for limit in edit suite popup")
+		public void user_should_verify_the_field_height_for_limit() {
+
+			stepName(methodName());
+			
+           String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(2);
+			
+			int length = checkHeigthFieldMaxLimit.length();
+			
+			if(length==11) {
+				log(Status.PASS, "Height* field not allows to enter more than 11 characters");
+			} else {
+				log(Status.FAIL, "Height* field allows to enter More Than 11 characters");
+			}
+		    
+		}
+		
+		@Then("User should verify the field Length* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_length_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
+			
+	        String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(3);
+			
+			int length = checkLengthFieldMaxLimit.length();
+			if(length==11) {
+				
+				
+				log(Status.PASS, "Length* field not allows to enter more than 11 decimal characters");
+			} else {
+				log(Status.FAIL, "Length* field allows to enter More Than 11 decimal characters");
+			}
+		}
+		
+		@Then("User should verify the field Width* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_width_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			 String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(3);
+				
+				int length = checkWidthFieldMaxLimit.length();
+				if(length==11) {
+					
+					log(Status.PASS, "Width* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Width* field allows to enter More Than 11 decimal characters");
+				}
+		}
+		
+		
+		@Then("User should verify the field Height* for limit with decimal point in edit suite popup")
+		public void user_should_verify_the_field_height_for_limit_with_decimal_point_in_edit_suite_popup() {
+
+			stepName(methodName());
+			
+			  String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(3);
+				
+				int length = checkHeigthFieldMaxLimit.length();
+				
+				if(length==11) {
+					log(Status.PASS, "Height* field not allows to enter more than 11 decimal characters");
+				} else {
+					log(Status.FAIL, "Height* field allows to enter More Than 11 decimal characters");
+				}
+		}
+				
+		@Then("User should verify the x icon in edit suite screen is working")
+		public void user_should_verify_the_x_icon_in_edit_suite_screen_is_working() throws Exception {
+		    
+			stepName(methodName());
+
+			pom.getEditSuitesPage().closePopup();
+			
+			String expContent = "Changes you made may not be saved. Are you sure you want to Cancel?";
+			
+			if(pom.getAddSuitesPage().getClosePopupSuiteName().equals("Suite")) {
+				log(Status.PASS, "Close popup is displayed");
+			} else {
+				log(Status.FAIL, "Close popup is NOT displayed");
+				throw new Exception("Assertion Error");
+			}
+			
+			try {
+				Assert.assertEquals("Close popup content is NOT displayed as expected", expContent, pom.getAddSuitesPage().getclosePopupContentText());
+				log(Status.PASS, "Close popup content is displayed as expected - "+pom.getAddSuitesPage().getclosePopupContentText());
+			
+				pom.getAddSuitesPage().yesButton();	
+				
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
 
-			pom.getEditSuitesPage().snAlreadyExistToastMsgOkButton();
-		}
-		
-		@Then("User should verify the x icon in edit suite screen is working")
-		public void user_should_verify_the_x_icon_in_edit_suite_screen_is_working() throws Exception {
-		    
-			logStep(methodName());
-
-			pom.getEditSuitesPage().closePopup();
+			waitForFullPageElementLoad();
 
 			if (pom.getEditSuitesPage().getBtnEditSuite().isEnabled()) {
 				log(Status.PASS, "Edit Suite popup is closed");
@@ -155,7 +286,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen")
 		public void user_should_verify_the_user_able_to_change_the_status_as_InActive_and_is_displayed_accordingly_on_update_of_availability_field_in_edit_screen() throws Exception {
 		    	
-			logStep(methodName());
+			stepName(methodName());
     
            pom.getEditSuitesPage().editButton();
 		    
@@ -170,16 +301,19 @@ public class EditSuitesPageStep extends BaseClass {
 		    pom.getEditSuitesPage().updateButton();  
 		    
 			try {
+				waitForVisiblityOfElement(pom.getEditSuitesPage().getSavedSuccessfullToastMsg(), 10);
 				Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 						getText(pom.getEditSuitesPage().getSavedSuccessfullToastMsg()));
 				log(Status.PASS, "Toast Message is displayed : "
 						+ getText(pom.getEditSuitesPage().getSavedSuccessfullToastMsg()));
 
+				pom.getEditSuitesPage().savedSuccessfulToastMsgOkButton();
+				
 			} catch (AssertionError e) {
 				log(Status.FAIL, e.getMessage());
 				e.printStackTrace();
 			}
-			pom.getEditSuitesPage().savedSuccessfulToastMsgOkButton();
+			
 			
 			
 			 try {
@@ -195,7 +329,7 @@ public class EditSuitesPageStep extends BaseClass {
 @Then("User should verify the breadcrums link should be display with module suite name > selected suite name in edit suite page")
 				public void user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name_in_edit_suite_page() throws Exception {
 				    
-					logStep(methodName());
+					stepName(methodName());
 
 					String txtBreadCrum = getText(pom.getEditSuitesPage().getBreadCrumLink());
 					System.out.println("Breadcrums Suite text - " + txtBreadCrum);
@@ -216,7 +350,7 @@ public class EditSuitesPageStep extends BaseClass {
 				@Then("User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page")
 				public void user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page_in_edit_suite_page() throws Exception {
 				
-					logStep(methodName());
+					stepName(methodName());
 					
 					pom.getEditSuitesPage().returnToSuitesPageBCText();
 
@@ -237,7 +371,7 @@ public class EditSuitesPageStep extends BaseClass {
 					@Then("User should update all fields and verify the toast message after update all fields {string} in edit Suite Page")
 					public void user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(String string) throws Exception {
 					    
-						logStep(methodName());
+						stepName(methodName());
 						
 						writeExcel("Test Datas", "UpdatedSuites", 0, getAttribute(pom.getEditSuitesPage().getSuiteName(),"value"));
 						
@@ -258,25 +392,27 @@ public class EditSuitesPageStep extends BaseClass {
 						
 						pom.getEditSuitesPage().updateButton();
 
-						waitForPageLoad();
 						try {
+							waitForVisiblityOfElement(pom.getAddSuitesPage().getSavedSuccessfullToastMessage(),10);
 							Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
 									getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));
 							log(Status.PASS, "Toast Message is displayed : "
 									+ getText(pom.getAddSuitesPage().getSavedSuccessfullToastMessage()));							
 
+							pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+							
 						} catch (AssertionError e) {
 							log(Status.FAIL, e.getMessage());
 							e.printStackTrace();
 						}
-						pom.getAddSuitesPage().savedSuccessfulToastMsgOkButton();
+						
 					}
 
 
-					@Then("User should verify all fields are created successsfully in edit Suite Page")
-					public void user_should_verify_all_fields_are_created_successsfully_in_edit_suite_page() throws Exception {
+					@Then("User should verify all fields are updated successsfully in edit Suite Page")
+					public void user_should_verify_all_fields_are_updated_successsfully_in_edit_suite_page() throws Exception {
 					    
-						logStep(methodName());
+						stepName(methodName());
 						
 						//deleteExistFieldData(pom.getEditSuitesPage().getSuitesSearchBox());
 						//pom.getEditSuitesPage().searchBox(1);

@@ -18,11 +18,8 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features//TC2_Forgot Password.feature",
-tags = "@FP", glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true, plugin = {
-		"html:target/html.html", 
-		"junit:target/junit.xml", 
-		"json:target/json.json"})
+tags = "@ForgotPassword-AllScenario", glue = "org.alphind.xealei.stepdefinition", 
+dryRun = !true, monochrome = true)
 
 public class TC2ForgotPasswordTestRunner {
 

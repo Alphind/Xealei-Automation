@@ -8,101 +8,43 @@
 #
 #*/
 
+@ForgotPassword-AllScenario
+@Login-Regression
 Feature: Verify Xealei Forgot Page
 
-@FP
-  Scenario Outline: To verify the Xealei FORGOT PASSWORD-POP UP Page
+
+  Scenario Outline: To verify the Xealei Forgot-Popup Page
     Given User is on Xealei login page
     And User should verify Forget password link is working
     Then User must verify the tab url address for FORGOT PASSWORD screen
     Then User must verify the Forgot Password text is displayed "FORGOT PASSWORD"
     Then User must verify the Lable name & Place holder text for Email field
     Then User must click  the Reset button without perform Email field and verify the info message is displayed "Email is required"
-    #BUG
     Then User must verify the Email field for formats "Please enter a valid email address"
     Then User must verify the Email field with invalid data "Email ID not exist"
     Then User must verify the email field for unregistered user "Email ID not exist"
-    Then User must verify the email for blocked user
-    Then User must verify the email for Inactive user
+    
+    #NOT IMPLEMENTED
+    #Then User must verify the email for blocked user
+    #Then User must verify the email for Inactive user
+    
     Then User must verify the email field with valid data
     Then User must verify the email sent successfully content
     Then User must verify the Try Again text link is working
     Then User must verify the login button in forgot password screen
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  Scenario Outline: To verify the Reset password email field with invalid format
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must perform reset password with invalid data format
-    
-
-  Scenario Outline: To verify the Reset password email field with invalid data
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must perform reset password with invalid data
-    Then User must verify after click Reset button the error msg should displayed "Email ID not exist"
-
-  Scenario Outline: To verify the Login hyperlink
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must click the Login hyperlink
-    And User must verify once the page is redirected to login page successfully "LOGIN"
-    Then User must also verify the web url after successfully redirected to login page
-
-  Scenario Outline: To verify Reset password field with valid data
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must perform forgot password with valid mail id
-    Then User must verify the success message pop up is displayed "EMAIL SENT!"
-
-  Scenario Outline: To verify the success message pop contents after Reset the Password
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must perform forgot password with valid mail id
-    Then User must verify the success message pop up is displayed "EMAIL SENT!"
-    Then User must also verify the content for create a new password
-
-  Scenario Outline: To verify the Try agin hyperlink
-    Given User is on Xealei login page
-    When User must click the forgot password? hyperlink
-    And User must verify once the page is navigate to forgot password page successfully "FORGOT PASSWORD"
-    Then User must also verify the web url after successfully navigate to forgot password page
-    And User must perform forgot password with valid mail id
-    Then User must verify the success message pop up is displayed "EMAIL SENT!"
-    And User must click the Try again hyperlink
-    Then User must verify the page is redirected to forgot password page successfully "FORGOT PASSWORD"
-    
-  Scenario Outline: To verify the Users Mail for Reset the Password
-  
-  
+    And User should open the mailinator site for to verify whether the mail is received or not    
+    And User should search the existing mail inbox
+    And User should verify the content and body of the Forgot mail
+    And User should verify the Reset Password link is working in mail.
+    Then User should switch to New Password page
+    And User should verify the Label name & Placeholder text for the New Password Re-Enter Password field
+    And User should verify whether the fields are mandatory in new password page "Please enter new password", "Please enter confirm password"
+    And User should verify that the eye icon is functional in the New Password field
+    And User should verify that the new password field must have alphanumeric restriction "New password should be alphanumeric"
+    And User should verify whether an error message is displayed if the New Password and Re-Enter Password fields are mismatched "Password is not matched"
+    And User should confirm the fields and button with valid data
+    Then User should verify the reset password page contents
+    And User should verify the Login button on the password reset screen
+    And User should perform login with new password and verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+    Then User should close the browser
+      

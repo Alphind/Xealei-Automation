@@ -41,7 +41,8 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@When("User is login as facility admin.")
 	public void User_is_login_as_facility_admin() {
-		logStep(methodName());
+		
+		//logStep(methodName());
 
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
@@ -59,7 +60,8 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify User Management module is available.")
 	public void Verify_User_Management_module_is_available() {
-		logStep(methodName());
+		
+		//logStep(methodName());
 		if(pom.getHomePage().isUserManagementPresent()){
 			log(Status.PASS, "User Management module is present on Home Screen.");
 		}

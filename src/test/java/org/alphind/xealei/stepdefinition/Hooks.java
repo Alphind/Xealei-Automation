@@ -30,7 +30,6 @@ public class Hooks extends BaseClass {
 		browserType();
 		env();
 		implicitWaitBySeconds(15);
-
 	}
 
 	@After
@@ -40,8 +39,9 @@ public class Hooks extends BaseClass {
 		if (getDriver() != null) {
 			quit();
 		}
+
 		}
-}
+	}
 
 //	@After(order = 2)
 //	public void cleaningProcess() {

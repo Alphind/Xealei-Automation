@@ -154,7 +154,7 @@ public class EditSuitesPage extends BaseClass {
 	@FindBy(xpath = "//button[@x-as-save-btn]")
 	private WebElement btnAdd; 
 	
-	@FindBy(xpath = "//span[contains(text(),' View ')]/parent::button")
+	@FindBy(xpath = "(//span[contains(text(),' View ')])[1]/parent::button")
 	private WebElement view;
 	
 	
@@ -330,7 +330,7 @@ public class EditSuitesPage extends BaseClass {
 		}
 	}
 
-	public void dataForSuiteLimit() {
+	public void enterDataToCheckTheLimitInSuiteTextbox() {
 		
 		sendKeys(suiteName, "AB");
 	}
@@ -338,8 +338,8 @@ public class EditSuitesPage extends BaseClass {
 	public void updateButton() {
 	
 		click(btnUpdateSuite);
-		//waitForPageLoad();
 	}
+	
 	public void updateSuiteName(int rowNum) throws Exception {
 
 		String suiteNameFromExcel = (readExcel("Test Datas", "EditSuites", rowNum, 0) + dateAndTime());
@@ -441,6 +441,8 @@ public class EditSuitesPage extends BaseClass {
 		waitForFullPageElementLoad();
 		
 		if (getText(searchCreatedSN).equals(createdSuite)) {
+				waitForElementToBeClickable(view, 10);
+				waitForFullPageElementLoad();
 			click(view);
 			waitForPageLoad();
 			waitForVisiblityOfElement(createdSN, 5);
