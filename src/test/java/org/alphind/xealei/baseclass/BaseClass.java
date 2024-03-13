@@ -44,6 +44,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.velocity.runtime.directive.Foreach;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -74,6 +75,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -309,6 +311,25 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 	}
+	
+	// 15. Click
+		public void forceClick(WebElement element) {
+			String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+			while(true) {
+				try {
+					element.click();
+					log(Status.INFO, "Click the " + methodName);
+					break;
+				} catch (ElementClickInterceptedException e) {
+					continue;
+				}catch(Exception e) {
+					log(Status.FAIL, e.getMessage());
+					e.printStackTrace();
+					break;
+				}
+			}
+			
+		}
 
 	public void deleteExistFieldData(WebElement element) {
 		
@@ -966,7 +987,8 @@ public class BaseClass {
 		// JavascriptExecutor executor = (JavascriptExecutor)dr.get();
 		try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("argument[0].scrollIntoView()", element);
+		//.scrollIntoView(true);
+		executor.executeScript("argument[0].scrollIntoView(true);", element);
 		log(Status.INFO, "Scroll into an view");
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
