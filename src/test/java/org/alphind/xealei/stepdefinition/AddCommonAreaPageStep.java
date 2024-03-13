@@ -76,7 +76,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 
 		stepName(methodName());
 
-		waitForPageLoad();
+//		waitForPageLoad();
 		
 		pom.getAddCommonAreaPage().addCommonAreaButton();
 
@@ -231,8 +231,15 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_perform_common_area_by_entering_only_mandatory_field() throws Exception {
 
 		stepName(methodName());
+		
+		pom.getAddCommonAreaPage().addCommonAreaButton();
 
-		pom.getAddCommonAreaPage().commonAreaName(1).addButtonInCommenAreaPopup();
+		waitForFullPageElementLoad();
+		
+		pom.getAddCommonAreaPage().commonAreaName(1);
+		waitForFullPageElementLoad();
+		pom.getAddCommonAreaPage().mandatoryFieldIsNotEmpty();
+		pom.getAddCommonAreaPage().addButtonInCommenAreaPopup();
 
 		try {
 			waitForVisiblityOfElement(pom.getAddCommonAreaPage().getSavedSuccessfullToastMessage(), 10);

@@ -254,6 +254,18 @@ public AddCommonAreaPage nonMandatoryFieldIsNotEmpty() {
 
 }
 
+public AddCommonAreaPage mandatoryFieldIsNotEmpty() {
+
+	if(getAttribute(commonAreaNameTxtbox,"value").isEmpty()) {
+		log(Status.FAIL, "Data is NOT entered in Mandatory field");
+	} else {
+		log(Status.PASS, "Data is entered in Mandatory field");
+	}
+	return this;
+
+}
+
+
 
 public void closePopup() {
 

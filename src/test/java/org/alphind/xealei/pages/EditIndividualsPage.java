@@ -500,13 +500,19 @@ public class EditIndividualsPage extends BaseClass{
 	
 	
 	
-	
+	public void navigateToPersonalInformationTab() {
+		
+		click(personalTab);
+		waitForFullPageElementLoad();
+	}
 	
 	
 	
 	
 	public void searchBox() throws Exception{
 
+		deleteExistFieldData(individualSearchBox);
+		
 		String crIndividualLastName = readExcelFromLastRow("Test Datas", "CreatedIndividuals", 1);
 		String[] split = crIndividualLastName.split(" ");
 		String firstName = split[0];

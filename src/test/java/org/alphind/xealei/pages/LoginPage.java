@@ -449,7 +449,7 @@ public class LoginPage extends BaseClass {
 
 		String environment = getConfigureProperty("Environment");
 		
-		waitForVisiblityOfElement(userName, 3);
+		waitForVisiblityOfElement(userName, 10);
 		
 		switch (environment) {
 

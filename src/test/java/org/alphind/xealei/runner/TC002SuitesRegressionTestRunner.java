@@ -18,7 +18,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features", publish = true,
-tags = "@OccupancyZone-Regression", glue = "org.alphind.xealei.stepdefinition", 
+tags = "@OccupancyZoneSuites-Regression", glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 
 //plugin = {
@@ -26,6 +26,6 @@ dryRun = !true, monochrome = true)
 //		"junit:target/junit.xml", 
 //		"json:target/json.json"}
 
-public class TC002OccupancyZoneRegressionTestRunner {
+public class TC002SuitesRegressionTestRunner {
 
 }

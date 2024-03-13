@@ -9,7 +9,7 @@
 #*/
 
 @AddCommonArea-AllScenarios
-@OccupancyZone-Regression
+@OccupancyZoneCommonArea-Regression
 Feature: Verify Xealei Suites > Add Suites Page
 
   Background: 
@@ -35,11 +35,12 @@ Feature: Verify Xealei Suites > Add Suites Page
     Then User should verify the field Width* for limit with decimal point
     Then User should verify the field Height* for limit with decimal point
     Then User should verify whether able to close the popup by clicking x icon
-
-  
-    Scenario: To verify user able to Add/Create Common Area by perform only mandatory field
     And User should perform Common Area by entering only Mandatory field
   
+    #Scenario: To verify user able to Add/Create Common Area by perform only mandatory field
+    #
+    #And User should perform Common Area by entering only Mandatory field
+  #
 
 @SanityTesting
   Scenario: To verify user able to Add/Create Common Area by entering all fields also verify the 'Bread Crums' link

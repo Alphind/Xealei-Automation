@@ -8,7 +8,7 @@
 #
 #*/
 
-@OccupancyZone-Regression
+@OccupancyZoneSuites-Regression
 @EditSuites-AllScenarios
 Feature: Verify Xealei Suites > Edit Suites Page
 

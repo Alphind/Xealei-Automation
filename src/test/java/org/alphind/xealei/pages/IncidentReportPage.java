@@ -1839,9 +1839,13 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void residentialManagerReviewerComments(String decision) {
 		decision = decision.toUpperCase();
+		
+		waitForVisiblityOfElement(reviewerComments, 10);
+		
 		switch (decision) {
 		case "APPROVED": {
 			String comments = readExcel("Test Datas", "Incident Reports", 1, 21);
+			
 			sendKeys(reviewerComments, comments);
 			break;
 		}

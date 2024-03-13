@@ -9,7 +9,9 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(features = "src//test//resources//Features", 
 
-tags ="@AllApproveScenario or @RejectAndReapprovebyChiefNurseScenario or @RejectAndReapprovebyResidentialManagerScenario",
+tags ="@IRManual-AllApproveScenario or @RejectAndReapprovebyChiefNurseScenario or"
+		+ " @RejectAndReapprovebyResidentialManagerScenario",
+
 
 glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
