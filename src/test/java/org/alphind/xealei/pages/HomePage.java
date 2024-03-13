@@ -95,6 +95,9 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
 	
+	@FindBy(xpath = "//li/a/span[contains(text(),'User Management')]")
+	private WebElement userManagementModule;
+	
 
 
 	
@@ -169,7 +172,8 @@ public class HomePage extends BaseClass {
 	 * 
 	 */
 	public boolean isHomePageDisplayed() {
-		waitForPageLoad();
+		sleep(2000);
+		waitForPageLoad(this.driver);
 		if (homePageText.isDisplayed()) {
 			return true;
 		}
@@ -242,6 +246,23 @@ public class HomePage extends BaseClass {
 			waitForPageLoad();
 		} else {
 			log(Status.FAIL, "Unable to click the Individual Module");
+		}
+	}
+	
+	/**
+	 * Navigate to the User Management page is displayed
+	 * 
+	 * @author Nandhalala
+	 * 
+	 */
+	public void navigateToUserManagementModule() {
+		
+		if (isUserManagementPresent()) {
+			waitForFullPageElementLoad();
+			click(userManagementModule);
+			waitForPageLoad(this.driver);
+		} else {
+			log(Status.FAIL, "Unable to click the User Management Module");
 		}
 	}
 
@@ -402,6 +423,8 @@ public class HomePage extends BaseClass {
 		waitForPageLoad(this.driver);
 		String noFallReason = readExcel("Test Datas", "Incident Reports", 1, 33).trim();
 		String noFallReasonXpath = dropdownOption.replaceAll("XX", noFallReason);
+		waitForInVisiblityOfElement(this.driver, 
+				this.driver.findElement(By.xpath(noFallReasonXpath)), 3);
 		click(this.driver.findElement(By.xpath(noFallReasonXpath)));
 	}
 	
@@ -430,6 +453,12 @@ public class HomePage extends BaseClass {
 		sendKeys(alertNotificationDescriptionText, description);
 	}
 	
+	/**
+	 * Created by Nandhalala
+	 */
+	public boolean isUserManagementPresent() {
+		return userManagementModule.isDisplayed();
+	}
 	
-
+	
 }

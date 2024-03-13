@@ -11,6 +11,8 @@
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -78,6 +80,25 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//img[@class='logo-img']")
 	private WebElement XealeiImageInLoginPage;
 
+	@FindBy(xpath = "//input[@id='mat-checkbox-1-input']")
+	private WebElement iAgreeCheckBox;
+	
+	@FindBy(xpath = "//h1[contains(text(),'PRIVACY POLICY')]")
+	private WebElement privacyPolicyHeading;
+	
+	@FindBy(xpath = "//span[contains(text(),'×')]")
+	private WebElement privacyPolicyClose;
+	
+	@FindBy(xpath = "//input[@formcontrolname='cpassword']")
+	private WebElement newPassword;
+	
+	@FindBy(xpath = "//input[@formcontrolname='confirmpassword']")
+	private WebElement confirmNewPassword;
+	
+	@FindBy(xpath = "//button[contains(text(),'Create New Password')]")
+	private WebElement createNewPasswordButton;
+	
+	
 	
 	
 	
@@ -237,6 +258,24 @@ public class LoginPage extends BaseClass {
 	}
 
 	/**
+	 * Enter the invalid data to 'Email*' field.
+	 * 
+	 * @author Nandhalala.
+	 * 
+	 * @created on 05-MAR-2024
+	 * 
+	 */
+	public void enterUserName(String username) {
+		try {
+			waitForPageLoad();
+		}catch (NoSuchElementException e) {
+			
+		}
+		
+		sendKeys(userName, username);
+	}
+	
+	/**
 	 * Enter the invalid data to 'password*' field.
 	 * 
 	 * @author Alphi-MohamedRazul
@@ -247,6 +286,24 @@ public class LoginPage extends BaseClass {
 	public void password() {
 		
 		sendKeys(password, "xe23Dal%q3");
+		pressEnterKeyInPasswordField();
+	}
+	
+	/**
+	 * Enter the invalid data to 'password*' field.
+	 * 
+	 * @author Nandhalala.
+	 * 
+	 * @created on 05-MAR-2024.
+	 * 
+	 */
+	public void password(String passWord) {
+		try {
+			waitForPageLoad();
+		}catch(NoSuchElementException e) {
+			
+		}
+		sendKeys(password, passWord);
 		pressEnterKeyInPasswordField();
 	}
 
@@ -599,6 +656,61 @@ public class LoginPage extends BaseClass {
 	
 	
 	
-
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Click on I Agree check box.
+	 * 
+	 */
+	public void clickIAgreeCheckBox() {
+		waitForVisiblityOfElement(iAgreeCheckBox, 10);
+		//span[contains(text(),'I Agree to')]/preceding-sibling::div/input
+		WebElement agree = this.driver.findElement(By.xpath("//span[contains(text(),'I Agree to')]/preceding-sibling::div"));
+//		WebElement agree = this.driver.findElement(By.xpath("//span[contains(text(),'I Agree to')]"));
+		click(agree);
+//		forceClick(iAgreeCheckBox);
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Enter new password.
+	 * 
+	 */
+	public void newPassword() {
+		waitForVisiblityOfElement(newPassword, 10);
+		sendKeys(newPassword, readExcel("Test Datas", "User Management", 1, 28).trim());
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Enter new password.
+	 * 
+	 */
+	public void confirmNewPassword() {
+		
+		sendKeys(confirmNewPassword, readExcel("Test Datas", "User Management", 1, 28).trim());
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Click complete new password button.
+	 * 
+	 */
+	public void completeNewPassword() {
+		waitForVisiblityOfElement(createNewPasswordButton, 10);
+		click(createNewPasswordButton);
+	}
 	
 }
