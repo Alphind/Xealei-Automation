@@ -1336,7 +1336,7 @@ public class IncidentReportPageStep extends BaseClass {
 				
 				stepName(methodName());
 				
-				sleep(2000);
+				sleep(3000);
 				waitForFullPageElementLoad(rmDriver);
 				
 			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");

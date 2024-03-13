@@ -34,7 +34,7 @@ license agreement
 				<configuration>
 					<!-- Specify your test runner classes here -->
 					<includes>
-						<include>org.alphind.xealei.runner.SanityTestRunner</include>
+						<include>org.alphind.xealei.runner.TC003CommonAreaRegressionTestRunner</include>
 					</includes>
 				</configuration>
 				<dependencies>

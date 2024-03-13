@@ -22,7 +22,7 @@ public class EditIndividualsStep extends BaseClass {
 	}
 
 	@Then("User should verify the name dob id guardian contact details is displayed")
-	public void user_should_verify_the_name_dob_id_guardian_contact_details_is_displayed() {
+	public void user_should_verify_the_name_dob_id_guardian_contact_details_is_displayed() throws Exception {
 
 		stepName(methodName());
 		
@@ -169,8 +169,15 @@ public class EditIndividualsStep extends BaseClass {
 			
 	     } else {
 	    	 log(Status.FAIL, "Searched Individual Name doesn't displayed as expected");
+	    	 throw new Exception("Searched Individual Name doesn't displayed as expected");
 		}
 
+		
+		 String IndNeedToUpdate = getText(pom.getEditIndividualsPage().getCreatedIndName());
+		 writeExcel("Test Datas", "UpdatedIndividuals", 0, IndNeedToUpdate);
+		 
+		 pom.getEditIndividualsPage().arrowRight();
+		 waitForPageLoad();
 	}
 	
 	@Then("User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page")
@@ -862,17 +869,18 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	}
 	}
 	 
-	
+	 // Sanity Testing step file
+	 
+	 @Then("User should navigate to personal information tab")
+	 public void user_should_navigate_to_personal_information_tab() {
+	    
+		 pom.getEditIndividualsPage().navigateToPersonalInformationTab();
+	 }
+	 
 		 @Then("User should update all fields and verify the toast message after perform all fields {string} in edit individual Page")
 		 public void user_should_update_all_fields_and_verify_the_toast_message_after_perform_all_fields_in_edit_individual_page(String expIndUpdatedToastMsg) throws Exception {
 		     
 			 stepName(methodName());
-			 
-			 String IndNeedToUpdate = getText(pom.getEditIndividualsPage().getCreatedIndName());
-			 writeExcel("Test Datas", "UpdatedIndividuals", 0, IndNeedToUpdate);
-			 
-			 pom.getEditIndividualsPage().arrowRight();
-			 waitForPageLoad();
 			 
 			 pom.getEditIndividualsPage().EditButton();
 			 waitForPageLoad();

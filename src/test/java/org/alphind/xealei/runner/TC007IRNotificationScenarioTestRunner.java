@@ -9,15 +9,14 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(features = "src//test//resources//Features", 
 
-tags ="@NotificationAlertAllApproveScenario or "
+tags ="@IRNotification-AllApproveScenario or "
 		+ "@NotificationAlertRejectAndReapprovebyChiefNurseScenario  or "
 		+ "@NotificationAlertRejectAndReapprovebyResidentialManagerScenario or "
 		+ "@NotificationAlertThroughGridAllApproveScenario or "
 		+ "@NotificationAlertThroughGridRejectAndReapprovebyChiefNurseScenario  or "
 		+ "@NotificationAlertThroughGridRejectAndReapprovebyResidentialManagerScenario ",
 
-glue = "org.alphind.xealei.stepdefinition", 
-dryRun = !true, monochrome = true)
+ glue = "org.alphind.xealei.stepdefinition", dryRun = !true, monochrome = true)
 
 
 

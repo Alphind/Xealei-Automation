@@ -311,6 +311,8 @@ public class EditSuitesPage extends BaseClass {
 	
 	public void editButton() {
 		
+		deleteExistFieldData(suitesSearchBox);
+		
 		sleep(2000);
 		click(btnEditSuite);
 	}

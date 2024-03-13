@@ -26,6 +26,6 @@ dryRun = !true, monochrome = true)
 //		"junit:target/junit.xml", 
 //		"json:target/json.json"}
 
-public class TC003IndividualsRegressionTestRunner {
+public class TC004IndividualsRegressionTestRunner {
 
 }

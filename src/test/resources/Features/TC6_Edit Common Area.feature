@@ -9,7 +9,7 @@
 #*/
 
 @EditCommonArea-AllScenarios
-@OccupancyZone-Regression
+@OccupancyZoneCommonArea-Regression
 Feature: Verify Xealei Suites > Edit Suites Page
 
   Background: 

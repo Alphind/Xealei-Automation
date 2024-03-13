@@ -148,6 +148,8 @@ public class EditCommonAreaPage extends BaseClass{
 	
 	public void editButton() {
 		
+		deleteExistFieldData(commonAreaSearchBox);
+		
 		sleep(2000);
 		waitForElementToBeClickable(commonAreaEditButton, 10);
 		click(commonAreaEditButton);

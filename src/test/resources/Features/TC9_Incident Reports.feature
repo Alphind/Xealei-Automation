@@ -8,9 +8,6 @@
 #
 #*/
 
-
-
-@IR-AllScenarios
 Feature: Verify Incident Report Form creation via manually & via fall alert notification by  Facility Admin, Staff, Chief Nurse and Resident Manager
 
 Background:
@@ -69,8 +66,8 @@ Background:
     Then User should verify the breadcrums texts
         
    
-@AllApproveScenario
 @SanityTesting
+@IRManual-AllApproveScenario
 Scenario Outline: To verify an Incident report can be approved by all levels of users.
 
     Then User should verify the Incident report module is working
@@ -166,8 +163,8 @@ Scenario Outline: To verify whether an Incident report can be created through no
 		Then Verify text in what casued the fall matches with Description.
 		
 
-@NotificationAlertAllApproveScenario
 @SanityTesting
+@IRNotification-AllApproveScenario
 Scenario Outline: To verify whether an Incident report can be created through notification method triggered through sensors and approved by all level of users from notification.
 		
 		When Notification is Triggered from a sensor.
