@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.stepdefinition;
 
 import java.util.ArrayList;
@@ -26,7 +36,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify Forget password link is working")
 	public void user_should_verify_forget_password_link_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		if (pom.getLoginPage().isForgotPasswordLinkDisplayed()) {
 
@@ -49,7 +59,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the tab url address for FORGOT PASSWORD screen")
 	public void user_must_verify_the_tab_url_address_for_forgot_password_screen() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 
@@ -59,20 +69,22 @@ public class ForgotPasswordPageStep extends BaseClass {
 				Assert.assertEquals("Login page url is wrong",
 						readExcel("Test Datas", "Environments", 1, 1) + "login/forgot", getCurrentUrl());
 				log(Status.INFO, "Forgot Password tab URL Address verified - " + getCurrentUrl());
-
+              log(Status.PASS, "Forgot Password tab URL Address is displayed as expected | Actual URL - "+getCurrentUrl());
 				break;
 			}
 			case "PREPROD": {
 				Assert.assertEquals("Login page url is wrong",
 						readExcel("Test Datas", "Environments", 2, 1) + "login/forgot", getCurrentUrl());
 				log(Status.INFO, "Forgot Password tab URL Address verified - " + getCurrentUrl());
-				break;
+	              log(Status.PASS, "Forgot Password tab URL Address is displayed as expected | Actual URL - "+getCurrentUrl());
+                      break;
 			}
 			case "PROD": {
 				Assert.assertEquals("Login page url is wrong",
 						readExcel("Test Datas", "Environments", 3, 1) + "login/forgot", getCurrentUrl());
 				log(Status.INFO, "Forgot Password tab URL Address verified - " + getCurrentUrl());
-				break;
+	              log(Status.PASS, "Forgot Password tab URL Address is displayed as expected | Actual URL - "+getCurrentUrl());
+                     break;
 			}
 			default: {
 				break;
@@ -88,7 +100,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the Forgot Password text is displayed {string}")
 	public void user_must_verify_the_forgot_password_text_is_displayed(String getExpForgotPassTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			Assert.assertEquals("FORGOT PASSWORD text is NOT Displayed as expected", getExpForgotPassTxt,
@@ -103,7 +115,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the Lable name & Place holder text for Email field")
 	public void user_must_verify_the_lable_name_place_holder_text_for_email_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 
@@ -131,7 +143,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	public void user_must_click_the_reset_button_without_perform_email_field_and_verify_the_info_message_is_displayed(
 			String expInfoMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().resetButton();
 
@@ -150,7 +162,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the Email field for formats {string}")
 	public void user_must_verify_the_email_field_for_formats(String expInfoMsgText) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().email(1, 0).resetButton();
 
@@ -187,7 +199,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the Email field with invalid data {string}")
 	public void user_must_verify_the_email_field_with_invalid_data(String expNotFoundToastMsgText) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().deleteEmailFieldData();
 		pom.getForgotPasswordPage().email(2, 0).resetButton();
@@ -213,7 +225,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the email field for unregistered user {string}")
 	public void user_must_verify_the_email_field_for_unregistered_user(String expNotFoundToastMsgText) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().deleteEmailFieldData();
 
@@ -242,21 +254,21 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the email for blocked user")
 	public void user_must_verify_the_email_for_blocked_user() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 	}
 
 	@Then("User must verify the email for Inactive user")
 	public void user_must_verify_the_email_for_inactive_user() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 	}
 
 	@Then("User must verify the email field with valid data")
 	public void user_must_verify_the_email_field_with_valid_data() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().deleteEmailFieldData();
 
@@ -279,7 +291,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the email sent successfully content")
 	public void user_must_verify_the_email_sent_successfully_content() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			waitForFullPageElementLoad();
@@ -302,7 +314,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the Try Again text link is working")
 	public void user_must_verify_the_try_again_text_link_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getForgotPasswordPage().TryAgain();
 
@@ -319,7 +331,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User must verify the login button in forgot password screen")
 	public void user_must_verify_the_login_button_in_forgot_password_screen() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String windowHandle = driver.getWindowHandle();
 		System.out.println("forgot Window - " + windowHandle);
@@ -340,7 +352,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should open the mailinator site for to verify whether the mail is received or not")
 	public void user_should_open_the_mailinator_site_for_to_verify_whether_the_mail_is_received_or_not() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			mailinatorDriver = getNewDriver();
@@ -356,7 +368,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should search the existing mail inbox")
 	public void user_should_search_the_existing_mail_inbox() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		mailinatorpom.getForgotPasswordPage().searchExistMail(1).goButton();
 		waitForFullPageElementLoad(mailinatorDriver);
@@ -365,7 +377,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify the content and body of the Forgot mail")
 	public void user_should_verify_the_content_and_body_of_the_forgot_mail() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		sleep(3000);
 		waitForFullPageElementLoad(mailinatorDriver);
@@ -448,7 +460,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify the Reset Password link is working in mail.")
 	public void user_should_verify_the_reset_password_link_is_working_in_mail() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 			mailinatorpom.getForgotPasswordPage().resetPasswordTextLink();
 	}
@@ -456,18 +468,63 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should switch to New Password page")
 	public void user_should_switch_to_new_password_page() {
 	    
-      stepName(methodName());
+      logWithLabelName(getMethodName());
 		
 		Set<String> windowHandles = mailinatorDriver.getWindowHandles();
 		List<String> li = new ArrayList<String>(windowHandles);
 		mailinatorDriver.switchTo().window(li.get(1));
 	}
 	
+	@Then("User should verify the tab url address for NEW PASSWORD screen")
+	public void user_should_verify_the_tab_url_address_for_new_password_screen() throws Exception {
+	   
+		 logWithLabelName(getMethodName());
+		
+		 try {
+				String environment = getConfigureProperty("Environment");
+				String[] split = mailinatorDriver.getCurrentUrl().split("new-password/");
+				System.out.println(split[0]);
+				System.out.println("Current Url - "+mailinatorDriver.getCurrentUrl());
+				
+				waitForFullPageElementLoad(mailinatorDriver);
+				switch (environment) {
+	
+				case "QA": {
+					Assert.assertEquals("New Password page url is wrong", readExcel("Test Datas", "Environments", 1, 1) + "login/new-password/",
+							split[0].concat("new-password/"));
+					log(Status.PASS, "URL Address for NEW PASSWORD is displayed as expected | Act URL - "+ getCurrentUrl());
+					log(Status.INFO, "Tab URL Address verified - NEW PASSWORD QA - " + getCurrentUrl());
+					break;
+				}
+				case "PREPROD": {
+					Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 2, 1) + "login/new-password/",
+							split[0].concat("new-password/"));
+					log(Status.PASS, "Client code is displayed as expected | Act URL - "+ getCurrentUrl());
+					log(Status.INFO, "Tab URL Address verified - Login using PREPROD - " + getCurrentUrl());
+					break;
+				}
+				case "PROD": {
+					Assert.assertEquals("Login page url is wrong", readExcel("Test Datas", "Environments", 3, 1) + "login/new-password/",
+							split[0].concat("new-password/"));
+					log(Status.PASS, "Client code is displayed as expected | Act URL - "+ getCurrentUrl());
+					log(Status.INFO, "Tab URL Address verified - Login using PROD - " + getCurrentUrl());
+					break;
+				}
+				default: {
+					break;
+				}
+				}
+			} catch (AssertionError e) {
+				log(Status.FAIL, e.getMessage());
+				e.printStackTrace();
+			}
+		}
+	
 	@Then("User should verify whether the fields are mandatory in new password page {string}, {string}")
 	public void user_should_verify_whether_the_fields_are_mandatory_in_new_password_page(String expNewPasswordInfoMsg,
 			String expReenterPasswordInfoMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		mailinatorpom.getForgotPasswordPage().confirmButton();
 
@@ -494,7 +551,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify the Label name & Placeholder text for the New Password Re-Enter Password field")
 	public void user_should_verify_the_label_name_placeholder_text_for_the_new_password_re_enter_password_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		if (mailinatorpom.getForgotPasswordPage().getNewPasswordMandatoryFieldLabelText().contains("New Password *")
 				&& mailinatorpom.getForgotPasswordPage().getReEnterNewPasswordMandatoryFieldLabelText()
@@ -541,7 +598,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify that the eye icon is functional in the New Password field")
 	public void user_should_verify_that_the_eye_icon_is_functional_in_the_new_password_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		mailinatorpom.getForgotPasswordPage().newPassword(1, 6);
 
@@ -582,7 +639,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	public void user_should_verify_that_the_new_password_field_must_have_alphanumeric_restriction(
 			String expAlphanumericRestrictionInfoMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 	   mailinatorpom.getForgotPasswordPage().reEnterPassword();
 
@@ -604,7 +661,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	public void user_should_verify_whether_an_error_message_is_displayed_if_the_new_password_and_re_enter_password_fields_are_mismatched(
 			String expPassNotMatchInfoMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
   
 		
 		mailinatorpom.getForgotPasswordPage().deleteNewPasswordFieldExistData();
@@ -627,7 +684,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should confirm the fields and button with valid data")
 	public void user_should_confirm_the_fields_and_button_with_valid_data() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		mailinatorpom.getForgotPasswordPage().deleteNewPasswordFieldExistData().deleteReEnterPasswordFieldExistData();
 		mailinatorpom.getForgotPasswordPage().newPassword(1,5).reEnterPassword(1, 5).confirmButton();
@@ -637,7 +694,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify the reset password page contents")
 	public void user_should_verify_the_reset_password_page_contents() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(3000);
 		
@@ -662,7 +719,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should verify the Login button on the password reset screen")
 	public void user_should_verify_the_login_button_on_the_password_reset_screen() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		mailinatorpom.getForgotPasswordPage().confirmButton();
 		try {
@@ -678,7 +735,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should perform login with new password and verify once the page is navigated to HOME_DASHBOARD successfully {string}")
 	public void user_should_perform_login_with_new_password_and_verify_once_the_page_is_navigated_to_home_dashboard_successfully(String string) throws Exception {
 	  
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 	waitForFullPageElementLoad(mailinatorDriver);
 
@@ -702,7 +759,7 @@ public class ForgotPasswordPageStep extends BaseClass {
 	@Then("User should close the browser")
 	public void user_should_close_the_browser() {
 	   
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		mailinatorDriver.quit();
 	}

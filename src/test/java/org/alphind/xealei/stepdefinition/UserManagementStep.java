@@ -1,4 +1,13 @@
-package org.alphind.xealei.stepdefinition;
+/* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Nandhalala
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization   * is prohibited without prior and proper license agreement
+
+*/package org.alphind.xealei.stepdefinition;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +24,17 @@ import java.util.regex.Pattern;
 
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
+
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -42,7 +56,7 @@ public class UserManagementStep extends BaseClass {
 	@When("User is login as facility admin.")
 	public void User_is_login_as_facility_admin() {
 		
-		//logStep(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
@@ -61,7 +75,8 @@ public class UserManagementStep extends BaseClass {
 	@Then("Verify User Management module is available.")
 	public void Verify_User_Management_module_is_available() {
 		
-		//logStep(methodName());
+		logWithLabelName(getMethodName());
+		
 		if(pom.getHomePage().isUserManagementPresent()){
 			log(Status.PASS, "User Management module is present on Home Screen.");
 		}
@@ -78,6 +93,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Navigate to User Management Page.")
 	public void Navigate_to_User_Management_Page() {
+		
+		logWithLabelName(getMethodName());
+		
 		pom.getHomePage().navigateToUserManagementModule();
 	}
 	
@@ -89,6 +107,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click on Create New user button.")
 	public void Click_on_Create_New_user_button() {
+		
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().isUserManagementPageDisplayed();
 		pom.getUserManagementPage().clickCreateNewUserButton();
 		pom.getUserManagementPage().isCreateNewUserPopupDisplayed();
@@ -102,6 +123,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Next and verify Validations for FirstName, LastName and Role field.")
 	public void Click_Next_and_verify_Validations_for_FirstName_LastName_and_Role_field() {
+		
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickNewUserNextButton();
 		String firstNameErrorText = pom.getUserManagementPage().getFirstNameErrorText();
 		try {
@@ -127,10 +151,13 @@ public class UserManagementStep extends BaseClass {
 					+ "\"Please select role\"",
 					roleErrorText,"Please select role");
 			log(Status.PASS, "The error text for role field is "+lastNameErrorText);
+			
+			pom.getUserManagementPage().clickTostrOkButton();
+			
 		}catch (AssertionFailedError e) {
 			log(Status.FAIL, "The error text for role field is "+lastNameErrorText);
 		}
-		pom.getUserManagementPage().clickTostrOkButton();
+		
 		
 	}
 	
@@ -142,6 +169,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify limit of the firstname, middlename and lastname field.")
 	public void Verify_limit_of_the_firstname_middlename_lastname_and_phone_number_field() {
+
+		logWithLabelName(getMethodName());
+		
 		try {
 			pom.getUserManagementPage().enterOverLimitFirstName();
 			pom.getUserManagementPage().enterOverLimitLastName();
@@ -196,6 +226,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify user is unable to upload image of size higher than 1MB.")
 	public void Verify_user_is_unable_to_upload_image_of_size_higher_than_1MB(){
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().uploadImageMoreThan1MB();
 		String tostrText = pom.getUserManagementPage().getTostrText().trim();
 		pom.getUserManagementPage().clickTostrOkButton();
@@ -217,6 +250,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify user is unable to upload unsupported formats.")
 	public void Verify_user_is_unable_to_upload_unsupported_formats() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().uploadUnsupportedFormatImage();
 		String tostrText = pom.getUserManagementPage().getTostrText().trim();
 		pom.getUserManagementPage().clickTostrOkButton();
@@ -237,6 +273,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify user able to upload supported format.")
 	public void Verify_user_able_to_upload_supported_format() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().uploadSupportedFormatImage();
 		if(pom.getUserManagementPage().isProfilePictureDisplayed()) {
 			log(Status.PASS, "Profile picture is uploaded.");
@@ -253,6 +292,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Validate phone number and Email field with invalid data and click next.")
 	public void Validate_phone_number_and_Email_field_with_invalid_data_and_click_next() {
+
+		logWithLabelName(getMethodName());
+		
 		try {
 			pom.getUserManagementPage().enterInvalidEmailID();
 			pom.getUserManagementPage().enterInvalidPhoneNumber();
@@ -303,6 +345,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Enter valid data in all the fields of basic details.")
 	public void Enter_valid_data_in_all_the_fields_of_basic_details() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().enterValidFirstName();
 		pom.getUserManagementPage().enterValidMiddleName();
 		pom.getUserManagementPage().enterValidLastName();
@@ -332,6 +377,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Basic details page next button.")
 	public void Click_Basic_details_page_next_button() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickNewUserNextButton();
 		sleep(5000);
 	}
@@ -344,6 +392,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Check validation for phone number for emergency contact 1 and emergency contact 2.")
 	public void Check_validation_for_phone_number_for_emergency_contact_1_and_emergency_contact_2() {
+
+		logWithLabelName(getMethodName());
+		
 		try {
 			pom.getUserManagementPage().enterInvalidPhoneNumberEmergencyContact1();
 			pom.getUserManagementPage().clickAddEmergencyContactButton();
@@ -384,6 +435,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Next button and validate tostr message.")
 	public void Click_Next_button() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickNewUserNextButtonContactDetailsPage();
 		
 		String tostrText = pom.getUserManagementPage().getTostrText();
@@ -409,6 +463,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Enter valid mandatory data in all fields of basic details.")
 	public void Enter_valid_data_in_all_fields_of_basic_details() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().enterValidFirstName();
 		pom.getUserManagementPage().enterValidMiddleName();
 		pom.getUserManagementPage().enterValidLastName();
@@ -417,11 +474,14 @@ public class UserManagementStep extends BaseClass {
 	
 	@Then("Click basic details create button.")
 	public void Click_basic_details_create_button() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickNewUserCreateAndSendInviteButton();
 		sleep(1000);
 		try {
 			String tostrText = pom.getUserManagementPage().getTostrText();
-			//Created User Successfully
+			
 			Assert.assertTrue("The tostr text is : "+tostrText+" but the expected text is \"Created "
 					+ "User Successfully\"",tostrText.equals("Created User Successfully"));
 			pom.getUserManagementPage().clickTostrOkButton();
@@ -433,6 +493,17 @@ public class UserManagementStep extends BaseClass {
 		
 	}
 	
+	@Then("Click basic details Create button.")
+	public void Click_basic_details_Create_button() {
+
+		logWithLabelName(getMethodName());
+		
+		pom.getUserManagementPage().clickNewUserCreateAndSendInviteButton();
+		sleep(1000);
+		pom.getUserManagementPage().userCreatedSuccessfullyOK();
+	}
+	
+	
 	/**
 	 * Created by Nandhalala
 	 * 
@@ -441,8 +512,11 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify the status of the created user is in pending status.")
 	public void Verify_the_status_of_the_created_user_is_in_pending_status() {
+
+		logWithLabelName(getMethodName());
+		
 		String rowNumber = pom.getUserManagementPage().getRowNumber();
-//		System.out.println(rowNumber);
+		System.out.println(rowNumber);
 		String status = null;
 		try {
 			status = pom.getUserManagementPage().getStatus(rowNumber);
@@ -467,6 +541,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify the status of the created user is in active status.")
 	public void Verify_the_status_of_the_created_user_is_in_active_status() {
+
+		logWithLabelName(getMethodName());
+		
 		driver.navigate().refresh();
 		sleep(5000);
 		try {
@@ -500,6 +577,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify the menu contains show QR Code option.")
 	public void Verify_the_menu_contains_show_QR_Code_option() {
+
+		logWithLabelName(getMethodName());
+		
 		List<String> expectedOptions = new ArrayList<>();
 		expectedOptions.add("Show QR Code");
 		String rowNumber = pom.getUserManagementPage().getRowNumber();
@@ -528,6 +608,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify the menu contains show QR Code and Resend invite options.")
 	public void Verify_the_menu_contains_show_QR_Code_and_Resend_invite_options() {
+
+		logWithLabelName(getMethodName());
+		
 		List<String> expectedOptions = new ArrayList<>();
 		expectedOptions.add("Show QR Code");
 		expectedOptions.add("Resend Invite");
@@ -557,6 +640,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify the menu options for created user.")
 	public void Verify_the_menu_for_created_user() {
+
+		logWithLabelName(getMethodName());
+		
 		List<String> expectedOptions = new ArrayList<>();
 		expectedOptions.add("Block");
 		expectedOptions.add("Pause");
@@ -587,6 +673,8 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@And("Enter Valid Data in all the Contact Details page.")
 	public void Enter_Valid_Data_in_all_the_Contact_Details_page() {
+
+		logWithLabelName(getMethodName());
 		
 		pom.getUserManagementPage().enterValidPermanentAddress();
 		pom.getUserManagementPage().enterValidResidingAddress();
@@ -607,6 +695,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click back button in contact details and verify whether basic details page is displayed.")
 	public void Click_back_button_in_contact_details_and_verify_whether_basic_details_page_is_displayed() {
+
+		logWithLabelName(getMethodName());
+		
 		try {
 			Assert.assertTrue("Basic details page is not displayed.",
 					pom.getUserManagementPage().contactDetailsBackButton());
@@ -629,6 +720,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Contact Details Next button.")
 	public void Click_Contact_Details_Next_button() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickNewUserNextButtonContactDetailsPage();
 	}
 	
@@ -640,6 +734,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@And("Enter Invalid data in date fields of Qualification page.")
 	public void Enter_Invalid_data_in_date_fields_of_Qualification_page() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().enterInvalidGraduationDate();
 		pom.getUserManagementPage().enterInvalidMastersGraduationDate();
 		
@@ -682,6 +779,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Enter valid data in all the fields of Qualification page.")
 	public void Enter_valid_data_in_all_the_fields_of_Qualification_page() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().enterValidGraduation();
 		pom.getUserManagementPage().enterValidGraduationYear();
 		pom.getUserManagementPage().enterValidGraduationUniversity();
@@ -698,6 +798,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click back button in qualification page and verify whether contact details page is displayed.")
 	public void Click_back_button_in_qualification_page_and_verify_whether_contact_details_page_is_displayed() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().qualificationBackButton();
 		pom.getUserManagementPage().clickNewUserNextButtonContactDetailsPage();
 		sleep(5000);
@@ -711,9 +814,11 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Create and send invite from contact details page.")
 	public void Click_Create_and_send_invite_from_contact_details_page() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().contactDeailsCreateButton();
 		String tostrText = pom.getUserManagementPage().getTostrText();
-		//Created User Successfully
 		Assert.assertTrue("The tostr text is : "+tostrText+" but the expected text is \"Created "
 				+ "User Successfully\"",tostrText.equals("Created User Successfully"));
 		pom.getUserManagementPage().clickTostrOkButton();
@@ -728,9 +833,11 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Click Create and send invite from qualification page.")
 	public void Click_Create_and_send_invite_from_qualification_page() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().qualificationCreateButton();
 		String tostrText = pom.getUserManagementPage().getTostrText();
-		//Created User Successfully
 		Assert.assertTrue("The tostr text is : "+tostrText+" but the expected text is \"Created "
 				+ "User Successfully\"",tostrText.equals("Created User Successfully"));
 		pom.getUserManagementPage().clickTostrOkButton();
@@ -745,7 +852,14 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Open Mailinator aplication.")
 	public void Open_Mailinator_aplication() {
-		mailinatordriver = new ChromeDriver();
+
+		logWithLabelName(getMethodName());
+		
+		ChromeOptions chromeOption = new ChromeOptions();
+		if (getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("Yes")) {
+			chromeOption.addArguments("--headless", "--window-size=1920,1080");
+		}
+		mailinatordriver = new ChromeDriver(chromeOption);
 		mailinatordriver.get("https://www.mailinator.com/");
 		mailinatordriver.manage().window().maximize();
 		mailinatorpom = new PageObjectManager(mailinatordriver);
@@ -762,27 +876,105 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@And("Click xealei url from mail and login into application as new user.")
 	public void Click_xealei_url_from_mail() {
-//		mailinatorpom.getMailinatorPage().enterEmail();
+
+		logWithLabelName(getMethodName());
+		
+//      mailinatorpom.getMailinatorPage().enterEmail();
 //		mailinatorpom.getMailinatorPage().goButton();
+		
 		mailinatorpom.getMailinatorPage().firstEmail();
-		String userName = mailinatorpom.getMailinatorPage().getUserName();
+		
+		//sleep(3000);
+		
+		WebElement iframe = findElementByXpath(mailinatordriver, mailinatorpom.getMailinatorPage().getIFrameInMailinator);
+		mailinatordriver.switchTo().frame(iframe);
+		
+		sleep(3000);
+		
+		String userName = mailinatorpom.getMailinatorPage().getUserNameInMailinatorText();
+		System.out.println("Mailinator User name -" +userName);
+		
+		//String userName = mailinatorpom.getMailinatorPage().getUserName(iframe);
+		
 		writeExcelToOverwrite("Test Datas", "User Management", 1, 29, userName);
+		
 		mailinatorpom.getMailinatorPage().desktopURL();
+		
+		mailinatorpom.getLoginPage().checkPrivacyPolicy();
 		mailinatorpom.getLoginPage().clickIAgreeCheckBox();
 		mailinatorpom.getLoginPage().loginButton();
 		mailinatorpom.getLoginPage().newPassword();
 		mailinatorpom.getLoginPage().confirmNewPassword();
 		mailinatorpom.getLoginPage().completeNewPassword();
 		mailinatorpom.getLoginPage().enterUserName(userName);
-		mailinatorpom.getLoginPage()
-		.password(readExcel("Test Datas", "User Management", 1, 28).trim());
-		sleep(5000);
-//		if(mailinatorpom.getHomePage().isHomePageDisplayed()) {
-//			log(Status.PASS, "Login as new user is successfull");
-//		}else {
-//			log(Status.PASS, "Login as new user is not successfull");
-//		}
+		mailinatorpom.getLoginPage().password(readExcel("Test Datas", "User Management", 1, 28).trim());
+		
+		mailinatorpom.getLoginPage().loginButton();
+		
 		mailinatordriver.quit();
+	}
+	
+	String userName;
+	String passWord;
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 15-MAR-2024.
+	 * 
+	 */
+	@And("Click Xealei URL from mail and login into application as new user and logout.")
+	public void Click_Xealei_URL_from_mail() {
+
+		logWithLabelName(getMethodName());
+		
+//		mailinatorpom.getMailinatorPage().enterEmail();
+//		mailinatorpom.getMailinatorPage().goButton();
+		mailinatorpom.getMailinatorPage().waitForSecondEmail();
+		mailinatorpom.getMailinatorPage().firstEmail();
+		
+		sleep(3000);
+		
+		WebElement iframe = findElementByXpath(mailinatordriver, mailinatorpom.getMailinatorPage().getIFrameInMailinator);
+		mailinatordriver.switchTo().frame(iframe);
+		
+		sleep(3000);
+		
+		userName = mailinatorpom.getMailinatorPage().getUserNameInMailinatorText();
+		System.out.println("Mailinator User name -" +userName);
+		
+		passWord = mailinatorpom.getMailinatorPage().getPasswordInMailinatorText();
+		System.out.println("Mailinator Passowrd -" +passWord);
+		
+//		passWord = mailinatorpom.getMailinatorPage().getPassword();
+		
+		writeExcelToOverwrite("Test Datas", "User Management", 1, 29, userName);
+		writeExcelToOverwrite("Test Datas", "User Management", 1, 31, passWord);
+		
+		
+		mailinatorpom.getMailinatorPage().xealeiURL();
+		
+		mailinatorpom.getLoginPage().enterUserName(userName);
+		mailinatorpom.getLoginPage().password(passWord);
+//		pom.getLoginPage().clickTostrOkButton();
+//		mailinatorpom.getLoginPage().checkPrivacyPolicy();
+		mailinatorpom.getLoginPage().clickIAgreeCheckBox();
+		mailinatorpom.getLoginPage().loginButton();
+		mailinatorpom.getLoginPage().newPassword();
+		mailinatorpom.getLoginPage().confirmNewPassword();
+		mailinatorpom.getLoginPage().completeNewPassword();
+//		mailinatorpom.getLoginPage().clickTostrOkButton();
+		mailinatorpom.getLoginPage().enterUserName(userName);
+		mailinatorpom.getLoginPage().password(readExcel("Test Datas", "User Management", 1, 28).trim());
+		mailinatorpom.getLoginPage().loginButton();
+		
+		if(mailinatorpom.getHomePage().isHomePageDisplayed()) {
+			log(Status.PASS, "Login as new user is successfull");
+		}else {
+			log(Status.PASS, "Login as new user is not successfull");
+		}
+		mailinatorpom.getHomePage().arrowDropDown();
+		mailinatorpom.getHomePage().logout();
 	}
 	
 	/**
@@ -792,6 +984,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify whether all the fields are editable in edit mode.")
 	public void Verify_whether_all_the_fields_are_editable_in_edit_mode() {
+
+		logWithLabelName(getMethodName());
+		
 		String rownumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().viewButton(rownumber);
@@ -814,6 +1009,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Edit any field and click cancel button.")
 	public void Edit_any_field_and_click_cancel_button() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().editFirstName();
 		pom.getUserManagementPage().editCancelButton();
 	}
@@ -826,6 +1024,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify able to save the edited data.")
 	public void Verify_able_to_save_the_edited_data() {
+
+		logWithLabelName(getMethodName());
+		
 		String rownumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().viewButton(rownumber);
@@ -859,6 +1060,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Search the created user and verify view info.")
 	public void Search_the_created_user_and_verify_view_info() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().searchUserwithFirstName();
 	}
 	
@@ -869,6 +1073,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@And("Verify the data of the created user.")
 	public void Verify_the_data_of_the_created_user() {
+
+		logWithLabelName(getMethodName());
+		
 		String rownumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().viewButton(rownumber);
@@ -945,6 +1152,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Navigate back to User management page.")
 	public void Navigate_back_to_User_management_page() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().navigateBacktoUserManagementFromViewEditPage();
 		pom.getUserManagementPage().isUserManagementPageDisplayed();
 	}
@@ -956,6 +1166,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify whether able to {string} the user.")
 	public void verify_whether_able_to_the_user(String string) {
+
+		logWithLabelName(getMethodName());
+		
 		String rownumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().menuAction(rownumber, string);
@@ -971,6 +1184,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify whether user is in {string} Status.")
 	public void verify_whether_user_is_in_status(String string) {
+
+		logWithLabelName(getMethodName());
+		
 		String rowNumber = pom.getUserManagementPage().getRowNumber();
 //		System.out.println(rowNumber);
 		String status = null;
@@ -995,7 +1211,10 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify whether validations are showing while creating a new user with same Email ID and Phone Number.")
 	public void verify_whether_validations_are_showing_while_creating_a_new_user_with_same_email_id_and_phone_number() {
-	    pom.getUserManagementPage().clickCreateNewUserButton();
+
+		logWithLabelName(getMethodName());
+		
+		pom.getUserManagementPage().clickCreateNewUserButton();
 	    pom.getUserManagementPage().enterValidFirstName();
 		pom.getUserManagementPage().enterValidMiddleName();
 		pom.getUserManagementPage().enterValidLastName();
@@ -1048,6 +1267,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify wheter edit button is diabled.")
 	public void verify_wheter_edit_button_is_diabled() {
+
+		logWithLabelName(getMethodName());
+		
 		String rowNumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().viewButton(rowNumber);
@@ -1071,6 +1293,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify wheter edit button is enabled.")
 	public void verify_wheter_edit_button_is_enabled() {
+
+		logWithLabelName(getMethodName());
+		
 		String rowNumber = pom.getUserManagementPage().getRowNumber();
 		try {
 			pom.getUserManagementPage().viewButton(rowNumber);
@@ -1094,6 +1319,9 @@ public class UserManagementStep extends BaseClass {
 	 */
 	@Then("Verify future date validations for Graduation and Master Graduation calender fields.")
 	public void Verify_future_date_validations_for_Graduation_and_Master_Graduation_calender_fields() {
+
+		logWithLabelName(getMethodName());
+		
 		pom.getUserManagementPage().clickGraduationCalendarIcon();
 		try {
 			pom.getUserManagementPage().futureDatesAreHidden();
@@ -1110,6 +1338,132 @@ public class UserManagementStep extends BaseClass {
 			
 		}
 		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 15-MAR-2024.
+	 */
+	@Then("Click Resend Invite to resend a mail.")
+	public void Click_Resend_Invite_to_resend_a_mail() {
+
+		logWithLabelName(getMethodName());
+		
+		String rownumber = pom.getUserManagementPage().getRowNumber();
+		try {
+			//Resend Invite
+			pom.getUserManagementPage().menuAction(rownumber, "Resend Invite");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 */
+	@Then("Verify whether not able to login with Inactive user.")
+	public void Verify_whether_not_able_to_login_with_Inactive_user() {
+
+		logWithLabelName(getMethodName());
+		
+		mailinatorpom.getLoginPage().enterUserName(userName);
+		mailinatorpom.getLoginPage()
+		.password(readExcel("Test Datas", "User Management", 1, 28).trim());
+		
+		sleep(2000);
+		
+		mailinatorpom.getLoginPage().loginButton();
+		
+		
+		String tostrMessage = mailinatorpom.getLoginPage().getTostrText();
+		String expected = "Account of the user has been inactive";
+		
+		try {
+			Assert.assertEquals("The expected tostr message is '"+expected+"' but found : "
+		+tostrMessage, expected, tostrMessage);
+			log(Status.PASS,"The tostr message for login with Inactive user is :\n"+tostrMessage
+					,mailinatordriver);
+			
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"The tostr message for login with Inactive user is :\n"+tostrMessage, 
+					mailinatordriver);
+		}
+		
+		mailinatorpom.getLoginPage().clickToastOkButton();
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 */
+	@Then("Verify whether able to login with Active user.")
+	public void Verify_whether_able_to_login_with_Active_user() {
+
+		logWithLabelName(getMethodName());
+		
+		mailinatorpom.getLoginPage().enterUserName(userName);
+		mailinatorpom.getLoginPage().password(readExcel("Test Datas", "User Management", 1, 28).trim());
+		
+		mailinatorpom.getLoginPage().loginButton();
+		
+		if(mailinatorpom.getHomePage().isHomePageDisplayed()) {
+			log(Status.PASS, "Login as new user is successfull", mailinatordriver);
+		}else {
+			log(Status.PASS, "Login as new user is not successfull", mailinatordriver);
+		}
+		mailinatorpom.getHomePage().arrowDropDown();
+		mailinatorpom.getHomePage().logout();
+		
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 */
+	@Then("Verify whether not able to login with Blocked user.")
+	public void Verify_whether_not_able_to_login_with_Blocked_user() {
+
+		logWithLabelName(getMethodName());
+		
+		mailinatorpom.getLoginPage().enterUserName(userName);
+		mailinatorpom.getLoginPage().password(readExcel("Test Datas", "User Management", 1, 28).trim());
+		mailinatorpom.getLoginPage().loginButton();
+		String tostrMessage = mailinatorpom.getLoginPage().getTostrText();
+		//Account of the user has been blocked
+		String expected = "Account of the user has been blocked";
+		try {
+			Assert.assertEquals("The expected tostr message is '"+expected+"' but found : "
+		+tostrMessage, expected, tostrMessage);
+			log(Status.PASS,"The tostr message for login with Blocked user is :\n"+tostrMessage, 
+					mailinatordriver);
+		}catch(AssertionFailedError e) {
+			log(Status.FAIL,"The tostr message for login with Blocked user is :\n"+tostrMessage, 
+					mailinatordriver);
+		}
+		mailinatorpom.getLoginPage().clickToastOkButton();
+	}
+	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 */
+	@Then("Close all browsers.")
+	public void Close_all_browser() {
+
+		logWithLabelName(getMethodName());
+		
+		mailinatordriver.quit();
 	}
 	
 }

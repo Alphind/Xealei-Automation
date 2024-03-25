@@ -1,6 +1,6 @@
-/* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
 
-* created by Mohamed Razul, on date
+* created by Mohamed Razul
 
 * reviewed by Hajira Begam
 
@@ -53,38 +53,108 @@ public class PageObjectManager {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If login page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of loginPage
+	 */
 	public LoginPage getLoginPage() {
 		return (loginPage == null) ? loginPage = new LoginPage(driver) : loginPage;
 	}
 
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If Home page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of homePage
+	 */
 	public HomePage getHomePage() {
 		return (homePage == null) ? homePage = new HomePage(driver) : homePage;
 	}
 	
+	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If addSuites page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of addSuitesPage
+	 */
 	public AddSuitesPage getAddSuitesPage() {
 		return (addSuitesPage == null) ? addSuitesPage = new AddSuitesPage(driver) : addSuitesPage;
 	}
 	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If editSuites page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of editSuitesPage
+	 */
 	public EditSuitesPage getEditSuitesPage() {
 		return (editSuitesPage == null) ? editSuitesPage = new EditSuitesPage(driver) : editSuitesPage;
 		
 	}
 	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If addIndividuals page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of addIndividualsPage
+	 */
 	public AddIndividualsPage getAddIndividualsPage() {
 		return (addIndividualsPage == null) ? addIndividualsPage = new AddIndividualsPage(driver) : addIndividualsPage;
 	}
 	
-	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If editIndividuals page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of editIndividualsPage
+	 */
 	public EditIndividualsPage getEditIndividualsPage() {
 		return (editIndividualsPage == null) ? editIndividualsPage = new EditIndividualsPage(driver) : editIndividualsPage;
 	}
 	
-	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If incidentReport Page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of incidentReportPage
+	 */
 	public IncidentReportPage getIncidentReportPage() {
 		return (incidentReportPage == null) ? incidentReportPage = new IncidentReportPage(driver) : incidentReportPage;
 	}
 	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If forgotPassword Page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of forgotPasswordPage
+	 */
 	public ForgotPasswordPage getForgotPasswordPage() {
 		return (forgotPasswordPage == null) ? forgotPasswordPage = new ForgotPasswordPage(driver) : forgotPasswordPage;
 	}
@@ -119,11 +189,28 @@ public class PageObjectManager {
 		return (mailinatorPage == null) ? mailinatorPage = new MailinatorPage(driver) : mailinatorPage;
 	}
 	
-	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If addCommonArea Page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of addCommonAreaPage
+	 */
 	public AddCommonAreaPage getAddCommonAreaPage() {
 		return (addCommonAreaPage == null) ? addCommonAreaPage = new AddCommonAreaPage() : addCommonAreaPage;
 	}
 	
+	/**
+	 * 
+	 * Created Alphi-MohamedRazul
+	 * 
+	 * If editCommonArea Page is initialized returns the instance or create a new instance 
+	 * and returns it.
+	 * 
+	 * @return instance of editCommonAreaPage
+	 */
 	public EditCommonAreaPage getEditCommonAreaPage() {
 		return (editCommonAreaPage == null) ? editCommonAreaPage = new EditCommonAreaPage() : editCommonAreaPage;
 	}

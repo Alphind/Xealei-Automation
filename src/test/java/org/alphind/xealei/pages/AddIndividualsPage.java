@@ -1,6 +1,6 @@
-/* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
 
-* created by Mohamed Razul, on date
+* created by Mohamed Razul
 
 * reviewed by Hajira Begam
 
@@ -25,15 +25,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.aventstack.extentreports.Status;
 
-public class AddIndividualsPage extends BaseClass{
+public class AddIndividualsPage extends BaseClass {
 
-	private WebDriver driver;
-	
+
 	public AddIndividualsPage(WebDriver driver) {
-
-		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		
+
 	}
 
 	@FindBy(xpath = "//h5[@x-page='Individuals']")
@@ -151,10 +148,10 @@ public class AddIndividualsPage extends BaseClass{
 
 	@FindBy(xpath = "//input[@x-ind-resi-val]")
 	private WebElement residentialAddress;
-	
+
 	@FindBy(xpath = "//mat-checkbox[contains(@class,'mat-checkbox-checked')]")
-	private WebElement addressTabCheckbox;	
-	
+	private WebElement addressTabCheckbox;
+
 	@FindBy(xpath = "//input[@x-ind-mail-addr-val]")
 	private WebElement mailingAddress;
 
@@ -380,7 +377,7 @@ public class AddIndividualsPage extends BaseClass{
 
 	@FindBy(xpath = "//b[@x-bncid]")
 	private WebElement indID;
-	
+
 	@FindBy(xpath = "//h6[contains(text(),'Created')]")
 	private WebElement txtCreatedSuccessfully;
 
@@ -415,8 +412,7 @@ public class AddIndividualsPage extends BaseClass{
 	private WebElement createdDOB;
 
 	String selectNextToTheCurrentDate = "//div[text()='nextDate']/parent::td";
-	
-	
+
 	@FindBy(xpath = "//span[@class='font14'][@x-et-v-gen-val]")
 	private WebElement createdGender;
 
@@ -482,69 +478,66 @@ public class AddIndividualsPage extends BaseClass{
 
 	@FindBy(xpath = "//div[@x-et-v-ide-prefe-head]/following::div[@id='x-et-v-ec1']/following::span[@id='x-et-v-pne-val1']")
 	private WebElement createdEmContact2PhNo;
-	
+
 	String selectBG = "//span[text()='selectBGroup']/parent::mat-option";
 
 	@FindBy(xpath = "//mat-select[@ng-reflect-name='bloodGroup']")
-	private WebElement bloodGroup ;
-	
+	private WebElement bloodGroup;
+
 	@FindBy(xpath = "//input[@x-et-vi-bp-val]")
-	private WebElement bloodPressureField ;
-	
+	private WebElement bloodPressureField;
+
 	@FindBy(xpath = "//input[@x-et-vi-bgl-val]")
-	private WebElement  bloodGlucoseField;
-	
+	private WebElement bloodGlucoseField;
+
 	@FindBy(xpath = "//input[@x-et-cho-val]")
-	private WebElement cholestrolField ;
-	
+	private WebElement cholestrolField;
+
 	@FindBy(xpath = "//input[@x-et-hei-val]")
-	private WebElement heightField ;
-	
+	private WebElement heightField;
+
 	@FindBy(xpath = "//input[@x-et-wei-val]")
-	private WebElement weightField ;
-	
+	private WebElement weightField;
+
 	@FindBy(xpath = "//input[@x-et-bmi-val]")
-	private WebElement bmiField ;
-	
+	private WebElement bmiField;
+
 	@FindBy(xpath = "//textarea[@x-et-hlsu-val]")
-	private WebElement healthSummaryField ;
+	private WebElement healthSummaryField;
 
 	@FindBy(xpath = "//button[@x-et-edit-update]")
 	private WebElement btnVitalsUpdate;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Vitals updated successfully')]")
 	private WebElement vitalsUpdatedSuccessfullToastMsg;
-	
+
 	@FindBy(xpath = "//button[@x-et-v-arb]")
 	private WebElement addVitalsButton;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-bg-val]")
 	private WebElement selectedBG;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-bp-val]")
 	private WebElement createdBP;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-bgle-val]")
 	private WebElement createdBGlucose;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-cho-val]")
 	private WebElement createdCholestrol;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-ht-lbl]")
 	private WebElement createdHeight;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-wt-val]")
 	private WebElement createdWeight;
-	
+
 	@FindBy(xpath = "//span[@x-et-v-vi-bmi-val]")
 	private WebElement createdBMI;
-	
+
 	@FindBy(xpath = "//a[@x-et-v-ovc01][@data-toggle='tab']")
 	private WebElement vitalsTab;
 
-	public String getIndividualSearchBox() {
-		return getAttribute(individualSearchBox, "value");
-	}
 
 	public WebElement getCreatedIndividualName() {
 		return createdIndividualName;
@@ -629,18 +622,6 @@ public class AddIndividualsPage extends BaseClass{
 	public WebElement getCreatedEmContact1PhNo() {
 		return createdEmContact1PhNo;
 	}
-
-//	public WebElement getCreatedEmContact2Name() {
-//		return createdEmContact2Name;
-//	}
-//
-//	public WebElement getSelectedEmContact2Relationship() {
-//		return selectedEmContact2Relationship;
-//	}
-//
-//	public WebElement getCreatedEmContact2PhNo() {
-//		return createdEmContact2PhNo;
-//	}
 
 	public WebElement getScrollDownInPrefTab() {
 		return scrollDownInPrefTab;
@@ -737,7 +718,7 @@ public class AddIndividualsPage extends BaseClass{
 	public WebElement getIndID() {
 		return indID;
 	}
-	
+
 	public WebElement getDatePicker() {
 		return datePicker;
 	}
@@ -750,7 +731,6 @@ public class AddIndividualsPage extends BaseClass{
 		return residentialAddress;
 	}
 
-	
 	public WebElement getMailingAddress() {
 		return mailingAddress;
 	}
@@ -950,7 +930,7 @@ public class AddIndividualsPage extends BaseClass{
 	public WebElement getVitalsUpdatedSuccessfullToastMsg() {
 		return vitalsUpdatedSuccessfullToastMsg;
 	}
-	
+
 	public WebElement getSelectedBG() {
 		return selectedBG;
 	}
@@ -978,28 +958,37 @@ public class AddIndividualsPage extends BaseClass{
 	public WebElement getCreatedBMI() {
 		return createdBMI;
 	}
-	
+
 	public WebElement getBmiField() {
 		return bmiField;
 	}
-	
+
 	public WebElement getforwardToAddressTab() {
 		return forwardToAddressTab;
 	}
+
 	public WebElement isCheckboxTicked() {
 		return addressTabCheckbox;
 	}
 
+	/**
+	 * Retrieves the value of a individual searchbox field attribute.
+	 * 
+	 * @return The value of the individual searchbox field attribute.
+	 * @author Alphi-MohamedRazul
+	 */
+	public String getIndividualSearchBox() {
+		return getAttribute(individualSearchBox, "value");
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Select and verifies the current date and time in DOB* field.
+	 * 
+	 * @throws Exception If an error occurs during this operation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void selectCurrentDateInDatePicker() throws Exception {
 
 		System.out.println("CURRENT DATE IS :" + getCurrentDate());
@@ -1012,185 +1001,50 @@ public class AddIndividualsPage extends BaseClass{
 
 		try {
 			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
-			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - "
-					+ getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
+					getCurrentMonth() + "/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
+			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - " + getCurrentMonth() + "/"
+					+ getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-
-//	public void futureDatesAreHidden() throws Exception {
-//
-//		String currentMonth = getCurrentDtYearMonth("MM");
-//		String currentDate = getCurrentDtYearMonth("dd");
-//		String currentYear = getCurrentDtYearMonth("yyyy");
-//		
-//		System.out.println("Current Date - "+currentDate);
-//		System.out.println("Current Month - "+currentMonth);
-//		System.out.println("Current Year - "+currentYear);
-//		
-//		int intEventDt = Integer.parseInt(currentDate);
-//		int intEventYear = Integer.parseInt(currentYear);
-//
-//		
-//		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
-//				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
-//
-//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
-//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
-//
-//			String NextDate = getAttribute(getNextDate, "aria-disabled");
-//			System.out.println("Future Dt - "+NextDate);
-//			
-//			if (NextDate.equals("true")) {
-//				log(Status.PASS, "Future date is disabled");
-//			} else {
-//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
-//			}
-//			
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Next Month > Right arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-//			}
-//			
-//		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
-//				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
-//				|| currentMonth.equals("12")) && currentDate.equals("31")) {
-//
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
-//			}
-//
-//		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
-//				|| currentMonth.equals("11")) && intEventDt <=29) {
-//
-//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
-//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
-//
-//			String NextDate = getAttribute(getNextDate, "aria-disabled");
-//
-//			if (NextDate.equals("true")) {
-//				log(Status.PASS, "Future date is disabled");
-//			} else {
-//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
-//			}
-//			
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Next Month > Right arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-//			}
-//
-//		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
-//				|| currentMonth.equals("11")) && currentDate.equals("30")) {
-//
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
-//			}
-//
-//		} else if (currentMonth.equals("02") && intEventDt <=28 && (intEventYear%4!=0)) {
-//
-//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
-//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
-//
-//			String NextDate = getAttribute(getNextDate, "aria-disabled");
-//			System.out.println("Future Dt - "+NextDate);
-//			
-//			if (NextDate.equals("true")) {
-//				log(Status.PASS, "Future date is disabled");
-//			} else {
-//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
-//			}
-//			
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Next Month > Right arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-//			}
-//
-//		} else if (currentMonth.equals("02") && ((intEventDt > 28 && (intEventYear%4==0)) || (intEventDt==28 &&(intEventYear%4!=0)) )) {
-//
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
-//			}
-//			
-//		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
-//
-//			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
-//			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
-//
-//			String NextDate = getAttribute(getNextDate, "aria-disabled");
-//			System.out.println("Future Dt - "+NextDate);
-//			
-//			if (NextDate.equals("true")) {
-//				log(Status.PASS, "Future date is disabled");
-//			} else {
-//				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
-//			}
-//			
-//			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
-//
-//			if (rightArrow.equalsIgnoreCase("true")) {
-//				log(Status.PASS, "Next Month > Right arrow is disabled");
-//			} else {
-//				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
-//			}
-//	}  else {
-//		log(Status.SKIP, "The Method is skiped kindly check manually");	
-//	}
-//		
-//	}
-
+	/**
+	 * Check whether the future dates are hidden or not.
+	 * 
+	 * @throws Exception If an error occurs during this operation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void futureDatesAreHidden() throws Exception {
 
 		String currentMonth = getCurrentDtYearMonth("MM");
 		String currentDate = getCurrentDtYearMonth("dd");
 		String currentYear = getCurrentDtYearMonth("yyyy");
-				
-		System.out.println("Current Date - "+currentDate);
-		System.out.println("Current Month - "+currentMonth);
-		System.out.println("Current Year - "+currentYear);
-		
+
+		System.out.println("Current Date - " + currentDate);
+		System.out.println("Current Month - " + currentMonth);
+		System.out.println("Current Year - " + currentYear);
+
 		int intEventDt = Integer.parseInt(currentDate);
-		
-		
-		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05") || currentMonth.equals("07")
-				|| currentMonth.equals("08") || currentMonth.equals("10") || currentMonth.equals("12")) && intEventDt <= 30) {
+
+		if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
+				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
+				|| currentMonth.equals("12")) && intEventDt <= 30) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
 
 			String NextDate = getAttribute(getNextDate, "aria-disabled");
-			System.out.println("Future Dt - "+NextDate);
-			
+			System.out.println("Future Dt - " + NextDate);
+
 			if (NextDate.equals("true")) {
 				log(Status.PASS, "Future date is disabled");
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
-			
+
 //			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 //
 //			if (rightArrow.equalsIgnoreCase("true")) {
@@ -1198,7 +1052,7 @@ public class AddIndividualsPage extends BaseClass{
 //			} else {
 //				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
 //			}
-			
+
 		} else if ((currentMonth.equals("01") || currentMonth.equals("03") || currentMonth.equals("05")
 				|| currentMonth.equals("07") || currentMonth.equals("08") || currentMonth.equals("10")
 				|| currentMonth.equals("12")) && currentDate.equals("31")) {
@@ -1208,11 +1062,11 @@ public class AddIndividualsPage extends BaseClass{
 			if (rightArrow.equalsIgnoreCase("true")) {
 				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			} else {
-				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");
 			}
 
 		} else if ((currentMonth.equals("04") || currentMonth.equals("06") || currentMonth.equals("09")
-				|| currentMonth.equals("11")) && intEventDt <=29) {
+				|| currentMonth.equals("11")) && intEventDt <= 29) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -1224,7 +1078,7 @@ public class AddIndividualsPage extends BaseClass{
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
-			
+
 //			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 //
 //			if (rightArrow.equalsIgnoreCase("true")) {
@@ -1241,23 +1095,23 @@ public class AddIndividualsPage extends BaseClass{
 			if (rightArrow.equalsIgnoreCase("true")) {
 				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			} else {
-				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");
 			}
 
-		} else if (currentMonth.equals("02") && intEventDt <=27) {
+		} else if (currentMonth.equals("02") && intEventDt <= 27) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
 
 			String NextDate = getAttribute(getNextDate, "aria-disabled");
-			System.out.println("Future Dt - "+NextDate);
-			
+			System.out.println("Future Dt - " + NextDate);
+
 			if (NextDate.equals("true")) {
 				log(Status.PASS, "Future date is disabled");
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
-			
+
 //			String rightArrow = getAttribute(datePickerRightArrow, "ng-reflect-disabled");
 //
 //			if (rightArrow.equalsIgnoreCase("true")) {
@@ -1273,9 +1127,9 @@ public class AddIndividualsPage extends BaseClass{
 			if (rightArrow.equalsIgnoreCase("true")) {
 				log(Status.PASS, "Reached the Month END date Next Month > arrow is disabled");
 			} else {
-				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");	
+				log(Status.FAIL, "Reached the Month END date Next Month > arrow is NOT disabled");
 			}
-			
+
 //		} else if (currentMonth.equals("02") && intEventDt == 28 && (intEventYear%4==0)) {
 //
 //			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
@@ -1297,24 +1151,35 @@ public class AddIndividualsPage extends BaseClass{
 //			} else {
 //				log(Status.FAIL, "Next Month > Right arrow is NOT disabled");	
 //			}
-	}  else {
-		log(Status.SKIP, "The Method is skiped kindly check manually");	
-	}
-		
+		} else {
+			log(Status.SKIP, "The Method is skiped kindly check manually");
+		}
+
 	}
 
-	
-
+	/**
+	 * To check whether the left and right arrow <> is disabled or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void verifyLeftAndRightArrow() {
 
-	if(getAttribute(leftArrowBtn, "disabled").equals("true") && getAttribute(rightArrowBtn, "disabled").equals("true")) {
-		log(Status.PASS, "Left and Right Arrow button in datepicker is disabled");
-	} else {
-		log(Status.FAIL, "Left and Right Arrow button is NOT disabled");
-	}
+		if (getAttribute(leftArrowBtn, "disabled").equals("true")
+				&& getAttribute(rightArrowBtn, "disabled").equals("true")) {
+			log(Status.PASS, "Left and Right Arrow button in datepicker is disabled");
+		} else {
+			log(Status.FAIL, "Left and Right Arrow button is NOT disabled");
+		}
 
 	}
 
+	/**
+	 * Select the Date/Month/Year in DOB* field using dropdown
+	 * 
+	 * @param rowNum The row number from which to read the data from excel.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void selectDOBUsingDD(int rowNum) {
 
 		deleteExistFieldData(dob);
@@ -1364,12 +1229,18 @@ public class AddIndividualsPage extends BaseClass{
 			log(Status.INFO, "Select the date in date picker - DATE " + chooseDateFromExcel);
 			log(Status.PASS, "Select the date in date picker - DATE " + chooseDateFromExcel);
 
-
 		} catch (Exception e) {
 			log(Status.FAIL, e.getMessage());
 		}
 	}
 
+	/**
+	 * Click on right side arrow in DOB* field and verifies the dates are displayed
+	 * are not.
+	 * 
+	 * @param rowNum The row number from which to read the data from excel.
+	 * @throws Exception If an error occurs during this operation.
+	 */
 	public void rightSideArrow(int rowNum) throws Exception {
 
 		String chooseDateFromExcel = readExcel("Test Datas", "AddIndividuals", rowNum, 22);
@@ -1388,36 +1259,61 @@ public class AddIndividualsPage extends BaseClass{
 		try {
 
 			Assert.assertEquals("Selected date is NOT displayed in DOB* Field",
-					getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
-			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - "
-					+ getCurrentMonth()+"/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
+					getCurrentMonth() + "/" + getCurrentDate() + getCurrentDtYearMonth("/yyyy"), selectedDate);
+			log(Status.PASS, "Selected date is displayed in DOB* Field Exp Dt - " + getCurrentMonth() + "/"
+					+ getCurrentDate() + getCurrentDtYearMonth("/yyyy") + " | Act Dt - " + selectedDate);
 		} catch (AssertionError e) {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Click on 'Address' Tab section to close the calender.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void closeCalender() {
 
 		click(addressTab);
 	}
 
+	/**
+	 * Click on 'Photo' Tab section to close the calender.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage photoTab() {
 
 		click(photoTab);
 		return this;
 	}
 
+	/**
+	 * Click on Toast message 'OK' button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage toastMsgOKButton() {
 		click(toastMsgOkBtn);
 		return this;
 	}
 
+	/**
+	 * Click on 'Skip' button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void skip() {
 
 		click(skipbtn);
 	}
-	
+
+	/**
+	 * Click on '->' arrow to navigate confirm page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage forwardToConfirmPage() {
 
 		if (getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")
@@ -1431,22 +1327,44 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
+	/**
+	 * Click on right arrow '->' to navigate confirm page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void rightArrowToConfirmPage() {
 
 		click(forwardToConfimPage);
 	}
 
+	/**
+	 * Click on 'Confirm' button to confirm the individual creation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage confirm() {
 
 		click(confirmBtn);
 		return this;
 	}
 
+	/**
+	 * Click on 'Add Individual' Button
+	 */
 	public void addIndividualButton() {
 
 		click(addIndividual);
 	}
 
+	/**
+	 * Select the unsupported image/file format and verifies whether the toast message is
+	 * displayed or not.
+	 * 
+	 * @param fileName   The name of the file name to upload.
+	 * @param formatType The type of file (i.e: .jfif, .gif, etc)
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void unSupportedImgFormatUpload(String fileName, String formatType) {
 
 		if (getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")
@@ -1454,8 +1372,9 @@ public class AddIndividualsPage extends BaseClass{
 
 			click(uploadPhotobtn);
 			sleep(3000);
-			
-			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
+
+			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
+					+ formatType;
 			try {
 				Robot robot = new Robot();
 
@@ -1495,17 +1414,26 @@ public class AddIndividualsPage extends BaseClass{
 			log(Status.INFO, "Enter invalid VALUE format in Config.property file");
 		}
 	}
-	
-	
+
+	/**
+	 * Select more than 1MB file format and verifies whether the toast message is
+	 * displayed or not.
+	 * 
+	 * @param fileName   The name of the file name to upload.
+	 * @param formatType The type of file (i.e: .jfif, .gif, etc)
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void moreThan1MBImgFormatUpload(String fileName, String formatType) {
 
 		if (getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")
 				&& getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")) {
-			
+
 			click(uploadPhotobtn);
 			sleep(2000);
-			
-			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
+
+			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
+					+ formatType;
 			try {
 				Robot robot = new Robot();
 
@@ -1547,6 +1475,15 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
+	/**
+	 * Select the Supported image/file format and verifies whether the toast message is
+	 * displayed or not.
+	 * 
+	 * @param fileName   The name of the file name to upload.
+	 * @param formatType The type of file (i.e: .jpg, .png, etc)
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void Upload(String fileName, String formatType) throws Exception {
 
 		if (getConfigureProperty("ImageUpload").equalsIgnoreCase("Yes")
@@ -1554,8 +1491,9 @@ public class AddIndividualsPage extends BaseClass{
 
 			click(uploadPhotobtn);
 			sleep(2000);
-			
-			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "." + formatType;
+
+			String ImagePath = System.getProperty("user.dir") + "\\Individuals File Upload\\" + fileName + "."
+					+ formatType;
 			try {
 				Robot robot = new Robot();
 
@@ -1606,41 +1544,79 @@ public class AddIndividualsPage extends BaseClass{
 		}
 	}
 
+	/**
+	 * To enter max characters in first name field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void invalidFirstName() {
 
 		sendKeys(firstName, "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345");
 		click(middleName);
 	}
 
+	/**
+	 * To enter max characters in middle name field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void invalidMiddleName() {
 
 		sendKeys(middleName, "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345");
 		click(lastName);
 	}
 
+	/**
+	 * To enter max characters in last name field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void invalidLastName() {
 
 		sendKeys(lastName, "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345");
 		click(suffix);
 	}
 
+	/**
+	 * Click on calender icon.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void datePicker() {
 
 		click(btnCalendar);
 	}
 
+	/**
+	 * To enter valid data in first name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage firstName(int rowNum) {
 
 		sendKeys(firstName, readExcel("Test Datas", "AddIndividuals", rowNum, 0));
 		return this;
 	}
 
+	/**
+	 * To enter valid data in middle name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage middleName(int rowNum) {
 
 		sendKeys(middleName, readExcel("Test Datas", "AddIndividuals", rowNum, 1));
 		return this;
 	}
 
+	/**
+	 * To enter valid data in last name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage lastName(int rowNum) throws Exception {
 
 		String crLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 2) + secondsCount();
@@ -1649,6 +1625,12 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Select the gender to create and individual.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage gender(int rowNum) {
 
 		String chooseGender = readExcel("Test Datas", "AddIndividuals", rowNum, 4);
@@ -1657,12 +1639,24 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter valid data in DOB* field
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @return
+	 */
 	public AddIndividualsPage dob(int rowNum) {
 
 		sendKeys(dob, readExcel("Test Datas", "AddIndividuals", rowNum, 5));
 		return this;
 	}
 
+	/**
+	 * Select the first suite in Suite* field to check whether able to select or
+	 * not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage selectSuiteForS1() {
 
 		click(selectSuite);
@@ -1670,16 +1664,28 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Check whether the Mandatory fields are filled in identification tab section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void isMandatoryFieldsAreFilledInIdenticationTabSection() {
-		
-		if(getAttribute(firstName, "value").isBlank() || getAttribute(lastName, "value").isBlank() ||getAttribute(lastName, "value").isBlank()
-				 ||getAttribute(dob, "value").isBlank()) {
+
+		if (getAttribute(firstName, "value").isBlank() || getAttribute(lastName, "value").isBlank()
+				|| getAttribute(lastName, "value").isBlank() || getAttribute(dob, "value").isBlank()) {
 			log(Status.FAIL, "All the mandatory fields are NOT filled");
 		} else {
 			log(Status.PASS, "All the mandatory fields are filled");
 		}
 
 	}
+
+	/**
+	 * Click & Select the valid suite data from excel.
+	 * 
+	 * @param rowNum The row number from which to read the data from excel.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage selectSuite(int rowNum) {
 
 		sleep(1000);
@@ -1691,6 +1697,11 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click on '->' forward arrow in Identi.. tab to moved Address tab section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void forwardArrowToAddressSection() {
 
 		waitForFullPageElementLoad();
@@ -1698,12 +1709,22 @@ public class AddIndividualsPage extends BaseClass{
 
 	}
 
+	/**
+	 * Click on '->' forward arrow in address.. tab to moved Preference tab section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void forwardArrowToPreferenceSection() {
 
 		waitForFullPageElementLoad();
 		click(forwardToPrefTab);
 	}
 
+	/**
+	 * Click on '->' forward arrow in Prefe.. tab to moved Confirm page.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage movedtoConfirmPage() {
 
 		waitForFullPageElementLoad();
@@ -1712,45 +1733,85 @@ public class AddIndividualsPage extends BaseClass{
 
 	}
 
+	/**
+	 * Click on '<-' backward arrow in Address tab to moved Identification tab
+	 * section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void backwardArrowToIdentificationSection() {
 
 		waitForFullPageElementLoad();
 		click(backToIdentificationTab);
 	}
 
+	/**
+	 * Click on '<-' backward arrow in Pref... tab to moved Address tab section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void backwardArrowToAddressSection() {
 
 		waitForFullPageElementLoad();
 		click(backToAddressTab);
 	}
 
+	/**
+	 * Click on '<-' backward arrow in Identi... tab to moved Photo tab section.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void backwardArrowToPhotoSection() {
 
 		waitForFullPageElementLoad();
 		click(backToPhotoTab);
 	}
 
+	/**
+	 * To Enters a residential Address into a field based on the data from the
+	 * specified row number in the Excel sheet.
+	 *
+	 * @param rowNum The row number from which to read the residential Address data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage residentialAddress(int rowNum) {
 
 		sendKeys(residentialAddress, readExcel("Test Datas", "AddIndividuals", rowNum, 10));
 		return this;
 	}
 
+	/**
+	 * To Enters a mailing Address into a field based on the data from the specified
+	 * row number in the Excel sheet.
+	 *
+	 * @param rowNum The row number from which to read the mailing Address data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage MailingAddress(int rowNum) {
 
 		sendKeys(mailingAddress, readExcel("Test Datas", "AddIndividuals", rowNum, 11));
 		return this;
 	}
 
+	/**
+	 * Verifies mailing address field is empty or not
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void isMailingAddressFieldIsEmpty() {
 
-		if(getAttribute(mailingAddress, "value").isBlank()) {
+		if (getAttribute(mailingAddress, "value").isBlank()) {
 			log(Status.PASS, "Mailing address Field is empty");
 		} else {
 			log(Status.FAIL, "Mailing address Field is NOT empty");
 		}
 	}
-	
+
+	/**
+	 * Click on 'sameAsResiAddress' checkbox
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage sameAsResiAdresscheckBox() {
 
 		click(sameAsResiAddressCheckbox);
@@ -1758,12 +1819,22 @@ public class AddIndividualsPage extends BaseClass{
 
 	}
 
+	/**
+	 * Click on AddEmergencyContact
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void addEmergencyContact() {
 
 		click(btnAddEmergencyContact);
 
 	}
 
+	/**
+	 * To enter the maximum character in emergency contact First Name* field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecFNForLimitVal() {
 
 		sendKeys(emergencyContact1FN, "abcdefghijklmnopqrstuvwxyz12345");
@@ -1771,6 +1842,11 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the maximum character in emergency contact Last Name* field.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecLNForLimitVal() {
 
 		sendKeys(emergencyContact1LN, "abcdefghijklmnopqrstuvwxyz12345");
@@ -1778,18 +1854,39 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in emergency contact1 First Name* field based on the
+	 * data from the specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecFirstName(int rowNum) {
 
 		sendKeys(emergencyContact1FN, readExcel("Test Datas", "AddIndividuals", rowNum, 17));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in emergency contact1 Last Name* field based on the
+	 * data from the specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecLastName(int rowNum) {
 
 		sendKeys(emergencyContact1LN, readExcel("Test Datas", "AddIndividuals", rowNum, 18));
 		return this;
 	}
 
+	/**
+	 * Click and select emergency contact1 Relationship dropdown based on the data
+	 * from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecRelationship(int rowNum) {
 
 		click(emergencyContact1Relationship);
@@ -1799,6 +1896,14 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in emergency contact1 Phone Number* field based on the
+	 * data from the specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @throws Exception If an error occurs during this operation.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecPhoneNumber(int rowNum) throws Exception {
 
 		String randomMobileNumber = randomMobileNumber();
@@ -1807,12 +1912,40 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Enters 1 digit extra in emergency contact 1 phone number field and retrieves
+	 * the entered value.
+	 *
+	 * @param phoneNumber The phone number to be entered into the emergency contact
+	 *                    1 phone number field.
+	 * @return The value of the entered phone number.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public String getPhoneNoFieldMaxValue() {
+
+		backSpace(emergencyContact1PhoneNo);
+		sendKeys(emergencyContact1PhoneNo, "01");
+		String phNoFieldValue = getAttribute(emergencyContact1PhoneNo, "value");
+		return phNoFieldValue;
+	}
+
+	/**
+	 * Click on Toast button 'ok' button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage toastMsgokButton() {
 
 		click(requiredFieldToastMsgokbtn);
 		return this;
 	}
 
+	/**
+	 * Click on 'Back' button
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage back() {
 
 		click(backBtn);
@@ -1820,6 +1953,11 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click on identification tab section
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage identificationTab() {
 
 		click(identificationTab);
@@ -1827,6 +1965,11 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click on address tab section
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage addressTab() {
 
 		click(addressTab);
@@ -1834,12 +1977,24 @@ public class AddIndividualsPage extends BaseClass{
 
 	}
 
+	/**
+	 * Click on preference tab section
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage preferenceTab() {
 
 		click(preferenceTab);
 		return this;
 	}
 
+	/**
+	 * Click and select title dropdown based on the data from the specified row
+	 * number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage title(int rowNum) {
 
 		click(title);
@@ -1850,12 +2005,26 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in suffix field based on the data from the specified
+	 * row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage suffix(int rowNum) {
 
 		sendKeys(suffix, readExcel("Test Datas", "AddIndividuals", rowNum, 7));
 		return this;
 	}
 
+	/**
+	 * Click and select race dropdown based on the data from the specified row
+	 * number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage race(int rowNum) {
 
 		click(selectRace);
@@ -1866,6 +2035,13 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click and select marital status dropdown based on the data from the specified
+	 * row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage maritalStatus(int rowNum) {
 
 		click(maritalStatus);
@@ -1876,12 +2052,26 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in Nick Name field based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage nickName(int rowNum) {
 
 		sendKeys(nickName, readExcel("Test Datas", "AddIndividuals", rowNum, 12));
 		return this;
 	}
 
+	/**
+	 * Click and select Pronoun dropdown based on the data from the specified row
+	 * number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage pronoun(int rowNum) {
 
 		click(selectPronoun);
@@ -1892,6 +2082,13 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click and select Ethnic Affiliation dropdown based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ethnicAffiliation(int rowNum) {
 
 		click(selectEthnicAffiliation);
@@ -1902,6 +2099,13 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click and select Preffered Language dropdown based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage preferredLanguage(int rowNum) {
 
 		click(selectPreferredLanguage);
@@ -1912,6 +2116,13 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click and select Religion dropdown based on the data from the specified row
+	 * number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage Religion(int rowNum) {
 
 		click(selectReligion);
@@ -1923,6 +2134,12 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the max characters in emergency contact2 First Name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec2FNForLimitVal() {
 
 		sendKeys(emergencyContact2FN, "abcdefghijklmnopqrstuvwxyz12345");
@@ -1930,6 +2147,12 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the max characters in emergency contact2 Last Name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ecLN2ForLimitVal() {
 
 		sendKeys(emergencyContact2LN, "abcdefghijklmnopqrstuvwxyz12345");
@@ -1937,37 +2160,71 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To check whether the emergency contact1 field details is empty or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void ecFieldIsEmpty() {
-		
-		if(getAttribute(emergencyContact1FN,"value").isBlank() || getAttribute(emergencyContact1LN,"value").isBlank() || getAttribute(emergencyContact1PhoneNo,"value").isBlank()) {
+
+		if (getAttribute(emergencyContact1FN, "value").isBlank() || getAttribute(emergencyContact1LN, "value").isBlank()
+				|| getAttribute(emergencyContact1PhoneNo, "value").isBlank()) {
 			log(Status.FAIL, "Data NOT entered in First and Last Name field in EC1");
 		} else {
 			log(Status.PASS, "Data is entered in First and Last Name field in EC1");
 		}
-		}
-		
-	
+	}
+
+	/**
+	 * To check whether the emergency contact2 field details is empty or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void ec2FieldIsEmpty() {
-		
-	if(getAttribute(emergencyContact2FN,"value").isBlank() || getAttribute(emergencyContact2LN,"value").isBlank()) {
-		log(Status.FAIL, "Data NOT entered in First and Last Name field in EC2");
-	} else {
-		log(Status.PASS, "Data is entered in First and Last Name field in EC2");
+
+		if (getAttribute(emergencyContact2FN, "value").isBlank()
+				|| getAttribute(emergencyContact2LN, "value").isBlank()) {
+			log(Status.FAIL, "Data NOT entered in First and Last Name field in EC2");
+		} else {
+			log(Status.PASS, "Data is entered in First and Last Name field in EC2");
+		}
 	}
-	}
-	
+
+	/**
+	 * To enter the valid data in emergency contact2 first name field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec2FirstName(int rowNum) {
 
 		sendKeys(emergencyContact2FN, readExcel("Test Datas", "AddIndividuals", rowNum, 17));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in emergency contact2 last name field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec2LastName(int rowNum) {
 
 		sendKeys(emergencyContact2LN, readExcel("Test Datas", "AddIndividuals", rowNum, 18));
 		return this;
 	}
 
+	/**
+	 * Click and select ec2 relationship dropdown based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec2Relationship(int rowNum) {
 
 		click(emergencyContact2Relationship);
@@ -1978,6 +2235,13 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in emergency contact2 phone number field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec2PhoneNumber(int rowNum) throws Exception {
 
 		String randomMobileNumber = randomMobileNumber();
@@ -1986,12 +2250,23 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * Click on emergency contact2 Relationship dropdown
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage selectEC2Relationship() {
 
 		click(emergencyContact2Relationship);
 		return this;
 	}
 
+	/**
+	 * To enter the max characters in emergency contact3 First Name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage ec3FNForLimitVal() {
 
 		sendKeys(emergencyContact3FN, "abcdefghijklmnopqrstuvwxyz13345");
@@ -1999,32 +2274,65 @@ public class AddIndividualsPage extends BaseClass{
 		return this;
 	}
 
+	/**
+	 * To enter the max characters in emergency contact3 Last Name field.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public void ec3LNForLimitVal() {
 
 		sendKeys(emergencyContact3LN, "abcdefghijklmnopqrstuvwxyz13345");
 		click(emergencyContact3FN);
 	}
 
+	/**
+	 * To check whether the emergency contact3 field details is empty or not.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public void ec3FieldIsEmpty() {
-		
-		if(getAttribute(emergencyContact3FN,"value").isBlank() || getAttribute(emergencyContact3LN,"value").isBlank()) {
+
+		if (getAttribute(emergencyContact3FN, "value").isBlank()
+				|| getAttribute(emergencyContact3LN, "value").isBlank()) {
 			log(Status.FAIL, "Data NOT entered in First and Last Name field in EC3");
 		} else {
 			log(Status.PASS, "Data is entered in First and Last Name field in EC3");
 		}
+	}
 
-		}
-	
+	/**
+	 * To enter the valid data in emergency contact3 First Name field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public void ec3FirstName(int rowNum) {
 
 		sendKeys(emergencyContact3FN, readExcel("Test Datas", "AddIndividuals", rowNum, 17));
 	}
 
+	/**
+	 * To enter the valid data in emergency contact3 Last Name field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public void ec3LastName(int rowNum) {
 
 		sendKeys(emergencyContact3LN, readExcel("Test Datas", "AddIndividuals", rowNum, 18));
 	}
 
+	/**
+	 * Click and select ec3 relationship dropdown based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public void ec3Relationship(int rowNum) {
 
 		click(emergencyContact3Relationship);
@@ -2034,121 +2342,170 @@ public class AddIndividualsPage extends BaseClass{
 		select(relationship);
 	}
 
+	/**
+	 * To enter the valid data in emergency contact3 phone number field based on the
+	 * data from the specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public void ec3PhoneNumber(int rowNum) {
 
 		sendKeys(emergencyContact3PhoneNo, readExcel("Test Datas", "AddIndividuals", rowNum, 30));
 	}
 
+	/**
+	 * Click on emergency contact3 Relationship dropdown field
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void selectEC3Relationship() {
 
 		click(emergencyContact3Relationship);
 		click(emergencyContact3LN);
 	}
 
+	/**
+	 * Click on AddEmergencyContact2 'x' button
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void xBtnInEmContact2() {
 
 		click(emContact2CloseBtn);
 	}
 
+	/**
+	 * Click on 'x' button in New Individual Registration Popup
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void closeNewIndRegistrationPopup() {
 
 		click(newIndRegCloseBtn);
 	}
 
+	/**
+	 * Click on Continue button
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void continueButton() {
 
 		click(continueButton);
 	}
 
+	/**
+	 * Click on 'Go Individual' button
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
 	public void goToIndividualsButton() {
 
 		click(btnGoToInd);
 		waitForPageLoad();
 	}
 
-//	public void searchBox(int rowNum){
-//
-//		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
-//		for (int i = 0; i < crIndividualLastName.length(); i++) {
-//			char letter = crIndividualLastName.charAt(i);
-//			String letterAsString = String.valueOf(letter);
-//			sendKeys(individualSearchBox, letterAsString);
-//		}
-//
-//		backSpace(individualSearchBox);
-//		waitForFullPageElementLoad();
-//		sleep(1000);
-//		int length = crIndividualLastName.length();
-//		char lastLetter = crIndividualLastName.charAt(length - 1);
-//		String enterLastLetter = String.valueOf(lastLetter);
-//		sendKeys(individualSearchBox, enterLastLetter);
-//		waitForFullPageElementLoad();
-//	}
-	
-	public void searchBox(int rowNum) throws Exception{
+	/**
+	 * To enter invalid data in individual search box
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public void searchBoxForZeroSearch() throws Exception {
+
+		// Sanity Run
+		deleteExistFieldData(individualSearchBox);
+
+		sendKeys(individualSearchBox, "KKKGT");
+		waitForAjexPageLoad();
+		waitForPageLoad();
+		backSpace(individualSearchBox);
+	}
+
+	/**
+	 * To enter created individual data in search box based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data from excel.
+	 * @throws Exception If an error occurs during this operation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public void searchBox(int rowNum) throws Exception {
+
+		// Sanity Run
+		deleteExistFieldData(individualSearchBox);
 
 		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 26);
-		String[] split = crIndividualLastName.split(" ");
+		String[] split = crIndividualLastName.split("-");
 		String firstName = split[0];
 		String MiddleName = split[1];
-		String LastName = " "+split[2];
-		
-		System.out.println("FN - "+firstName);
 
-		System.out.println("MN - "+MiddleName);
-		System.out.println("LN - "+LastName);
-		
-		sendKeys(individualSearchBox, firstName+" "+MiddleName);
-			waitForAjexPageLoad();
-			
-			for (int i = 0; i < LastName.length(); i++) {
-				char letter = LastName.charAt(i);
-				String letterAsString = String.valueOf(letter);
-				sendKeys(individualSearchBox, letterAsString);
-				waitForPageLoad();
-			}
-			backSpace(individualSearchBox);
+		System.out.println("FN - " + firstName);
+		System.out.println("MN - " + MiddleName);
+
+		sendKeys(individualSearchBox, firstName + "-");
+		waitForAjexPageLoad();
+
+		for (int i = 0; i < MiddleName.length(); i++) {
+			char letter = MiddleName.charAt(i);
+			String letterAsString = String.valueOf(letter);
+			sendKeys(individualSearchBox, letterAsString);
 			waitForPageLoad();
-			waitForFullPageElementLoad();
-			sleep(5000);
-			int length = LastName.length();
-			char lastLetter = LastName.charAt(length - 1);
-			String enterLastLetter = String.valueOf(lastLetter);
-			sendKeys(individualSearchBox, enterLastLetter);
-			waitForPageLoad();
-			waitForFullPageElementLoad();
-			
-			String actSearchedInd = getText(getCreatedIndName());
-			
-			System.out.println("Actua Searched Ind - "+actSearchedInd);
-			System.out.println("Exp Searched Ind - "+crIndividualLastName);
-			
-			if (actSearchedInd.equals(crIndividualLastName)) {
-				log(Status.PASS, "Searched Individual is displayed");
-				
-				searchedIndividualform();
-				
-			} else {
-				log(Status.FAIL, "Searched Individual is NOT displayed");
-				throw new Exception("Assertion failed searched Individual is not displayed as expected");
-			}
-		
-		
-//		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", 1, 26);
+		}
+		backSpace(individualSearchBox);
+		waitForPageLoad();
+		waitForFullPageElementLoad();
+		sleep(5000);
+		int length = MiddleName.length();
+		char lastLetter = MiddleName.charAt(length - 1);
+		String enterLastLetter = String.valueOf(lastLetter);
+		sendKeys(individualSearchBox, enterLastLetter);
+		waitForPageLoad();
+		waitForFullPageElementLoad();
+
+		String actSearchedInd = getText(getCreatedIndName());
+
+		System.out.println("Actua Searched Ind - " + actSearchedInd);
+		System.out.println("Exp Searched Ind - " + crIndividualLastName);
+
+		if (actSearchedInd.equals(crIndividualLastName)) {
+			log(Status.PASS, "Searched Individual is displayed");
+
+			searchedIndividualform();
+
+		} else {
+			log(Status.FAIL, "Searched Individual is NOT displayed");
+			throw new Exception("Assertion failed searched Individual is not displayed as expected");
+		}
+	}
+
+//	public void searchBox(int rowNum) throws Exception{
+//        
+//		//Sanity Run
+//		deleteExistFieldData(individualSearchBox);
+//		
+//		String crIndividualLastName = readExcel("Test Datas", "AddIndividuals", rowNum, 26);
 //		String[] split = crIndividualLastName.split(" ");
 //		String firstName = split[0];
 //		String MiddleName = split[1];
 //		String LastName = " "+split[2];
 //		
-//			sendKeys(individualSearchBox, firstName+" "+MiddleName);
+//		System.out.println("FN - "+firstName);
+//
+//		System.out.println("MN - "+MiddleName);
+//		System.out.println("LN - "+LastName);
+//		
+//	
+//		sendKeys(individualSearchBox, firstName+" "+MiddleName);
 //			waitForAjexPageLoad();
+//			
 //			for (int i = 0; i < LastName.length(); i++) {
 //				char letter = LastName.charAt(i);
 //				String letterAsString = String.valueOf(letter);
 //				sendKeys(individualSearchBox, letterAsString);
+//				waitForPageLoad();
 //			}
-//			waitForPageLoad();
-//			waitForFullPageElementLoad();
 //			backSpace(individualSearchBox);
 //			waitForPageLoad();
 //			waitForFullPageElementLoad();
@@ -2157,86 +2514,171 @@ public class AddIndividualsPage extends BaseClass{
 //			char lastLetter = LastName.charAt(length - 1);
 //			String enterLastLetter = String.valueOf(lastLetter);
 //			sendKeys(individualSearchBox, enterLastLetter);
+//			waitForPageLoad();
 //			waitForFullPageElementLoad();
-			
+//			
+//			String actSearchedInd = getText(getCreatedIndName());
+//			
+//			System.out.println("Actua Searched Ind - "+actSearchedInd);
+//			System.out.println("Exp Searched Ind - "+crIndividualLastName);
+//			
+//			if (actSearchedInd.equals(crIndividualLastName)) {
+//				log(Status.PASS, "Searched Individual is displayed");
+//				
+//				searchedIndividualform();
+//				
+//			} else {
+//				log(Status.FAIL, "Searched Individual is NOT displayed");
+//				throw new Exception("Assertion failed searched Individual is not displayed as expected");
+//			}			
+//	}
+
+	/**
+	 * Click on 'Vitals' tab section.
+	 * 
+	 * @throws Exception If an error occurs during this operation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public AddIndividualsPage vitalsTab() throws Exception {
+
+		try {
+			waitForElementToBeClickable(vitalsTab, 5);
+			click(vitalsTab);
+			return this;
+		} catch (Exception e) {
+			throw new Exception("Unable to navigate Vitals Tab Section");
+		}
 	}
 
-public AddIndividualsPage vitalsTab() throws Exception {
-		
-	try {
-	waitForElementToBeClickable(vitalsTab, 5);
-		click(vitalsTab);
-		return this;
-	} catch (Exception e) {
-		throw new Exception("Unable to navigate Vitals Tab Section");
-	}
-	}
-
+	/**
+	 * Click and select blood group dropdown based on the data from the specified
+	 * row number in the Excel sheet.
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 * 
+	 */
 	public AddIndividualsPage selectBloodGroup(int rowNum) {
-		
+
 		click(bloodGroup);
 		String BG = readExcel("Test Datas", "AddVitals", rowNum, 0);
 		selectBG = selectBG.replaceAll("selectBGroup", BG);
 		select(selectBG);
 		return this;
 	}
-	
 
+	/**
+	 * To enter the valid data in Blood Pressure* field based on the data from the
+	 * specified row number in the Excel sheet.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 * @param rowNum The row number from which to read the data.
+	 */
 	public AddIndividualsPage bloodPressure(int rowNum) {
-		
+
 		sendKeys(bloodPressureField, readExcel("Test Datas", "AddVitals", rowNum, 1));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in Blood Glucose* field based on the data from the
+	 * specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage bloodGlucose(int rowNum) {
-		
+
 		sendKeys(bloodGlucoseField, readExcel("Test Datas", "AddVitals", rowNum, 2));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in Cholestrol* field based on the data from the
+	 * specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage cholesterol(int rowNum) {
-		
+
 		sendKeys(cholestrolField, readExcel("Test Datas", "AddVitals", rowNum, 3));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in Height* field based on the data from the specified
+	 * row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage height(int rowNum) {
-		
+
 		sendKeys(heightField, readExcel("Test Datas", "AddVitals", rowNum, 4));
 		return this;
 	}
 
+	/**
+	 * To enter the valid data in Weight* field based on the data from the specified
+	 * row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
 	public AddIndividualsPage weight(int rowNum) {
-		
+
 		sendKeys(weightField, readExcel("Test Datas", "AddVitals", rowNum, 5));
 		return this;
 	}
-	
-public AddIndividualsPage healthSummary(int rowNum) {
-		
+
+	/**
+	 * To enter the valid data in health Summary* field based on the data from the
+	 * specified row number in the Excel sheet..
+	 * 
+	 * @param rowNum The row number from which to read the data.
+	 * @author Alphi-MohamedRazul
+	 */
+	public AddIndividualsPage healthSummary(int rowNum) {
+
 		sendKeys(healthSummaryField, readExcel("Test Datas", "AddVitals", rowNum, 7));
 		return this;
 	}
 
-public void vitalsUpdateButton() {
-	
-	waitForElementToBeClickable(btnVitalsUpdate, 10);
-	click(btnVitalsUpdate);
+	/**
+	 * Click on Update button under Vitals tab.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public void vitalsUpdateButton() {
 
-}
+		waitForElementToBeClickable(btnVitalsUpdate, 10);
+		click(btnVitalsUpdate);
 
-public AddIndividualsPage addVitalsButton() {
-	
-	click(addVitalsButton);
-	return this;
-}
-	
-public void searchedIndividualform() {
-	
-	sleep(1000);
-	waitForFullPageElementLoad();
-click(createdIndName);
-}
+	}
 
+	/**
+	 * Click on 'Add Vitals' button.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public AddIndividualsPage addVitalsButton() {
+
+		click(addVitalsButton);
+		return this;
+	}
+
+	/**
+	 * Click on searched individual form
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public void searchedIndividualform() {
+
+		sleep(1000);
+		waitForFullPageElementLoad();
+		click(createdIndName);
+	}
 
 }

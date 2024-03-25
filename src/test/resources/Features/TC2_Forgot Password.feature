@@ -2,7 +2,7 @@
 #
 #* created by Mohamed Razul
 #
-#* reviewed by 
+#* reviewed by Hajira begam
 #
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization   * is prohibited without prior and proper license agreement
 #
@@ -37,6 +37,7 @@ Feature: Verify Xealei Forgot Page
     And User should verify the content and body of the Forgot mail
     And User should verify the Reset Password link is working in mail.
     Then User should switch to New Password page
+    Then User should verify the tab url address for NEW PASSWORD screen
     And User should verify the Label name & Placeholder text for the New Password Re-Enter Password field
     And User should verify whether the fields are mandatory in new password page "Please enter new password", "Please enter confirm password"
     And User should verify that the eye icon is functional in the New Password field

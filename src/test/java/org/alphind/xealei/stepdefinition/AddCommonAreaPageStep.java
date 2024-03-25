@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.stepdefinition;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -15,7 +25,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify the Common Area Module is working")
 	public void user_should_verify_the_common_area_module_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getHomePage().navToCommonAreaModule();
 
@@ -34,7 +44,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify common area page tab url address")
 	public void user_should_verify_common_area_page_tab_url_address() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 
@@ -74,7 +84,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_clicks_on_the_add_common_area_button_and_verifies_that_the_add_common_area_popup_screen_is_displayed()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 //		waitForPageLoad();
 		
@@ -96,7 +106,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_the_limit_error_info_message_for_common_area_name_field(
 			String expLimitValidationMsgForCAN) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().checkLimitIncommonAreaTextbox().addButtonInCommenAreaPopup();
 
@@ -118,7 +128,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify the field Common Area Name * is mandatory {string}")
 	public void user_should_verify_the_field_common_area_name_is_mandatory(String expCANMandatoryTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		deleteExistFieldData(pom.getAddCommonAreaPage().getCommonAreaNameTxtbox());
 
@@ -139,7 +149,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify duplicate validation for Common Area name {string}")
 	public void user_should_verify_duplicate_validation_for_common_area_name(String expExistToastMessage) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().existCommonAreaName(1).addButtonInCommenAreaPopup();
 
@@ -162,7 +172,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_perform_only_non_mandatory_fields_in_common_area_band_verify_the_info_message_contains_for_mandatory_fields(
 			String expCANMandatoryTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		deleteExistFieldData(pom.getAddCommonAreaPage().getCommonAreaNameTxtbox());
 
@@ -183,7 +193,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify the field Common Area Name* for limit")
 	public void user_should_verify_the_field_common_area_name_for_limit() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
 		
@@ -200,9 +210,9 @@ public class AddCommonAreaPageStep extends BaseClass {
 		@Then("User should verify whether able to close the popup by clicking x icon")
 		public void user_should_verify_whether_able_to_close_the_popup_by_clicking_x_icon() throws Exception {
 		  
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
-		pom.getAddCommonAreaPage().closePopup();
+		pom.getAddCommonAreaPage().closePopupXIcon();
 
 		String expContent = "Changes you made may not be saved. Are you sure you want to Cancel?";
 		String PopupName = "Common Area";
@@ -224,13 +234,38 @@ public class AddCommonAreaPageStep extends BaseClass {
 			log(Status.FAIL, e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
+		
+		
+		
+		@Then("User should verify for Zero Search result in Add Common Area search field")
+		public void user_should_verify_for_zero_search_result_in_add_common_area_search_field() {
+		   
+			logWithLabelName(getMethodName());
+			
+			pom.getAddSuitesPage().searchBoxForZeroSearch();
+			
+			waitForPageLoad();
+	        waitForFullPageElementLoad();
+	        
+			String actModuleName =getText(pom.getAddSuitesPage().getSuitesPage());
+			String actZeroSearchText = pom.getAddSuitesPage().getZeroSearchText();
+			
+			String expModuleName = "Common Area";
+			String expZeroSearchText = "No relevent results found";
+			
+			if(actModuleName.equals(expModuleName) && actZeroSearchText.equals(expZeroSearchText)) {
+				log(Status.PASS, "Displayed zero search message as - "+expZeroSearchText);
+			} else {
+				log(Status.FAIL, "Zero Search is NOT working as expected");
+			}	
+			
+		}
 
 	@Then("User should perform Common Area by entering only Mandatory field")
 	public void user_should_perform_common_area_by_entering_only_mandatory_field() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddCommonAreaPage().addCommonAreaButton();
 
@@ -267,7 +302,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_perform_all_fields_in_common_area_page_and_verify_the_toast_message_after_perform_all_fields(
 			String string) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().commonAreaName(1).enterLengthWidthHeight(1);
 		waitForFullPageElementLoad();
@@ -296,7 +331,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should search the created Common Area by performed all fields")
 	public void user_should_search_the_created_common_area_by_performed_all_fields() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().searchBox();
 		waitForFullPageElementLoad();
@@ -305,7 +340,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	@Then("User should verify all fields are created successsfully in common area page")
 	public void user_should_verify_all_fields_are_created_successsfully_in_common_area_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		try {
 			waitForVisiblityOfElement(pom.getAddCommonAreaPage().getCreatedCommonAreaData(), 10);
 			String expCommonAreaName = readExcel("Test Datas", "AddCommonArea", 2, 6);
@@ -378,7 +413,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_common_area_common_area_name()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String txtBreadCrum = pom.getAddCommonAreaPage().getBreadCrumLinkText();
 
@@ -402,7 +437,7 @@ public class AddCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_common_area_searched_page()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().returnToCommonAreaPageBCText();
 
