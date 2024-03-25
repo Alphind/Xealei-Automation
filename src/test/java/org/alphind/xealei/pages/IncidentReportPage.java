@@ -1,4 +1,4 @@
-/* Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
 
 * created by Mohamed Razul
 
@@ -37,7 +37,7 @@ public class IncidentReportPage extends BaseClass {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
- 
+
 	}
 
 	private String dropdownOption = "//span[contains(text(),'XX') and @class = 'mat-option-text']";
@@ -389,7 +389,7 @@ public class IncidentReportPage extends BaseClass {
 
 //	@FindBy(xpath = "//mat-error[contains(text(),'Notified time should be')]")
 //	private WebElement lesserThanNotifiedTimeInfoMsg;
-	
+
 	@FindBy(xpath = "//mat-error[@class='mat-error ng-star-inserted']")
 	private WebElement lesserThanNotifiedTimeInfoMsg;
 
@@ -469,21 +469,18 @@ public class IncidentReportPage extends BaseClass {
 
 	@FindBy(xpath = "//div[@class='user-category']/parent::div[@class = 'wrapText']")
 	private WebElement userName;
-	
+
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
-	
-	
-	public 	WebElement getNoteInfoMsgElement() {
+
+	public WebElement getNoteInfoMsgElement() {
 		return noteInfoMsg;
 	}
-	
-	
+
 	public WebElement getLocationElement() {
 		return locationValue;
 
 	}
-
 
 	/**
 	 * Get the "Incident Report" Module(text) in Reports > Incident Report Page.
@@ -855,7 +852,6 @@ public class IncidentReportPage extends BaseClass {
 
 		deleteExistFieldData(eventDateAndTimeCalenderIconButton);
 	}
-	
 
 	/**
 	 * Delete the "Injury Description" field exist data
@@ -1002,7 +998,7 @@ public class IncidentReportPage extends BaseClass {
 	 * 
 	 */
 	public void selectIndividualDetails() {
-		
+
 		sleep(2000);
 		String individualDetail = readExcel("Test Datas", "Incident Reports", 1, 0).trim();
 //		String[] fullname = individualDetail.split(" ");
@@ -1039,7 +1035,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala. Enter the data from excel sheet to 'Injury Description'
 	 *         text area box.
-	 * @throws Exception 
+	 * @throws Exception
 	 *
 	 * 
 	 * @created on 22-12-2023
@@ -1300,7 +1296,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Get tooltip for BAck View Head.
+	 * Get tooltip for BAck View Head.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -1312,7 +1308,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Get tooltip for Back View Right Shoulder.
+	 * Get tooltip for Back View Right Shoulder.
 	 * 
 	 * @created on 09-01-2024.
 	 * 
@@ -1659,7 +1655,7 @@ public class IncidentReportPage extends BaseClass {
 
 	/**
 	 * @author Nandhalala. Select the Notification Method.
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 * @created on 22-12-2023.
 	 */
@@ -1667,25 +1663,24 @@ public class IncidentReportPage extends BaseClass {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 
-			case "YES","": {
-				String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
-				writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
-				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
-				sendKeys(notificationDateCalenderTxtbox, notificationDate);
-				break;
-			}
-			case "NO" : {
-				String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14);
-				sendKeys(notificationDateCalenderTxtbox, notificationDate);
-				break;
-			}
+		case "YES", "": {
+			String currentDate = getCurrentMonth() + "/" + getCurrentDate() + "/" + getCurrentDtYearMonth("yyyy");
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 14, currentDate);
+			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14).trim();
+			sendKeys(notificationDateCalenderTxtbox, notificationDate);
+			break;
+		}
+		case "NO": {
+			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 14);
+			sendKeys(notificationDateCalenderTxtbox, notificationDate);
+			break;
+		}
 		}
 	}
 
-	
 	/**
 	 * @author Nandhalala. Select the Notification Time.
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 * @created on 22-12-2023.
 	 */
@@ -1693,26 +1688,26 @@ public class IncidentReportPage extends BaseClass {
 
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 
-		case "YES","": {
-					writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
-					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
-					sendKeys(timeTxtbox, notificationDate);
-					String getNotificationTime = getAttribute(timeTxtbox, "value");
-					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+		case "YES", "": {
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 15, getCurrentDtYearMonth("hh:mma"));
+			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15).trim();
+			sendKeys(timeTxtbox, notificationDate);
+			String getNotificationTime = getAttribute(timeTxtbox, "value");
+			System.out.println("Entered time in Notification Time field - " + getNotificationTime);
 //					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
 //					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
-					break;
-				}
-				case "NO" :{
-					String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
-					sendKeys(timeTxtbox, notificationDate);
-					String getNotificationTime = getAttribute(timeTxtbox, "value");
-					System.out.println("Entered time in Notification Time field - "+getNotificationTime);
+			break;
+		}
+		case "NO": {
+			String notificationDate = readExcel("Test Datas", "Incident Reports", 1, 15);
+			sendKeys(timeTxtbox, notificationDate);
+			String getNotificationTime = getAttribute(timeTxtbox, "value");
+			System.out.println("Entered time in Notification Time field - " + getNotificationTime);
 //					Assert.assertEquals("Entered time in Notification Time field is NOT dispalyed as expected", eventDateAndTime, getNotificationTime);
 //					log(Status.PASS, "Entered time in Notification Time field - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getNotificationTime);
-					break;
-				}
-			}
+			break;
+		}
+		}
 	}
 
 	/**
@@ -1776,8 +1771,7 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. To get the status of the Incident report of the mentioned
-	 *         row.
+	 * @author Nandhalala. To get the status of the Incident report of the mentioned row.
 	 * 
 	 * @param rowNumber
 	 * @return the status value of the given row.
@@ -1790,8 +1784,7 @@ public class IncidentReportPage extends BaseClass {
 	}
 
 	/**
-	 * @author Nandhalala. To get the ID of the Incident report of the mentioned
-	 *         row.
+	 * @author Nandhalala. To get the ID of the Incident report of the mentioned row.
 	 * 
 	 * @param rowNumber
 	 * @return the status value of the given row.
@@ -1839,13 +1832,13 @@ public class IncidentReportPage extends BaseClass {
 	 */
 	public void residentialManagerReviewerComments(String decision) {
 		decision = decision.toUpperCase();
-		
+
 		waitForVisiblityOfElement(reviewerComments, 10);
-		
+
 		switch (decision) {
 		case "APPROVED": {
 			String comments = readExcel("Test Datas", "Incident Reports", 1, 21);
-			
+
 			sendKeys(reviewerComments, comments);
 			break;
 		}
@@ -2065,7 +2058,7 @@ public class IncidentReportPage extends BaseClass {
 	 * Automatically.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	public void eventDateAndTime() throws Exception {
@@ -2073,11 +2066,11 @@ public class IncidentReportPage extends BaseClass {
 		switch (getConfigureProperty("currentDate&Time").toUpperCase()) {
 		case "YES", "": {
 			String currentDtYearMonth = getCurrentDtYearMonth("MM/dd/yyyyhh:mma");
-			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth );
+			writeExcelToOverwrite("Test Datas", "Incident Reports", 1, 1, currentDtYearMonth);
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
-			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+			System.out.println("Entered current date in Event Date & time field - " + getDateAndTime);
 //			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
 //			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
@@ -2086,7 +2079,7 @@ public class IncidentReportPage extends BaseClass {
 			String eventDateAndTime = readExcel("Test Datas", "Incident Reports", 1, 1);
 			sendKeyswithException(eventDateAndTimeCalenderIconButton, eventDateAndTime);
 			String getDateAndTime = getAttribute(eventDateAndTimeCalenderIconButton, "value");
-			System.out.println("Entered current date in Event Date & time field - "+getDateAndTime);
+			System.out.println("Entered current date in Event Date & time field - " + getDateAndTime);
 //			Assert.assertEquals("Entered Date & Time in eventDateAndTime field is NOT dispalyed as expected", eventDateAndTime, getDateAndTime);
 //			log(Status.PASS, "Entered Date & Time is dispalyed as expected - Exp Date&Time - "+eventDateAndTime +"| Actual Date&Time - "+getDateAndTime);
 			break;
@@ -2098,15 +2091,15 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter the data from excel sheet to 'Event Date & Time' text area box.
 	 *
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	public void eventDateAndFutureTime() throws Exception {
-		
+
 		String getFutureTime = getFutureTime("MM/dd/yyyyhh:mma");
-			sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
-          click(whatCausedTheFallDescriptionTxtBox);
-		}
+		sendKeys(eventDateAndTimeCalenderIconButton, getFutureTime);
+		click(whatCausedTheFallDescriptionTxtBox);
+	}
 
 	/**
 	 * Get the Selected Individual Name
@@ -2132,7 +2125,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("IncidentReportFileUpload").equalsIgnoreCase("Yes")) {
 
 			waitForFullPageElementLoad();
-			
+
 			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
@@ -2217,19 +2210,18 @@ public class IncidentReportPage extends BaseClass {
 
 				try {
 					waitForVisiblityOfElement(unSupportedFileUploadToastMessageText, 5);
-					Assert.assertEquals("Unable to restrict the JFIF File format", "Only jpg,jpeg,png type format is supported",
+					Assert.assertEquals("Unable to restrict the JFIF File format",
+							"Only jpg,jpeg,png type format is supported",
 							getText(unSupportedFileUploadToastMessageText));
 
 					log(Status.PASS, "Toast Message is displayed - " + getText(unSupportedFileUploadToastMessageText));
-					
+
 					ToastMsgOKButton();
-					
+
 				} catch (AssertionError e) {
 					log(Status.FAIL, e.getMessage());
 					e.printStackTrace();
 				}
-
-				
 
 			} catch (AWTException e) {
 				e.printStackTrace();
@@ -2258,7 +2250,7 @@ public class IncidentReportPage extends BaseClass {
 				&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
 
 			waitForFullPageElementLoad();
-			
+
 			waitForElementToBeClickable(attachmentIconButton, 10);
 			click(attachmentIconButton);
 			sleep(3000);
@@ -2619,7 +2611,7 @@ public class IncidentReportPage extends BaseClass {
 	 * Select the DD/MM/YYY in "Notification Date" field using date picker.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 *
 	 */
 	public void selectDateInDatePickerAndVerify() throws Exception {
@@ -2694,14 +2686,14 @@ public class IncidentReportPage extends BaseClass {
 			WebElement getPreviousDate = findElementByXpath(selectNextDate);
 
 			String previousDate = getAttribute(getPreviousDate, "aria-disabled");
-                  System.out.println("If block - "+previousDate);
-                  
+			System.out.println("If block - " + previousDate);
+
 			if (previousDate.equals("true")) {
 				log(Status.PASS, "The Previous dates are disabled to the current date in Notification Date field");
 			}
-			
+
 		} else if (convertEventDateToInt == 1) {
-			System.out.println("Else If block - "+convertEventDateToInt);
+			System.out.println("Else If block - " + convertEventDateToInt);
 			log(Status.INFO, "Cant check the previous date because the Mentioned date in event is 01");
 		}
 		return this;
@@ -2713,7 +2705,7 @@ public class IncidentReportPage extends BaseClass {
 	 * Date" field.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 *
 	 */
 	public void verifyFutureDateIsDisable() throws Exception {
@@ -2729,12 +2721,11 @@ public class IncidentReportPage extends BaseClass {
 
 		String eventYear = attribute.substring(0, 4);
 		System.out.println("Year alone - " + eventYear);
-		
+
 		int eventYEAR = Integer.parseInt(eventYear);
-		
+
 		int intEventDt = Integer.parseInt(eventDate);
 
-		
 		if ((eventMonth.equals("01") || eventMonth.equals("03") || eventMonth.equals("05") || eventMonth.equals("07")
 				|| eventMonth.equals("08") || eventMonth.equals("10") || eventMonth.equals("12")) && intEventDt <= 30) {
 
@@ -2756,7 +2747,7 @@ public class IncidentReportPage extends BaseClass {
 			log(Status.INFO, "Reached Month end date");
 
 		} else if ((eventMonth.equals("04") || eventMonth.equals("06") || eventMonth.equals("09")
-				|| eventMonth.equals("11")) && intEventDt <=29) {
+				|| eventMonth.equals("11")) && intEventDt <= 29) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2774,7 +2765,7 @@ public class IncidentReportPage extends BaseClass {
 
 			log(Status.INFO, "Reached Month end date");
 
-		} else if (eventMonth.equals("02") && intEventDt <=28 && (eventYEAR%4!=0)) {
+		} else if (eventMonth.equals("02") && intEventDt <= 28 && (eventYEAR % 4 != 0)) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2787,11 +2778,12 @@ public class IncidentReportPage extends BaseClass {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
 
-		} else if (eventMonth.equals("02") && ((intEventDt > 28 && (eventYEAR%4==0)) || (intEventDt==28 &&(eventYEAR%4!=0)) )) {
+		} else if (eventMonth.equals("02")
+				&& ((intEventDt > 28 && (eventYEAR % 4 == 0)) || (intEventDt == 28 && (eventYEAR % 4 != 0)))) {
 
 			log(Status.INFO, "Reached Month end date");
-			
-		} else if (eventMonth.equals("02") && intEventDt == 28 && (eventYEAR%4==0)) {
+
+		} else if (eventMonth.equals("02") && intEventDt == 28 && (eventYEAR % 4 == 0)) {
 
 			selectNextToTheCurrentDate = selectNextToTheCurrentDate.replaceAll("nextDate", nextToCurrentDate());
 			WebElement getNextDate = findElementByXpath(selectNextToTheCurrentDate);
@@ -2803,14 +2795,14 @@ public class IncidentReportPage extends BaseClass {
 			} else {
 				log(Status.FAIL, "Next to the current dates are NOT disabled in Notification Date field");
 			}
-	}
+		}
 	}
 
 	/**
 	 * Select Date-Month-Year in "Notification Date" field using date picker.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 *
 	 */
 	public void selectNotificateDateUsingDD() throws Exception {
@@ -4030,13 +4022,13 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter past time in "Time" field
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	public void pastTimeInNotificationTime() throws Exception {
 
 		sendKeys(timeTxtbox, getPastTime("HH:MMa"));
-		System.out.println("Past time - "+getPastTime("HH:MMa"));
+		System.out.println("Past time - " + getPastTime("HH:MMa"));
 		click(notifedByTxtBox);
 	}
 
@@ -4044,15 +4036,15 @@ public class IncidentReportPage extends BaseClass {
 	 * Enter future time in "Time" field
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	public void futureTimeInNotificationTime() throws Exception {
 
-		//deleteExistFieldData(timeTxtbox);
-		
-		String futureTime = getFutureTime("hh:mma");		
-		sendKeys(timeTxtbox,futureTime );
+		// deleteExistFieldData(timeTxtbox);
+
+		String futureTime = getFutureTime("hh:mma");
+		sendKeys(timeTxtbox, futureTime);
 		click(notifedByTxtBox);
 	}
 
@@ -4278,9 +4270,9 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Get text from what caused the fall field.
+	 * Get text from what caused the fall field.
 	 *
-	 *         return The text data from what caused the fall field.
+	 * return The text data from what caused the fall field.
 	 * @created on 24-01-2024.
 	 */
 	public String getWhatCausedTheFall() {
@@ -4291,25 +4283,24 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Send Chat message.
+	 * Send Chat message.
 	 *
 	 * 
 	 * @created on 25-01-2024.
 	 */
 	public void sendChatMessage(String userType) {
 
-		String chatMessage  = switch (userType.toUpperCase()) {
+		String chatMessage = switch (userType.toUpperCase()) {
 		case "STAFF" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 30).trim();
 		}
 		case "NURSE", "CHIEF NURSE" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 31).trim();
 		}
-		case "MANAGER","RESIDENT MANAGER","RESIDENTAL MANAGER" -> {
+		case "MANAGER", "RESIDENT MANAGER", "RESIDENTAL MANAGER" -> {
 			yield readExcel("Test Datas", "Incident Reports", 1, 32).trim();
 		}
-		default ->
-			throw new IllegalArgumentException("Unexpected value: " + userType);
+		default -> throw new IllegalArgumentException("Unexpected value: " + userType);
 		};
 		waitForVisiblityOfElement(chatMessageArea, 10);
 		sendKeys(chatMessageArea, chatMessage);
@@ -4321,7 +4312,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Get Chat message.
+	 * Get Chat message.
 	 *
 	 * 
 	 * @created on 25-01-2024.
@@ -4342,7 +4333,7 @@ public class IncidentReportPage extends BaseClass {
 	/**
 	 * @author Nandhalala.
 	 * 
-	 *         Get username of current Login.
+	 * Get username of current Login.
 	 *
 	 * 
 	 * @created on 25-01-2024.

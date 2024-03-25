@@ -7,6 +7,7 @@
 #* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
 #
 #*/
+
 @Sanity
 Feature: Xealei Application
 
@@ -18,11 +19,30 @@ Feature: Xealei Application
     Given User is on Xealei login page
     When User should perform login with valid email and password
     Then User should verify once the page is navigated to HOME_DASHBOARD successfully "Home"
+ 
+    And  Verify User Management module is available.
+    Then Navigate to User Management Page.
+    And  Click on Create New user button.
+    Then Enter valid data in all the fields of basic details.
+    Then Open Mailinator aplication.
+    And  Click basic details Create button.
+    Then Verify the status of the created user is in pending status.
+    Then Verify the menu contains show QR Code and Resend invite options.
+    And  Click xealei url from mail and login into application as new user.
+    Then Verify the status of the created user is in active status.
+    Then Verify the menu options for created user.
+    Then Verify whether all the fields are editable in edit mode.
+    Then Edit any field and click cancel button.
+    And  Verify able to save the edited data.
+    Then Search the created user and verify view info.
+    And  Verify the data of the created user.
+    Then Navigate back to User management page.    
     
-    And User should verify the Occupancy Zone Module is working
+    And  User should verify the Occupancy Zone Module is working
     Then User should verify the Suite Module is working
-    And User should clicks on the Add Suite button and verifies that the Add Suite popup screen is displayed
-    And User should perform all fields and verify the toast message after perform all fields "Saved Successfully!!"
+    And  User should clicks on the Add Suite button and verifies that the Add Suite popup screen is displayed
+    And  User should perform all fields and verify the toast message after perform all fields "Saved Successfully!!"
+  
     And User should search the created suite by performed all fields
     Then User should verify all fields are created successsfully
 
@@ -36,6 +56,7 @@ Feature: Xealei Application
     And User should perform all fields in common area page and verify the toast message after perform all fields "Saved Successfully!!"
     And User should search the created Common Area by performed all fields
     Then User should verify all fields are created successsfully in common area page
+    
     
     And User should clicks on the Edit button and verifies that the Edit Common Area popup is displayed
     And User should update all fields and verify the toast message after update all fields "Updated Successfully!!" in Edit Common Area popup Page

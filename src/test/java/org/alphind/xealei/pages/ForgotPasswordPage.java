@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -8,11 +18,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ForgotPasswordPage extends BaseClass {
 
-	private WebDriver driver;
-
 	public ForgotPasswordPage(WebDriver driver) {
-
-		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -55,7 +61,10 @@ public class ForgotPasswordPage extends BaseClass {
 	@FindBy(xpath = "//a[@class='pLink']")
 	private WebElement tryAgainLink;
 
-	// ********* NEW PASSWORD PAGE ************
+	/**
+	 * ********** NEW PASSWORD PAGE(Locators) *************
+	 * 
+	 */
 
 	@FindBy(xpath = "//h3[contains(text(),'NEW')]")
 	private WebElement newPasswordPageText;
@@ -81,8 +90,6 @@ public class ForgotPasswordPage extends BaseClass {
 	@FindBy(xpath = "//p[contains(text(),'Your')]")
 	private WebElement passwordSuccessfullyResetContent;
 
-	
-	
 	@FindBy(xpath = "//span[@class='material-icons']")
 	private WebElement doneIconInPasswordResetPage;
 
@@ -104,7 +111,10 @@ public class ForgotPasswordPage extends BaseClass {
 	@FindBy(xpath = "//mat-icon[contains(@class,'eye ml-1')]")
 	private WebElement eyeIcon;
 
-	// ********* Mailinator Elements(Locators) ************
+	/**
+	 * ***************** Mailinator Elements(Locators) ********************
+	 * 
+	 */
 
 	@FindBy(xpath = "//input[@id='search']")
 	private WebElement enterPublicMailInboxTextbox;
@@ -240,7 +250,6 @@ public class ForgotPasswordPage extends BaseClass {
 		return getText(newPasswordSuccessMsgText);
 	}
 
-	
 	/**
 	 * Get the password successfull reset content from Password Reset Page
 	 * 
@@ -255,9 +264,7 @@ public class ForgotPasswordPage extends BaseClass {
 		waitForVisiblityOfElement(passwordSuccessfullyResetContent, 10);
 		return getText(passwordSuccessfullyResetContent);
 	}
-	
-	
-	
+
 	/**
 	 * Get the New password* field placeholder text
 	 * 
@@ -413,7 +420,7 @@ public class ForgotPasswordPage extends BaseClass {
 		deleteExistFieldData(reEnterPasswordPlaceholderText);
 		return this;
 	}
-	
+
 	/**
 	 * Delete the new password * field data
 	 * 
@@ -457,10 +464,6 @@ public class ForgotPasswordPage extends BaseClass {
 		click(eyeIcon);
 	}
 
-	
-	
-	
-	
 	// ********* Mailinator Elements(Locators) ************
 
 	/**
@@ -513,7 +516,7 @@ public class ForgotPasswordPage extends BaseClass {
 	 */
 	public void resetPasswordTextLink() {
 
-		///scrollIntoView(resetPasswordLink);
+		/// scrollIntoView(resetPasswordLink);
 		sleep(2000);
 		click(resetPasswordLink);
 	}
@@ -553,7 +556,7 @@ public class ForgotPasswordPage extends BaseClass {
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * Created on 23/01/2024
+	 *         Created on 23/01/2024
 	 * 
 	 */
 	public boolean verifyEmailLabelText() {

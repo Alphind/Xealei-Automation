@@ -10,9 +10,12 @@
 
 package org.alphind.xealei.stepdefinition;
 
+import static org.testng.Assert.fail;
+
 import org.alphind.xealei.baseclass.BaseClass;
 import org.alphind.xealei.pom.PageObjectManager;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import com.aventstack.extentreports.Status;
 
@@ -25,7 +28,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should verify suite page tab url address for suites page")
 	public void user_should_verify_suite_page_tab_url_address_for_suites_page() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 
@@ -63,7 +66,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should verify the Occupancy Zone Module is working")
 	public void user_should_verify_the_occupancy_zone_module_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getHomePage().navToOccupancyZoneModule();
 	}
@@ -71,7 +74,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should verify the Suite Module is working")
 	public void user_should_verify_the_suite_module_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getHomePage().navToSuitesModule();
 		
@@ -89,10 +92,11 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should clicks on the Add Suite button and verifies that the Add Suite popup screen is displayed")
 	public void user_should_clicks_on_the_add_suite_button_and_verifies_that_the_add_suite_popup_screen_is_displayed() throws Exception {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddSuitesPage().btnAddSuite();
 		
+		waitForVisiblityOfElement(pom.getAddSuitesPage().getAddSuitePopupText(), 10);
 		String popupText = getText(pom.getAddSuitesPage().getAddSuitePopupText());
 
 		if (popupText.contains("Add Suite")) {
@@ -107,7 +111,7 @@ public class AddSuitesPageStep extends BaseClass {
 	public void user_should_verify_the_limit_error_info_message_for_suite_name_field (String expLimitValidationMsgForSN) {
 		
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddSuitesPage().suiteLimit().addButton();
 		
@@ -127,7 +131,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should verify the field Suite Name * is mandatory {string}")
 	public void user_should_verify_the_field_suite_name_is_mandatory(String expSNMandatoryTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
 		pom.getAddSuitesPage().addButton();
@@ -147,7 +151,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should verify duplicate validation for Suite name {string}")
 	public void user_should_verify_duplicate_validation_for_suite_name(String expSuiteExistToastMessage) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddSuitesPage().existSuiteName(1).addButton();
 	
@@ -169,7 +173,7 @@ public class AddSuitesPageStep extends BaseClass {
 	@Then("User should perform only non-mandatory fields and verify the info message contains for Mandatory fields {string}")
 	public void user_should_perform_only_non_mandatory_fields_and_verify_the_info_message_contains_for_mandatory_fields(String expSNMandatoryTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddSuitesPage().deleteExistSuiteNameFieldData();
 		
@@ -190,7 +194,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Suite Name* for limit")
 		public void user_should_verify_the_field_suite_name_for_limit() {
 			
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
 			
@@ -207,7 +211,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Length* for limit")
 		public void user_should_verify_the_field_length_for_limit() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(2);
 			
@@ -224,7 +228,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Width* for limit")
 		public void user_should_verify_the_field_width_for_limit() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			
              String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(2);
@@ -242,7 +246,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Height* for limit")
 		public void user_should_verify_the_field_height_for_limit() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
            String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(2);
 			
@@ -259,7 +263,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Length* for limit with decimal point")
 		public void user_should_verify_the_field_length_for_limit_with_decimal_point() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
 			
@@ -278,7 +282,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Width* for limit with decimal point")
 		public void user_should_verify_the_field_width_for_limit_with_decimal_point() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			 String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(3);
 				
@@ -294,7 +298,7 @@ public class AddSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Height* for limit with decimal point")
 		public void user_should_verify_the_field_height_for_limit_with_decimal_point() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			  String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(3);
 				
@@ -308,80 +312,11 @@ public class AddSuitesPageStep extends BaseClass {
 			    
 		}
 
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-			@Then("User should verify the x icon in add suites screen is working")
+		
+		@Then("User should verify the x icon in add suites screen is working")
 			public void user_should_verify_the_icon_in_add_suites_screen_is_working() throws Exception {
 
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 
               pom.getAddSuitesPage().closePopup();
 				
@@ -415,75 +350,33 @@ public class AddSuitesPageStep extends BaseClass {
 				}
 			}
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		@Then("User should verify for Zero Search result in Add Suites search field")
+		public void user_should_verify_for_zero_search_result_in_add_suites_search_field() {
+		   
+			logWithLabelName(getMethodName());
+			
+			pom.getAddSuitesPage().searchBoxForZeroSearch();
+			
+	        waitForFullPageElementLoad();
+	        
+			String actModuleName =getText(pom.getAddSuitesPage().getSuitesPage());
+			String actZeroSearchText = pom.getAddSuitesPage().getZeroSearchText();
+			
+			String expModuleName = "Suites";
+			String expZeroSearchText = "No relevent results found";
+			
+			if(actModuleName.equals(expModuleName) && actZeroSearchText.equals(expZeroSearchText)) {
+				log(Status.PASS, "Displayed zero search message as - "+expZeroSearchText);
+			} else {
+				log(Status.FAIL, "Zero Search is NOT working as expected");
+			}	
+		}
+			
+
 			@Then("User should perform suite by entering only Mandatory field")
 			public void user_should_perform_suite_by_entering_only_mandatory_field() throws Exception {
 			  
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				pom.getAddSuitesPage().suiteName(1);
 				waitForFullPageElementLoad();
@@ -492,6 +385,7 @@ public class AddSuitesPageStep extends BaseClass {
 				pom.getAddSuitesPage().addButton();
 
 				waitForPageLoad();
+				
 				try {
 					waitForVisiblityOfElement(pom.getAddSuitesPage().getSavedSuccessfullToastMessage(), 10);
 					Assert.assertEquals("Saved Successfull Toast Message is not displayed", "Saved Successfully!!",
@@ -516,7 +410,7 @@ public class AddSuitesPageStep extends BaseClass {
 			public void user_should_perform_all_fields_and_verify_the_toast_message_after_perform_all_fields(String expToastMsg)
 					throws Exception {
 
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				pom.getAddSuitesPage().suiteName(1);
 				
@@ -550,7 +444,7 @@ public class AddSuitesPageStep extends BaseClass {
 			@Then("User should search the created suite by performed all fields")
 			public void user_should_search_the_created_suite_by_performed_all_fields() throws Exception {
 			   
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				pom.getAddSuitesPage().searchBox();
 				waitForFullPageElementLoad();
@@ -560,7 +454,7 @@ public class AddSuitesPageStep extends BaseClass {
 			@Then("User should verify all fields are created successsfully")
 			public void user_should_verify_all_fields_are_created_successsfully() throws Exception {
 
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 
 				try {
 					waitForVisiblityOfElement(pom.getAddSuitesPage().getCreatedSuiteName(), 10);
@@ -582,9 +476,9 @@ public class AddSuitesPageStep extends BaseClass {
 				
 				try {
 					String expAvailability = readExcel("Test Datas", "AddSuites", 1, 5);
-					Assert.assertEquals("Suite availability Mismatched", expAvailability,
+					Assert.assertEquals("Suite availability status Mismatched", expAvailability,
 							getText(pom.getAddSuitesPage().getSuiteAvailability()));
-					log(Status.PASS, "Suite availability is displayed as expected Exp Suite Availability :" + expAvailability + " Act Suite Availability:"
+					log(Status.PASS, "Suite availability status is displayed as expected Exp Suite Availability status :" + expAvailability + " Act Suite Availability status:"
 							+ getText(pom.getAddSuitesPage().getSuiteAvailability()));
 					
 				} catch (AssertionError e0) {
@@ -646,7 +540,7 @@ public class AddSuitesPageStep extends BaseClass {
 	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String txtBreadCrum = getText(pom.getAddSuitesPage().getBreadCrumLink());
 		System.out.println("Breadcrums Suite text - " + txtBreadCrum);
@@ -667,11 +561,12 @@ public class AddSuitesPageStep extends BaseClass {
 	public void user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddSuitesPage().returnToSuitesPageBCText();
 
 		waitForFullPageElementLoad();
+		waitForVisiblityOfElement(pom.getAddSuitesPage().getView(), 10);
 
 		if (pom.getAddSuitesPage().getView().isDisplayed()) {
 			log(Status.PASS, "Return to Suite searched page successfully after click the [Suites >] breadcrum link");

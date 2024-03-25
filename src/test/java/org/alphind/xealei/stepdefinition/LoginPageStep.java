@@ -27,7 +27,7 @@ public class LoginPageStep extends BaseClass {
 	@And("User should verify the client code is addressed in tab url address in login screen")
 	public void user_should_verify_the_client_code_is_addressed_in_tab_url_address_in_login_screen() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			String environment = getConfigureProperty("Environment");
@@ -66,7 +66,7 @@ public class LoginPageStep extends BaseClass {
 	@And("User should check that the label name and placeholder text for the Email field")
 	public void user_should_check_that_the_label_name_and_placeholder_text_for_the_email_field() {
 	    
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		if (pom.getLoginPage().getEmailMandatoryFieldLabelText().contains("Email *") && pom.getLoginPage().getPassMandatoryFieldLabelText().contains("Password *")) {
 
@@ -101,7 +101,7 @@ public class LoginPageStep extends BaseClass {
 		@And("User should check if the eye icon in the Password field is working")
 		public void user_should_check_if_the_eye_icon_in_the_password_field_is_working() {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getLoginPage().password();
 			
@@ -140,7 +140,7 @@ public class LoginPageStep extends BaseClass {
 		@And("User should verify that the fields for email and password are mandatory {string}, {string}")
 		public void user_should_verify_that_the_fields_for_email_and_password_are_mandatory(String expErrMsgForEmailField, String expErrMsgForPasswordField) {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 
 		pom.getLoginPage().deleteExistingEmailFieldData().deleteExistingPasswordFieldData();
 					
@@ -168,14 +168,10 @@ public class LoginPageStep extends BaseClass {
 		@And("User enter invalid password and verify the toast message is displayed {string}")
 		public void user_enter_invalid_password_and_verify_the_toast_message_is_displayed(String expIncorrectPassToastMsg) {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 		    
-//			pom.getLoginPage().validEmail(1);
-//			pom.getLoginPage().deleteExistingPasswordFieldData();
-//			pom.getLoginPage().password();
-			
 			pom.getLoginPage().validEmail(1);
-			pom.getLoginPage().loginButton();
+			//pom.getLoginPage().loginButton();
 			
 			try {
 				Assert.assertEquals("Incorrect Password-validation is Missing", expIncorrectPassToastMsg, pom.getLoginPage().getIncorrectPasswordErrorMessageText());
@@ -194,7 +190,7 @@ public class LoginPageStep extends BaseClass {
 		@And("User should perform login with invalid data and verify the toast message is displayed {string}")
 		public void user_should_perform_login_with_invalid_data_and_verify_the_toast_message_is_displayed(String expUNFErrorMessage) {
 		   
-	          stepName(methodName());
+	          logWithLabelName(getMethodName());
 			
 	          waitForFullPageElementLoad();
 	          
@@ -216,7 +212,7 @@ public class LoginPageStep extends BaseClass {
 	@When("User should perform login with valid email and password by click the Enter key")
 	public void user_should_perform_login_with_valid_email_and_password_by_click_the_enter_key() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
@@ -230,7 +226,7 @@ public class LoginPageStep extends BaseClass {
 	@When("User should perform login with valid email and password")
 	public void user_should_perform_login_with_valid_email_and_password() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getLoginPage().validEmail(1);
 		pom.getLoginPage().validPassword(1);
