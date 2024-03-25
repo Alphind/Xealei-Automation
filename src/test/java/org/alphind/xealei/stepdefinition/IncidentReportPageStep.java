@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Nandhalala & Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.stepdefinition;
 
 import static org.junit.Assert.assertEquals;
@@ -40,7 +50,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@When("User should perform login as facility admin {string} and {string}")
 	public void user_should_perform_login_as_facility_admin(String userName, String password) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 			staffpom.getLoginPage().validEmail(2);
 			staffpom.getLoginPage().validPassword(2);
@@ -52,7 +62,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@When("User should perform login as staff {string} and {string}")
 	public void user_should_perform_login_as_staff_and(String userName, String passWord) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		staffpom.getLoginPage().validEmail(2);
 		staffpom.getLoginPage().validPassword(2);
@@ -68,7 +78,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should also verify the performed login as {string}")
 	public void user_should_also_verify_the_performed_login_as(String adminName) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 		Assert.assertEquals("Login page url is wrong", adminName, staffpom.getHomePage().getAdminNameText());
@@ -85,7 +95,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the Incident report module is working")
 	public void user_should_verify_the_incident_report_module_is_working() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().navToReportsModule();
 		staffpom.getHomePage().navToIncidentReportModule();
@@ -102,7 +112,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the ADD New Incident Report button is working")
 	public void user_should_verify_the_add_new_incident_report_button_is_working() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		try {
 			staffpom.getIncidentReportPage().addNewIncidentReportButton();
 			log(Status.INFO, "ADD New Incident Report button is working as expected");
@@ -116,7 +126,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the save button is disabled")
 	public void user_should_verify_the_save_button_is_disabled() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		if (staffpom.getIncidentReportPage().getSaveButtonAttributeValue("disabled").equalsIgnoreCase("true")) {
 			log(Status.PASS, "SAVE button is disabled after enter into Add Incidet Report Page");
@@ -128,7 +138,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify Next > button is working")
 	public void user_should_verify_next_button_is_working() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().nextButton();
 	}
@@ -141,7 +151,7 @@ public class IncidentReportPageStep extends BaseClass {
 			String expInjurySevereInfoMsgText, String expPersonNotifiedInfoMsgText, String expRelationshipInfoMsgText,
 			String expNotificationDateInfoMsgText, String expNotificationTimeInfoMsgText, String expNotifiedByInfoMsgText) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			Assert.assertEquals("MF validation info msg is NOT displayed as expected under Individual’s Details field",
@@ -316,7 +326,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify Save button is working in IR Page after perform Individuals Details and Event Date & Time fields")
 	public void user_should_verify_save_button_is_working_in_ir_page_after_perform_individuals_details_and_event_date_time_fields() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().enterInjuryDescriptionData();
 
@@ -327,7 +337,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the toast message after click Save button in IR Page {string}")
 	public void user_should_verify_the_toast_message_after_click_save_button_in_ir_page(String expSuccessfullToastMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			Assert.assertEquals("Saved Successfull Toast Message is not displayed", expSuccessfullToastMsg,
@@ -347,7 +357,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the respective individual report status {string}")
 	public void user_should_verify_the_respective_individual_report_status(String expDraftStatus) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String IRStatus = staffpom.getIncidentReportPage().getStatus(staffpom.getIncidentReportPage().getRowNumber());
 		System.out.println("Current IR Status -" + IRStatus);
@@ -367,7 +377,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the view button is working in IR Grid")
 	public void user_should_verify_the_view_button_is_working_in_ir_grid() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().viewButton(staffpom.getIncidentReportPage().getRowNumber());
 	}
@@ -375,7 +385,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the error message in Incident Report Page {string}")
 	public void user_should_verify_the_error_message_in_incident_report_page(String expNoteMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			Assert.assertEquals("Required fields Note: info message is Not displayed as expected", expNoteMsg, staffpom.getIncidentReportPage().getNOTEInfoMsgText());
@@ -392,7 +402,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the complete button is disabled")
 	public void user_should_verify_the_complete_button_is_disabled() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		if (staffpom.getIncidentReportPage().isCompleteButtonIsDisabled()) {
 			log(Status.PASS, "Complete button is disabled after click view button");
@@ -404,7 +414,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the edit button is working in IR submission page")
 	public void user_should_verify_the_edit_button_is_working_in_IR_submission_page() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().EditButton();
 
@@ -416,7 +426,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the injury question section should display with selected individual name in field")
 	public void user_should_verify_the_injury_question_section_should_display_with_selected_individual_name_in_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		System.out.println(
 				"Actual ind name -" + staffpom.getIncidentReportPage().getIndividualNameFromWasIndividualInjured());
@@ -445,7 +455,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void user_should_enter_the_event_date_time_greater_than_current_time_and_verify_the_info_message_is_thrown_under_event_time_for_selecting_greater_than_current_time_of_current_date(
 			String expGreaterThanCurrentTime) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		staffpom.getIncidentReportPage().deleteEventDtAndTimeFieldExistingData();
 		waitForPageLoad(this.staffDriver);
@@ -472,7 +482,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to spot the injury on Injury site front & Back view")
 	public void user_should_verify_that_able_to_spot_the_injury_on_injury_site_front_back_view() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().frontViewForeHeadInjury().frontViewFaceInjury().frontViewRightShoulderInjury()
 				.frontViewRightArmInjury().frontViewRightWristInjury().frontViewRightKneeInjury()
@@ -489,7 +499,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to unselect the injury on Injury site front & Back view")
 	public void user_should_verify_that_able_to_unselect_the_injury_on_injury_site_front_back_view() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().unselectFrontViewForeHeadInjury().unselectFrontViewFaceInjury()
 				.unselectFrontViewRightShoulderInjury().unselectFrontViewRightArmInjury()
@@ -518,7 +528,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to upload JFIF Format in Injury photos")
 	public void user_should_verify_that_able_to_upload_jfif_format_in_injury_photos() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().jfifFileUpload("JFIF Format", "jfif");
 	}
@@ -526,7 +536,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to upload more than 1MB File format in Injury photos")
 	public void user_should_verify_that_able_to_upload_more_than_1mb_file_format_in_injury_photos() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
 
@@ -535,7 +545,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to upload files or images in Injury photos")
 	public void user_should_verify_that_able_to_upload_files_or_images_in_injury_photos() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().Upload("JPG", "jpg");
 	}
@@ -543,7 +553,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the delete icon is working on image under injury photo field")
 	public void user_should_verify_the_delete_icon_is_working_on_image_under_injury_photo_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			staffpom.getIncidentReportPage().deleteTheUploadedFile();
@@ -558,7 +568,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify whether able to select multiple option values under Injury Type field")
 	public void user_should_verify_whether_able_to_select_multiple_option_values_under_injury_type_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().abrasion().bleeding().bruise().scratch();
 	}
@@ -566,7 +576,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify whether able to unselect the selected option values under Injury Type field")
 	public void user_should_verify_whether_able_to_unselect_the_selected_option_values_under_injury_type_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().abrasionForUnselect().bleedingForUnselect().bruiseForUnselect()
 				.scratchForUnselect();
@@ -575,7 +585,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that whether able to select the option value under How severe was injury? field")
 	public void user_should_verify_that_whether_able_to_select_the_option_value_under_how_severe_was_injury_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().lightOption().mediumOption().highOption();
 	}
@@ -583,7 +593,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that whether able to select the option value under Injury Color")
 	public void user_should_verify_that_whether_able_to_select_the_option_value_under_injury_color() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().greenColor().redColor().blackColor().brownColor();
 
@@ -593,7 +603,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void user_should_verify_that_whether_default_optional_values_is_selected_under_was_event_notified()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 
 		if (staffpom.getIncidentReportPage().isDefaultOptionIsSelected()) {
@@ -607,7 +617,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to enter current date and time in Event Date & Time field")
 	public void user_should_verify_that_able_to_enter_current_date_and_time_in_event_date_time_field() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().deleteEventDtAndTimeFieldExistingData();
 		
@@ -619,7 +629,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should click on the Notification Date calendar icon and verify the date picker is appeared")
 	public void user_should_click_on_the_notification_date_calendar_icon_and_verify_the_date_picker_is_appeared() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().notificationDateFieldCalenderIconButton();
 		
@@ -635,7 +645,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that the Notification Date calendar field only allows selecting dates from the event date and time to the current date")
 	public void user_should_verify_that_the_notification_date_calendar_field_only_allows_selecting_dates_from_the_event_date_and_time_to_the_current_date() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().verifyPreviousDatesIsDisabled().verifyFutureDateIsDisable();
 	}
@@ -643,7 +653,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should select a notified date using dropdown in date picker and verify the selected notified date are updated accordingly")
 	public void user_should_select_a_notified_date_using_dropdown_in_date_picker_and_verify_the_selected_notified_date_are_updated_accordingly() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().selectNotificateDateUsingDD();
 	}
@@ -652,7 +662,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void user_should_verify_the_validation_info_message_is_thrown_after_selecting_notification_time_field_value_is_lesser_than_event_date_time_field_value(
 			String expLesserThanNoticationTimeToastMsg) throws Exception {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().pastTimeInNotificationTime();
 
@@ -675,7 +685,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void user_should_verify_the_validation_info_message_is_thrown_after_selecting_greater_than_current_time_in_notification_time_field(
 			String expGreaterThanNoticationTimeToastMsg) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		
 		staffpom.getIncidentReportPage().futureTimeInNotificationTime();
@@ -699,7 +709,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that able to enter time in Notification Time field")
 	public void user_should_verify_that_able_to_enter_time_in_notification_time_field() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().enterNotificationTime();
 	}
@@ -707,7 +717,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify on click the breadcrum text Report the page is navigated to the list of incident Reports page")
 	public void user_should_verify_on_click_the_breadcrum_text_report_the_page_is_navigated_to_the_list_of_incident_reports_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().breadCrumREPORTTxtLink();
 		waitForPageLoad();
@@ -722,7 +732,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the edit button is working in IR Grid")
 	public void user_should_verify_the_edit_button_is_working_in_ir_grid() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().editButton(staffpom.getIncidentReportPage().getRowNumber());
 
@@ -736,7 +746,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that the IR form continues to display the previously entered draft datas")
 	public void user_should_verify_that_the_ir_form_continues_to_display_the_previously_entered_draft_datas() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			Assert.assertEquals("IR form is NOT displayed the previously entered draft datas",
@@ -752,7 +762,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the breadcrum text")
 	public void user_should_verify_the_breadcrum_text() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		if (staffpom.getIncidentReportPage().isBCReportsTextDisplayed() && staffpom.getIncidentReportPage().isBCIncidentReportTextDisplayed()) {
 			log(Status.PASS, "Bread crum text is displayed as expected Exp BC Txt - Reports > Incident Report | Actual BC Txt - "
@@ -769,7 +779,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should perform all the fields")
 	public void user_should_perform_all_the_fields() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().eventDateAndTime();
 		staffpom.getIncidentReportPage().enterWhatCausedTheFallData();
@@ -798,7 +808,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify all the created details are displayed as expected")
 	public void user_should_verify_all_the_created_details_are_displayed_as_expected() throws ParseException {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(2000);
 		waitForPageLoad();
@@ -1079,7 +1089,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the breadcrums texts")
 	public void user_should_verify_the_breadcrums_texts() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		if (staffpom.getIncidentReportPage().isBcIndividualNameTextIsEqualAsExpected()
 				&& staffpom.getIncidentReportPage().isBCIncidentReportTextIsDisplayed()) {
@@ -1105,7 +1115,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify Home page is displayed.")
 	public void verify_home_page_is_displayed() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().isHomePageDisplayed();
 	}
@@ -1116,7 +1126,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Navigate to Reports module.")
 	public void navigate_to_reports_module() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().navToReportsModule();
 	}
@@ -1126,7 +1136,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Click on complete button.")
 			public void click_on_complete_button() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 			    staffpom.getIncidentReportPage().clickCompleteButton();
 			    waitForPageLoad(staffDriver);
@@ -1138,7 +1148,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("ReSubmit the Report by staff user.")
 			public void ReSubmit_the_Report_by_staff_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				staffpom.getIncidentReportPage().clickCompleteButton();
 			    waitForPageLoad(staffDriver);
@@ -1150,7 +1160,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("ReSubmit the Report by Chief nurse user.")
 			public void ReSubmit_the_Report_by_chief_nurse_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				chiefnursepom.getIncidentReportPage().clickCompleteButton();
 			    waitForPageLoad(chiefnurseDriver);
@@ -1162,7 +1172,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@When("Verify whether the report is in pending status.")
 			public void verify_whether_the_report_is_in_pending_status() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				String rowNumber = staffpom.getIncidentReportPage().getRowNumber();
 			    String status =	staffpom.getIncidentReportPage().getStatus(rowNumber);
@@ -1184,7 +1194,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Launch a new browser and enter xealei url for Chief nurse.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_Chief_nurse() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				try {
 					chiefnurseDriver = getNewDriver();
@@ -1192,7 +1202,7 @@ public class IncidentReportPageStep extends BaseClass {
 					e.printStackTrace();
 				}
 			    
-			    chiefnurseDriver.get("https://auto.qa.xealei.com/login");
+			    chiefnurseDriver.get("https://auto.qaautomation.xealei.com/login");
 			    chiefnursepom = new PageObjectManager(chiefnurseDriver);
 //			    waitForPageLoad(chiefnurseDriver);
 			    chiefnurseDriver.manage().window().maximize();
@@ -1204,7 +1214,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Launch a new browser and enter xealei url for residential manager.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_residential_manager() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				try {
 					rmDriver = getNewDriver();
@@ -1212,7 +1222,7 @@ public class IncidentReportPageStep extends BaseClass {
 					e.printStackTrace();
 				}
 			    
-			    rmDriver.get("https://auto.qa.xealei.com/login");
+			    rmDriver.get("https://auto.qaautomation.xealei.com/login");
 			    rmpom = new PageObjectManager(rmDriver);
 			    waitForPageLoad(rmDriver);
 			    rmDriver.manage().window().maximize();
@@ -1224,7 +1234,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Launch a new browser and enter xealei url for clinical coordinator.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_clinical_coordinator() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				try {
 					ccDriver = getNewDriver();
@@ -1232,7 +1242,7 @@ public class IncidentReportPageStep extends BaseClass {
 					e.printStackTrace();
 				}
 			    
-			    ccDriver.get("https://auto.qa.xealei.com/login");
+			    ccDriver.get("https://auto.qaautomation.xealei.com/login");
 			    ccpom = new PageObjectManager(ccDriver);
 			    waitForPageLoad(ccDriver);
 			    ccDriver.manage().window().maximize();
@@ -1244,7 +1254,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Launch a new browser and enter xealei url for social worker.")
 			public void launch_a_new_browser_and_enter_xealei_url_for_social_worker() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				try {
 					swDriver = getNewDriver();
@@ -1252,7 +1262,7 @@ public class IncidentReportPageStep extends BaseClass {
 					e.printStackTrace();
 				}
 			    
-			    swDriver.get("https://auto.qa.xealei.com/login");
+			    swDriver.get("https://auto.qaautomation.xealei.com/login");
 			    swpom = new PageObjectManager(swDriver);
 			    waitForPageLoad(swDriver);
 			    swDriver.manage().window().maximize();
@@ -1264,7 +1274,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Open notification received by staff.")
 			public void Open_notification_received_by_Staff() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				staffpom.getHomePage().notificationIcon(reportid);
 			}
@@ -1276,7 +1286,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Open notification received by Chief nurse.")
 			public void Open_notification_received_by_Chief_nurse() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				chiefnursepom.getHomePage().notificationIcon(reportid);
 			}
@@ -1287,7 +1297,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Open notification received by residential manager.")
 			public void Open_notification_received_by_residential_manager() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				rmpom.getHomePage().notificationIcon(reportid);
 			}
@@ -1298,7 +1308,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Open notification received by Clinical Coordinator.")
 			public void Open_notification_received_by_Clinical_Coordinator() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				ccpom.getHomePage().notificationIcon(reportid);
 			}
@@ -1309,7 +1319,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify whether notification received by Social Worker.")
 			public void verify_whether_notification_received_by_Social_Worker() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				swpom.getHomePage().notificationIcon(reportid);
 			}
@@ -1320,7 +1330,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Approve the report by Chief Nurse user.")
 			public void approve_the_report_by_Chief_Nurse_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				sleep(2000);
 				waitForFullPageElementLoad(chiefnurseDriver);
@@ -1334,9 +1344,9 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Approve the report by Residential Manager user.")
 			public void approve_the_report_by_Residential_Manager_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
-				sleep(2000);
+				sleep(3000);
 				waitForFullPageElementLoad(rmDriver);
 				
 			    rmpom.getIncidentReportPage().residentialManagerReviewerComments("approved");
@@ -1349,7 +1359,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Approve the report by Clinical Coordinator user.")
 			public void approve_the_report_by_Clinical_Coordinator_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				sleep(2000);
 				waitForFullPageElementLoad(ccDriver);
@@ -1364,7 +1374,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Approve the report by Social Worker user.")
 			public void approve_the_report_by_Social_Worker_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				sleep(2000);
 				waitForFullPageElementLoad(swDriver);
@@ -1379,7 +1389,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Re-Send the report by Chief Nurse user to staff nurse.")
 			public void re_send_the_report_by_Chief_nurse_user_to_staff_nurse() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				sleep(2000);
 				waitForFullPageElementLoad();
@@ -1394,7 +1404,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Re-Send the report by Residential Manager user.")
 			public void re_send_the_report_by_residential_manager_user() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				try {
 					Thread.sleep(2000);
@@ -1412,7 +1422,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Switch back to staff user login.")
 			public void Switch_back_to_staff_user_login() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				//Set<String> handle = staffDriver.getWindowHandles();
 				staffDriver.getWindowHandle();
 				//staffpom.getIncidentReportPage().navigateHome();
@@ -1424,7 +1434,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Switch back to Chief nurse user login.")
 			public void Switch_back_to_Chief_nurse_user_login() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				//Set<String> handle = staffDriver.getWindowHandles();
 				staffDriver.getWindowHandle();
 				staffpom.getIncidentReportPage().navigateHome();
@@ -1436,7 +1446,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify whether the report is in {string} status by Chief Nurse user.")
 			public void verify_whether_the_report_is_in_status_by_Chief_Nurse_user(String status) {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				String rowNumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
@@ -1457,7 +1467,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify whether the report is in {string} status by Residential Manager user.")
 			public void verify_whether_the_report_is_in_status_by_Residential_Manager_user(String status) {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				String rowNumber = rmpom.getIncidentReportPage().getRowNumber();
 			    String actualStatus = rmpom.getIncidentReportPage().getStatus(rowNumber);
@@ -1479,7 +1489,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify whether the report is in {string} status by Clinical Coordinator user.")
 			public void verify_whether_the_report_is_in_status_by_Clinical_Coordinator_user(String status) {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				String rowNumber = ccpom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	ccpom.getIncidentReportPage().getStatus(rowNumber);
@@ -1501,7 +1511,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Verify whether the report is in {string} status by Social Worker user.")
 			public void verify_whether_the_report_is_in_status_by_Social_Worker_user(String status) {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				String rowNumber = swpom.getIncidentReportPage().getRowNumber();
 			    String actualStatus =	swpom.getIncidentReportPage().getStatus(rowNumber);
@@ -1523,7 +1533,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Navigate to Incident Report sub module.")
 	public void navigate_to_incident_report_sub_module() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().navToIncidentReportModule();
 	}
@@ -1534,7 +1544,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click on Add New Incident Report button.")
 	public void click_on_add_new_incident_report_button() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().addNewIncidentReportButton();
 	}
@@ -1545,7 +1555,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify Add Incident report page is displayed.")
 	public void verify_add_incident_report_page_is_displayed() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().isIncidentReportPageDisplayed();
 	}
@@ -1555,7 +1565,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Login into Xealei application as Social Worker role with valid {string} and {string}.")
 			public void login_into_xealei_application_as_social_worker_role_with_valid_and(String swUserName, String swPassWord) {
 			   
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 //			   	sendKeys(swpom.getLoginPage().getUserName(), swUserName);
 //			   	sendKeys(swpom.getLoginPage().getPassword(), swPassWord);
@@ -1575,7 +1585,7 @@ public class IncidentReportPageStep extends BaseClass {
 			@Then("Close all the browsers.")
 			public void Close_all_the_browsers() {
 				
-				stepName(methodName());
+				logWithLabelName(getMethodName());
 				
 				if(Objects.nonNull(chiefnurseDriver)) {
 					chiefnurseDriver.quit();
@@ -1597,7 +1607,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Select the individual for whom the incident report has to be created.")
 	public void select_the_individual_for_whom_the_incident_report_has_to_be_created() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().selectIndividualDetails();
 	}
@@ -1609,7 +1619,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Enter all the details of the Incident.")
 	public void enter_all_the_details_of_the_incident() throws Exception {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad(staffDriver);
 		sleep(2000);
@@ -1648,7 +1658,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click on next button.")
 	public void click_on_next_button() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().nextButton();
 		waitForFullPageElementLoad(staffDriver);
@@ -1660,7 +1670,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Launch a new browser and enter xealei url for cheif nurse.")
 	public void launch_a_new_browser_and_enter_xealei_url_for_cheif_nurse() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			chiefnurseDriver = getNewDriver();
@@ -1668,7 +1678,7 @@ public class IncidentReportPageStep extends BaseClass {
 			e.printStackTrace();
 		}
 		
-		chiefnurseDriver.get("https://auto.qa.xealei.com/login");
+		chiefnurseDriver.get("https://auto.qaautomation.xealei.com/login");
 		chiefnursepom = new PageObjectManager(chiefnurseDriver);
 //		waitForPageLoad(chiefnurseDriver);
 		chiefnurseDriver.manage().window().maximize();
@@ -1680,7 +1690,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Login into Xealei application as Chief nurse role with valid {string} and {string}.")
 	public void login_into_xealei_application_as_Chief_nurse_role_with_valid_and(String ChiefNurseUserName, String ChiefNursePassWord) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 //		sendKeys(chiefnursepom.getLoginPage().getUserName(), ChiefNurseUserName);
 //		sendKeys(chiefnursepom.getLoginPage().getPassword(), ChiefNursePassWord);
@@ -1702,7 +1712,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify whether notification is received by cheif nurse.")
 	public void verify_whether_notification_is_received_by_cheif_nurse() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad(chiefnurseDriver);
 		chiefnursepom.getHomePage().notificationIcon(reportid);
@@ -1714,7 +1724,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify whether notification is received by residential manager.")
 	public void verify_whether_notification_is_received_by_residential_manager() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad(rmDriver);
 		rmpom.getHomePage().notificationIcon(reportid);
@@ -1726,7 +1736,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify whether notification is received by Clinical Coordinator.")
 	public void verify_whether_notification_is_received_by_Clinical_Coordinator() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad(ccDriver);
 		ccpom.getHomePage().notificationIcon(reportid);
@@ -1738,7 +1748,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify whether notification is received by Social Worker.")
 	public void verify_whether_notification_is_received_by_Social_Worker() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad(swDriver);
 		swpom.getHomePage().notificationIcon(reportid);
@@ -1750,7 +1760,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Approve the report by Cheif Nurse user.")
 	public void approve_the_report_by_Cheif_Nurse_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		try {
 			Thread.sleep(2000);
@@ -1768,7 +1778,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify whether the report is in {string} status by Cheif Nurse user.")
 	public void verify_whether_the_report_is_in_status_by_Cheif_Nurse_user(String status) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String rowNumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 		String actualStatus = chiefnursepom.getIncidentReportPage().getStatus(rowNumber);
@@ -1783,7 +1793,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void login_into_xealei_application_as_residential_manager_role_with_valid_and(String rmUserName,
 			String rmPassWord) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 //		sendKeys(rmpom.getLoginPage().getUserName(), rmUserName);
 //		sendKeys(rmpom.getLoginPage().getPassword(), rmPassWord);
@@ -1804,7 +1814,7 @@ public class IncidentReportPageStep extends BaseClass {
 	public void login_into_xealei_application_as_c_linical_coordinator_role_with_valid_and(String ccUserName,
 			String ccPassWord) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 //		sendKeys(ccpom.getLoginPage().getUserName(), ccUserName);
 //		sendKeys(ccpom.getLoginPage().getPassword(), ccPassWord);
@@ -1821,7 +1831,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the toast message after try to upload JFIF Format {string}")
 	public void user_should_verify_the_toast_message_after_try_to_upload_jfif_format(String string) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().Upload("JFIF Format", ".jfif");
 
@@ -1830,7 +1840,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the toast message after try to upload more than 1MB File format {string}")
 	public void user_should_verify_the_toast_message_after_try_to_upload_more_than_1mb_file_format(String string) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getAddIndividualsPage().moreThan1MBImgFormatUpload("MoreThan1MB", "jpg");
 	}
@@ -1838,7 +1848,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify the user are able to attach file")
 	public void user_should_verify_the_user_are_able_to_attach_file() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().Upload("JPG", "jpg");
 	}
@@ -1846,7 +1856,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("User should verify that whether able to select options under Injury Type field")
 	public void user_should_verify_that_whether_able_to_select_options_under_injury_type_field() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().selectInjuryType();
 	}
@@ -1859,7 +1869,7 @@ public class IncidentReportPageStep extends BaseClass {
 		@When("Notification is Triggered from a sensor.")
 	public void Notification_is_Triggered_from_a_sensor() throws Exception {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
@@ -1883,7 +1893,7 @@ public class IncidentReportPageStep extends BaseClass {
 									+ response.getStatusCode());
 		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
 									
-		sleep(5000);
+		sleep(3000);
 	}
 	
 	/**
@@ -1893,7 +1903,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@When("Notification Triggered from a sensor.")
 	public void Notification_Triggered_from_a_sensor() throws Exception {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		File jsonFile = new File("./JSON/fall.json");
 		RequestSpecification request = RestAssured.given();
@@ -1911,8 +1921,9 @@ public class IncidentReportPageStep extends BaseClass {
 		System.out.println("The status code for fall alert triggered from sensor is : " 
 				+ response.getStatusCode());
 		log(Status.INFO, "Alert Triggered Successfully : " + response.getStatusCode());
-
 		sleep(5000);
+		
+		pageRefresh();
 	}
 	
 	/**
@@ -1921,7 +1932,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open notification received by staff from sensor.")
 	public void Open_notification_received_by_staff_from_sensor() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String[] temp = alertTime.split(",");
 		temp[2] = temp[2].trim();
@@ -1952,7 +1963,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open Alert notification pop up on click ok I'm On it button in a grid of a record.")
 	public void open_alert_notification_pop_up_on_click_ok_i_m_on_it_button_in_a_grid_of_a_record() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String[] temp = alertTime.split(",");
 		temp[2] = temp[2].trim();
@@ -1974,7 +1985,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Select fall radio button and enter description.")
 	public void Select_fall_radio_button_and_enter_description() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 
 		staffpom.getHomePage().alertNotificationFallRadioButton();
@@ -1987,7 +1998,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Select nofall radio button.")
 	public void Select_nofall_radio_button() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().alertNotificationNoFallRadioButton();
 	}
@@ -1998,7 +2009,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Select nofall reason and enter no fall description.")
 	public void Select_nofall_reason_and_enter_no_fall_description() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().alertNotificationSelectNoFallReason();
 		staffpom.getHomePage().alertNotificationNoFallDescription();
@@ -2010,7 +2021,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click Save and Proceed to IR button.")
 	public void Click_Save_and_Proceed_to_IR_button() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 	
 		staffpom.getHomePage().saveandproccedtoTR();
 	}
@@ -2021,7 +2032,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click confirm button.")
 	public void Click_confirm_button() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getHomePage().alertConfirmButton();
 	}
@@ -2032,7 +2043,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify text in what casued the fall matches with Description.")
 	public void Verify_text_in_what_casued_the_fall_matches_with_Description() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String actual = staffpom.getIncidentReportPage().getWhatCausedTheFall();
 		String expected = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
@@ -2067,7 +2078,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click view button on staff user.")
 	public void Click_view_button_on_staff_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().viewButton(staffpom.getIncidentReportPage().getRowNumber());
 		staffName = staffpom.getIncidentReportPage().getUserName();
@@ -2080,7 +2091,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Send chat message for staff user.")
 	public void Send_chat_message_for_staff_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		staffpom.getIncidentReportPage().sendChatMessage("Staff");
 	}
@@ -2091,7 +2102,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Send chat message for chief nurse user.")
 	public void Send_chat_message_for_chief_nurse_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		chiefnursepom.getIncidentReportPage().sendChatMessage("Chief Nurse");
 	}
@@ -2102,7 +2113,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Send chat message for residential manager user.")
 	public void Send_chat_message_for_residential_manager_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		rmpom.getIncidentReportPage().sendChatMessage("Resident Manager");
 		sleep(2000);
@@ -2111,7 +2122,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open IR received by Chief nurse.")
 	public void Open_IR_received_by_Chief_nurse() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(5000);
 		chiefnursepom.getHomePage().navToReportsModule();
@@ -2123,7 +2134,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Open IR received by residential manager.")
 	public void Open_IR_received_by_residential_manager() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		sleep(5000);
 		rmpom.getHomePage().navToReportsModule();
@@ -2135,7 +2146,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click View button for chief nurse user.")
 	public void Click_View_button_for_chief_nurse_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String rownumber = chiefnursepom.getIncidentReportPage().getRowNumber();
 		chiefnursepom.getIncidentReportPage().viewButton(rownumber);
@@ -2147,7 +2158,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Click View button for residential manager user.")
 	public void Click_View_button_for_residential_manager_user() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String rownumber = rmpom.getIncidentReportPage().getRowNumber();
 		rmpom.getIncidentReportPage().viewButton(rownumber);
@@ -2159,7 +2170,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify staff message is received by cheif nurse.")
 	public void Verify_staff_message_is_received_by_cheif_nurse() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(5000);
 		boolean flag = false;
@@ -2188,7 +2199,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify staff message is received by Residential Manager.")
 	public void Verify_staff_message_is_received_by_Residential_Manager() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		sleep(5000);
 		boolean flag = false;
@@ -2217,7 +2228,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify chief nurse message is received by Residential Manager.")
 	public void Verify_chief_nurse_message_is_received_by_Residential_Manager() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(5000);
 		boolean flag = false;
@@ -2248,7 +2259,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify Residential manager message received by staff.")
 	public void Verify_Residential_manager_message_is_received_by_staff() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(5000);
 		boolean flag = false;
@@ -2278,7 +2289,7 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify Residential manager message received by cheif nurse.")
 	public void Verify_Residential_manager_message_is_received_by_cheif_nurse() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		sleep(5000);
 		waitForFullPageElementLoad(chiefnurseDriver);
@@ -2310,12 +2321,12 @@ public class IncidentReportPageStep extends BaseClass {
 	@Then("Verify Nofall text in grid.")
 	public void Verify_Nofall_text_in_grid() {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String actual = staffpom.getHomePage().firstEventTextInGrid();
 		Assert.assertEquals("The text from grid is : "+actual+" but the expected is : No Fall", 
 				actual, "No Fall");
 	}
 
-
+	
 }

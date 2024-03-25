@@ -24,7 +24,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should search the created suite")
 		public void user_should_search_the_created_suite() throws Exception {
 		   
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			waitForFullPageElementLoad();
 			
@@ -34,7 +34,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should clicks on the Edit Suite button and verifies that the Edit Suite screen is displayed")
 		public void user_should_clicks_on_the_edit_suite_button_and_verifies_that_the_edit_suite_screen_is_displayed() throws Exception {
 			
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getEditSuitesPage().editButton();           
 		
@@ -52,7 +52,7 @@ public class EditSuitesPageStep extends BaseClass {
 		public void user_should_verify_the_limit_error_info_message_for_suite_Name_field_in_edit_suite_page (String expLimitValidationMsgForSN) {
 			
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
 			pom.getEditSuitesPage().enterDataToCheckTheLimitInSuiteTextbox();
@@ -73,7 +73,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the Edit Suite form for mandatory {string}")
 		public void user_should_verify_the_edit_suite_form_for_mandatory_and(String expSNMandatoryTxt) {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			deleteExistFieldData(pom.getEditSuitesPage().getSuiteName());
 			deleteExistFieldData(pom.getAddSuitesPage().getLength());
@@ -99,7 +99,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify duplicate validation for Suite name {string} in edit suite page")
 		public void user_should_verify_duplicate_validation_for_suite_name_in_edit_suite_page(String expSuiteExistToastMessage) throws Exception {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 
 			pom.getEditSuitesPage().existSuiteName(1);
 			pom.getEditSuitesPage().updateButton();
@@ -128,7 +128,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Suite Name* for limit in edit suite popup")
 		public void user_should_verify_the_field_suite_name_for_limit_in_edit_suite_popup() {
 			
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
 			
@@ -145,7 +145,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Length* for limit in edit suite popup")
 		public void user_should_verify_the_field_length_for_limit_in_edit_suite_popup() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			String checkLengthFieldMaxLimit = pom.getAddSuitesPage().checkLengthFieldMaxLimit(2);
 			
@@ -162,7 +162,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Width* for limit in edit suite popup")
 		public void user_should_verify_the_field_width_for_limit_in_edit_suite_popup() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
              String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(2);
 			
@@ -180,7 +180,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Height* for limit in edit suite popup")
 		public void user_should_verify_the_field_height_for_limit() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
            String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(2);
 			
@@ -197,7 +197,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Length* for limit with decimal point in edit suite popup")
 		public void user_should_verify_the_field_length_for_limit_with_decimal_point_in_edit_suite_popup() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			pom.getAddSuitesPage().deleteExistLengthWidthHeightFieldsData();
 			
@@ -216,7 +216,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Width* for limit with decimal point in edit suite popup")
 		public void user_should_verify_the_field_width_for_limit_with_decimal_point_in_edit_suite_popup() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			 String checkWidthFieldMaxLimit = pom.getAddSuitesPage().checkWidthFieldMaxLimit(3);
 				
@@ -233,7 +233,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the field Height* for limit with decimal point in edit suite popup")
 		public void user_should_verify_the_field_height_for_limit_with_decimal_point_in_edit_suite_popup() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 			
 			  String checkHeigthFieldMaxLimit = pom.getAddSuitesPage().checkHeigthFieldMaxLimit(3);
 				
@@ -249,7 +249,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the x icon in edit suite screen is working")
 		public void user_should_verify_the_x_icon_in_edit_suite_screen_is_working() throws Exception {
 		    
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 
 			pom.getEditSuitesPage().closePopup();
 			
@@ -286,7 +286,7 @@ public class EditSuitesPageStep extends BaseClass {
 		@Then("User should verify the user able to change the status as InActive and is displayed accordingly on update of Availability field in Edit screen")
 		public void user_should_verify_the_user_able_to_change_the_status_as_InActive_and_is_displayed_accordingly_on_update_of_availability_field_in_edit_screen() throws Exception {
 		    	
-			stepName(methodName());
+			logWithLabelName(getMethodName());
     
            pom.getEditSuitesPage().editButton();
 		    
@@ -326,10 +326,11 @@ public class EditSuitesPageStep extends BaseClass {
 			
 		}
 
+
 @Then("User should verify the breadcrums link should be display with module suite name > selected suite name in edit suite page")
 				public void user_should_verify_the_breadcrums_link_should_be_display_with_module_suite_name_selected_suite_name_in_edit_suite_page() throws Exception {
 				    
-					stepName(methodName());
+					logWithLabelName(getMethodName());
 
 					String txtBreadCrum = getText(pom.getEditSuitesPage().getBreadCrumLink());
 					System.out.println("Breadcrums Suite text - " + txtBreadCrum);
@@ -350,7 +351,7 @@ public class EditSuitesPageStep extends BaseClass {
 				@Then("User should verify after click the breadcrums link it should be return to Suite searched page in edit suite page")
 				public void user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_suite_searched_page_in_edit_suite_page() throws Exception {
 				
-					stepName(methodName());
+					logWithLabelName(getMethodName());
 					
 					pom.getEditSuitesPage().returnToSuitesPageBCText();
 
@@ -371,7 +372,7 @@ public class EditSuitesPageStep extends BaseClass {
 					@Then("User should update all fields and verify the toast message after update all fields {string} in edit Suite Page")
 					public void user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_suite_page(String string) throws Exception {
 					    
-						stepName(methodName());
+						logWithLabelName(getMethodName());
 						
 						writeExcel("Test Datas", "UpdatedSuites", 0, getAttribute(pom.getEditSuitesPage().getSuiteName(),"value"));
 						
@@ -412,9 +413,8 @@ public class EditSuitesPageStep extends BaseClass {
 					@Then("User should verify all fields are updated successsfully in edit Suite Page")
 					public void user_should_verify_all_fields_are_updated_successsfully_in_edit_suite_page() throws Exception {
 					    
-						stepName(methodName());
+						logWithLabelName(getMethodName());
 						
-						//deleteExistFieldData(pom.getEditSuitesPage().getSuitesSearchBox());
 						//pom.getEditSuitesPage().searchBox(1);
 						
 						waitForPageLoad();

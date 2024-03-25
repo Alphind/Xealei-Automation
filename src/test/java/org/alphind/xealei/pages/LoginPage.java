@@ -11,6 +11,9 @@
 package org.alphind.xealei.pages;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -74,23 +77,42 @@ public class LoginPage extends BaseClass {
 
 	@FindBy(xpath = "//span[contains(text(),'ok')]/parent::button")
 	private WebElement toastMsgokButton;
-	
+
 	@FindBy(xpath = "//img[@class='logo-img']")
 	private WebElement XealeiImageInLoginPage;
 
-	
-	
-	
+	@FindBy(xpath = "//input[@id='mat-checkbox-1-input']")
+	private WebElement iAgreeCheckBox;
+
+	@FindBy(xpath = "//h1[contains(text(),'PRIVACY POLICY')]")
+	private WebElement privacyPolicyHeading;
+
+	@FindBy(xpath = "//span[contains(text(),'×')]")
+	private WebElement privacyPolicyClose;
+
+	@FindBy(xpath = "//input[@formcontrolname='cpassword']")
+	private WebElement newPassword;
+
+	@FindBy(xpath = "//input[@formcontrolname='confirmpassword']")
+	private WebElement confirmNewPassword;
+
+	@FindBy(xpath = "//button[contains(text(),'Create New Password')]")
+	private WebElement createNewPasswordButton;
+
+	@FindBy(xpath = "//simple-snack-bar/span")
+	private WebElement tostrText;
+
+	@FindBy(xpath = "//span[text()='ok']/parent::button | //span[text()='OK']/parent::button")
+	private WebElement tostrOKButton;
+
 	public WebElement isImageIsDisplayed() {
 		return XealeiImageInLoginPage;
 	}
-	
+
 	public WebElement waitForloginTextVerification() {
 		return loginTextVerification;
 	}
-	
-	
-	
+
 	/**
 	 * Get the "LOGIN" (text) in Login Page.
 	 * 
@@ -220,6 +242,7 @@ public class LoginPage extends BaseClass {
 	 * @return "Incorrect Password" ToastMsg (text).
 	 */
 	public String getIncorrectPasswordErrorMessageText() {
+		waitForVisiblityOfElement(incorrectPasswordErrorMessage, 5);
 		return getText(incorrectPasswordErrorMessage);
 	}
 
@@ -237,6 +260,28 @@ public class LoginPage extends BaseClass {
 	}
 
 	/**
+	 * Enter the invalid data to 'Email*' field.
+	 * 
+	 * @author Nandhalala.
+	 * 
+	 * @created on 05-MAR-2024
+	 * 
+	 */
+	public void enterUserName(String username) {
+		try {
+			waitForPageLoad();
+		} catch (NoSuchElementException e) {
+
+		}
+
+		String user = userName.getAttribute("value");
+		if (!(user.equals(null) || user.equals("")))
+			userName.clear();
+
+		sendKeys(userName, username);
+	}
+
+	/**
 	 * Enter the invalid data to 'password*' field.
 	 * 
 	 * @author Alphi-MohamedRazul
@@ -245,9 +290,29 @@ public class LoginPage extends BaseClass {
 	 * 
 	 */
 	public void password() {
-		
+
 		sendKeys(password, "xe23Dal%q3");
 		pressEnterKeyInPasswordField();
+	}
+
+	/**
+	 * Enter the invalid data to 'password*' field.
+	 * 
+	 * @author Nandhalala.
+	 * 
+	 * @created on 05-MAR-2024.
+	 * 
+	 */
+	public void password(String passWord) {
+		try {
+			waitForPageLoad();
+		} catch (NoSuchElementException e) {
+
+		}
+		String pass = password.getAttribute("value");
+		if (!(pass.equals(null) || pass.equals("")))
+			password.clear();
+		sendKeys(password, passWord);
 	}
 
 	/**
@@ -261,9 +326,9 @@ public class LoginPage extends BaseClass {
 	public void loginButton() {
 
 		sleep(2000);
-		waitForElementToBeClickable(loginButton, 10);
-		waitForFullPageElementLoad();
-		click(loginButton);
+		if (loginButton.isEnabled()) {
+			click(loginButton);
+		}
 	}
 
 	/**
@@ -302,7 +367,7 @@ public class LoginPage extends BaseClass {
 	 */
 	public void ToastMsgOkButton() {
 
-		waitForElementToBeClickable(toastMsgOKButton,10);
+		waitForElementToBeClickable(toastMsgOKButton, 10);
 		click(toastMsgOKButton);
 	}
 
@@ -317,7 +382,7 @@ public class LoginPage extends BaseClass {
 	public void ToastMsgokButton() {
 
 		waitForPageLoad();
-		waitForElementToBeClickable(toastMsgokButton,10);
+		waitForElementToBeClickable(toastMsgokButton, 10);
 		click(toastMsgokButton);
 	}
 
@@ -370,14 +435,13 @@ public class LoginPage extends BaseClass {
 	 * @created on 05/02/2024
 	 */
 	public void isEmailAndPasswordFieldIsEmpty() {
-		
-		if(getAttribute(userName,"value").isEmpty() || getAttribute(password,"value").isEmpty()) {
+
+		if (getAttribute(userName, "value").isEmpty() || getAttribute(password, "value").isEmpty()) {
 			log(Status.FAIL, "Data is NOT entered/displayed in email or password field");
 		} else {
 			log(Status.PASS, "Data is entered/displayed in email and password field");
+		}
 	}
-	}
-	
 
 	String email;
 
@@ -391,14 +455,14 @@ public class LoginPage extends BaseClass {
 	public void validEmail(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
-		
+
 		waitForVisiblityOfElement(userName, 3);
-		
+
 		switch (environment) {
 
 		case "QA": {
 			email = readExcel("Test Datas", "Login", rowNum, 1);
-			sendKeys(userName, email);			
+			sendKeys(userName, email);
 			clickEnter(password);
 			break;
 		}
@@ -422,7 +486,6 @@ public class LoginPage extends BaseClass {
 
 	}
 
-	
 	String passWord;
 
 	/**
@@ -495,13 +558,12 @@ public class LoginPage extends BaseClass {
 		return false;
 	}
 
-	
 	/**
 	 * Check whether the Login text-link is working or not IN FORGOT PASSWORD Page
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
-	 * Created on 25/01/2024
+	 *         Created on 25/01/2024
 	 * 
 	 * @return if working : true | else : false
 	 */
@@ -513,7 +575,6 @@ public class LoginPage extends BaseClass {
 		return false;
 	}
 
-	
 	String newEmail;
 
 	/**
@@ -526,9 +587,9 @@ public class LoginPage extends BaseClass {
 	public void email(int rowNum) {
 
 		String environment = getConfigureProperty("Environment");
-		
+
 		waitForVisiblityOfElement(userName, 3);
-		
+
 		switch (environment) {
 
 		case "QA": {
@@ -556,7 +617,6 @@ public class LoginPage extends BaseClass {
 		}
 
 	}
-
 
 	String pass;
 
@@ -595,10 +655,120 @@ public class LoginPage extends BaseClass {
 
 		}
 	}
-	
-	
-	
-	
 
-	
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Click on I Agree check box.
+	 * 
+	 */
+	public void clickIAgreeCheckBox() {
+		waitForVisiblityOfElement(iAgreeCheckBox, 10);
+		// span[contains(text(),'I Agree to')]/preceding-sibling::div/input
+		WebElement agree = this.driver
+				.findElement(By.xpath("//span[contains(text(),'I Agree to')]/preceding-sibling::div"));
+//		WebElement agree = this.driver.findElement(By.xpath("//span[contains(text(),'I Agree to')]"));
+		click(agree);
+//		forceClick(iAgreeCheckBox);
+
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 15-MAR-2024.
+	 * 
+	 * Verify privacy policy is displayed and close the policy.
+	 * 
+	 */
+	public void checkPrivacyPolicy() {
+		waitForVisiblityOfElement(iAgreeCheckBox, 10);
+		WebElement iAgree = this.driver.findElement(By.xpath("//span[contains(text(),'I Agree to')]"));
+		iAgree.click();
+		try {
+			WebElement privacyPolicyHeading = this.driver
+					.findElement(By.xpath("//h1[contains(text(),'PRIVACY POLICY')]"));
+			if (privacyPolicyHeading.isDisplayed()) {
+				log(Status.PASS, "Plivacy policy heading is displayed");
+				WebElement privacyPolicyClose = this.driver.findElement(By.xpath("//span[contains(text(),'×')]"));
+				privacyPolicyClose.click();
+			} else {
+				log(Status.FAIL, "Plivacy policy heading is not displayed");
+			}
+
+		} catch (NoSuchElementException e) {
+			log(Status.FAIL, "Plivacy policy heading is not displayed");
+		}
+
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Enter new password.
+	 * 
+	 */
+	public void newPassword() {
+		waitForVisiblityOfElement(newPassword, 10);
+		sendKeys(newPassword, readExcel("Test Datas", "User Management", 1, 28).trim());
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Enter new password.
+	 * 
+	 */
+	public void confirmNewPassword() {
+
+		sendKeys(confirmNewPassword, readExcel("Test Datas", "User Management", 1, 28).trim());
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 04-MAR-2024.
+	 * 
+	 * Click complete new password button.
+	 * 
+	 */
+	public void completeNewPassword() {
+		waitForVisiblityOfElement(createNewPasswordButton, 10);
+		click(createNewPasswordButton);
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 * Get Tostr message.
+	 * 
+	 */
+	public String getTostrText() {
+		waitForVisiblityOfElement(tostrText, 5);
+		return tostrText.getText();
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created on 18-MAR-2024.
+	 * 
+	 * Click ok button in tostr message.
+	 */
+	public void clickToastOkButton() {
+		try {
+			click(tostrOKButton);
+		} catch (StaleElementReferenceException e) {
+
+		}
+	}
+
 }

@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.stepdefinition;
 
 import org.alphind.xealei.baseclass.BaseClass;
@@ -16,15 +26,15 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should search the created Individual")
 	public void user_should_search_the_created_individual() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().searchBox();
 	}
 
 	@Then("User should verify the name dob id guardian contact details is displayed")
-	public void user_should_verify_the_name_dob_id_guardian_contact_details_is_displayed() {
+	public void user_should_verify_the_name_dob_id_guardian_contact_details_is_displayed() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForFullPageElementLoad();
 		
@@ -169,18 +179,29 @@ public class EditIndividualsStep extends BaseClass {
 			
 	     } else {
 	    	 log(Status.FAIL, "Searched Individual Name doesn't displayed as expected");
+	    	 throw new Exception("Searched Individual Name doesn't displayed as expected");
 		}
 
+//		
+//		 String IndNeedToUpdate = getText(pom.getEditIndividualsPage().getCreatedIndName());
+//		
+//		 System.out.println("Ind that needs to updated - "+IndNeedToUpdate);
+//		 
+//		 writeExcel("Test Datas", "UpdatedIndividuals", 0, IndNeedToUpdate);
+//		 
+		 pom.getEditIndividualsPage().arrowRight();
+		 waitForPageLoad();
 	}
 	
 	@Then("User should verify the breadcrums link should be display with module individual name > selected individual name in edit individual page")
 	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_individual_name_selected_individual_name_in_edit_individual_page() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		sleep(2000);
 		
-		pom.getEditIndividualsPage().arrowRight();
+//		pom.getEditIndividualsPage().arrowRight();
+		
 		waitForPageLoad();
 		
 		String txtBreadCrum = getText(pom.getEditIndividualsPage().getBreadCrumLink());
@@ -198,7 +219,7 @@ public class EditIndividualsStep extends BaseClass {
 	@And("User should click the Edit button in Personal Information")
 	public void user_should_click_the_Edit_button_in_Personal_Information() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().EditButton();
 
@@ -207,7 +228,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should verify the tab section name {string},{string}")
 	public void user_should_verify_the_tab_section_name(String expPersonalTab, String expVitalsTab) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			Assert.assertEquals("Personal Tab is NOT displayed as expected", expPersonalTab,
@@ -234,7 +255,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should verify the Update and Cancel button is enabled")
 	public void user_should_verify_the_update_and_cancel_button_is_enabled() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		boolean isCancelButtonIsEnabled = pom.getEditIndividualsPage().getEditIndCancelBtn().isEnabled();
 		boolean isUpdateButtonIsEnabled = pom.getEditIndividualsPage().getUpdateBtn().isEnabled();
@@ -259,7 +280,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should update existing phone number in emergency contact1 and verify the error message for duplicate Mobile Number {string}")
 	public void user_should_update_existing_phone_number_in_emergency_contact1_and_verify_the_error_message_for_duplicate_mobile_number(String expDuplicateErrorMsg) {
 	   
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 	
 		deleteExistPhoneData(pom.getEditIndividualsPage().getEditECPhNumField());
 		
@@ -283,7 +304,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should delete all the fields and perform update and verify the Required field toast message {string}")
 	public void user_should_delete_all_the_fields_and_perform_update_and_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().deleteAllIndexistFieldsData();
 		
@@ -315,7 +336,7 @@ public class EditIndividualsStep extends BaseClass {
 			String expGender, String expDob, String expSuiteName, String expResAddress, String expMailAddress,
 			String expECFN, String expECLN, String expECRelationship, String expECPhNo) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			Assert.assertEquals("MF validation message is NOT displayed for Individual FirstName* field", expFirstName,
@@ -445,7 +466,7 @@ public class EditIndividualsStep extends BaseClass {
 			String expValidationMsgForFrstName, String expValidationMsgForMiddleName,
 			String expValidationMsgForLastName) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().firstName().middleName().lastName();
 
@@ -491,7 +512,7 @@ public class EditIndividualsStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact1_first_last_name_fields_and(
 			String expValidationMsgForFrstName, String expValidationMsgForLastName) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().ec1FirstName().ec1LastName();
 
@@ -524,7 +545,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should click Add another emergency contact")
 	public void user_should_click_add_another_emergency_contact() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getAddIndividualsPage().addEmergencyContact();
 	}
@@ -532,7 +553,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should verify the emergency contact label names")
 	public void user_should_verify_the_emergency_contact_label_names() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		String EC1 = getText(pom.getAddIndividualsPage().getEmergencyContact1LabelName());
 
@@ -558,7 +579,7 @@ public class EditIndividualsStep extends BaseClass {
 	public void user_should_verify_the_limit_validation_error_message_in_emergency_contact2_first_last_name_fields(
 			String expValidationMsgForFrstName, String expValidationMsgForLastName) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().ec2FirstName().ec2LastName();
 
@@ -590,7 +611,7 @@ public class EditIndividualsStep extends BaseClass {
 	@Then("User should verify the emergency contact label names in edit individual page")
 	public void user_should_verify_the_emergency_contact_label_names_in_edit_individual_page() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String EC1 = getText(pom.getEditIndividualsPage().getEmergencyContact1LabelName());
 
@@ -615,7 +636,7 @@ public class EditIndividualsStep extends BaseClass {
 @Then("User should perform update without enter any fields in emergency and verify the Required field toast message {string}")
 public void user_should_perform_update_without_enter_any_fields_in_emergency_and_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
   
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().updateIndividual();
 		
@@ -642,7 +663,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 			String expValidationMsgForFrstName, String expValidationMsgForLastName, String expECRelationship,
 			String expECPhNo) {
 		
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			waitForVisiblityOfElement(pom.getAddIndividualsPage().getValidationErrMsgForEmContactFNField(), 5);
@@ -704,7 +725,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@Then("User should perform firstName* and lastName* fields in Add another emergency contact3 for limits and verify the limit validation error message in Emergency Contact3 First, Last Name* fields {string} and {string}")
 	public void user_should_perform_first_name_and_last_name_fields_in_add_another_emergency_contact3_for_limits_and_verify_the_limit_validation_error_message_in_emergency_contact3_first_last_name_fields_and(String expValidationMsgForFrstName, String expValidationMsgForLastName) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().ec3FirstName().ec3LastName();
 
@@ -737,7 +758,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@Then("User should verify the that able to delete the emergency contact2 and emergency contact3 in edit individual page")
 	public void user_should_verify_the_that_able_to_delete_the_emergency_contact2_and_emergency_contact3_in_edit_individual_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().ec3closeButton().ec2closeButton();
 
@@ -754,7 +775,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@Then("User should verify the cancel button is working in edit individual page")
 	public void user_should_verify_the_cancel_button_is_working_in_edit_individual_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			pom.getEditIndividualsPage().cancelButton();
@@ -771,7 +792,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@Then("User should verify after click the breadcrums link module name should be return to searched Individual page")
 	public void user_should_verify_after_click_the_breadcrums_link_module_name_should_be_return_to_searched_individual_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditIndividualsPage().individualBCTextLink();
 
@@ -790,7 +811,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@And("User should navigate to vitals tab and click edit vitals button")
 	public void user_should_navigate_to_vitals_tab_and_click_edit_vitals_button() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getEditIndividualsPage().arrowRight();
 		waitForPageLoad();
@@ -803,7 +824,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@Then("User should perform update with empty fields in vitals tab and verify the Required field toast message {string}")
 	public void user_should_perform_update_with_empty_fields_in_vitals_tab_and_verify_the_required_field_toast_message(String expRequiredFieldToastMsg) {
 	 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		pom.getEditIndividualsPage().unSelectBloodGroup();
 		
@@ -836,7 +857,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	@And("User should upload medical record in edit vital tab section")
 	public void user_should_upload_medical_record_in_edit_vital_tab_section() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 	pom.getEditIndividualsPage().uploadForEditVitalsTab("Gif Format", "gif");
 	
@@ -846,7 +867,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	 @Then("User should verify that able to cancel the uploaded record file in edit vitals tab section")
 		public void user_should_verify_that_able_to_cancel_the_uploaded_record_file_in_edit_vital_tab_section() {
 
-			stepName(methodName());
+			logWithLabelName(getMethodName());
 
 	if (getConfigureProperty("MedicalRecordFileUpload").equalsIgnoreCase("Yes")
 			&& getConfigureProperty("HeadlessLaunch").equalsIgnoreCase("NO")) {
@@ -862,17 +883,28 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 	}
 	}
 	 
-	
+	 // Sanity Testing step file
+	 
+	 @Then("User should navigate to personal information tab")
+	 public void user_should_navigate_to_personal_information_tab() {
+	    
+		 pom.getEditIndividualsPage().navigateToPersonalInformationTab();
+	 }
+	 
 		 @Then("User should update all fields and verify the toast message after perform all fields {string} in edit individual Page")
 		 public void user_should_update_all_fields_and_verify_the_toast_message_after_perform_all_fields_in_edit_individual_page(String expIndUpdatedToastMsg) throws Exception {
 		     
-			 stepName(methodName());
+			 logWithLabelName(getMethodName());
 			 
-			 String IndNeedToUpdate = getText(pom.getEditIndividualsPage().getCreatedIndName());
+				
+			 String IndNeedToUpdate = pom.getEditIndividualsPage().getCreatedIndNameTextInEditPage();
+			
+			 System.out.println("Ind that needs to updated - "+IndNeedToUpdate);
+			 
 			 writeExcel("Test Datas", "UpdatedIndividuals", 0, IndNeedToUpdate);
 			 
-			 pom.getEditIndividualsPage().arrowRight();
-			 waitForPageLoad();
+//			 pom.getEditIndividualsPage().arrowRight();
+//			 waitForPageLoad();
 			 
 			 pom.getEditIndividualsPage().EditButton();
 			 waitForPageLoad();
@@ -915,7 +947,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 					pom.getAddIndividualsPage().toastMsgokButton();	
 					
 				} catch (AssertionError e) {
-					log(Status.FAIL, "Individual updated successfully toastbar msg is displayed as expected");
+					log(Status.FAIL, "Individual updated successfully toastbar msg is NOT displayed as expected");
 				}
 
 			
@@ -924,7 +956,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 		 @Then("User should verify all fields are updated successsfully in edit individual Page")
 		 public void user_should_verify_all_fields_are_updated_successsfully_in_edit_individual_page() throws Exception {
 		     
-			 stepName(methodName());
+			 logWithLabelName(getMethodName());
 			 
 			 waitForPageLoad();
 				waitForFullPageElementLoad();
@@ -1233,7 +1265,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 		 @Then("User should update all fields in vitals tab")
 		 public void user_should_update_all_fields_in_vitals_tab() throws Exception {
 		     
-			 stepName(methodName());
+			 logWithLabelName(getMethodName());
 			 
 			 pom.getAddIndividualsPage().vitalsTab().addVitalsButton();
 			 waitForPageLoad();
@@ -1260,7 +1292,7 @@ public void user_should_perform_update_without_enter_any_fields_in_emergency_and
 		 @Then("User should verify all fields are updated successsfully in vitals Page")
 		 public void user_should_verify_all_fields_are_updated_successsfully_in_vitals_page() {
 		     
-			 stepName(methodName());
+			 logWithLabelName(getMethodName());
 
 			 pom.getEditIndividualsPage().vitalsTab();
 				

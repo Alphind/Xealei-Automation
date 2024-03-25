@@ -24,7 +24,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	@Then("User should search the created common area")
 	public void user_should_search_the_created_common_area() throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		waitForFullPageElementLoad();
 		
@@ -35,7 +35,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_clicks_on_the_edit_button_and_verifies_that_the_edit_common_area_popup_is_displayed()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 		
 		waitForPageLoad();
 		
@@ -55,7 +55,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_the_limit_error_info_message_for_common_area_name_field_in_edit_common_area_popup_page(
 			String expLimitValidationMsgForCAN) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditCommonAreaPage().deleteExistCommonAreaFieldData();
 
@@ -80,7 +80,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_duplicate_validation_for_common_area_name_in_edit_common_area_popup_page(
 			String expExistToastMessage) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditCommonAreaPage().deleteExistCommonAreaFieldData();
 		
@@ -107,7 +107,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_perform_only_non_mandatory_fields_in_edit_common_area_popup_and_verify_the_info_message_contains_for_mandatory_fields(
 			String expCANMandatoryTxt) {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getEditCommonAreaPage().deleteExistCommonAreaFieldData();
 		
@@ -128,7 +128,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_update_all_fields_and_verify_the_toast_message_after_update_all_fields_in_edit_common_area_popup_page(
 			String string) throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		writeExcel("Test Datas", "UpdatedCommonArea", 0,
 				pom.getEditCommonAreaPage().getAttributeValueForCommonAreaNameField());
@@ -163,7 +163,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	@Then("User should verify all fields are updated successsfully in Edit Common Area popup Page")
 	public void user_should_verify_all_fields_are_updated_successsfully_in_edit_common_area_popup_page() {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		try {
 			waitForVisiblityOfElement(pom.getAddCommonAreaPage().getCreatedCommonAreaData(), 10);
@@ -239,7 +239,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_the_breadcrums_link_should_be_display_with_module_common_area_name_created_common_area_name_in_edit_common_area_page()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		String txtBreadCrum = pom.getAddCommonAreaPage().getBreadCrumLinkText();
 		String getCreatedCommonArea = readExcelFromLastRow("Test Datas", "CreatedCommonArea",0);
@@ -265,7 +265,7 @@ public class EditCommonAreaPageStep extends BaseClass {
 	public void user_should_verify_after_click_the_breadcrums_link_it_should_be_return_to_common_area_searched_page_in_edit_common_area_page()
 			throws Exception {
 
-		stepName(methodName());
+		logWithLabelName(getMethodName());
 
 		pom.getAddCommonAreaPage().returnToCommonAreaPageBCText();
 

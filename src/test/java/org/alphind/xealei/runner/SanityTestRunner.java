@@ -18,13 +18,9 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = "src//test//resources//Features", publish = true,
-tags = "@SanityTesting", glue = "org.alphind.xealei.stepdefinition", 
+tags = "@Sanity", glue = "org.alphind.xealei.stepdefinition", 
 dryRun = !true, monochrome = true)
 
-//plugin = {
-//		"html:target/html.html", 
-//		"junit:target/junit.xml", 
-//		"json:target/json.json"}
 
 public class SanityTestRunner {
 

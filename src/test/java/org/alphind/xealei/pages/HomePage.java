@@ -1,3 +1,13 @@
+/** Copyright (C) 2023  Alphind Solution Software Pvt. Ltd. - All Rights Reserved.
+
+* created by Mohamed Razul
+
+* reviewed by Hajira Begam
+
+* You may use, distribute and modify this code for internal purpose,  however, distribution outside the organization     * is prohibited without prior and proper license agreement
+
+*/
+
 package org.alphind.xealei.pages;
 
 import java.util.ArrayList;
@@ -6,7 +16,6 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.alphind.xealei.baseclass.BaseClass;
-import org.apache.commons.exec.LogOutputStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,19 +38,22 @@ public class HomePage extends BaseClass {
 
 	@FindBy(xpath = "//div[@class='user-category']")
 	private WebElement adminName;
-	
+
+	@FindBy(xpath = "//mat-icon[contains(text(),'keyboard_arrow_down')]")
+	private WebElement arrowDropdown;
+
 	@FindBy(xpath = "//mat-icon[contains(text(),'logout')]/parent::div/parent::button")
 	private WebElement logoutButton;
 
 	@FindBy(xpath = "//span[contains(text(),'Occ')]")
 	private WebElement occupancyZone;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Suites')]/parent::a")
 	private WebElement suitesModule;
 
 	@FindBy(xpath = "//span[contains(text(),'Common Area')]/parent::a")
 	private WebElement commonAreaModule;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Individuals')]")
 	private WebElement individualsModule;
 
@@ -58,81 +70,89 @@ public class HomePage extends BaseClass {
 	private WebElement notificationIcon;
 
 	private String idXpath = "//p[contains(text(),'ID')]";
-	
+
 	private String fallAlertXpath = "(//h1[text() = 'Fall Alert! ']/following-sibling::div)[XX]";
-	
+
 	@FindBy(xpath = "//h1[text() = 'Fall Alert! ']/following-sibling::div")
 	private List<WebElement> fallAlerts;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Save & Proceed to IR')]/parent::button")
 	private WebElement alertNotificationSaveAndroceedToIRButton;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Confirm')]/parent::button")
 	private WebElement alertNotificationConfirmButton;
-	
+
 	@FindBy(xpath = "//div[text() = 'Fall']/parent::label/parent::mat-radio-button")
 	private WebElement alertNotificationFallRadioButton;
-	
+
 	@FindBy(xpath = "//div[text() = 'No Fall']/parent::label/parent::mat-radio-button")
 	private WebElement alertNotificationNoFallRadioButton;
-	
+
 	@FindBy(xpath = "//mat-select[@formcontrolname='noFallReason']")
 	private WebElement noFallReasonDropDown;
-	
-	private String dropdownOption = "//span[@class = 'mat-option-text' "
-			+ "and contains(text(),'XX')]";
-	
+
+	private String dropdownOption = "//span[@class = 'mat-option-text' " + "and contains(text(),'XX')]";
+
 	@FindBy(xpath = "//textarea[@formcontrolname='fallDescription']")
 	private WebElement alertNotificationDescriptionText;
-	
+
 	@FindBy(xpath = "//tbody/tr/td[4]")
 	private List<WebElement> dateAndTimeColumn;
-	
+
 	private String iminButton = "//tbody/tr[XX]/td[5]/button/span[contains(text(),'in')]";
-	
+
 	private String eventValue = "//tbody/tr[XX]/td[3]/div/span";
-	
+
 	@FindBy(xpath = "(//h1[contains(text(),'Fall Alert!')])[1]/following::button[1]")
 	private WebElement firstFallAlert;
-	
 
+	@FindBy(xpath = "//li/a/span[contains(text(),'User Management')]")
+	private WebElement userManagementModule;
 
-	
+	public WebElement getAdminName() {
+		return adminName;
+	}
+
 	/**
-	 * Get the login user name (text) in Home Page.
+	 * Retrieves the text content of the admin name element.
+	 *
+	 * @return The text content of the admin name element.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * 
-	 * @return login user name (text).
 	 */
 	public String getAdminNameText() {
 		return getText(adminName);
 	}
-	
-	public WebElement getAdminName() {
-		return adminName;
-	}
-	
-	public HomePage adminName() {
-		
-		click(adminName);
-		return this;
-	}
-	
-	
-	public void logout() {
-	
-		click(logoutButton);
-	}
-	
-	
 
 	/**
-	 * Get the Home page Module (text) in Home Page.
+	 * Created by Nandhalala.
+	 * 
+	 * Created om 15-MAR-2024
+	 */
+	public void logout() {
+
+		waitForVisiblityOfElement(logoutButton, 10);
+		click(logoutButton);
+		waitForPageLoad(this.driver);
+
+	}
+
+	/**
+	 * Created by Nandhalala.
+	 * 
+	 * Created om 15-MAR-2024
+	 */
+	public void arrowDropDown() {
+		waitForVisiblityOfElement(arrowDropdown, 10);
+		click(arrowDropdown);
+	}
+
+	/**
+	 * Retrieves the text content of the home page element.
+	 *
+	 * @return The text content of the home page element.
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * 
-	 * @return Home page (text).
 	 */
 	public String HomeText() {
 		return getText(homePageText);
@@ -151,7 +171,7 @@ public class HomePage extends BaseClass {
 	}
 
 	/**
-	 * Click the Report Module.
+	 * Click the incident Report sub module.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -163,13 +183,18 @@ public class HomePage extends BaseClass {
 	}
 
 	/**
-	 * Check whether the 'Home' page is displayed
+	 * Check whether the 'Home' page is displayed or not
+	 * 
+	 * @returns true if User Management page heading is displayed or else it returns
+	 *          false.
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public boolean isHomePageDisplayed() {
-		waitForPageLoad();
+		sleep(2000);
+		waitForPageLoad(this.driver);
+		waitForVisiblityOfElement(homePageText, 10);
 		if (homePageText.isDisplayed()) {
 			return true;
 		}
@@ -177,7 +202,7 @@ public class HomePage extends BaseClass {
 	}
 
 	/**
-	 * Check whether the 'Suite' page is displayed
+	 * Click on 'Suite' module
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -191,9 +216,9 @@ public class HomePage extends BaseClass {
 			log(Status.FAIL, "Unable to click the Suites Module");
 		}
 	}
-	
+
 	/**
-	 * Check whether the 'Common Area' page is displayed
+	 * Click on 'Common Area' module
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
@@ -208,13 +233,10 @@ public class HomePage extends BaseClass {
 		}
 	}
 
-	
 	/**
-	 * Check whether the 'Occupancy Zone' page is displayed
+	 * Click on "Occupancy Zone" module
 	 * 
 	 * @author Alphi-MohamedRazul
-	 * 
-	 * @created on 15/02/2024
 	 * 
 	 */
 	public HomePage navToOccupancyZoneModule() {
@@ -227,15 +249,14 @@ public class HomePage extends BaseClass {
 		return this;
 	}
 
-	
 	/**
-	 * Check whether the 'Individual' page is displayed
+	 * Click on 'Individual' module
 	 * 
 	 * @author Alphi-MohamedRazul
 	 * 
 	 */
 	public void navToIndividualsModule() {
-		
+
 		if (individualsModule.isDisplayed()) {
 			waitForFullPageElementLoad();
 			click(individualsModule);
@@ -245,12 +266,36 @@ public class HomePage extends BaseClass {
 		}
 	}
 
+	/**
+	 * Click on User Management module.
+	 * 
+	 * @author Nandhalala
+	 * 
+	 */
+	public void navigateToUserManagementModule() {
+
+		if (isUserManagementPresent()) {
+			waitForFullPageElementLoad();
+			click(userManagementModule);
+			waitForPageLoad(this.driver);
+		} else {
+			log(Status.FAIL, "Unable to click the User Management Module");
+		}
+	}
+
+	/**
+	 * Click on notification icon and click on report ID.
+	 * 
+	 * @param ReportID
+	 * 
+	 * @author Nandhalala
+	 */
 	public void notificationIcon(String ReportID) {
 		waitForPageLoad(this.driver);
 		sleep(6000);
 		click(notificationIcon);
 		waitForFullPageElementLoad(this.driver);
-		
+
 		idXpath = idXpath.replace("ID", ReportID);
 		try {
 			Thread.sleep(5000);
@@ -263,31 +308,28 @@ public class HomePage extends BaseClass {
 		waitForPageLoad(this.driver);
 	}
 
-	
 	public void fallAlertNotification(String dateandtimeofFall) throws Exception {
 		waitForPageLoad(this.driver);
 		click(notificationIcon);
 		sleep(2000);
 		List<String> fallAlertTexts = new ArrayList<String>();
 		int count = 0;
-		for(WebElement alert : fallAlerts) {
+		for (WebElement alert : fallAlerts) {
 			fallAlertTexts.add(alert.getText());
 		}
-		if(Objects.isNull(fallAlertTexts)) {
+		if (Objects.isNull(fallAlertTexts)) {
 			throw new Exception("No Fall alert found.");
 		}
-		for(String falltime : fallAlertTexts) {
+		for (String falltime : fallAlertTexts) {
 			++count;
-			if(falltime.contains(dateandtimeofFall)) {
+			if (falltime.contains(dateandtimeofFall)) {
 				break;
 			}
 		}
-		fallAlertXpath =fallAlertXpath.replaceAll("XX", String.valueOf(count));
+		fallAlertXpath = fallAlertXpath.replaceAll("XX", String.valueOf(count));
 		click(this.driver.findElement(By.xpath(fallAlertXpath)));
 	}
-	
 
-	
 //	public void firstFallAlertNotification() throws Exception {
 //		waitForPageLoad(this.driver);
 //		click(notificationIcon);
@@ -310,7 +352,6 @@ public class HomePage extends BaseClass {
 ////		click(this.driver.findElement(By.xpath(fallAlertXpath)));
 //		
 //		click(firstFallAlert);
-		
 
 	public void firstFallAlertNotification() throws Exception {
 		waitForPageLoad(this.driver);
@@ -320,38 +361,38 @@ public class HomePage extends BaseClass {
 		click(firstFallAlert);
 
 	}
-	
-	
+
 	/**
 	 * created by Nandhalala
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public void fallAlertFromGrid(String dateandtimeofFall) throws Exception {
 		List<String> dateAndTime = new ArrayList<String>();
-		for(WebElement dateandtime : dateAndTimeColumn) {
+		for (WebElement dateandtime : dateAndTimeColumn) {
 			dateAndTime.add(dateandtime.getText());
 		}
 		int count = 0;
 		boolean flag = false;
-		for(String datetime : dateAndTime) {
+		for (String datetime : dateAndTime) {
 			++count;
-			//if(Pattern.compile(Pattern.quote(""), Pattern.CASE_INSENSITIVE).matcher("").find());
+			// if(Pattern.compile(Pattern.quote(""),
+			// Pattern.CASE_INSENSITIVE).matcher("").find());
 
-			if(Pattern.compile(dateandtimeofFall, Pattern.CASE_INSENSITIVE).matcher(datetime).find()) {
+			if (Pattern.compile(dateandtimeofFall, Pattern.CASE_INSENSITIVE).matcher(datetime).find()) {
 				flag = true;
 				break;
 			}
 		}
-		if(flag) {
+		if (flag) {
 			iminButton = iminButton.replaceAll("XX", String.valueOf(count));
 			click(this.driver.findElement(By.xpath(iminButton)));
-		}
-		else {
+		} else {
 			throw new Exception("Time not found");
 		}
-		
+
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -359,7 +400,7 @@ public class HomePage extends BaseClass {
 		click(alertNotificationSaveAndroceedToIRButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -367,14 +408,14 @@ public class HomePage extends BaseClass {
 		click(alertNotificationConfirmButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
 	public void alert() {
 		click(alertNotificationSaveAndroceedToIRButton);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -383,7 +424,7 @@ public class HomePage extends BaseClass {
 		click(alertNotificationFallRadioButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -392,7 +433,7 @@ public class HomePage extends BaseClass {
 		click(alertNotificationNoFallRadioButton);
 		waitForPageLoad(this.driver);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -402,9 +443,10 @@ public class HomePage extends BaseClass {
 		waitForPageLoad(this.driver);
 		String noFallReason = readExcel("Test Datas", "Incident Reports", 1, 33).trim();
 		String noFallReasonXpath = dropdownOption.replaceAll("XX", noFallReason);
+		waitForInVisiblityOfElement(this.driver, this.driver.findElement(By.xpath(noFallReasonXpath)), 3);
 		click(this.driver.findElement(By.xpath(noFallReasonXpath)));
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -413,7 +455,7 @@ public class HomePage extends BaseClass {
 		String noFallReasonXpath = eventValue.replaceAll("XX", "1");
 		return getTextString(noFallReasonXpath).trim();
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -421,7 +463,7 @@ public class HomePage extends BaseClass {
 		String description = readExcel("Test Datas", "Incident Reports", 1, 29).trim();
 		sendKeys(alertNotificationDescriptionText, description);
 	}
-	
+
 	/**
 	 * Created by Nandhalala
 	 */
@@ -429,7 +471,12 @@ public class HomePage extends BaseClass {
 		String description = readExcel("Test Datas", "Incident Reports", 1, 34).trim();
 		sendKeys(alertNotificationDescriptionText, description);
 	}
-	
-	
+
+	/**
+	 * Created by Nandhalala
+	 */
+	public boolean isUserManagementPresent() {
+		return userManagementModule.isDisplayed();
+	}
 
 }
