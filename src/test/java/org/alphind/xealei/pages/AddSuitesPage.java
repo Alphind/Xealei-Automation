@@ -13,6 +13,7 @@ package org.alphind.xealei.pages;
 import java.util.Objects;
 
 import org.alphind.xealei.baseclass.BaseClass;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -136,6 +137,14 @@ public class AddSuitesPage extends BaseClass {
 	@FindBy(xpath = "//span[contains(text(),'Yes')]/parent::button")
 	private WebElement closepopupYesButton;
 
+	@FindBy(xpath = "//span[contains(text(),'Note:')]")
+	private WebElement maxSuiteLimitValMsg;
+
+	public WebElement getmaxSuiteLimitValMsgText() {
+		return maxSuiteLimitValMsg;
+
+	}
+	
 	public WebElement getBtnAddSuites() {
 		return btnAddSuites;
 	}
@@ -438,13 +447,46 @@ public class AddSuitesPage extends BaseClass {
 		click(closepopupYesButton);
 	}
 
-//	public AddSuitesPage enterSuiteName(int rowNum) throws Exception {
-//
-//		String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
-//		log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
-//		sendKeys(suiteName, suiteNameFromExcel);
-//		return this;
-//	}
+	/**
+	 * Create Suite till the Suite limit is breached.
+	 * 
+	 * @param rowNum The row number from which to read the data from excel.
+	 * @throws Exception If an error occurs during this operation.
+	 * 
+	 * @author Alphi-MohamedRazul
+	 */
+	public void enterSuiteName(int rowNum) throws Exception {
+		
+		while(true) {
+			
+			try {
+				if(maxSuiteLimitValMsg.isDisplayed()) {
+				break;
+				}
+				
+			}catch(NoSuchElementException e){
+				
+				waitForFullPageElementLoad();
+				
+				btnAddSuite();
+				
+				String suiteNameFromExcel = (readExcel("Test Datas", "AddSuites", rowNum, 0) + dateAndTime());
+				log(Status.INFO, "Getting suite name data from excel -" + suiteNameFromExcel);
+				sendKeys(suiteName, suiteNameFromExcel);
+			//	String enteredSN = getAttribute(suiteName, "value");
+			//	String writeExcel = writeExcel("Test Datas", "CreatedSuites", 0, enteredSN);
+		    //  log(Status.INFO, "Write the created suite in excel -" + writeExcel);
+				addButton();
+				
+				savedSuccessfulToastMsgOkButton();
+				
+				waitForPageLoad();
+				
+				continue;
+				
+	}
+		}
+	}
 
 	/**
 	 * To enter the valid data in suite name* field based on the data from the
@@ -695,20 +737,6 @@ public class AddSuitesPage extends BaseClass {
 		}
 	}
 
-//	public void createdSuiteLabelName(int rowNum) throws Exception {
-//
-//		waitForFullPageElementLoad();
-//		System.out.println("Actual Suite : " + getText(searchCreatedSN));
-//		System.out.println("Exp Suite : " + readExcelFromLastRow("Test Datas", "CreatedSuites", 0));
-//
-//		if (getText(searchCreatedSN).equals(readExcelFromLastRow("Test Datas", "CreatedSuites", 0))) {
-//			click(searchCreatedSN);
-//			log(Status.PASS, "Searched suite is displayed successfully by clicking suite label name");
-//		} else {
-//			log(Status.FAIL, "Searched suite is not displayed as expected");
-//			throw new Exception("Assertion failed searched suite is not displayed as expected");
-//		}
-//	}
 
 	/**
 	 * Retrieves the text content of the breadcrumb link.
